@@ -1,0 +1,894 @@
+{
+	"tldrawFileFormatVersion": 1,
+	"schema": {
+		"schemaVersion": 1,
+		"storeVersion": 4,
+		"recordVersions": {
+			"asset": {
+				"version": 1,
+				"subTypeKey": "type",
+				"subTypeVersions": {
+					"image": 3,
+					"video": 3,
+					"bookmark": 1
+				}
+			},
+			"camera": {
+				"version": 1
+			},
+			"document": {
+				"version": 2
+			},
+			"instance": {
+				"version": 24
+			},
+			"instance_page_state": {
+				"version": 5
+			},
+			"page": {
+				"version": 1
+			},
+			"shape": {
+				"version": 3,
+				"subTypeKey": "type",
+				"subTypeVersions": {
+					"group": 0,
+					"text": 1,
+					"bookmark": 2,
+					"draw": 1,
+					"geo": 8,
+					"note": 5,
+					"line": 4,
+					"frame": 0,
+					"arrow": 3,
+					"highlight": 0,
+					"embed": 4,
+					"image": 3,
+					"video": 2
+				}
+			},
+			"instance_presence": {
+				"version": 5
+			},
+			"pointer": {
+				"version": 1
+			}
+		}
+	},
+	"records": [
+		{
+			"gridSize": 10,
+			"name": "",
+			"meta": {},
+			"id": "document:document",
+			"typeName": "document"
+		},
+		{
+			"meta": {},
+			"id": "page:page",
+			"name": "Page 1",
+			"index": "a1",
+			"typeName": "page"
+		},
+		{
+			"id": "pointer:pointer",
+			"typeName": "pointer",
+			"x": -340.3711395263672,
+			"y": -1464.600900650024,
+			"lastActivityTimestamp": 1710883782686,
+			"meta": {}
+		},
+		{
+			"followingUserId": null,
+			"opacityForNextShape": 1,
+			"stylesForNextShape": {},
+			"brush": {
+				"x": -340.3711395263672,
+				"y": -1464.600900650024,
+				"w": 2292.2467041015625,
+				"h": 1359.3131637573242
+			},
+			"scribbles": [],
+			"cursor": {
+				"type": "default",
+				"rotation": 0
+			},
+			"isFocusMode": false,
+			"exportBackground": true,
+			"isDebugMode": false,
+			"isToolLocked": false,
+			"screenBounds": {
+				"x": 0,
+				"y": 0,
+				"w": 442.22607421875,
+				"h": 580.1504516601562
+			},
+			"insets": [
+				false,
+				true,
+				true,
+				false
+			],
+			"zoomBrush": null,
+			"isGridMode": false,
+			"isPenMode": false,
+			"chatMessage": "",
+			"isChatting": false,
+			"highlightedUserIds": [],
+			"canMoveCamera": true,
+			"isFocused": true,
+			"devicePixelRatio": 2,
+			"isCoarsePointer": false,
+			"isHoveringCanvas": false,
+			"openMenus": [],
+			"isChangingStyle": false,
+			"isReadonly": true,
+			"meta": {},
+			"duplicateProps": null,
+			"id": "instance:instance",
+			"currentPageId": "page:page",
+			"typeName": "instance"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [],
+			"hoveredShapeId": null,
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:page",
+			"pageId": "page:page",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": 623.2803802490234,
+			"y": 2063.0091419219966,
+			"z": 0.1,
+			"meta": {},
+			"id": "camera:page:page",
+			"typeName": "camera"
+		},
+		{
+			"x": 1019.85546875,
+			"y": 213.12109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "red",
+				"size": "m",
+				"w": 360.28125,
+				"text": "struct t_command\n{\nchar **comamnd_with_args;\nt_redir *in\nt_redir *out\nnext *\n}",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a1",
+			"id": "shape:rLpD5l4mYXwSMwtGIUomO",
+			"typeName": "shape"
+		},
+		{
+			"x": 296.90234375,
+			"y": 219.48828125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 434.734375,
+				"text": "struct t_redir\n{\nchar *file_name_or_delimiter;\nint  redirection_type\nbool  flag_for_expansion(heredoc)\nnext *\n}",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a2",
+			"id": "shape:lBD8uUmMHOb0SS3JWmikq",
+			"typeName": "shape"
+		},
+		{
+			"x": 740.3515625,
+			"y": 47.78515625,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 296.15625,
+				"text": "> redirect out TRUNC\n>> redirect out APPEND\n< redirect input\n<< heredoc",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a3",
+			"id": "shape:KDqjsZ-cCgwgSJV-bj_m0",
+			"typeName": "shape"
+		},
+		{
+			"x": 743.08203125,
+			"y": 337.27734375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "a1V",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-blue",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"type": "binding",
+					"boundShapeId": "shape:rLpD5l4mYXwSMwtGIUomO",
+					"normalizedAnchor": {
+						"x": 0.1795472287275566,
+						"y": 0.5828826346067726
+					},
+					"isPrecise": true,
+					"isExact": false
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:b3ZpjY1p3SSDPe2JNHyp7",
+			"typeName": "shape"
+		},
+		{
+			"x": 19.728830498661125,
+			"y": 554.3479589123269,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1122.71875,
+				"text": "open all out file destrictors and close immidiatly if next exists , write only in the last one",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 0.6878103683914337
+			},
+			"parentId": "page:page",
+			"index": "a4",
+			"id": "shape:bqhUMIEGODTx4XmmeHvfb",
+			"typeName": "shape"
+		},
+		{
+			"x": -16.13671875,
+			"y": 620.6652375178181,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1263.3046875,
+				"text": "open all in file descriptors of only 1 of theme doesnt exist (open error) that command doesnt execute",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 0.6878103683914337
+			},
+			"parentId": "page:page",
+			"index": "a5",
+			"id": "shape:NPLLygQISBNel12WKS-MM",
+			"typeName": "shape"
+		},
+		{
+			"x": 1667.34765625,
+			"y": 155.76953125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "orange",
+				"size": "m",
+				"w": 418.84375,
+				"text": "1 - first step open file descriptors",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a6",
+			"id": "shape:oYiu_b4sHcDTdBwdcKiDw",
+			"typeName": "shape"
+		},
+		{
+			"x": 1201.46484375,
+			"y": 494.3828125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "a7",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "red",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"type": "point",
+					"x": -1.58984375,
+					"y": 200.08984375
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:Z4sVetuXMJbxtRaowJLUw",
+			"typeName": "shape"
+		},
+		{
+			"x": 1014.12890625,
+			"y": 726.0625,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "red",
+				"size": "m",
+				"w": 360.28125,
+				"text": "struct t_com\n{\nchar **comamnd_with_args;\nint in\nin out\nnext *\n}",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a8",
+			"id": "shape:_KvCk-m2Nf-teLEPtZuj_",
+			"typeName": "shape"
+		},
+		{
+			"x": -316.03515625,
+			"y": 835.9796142578125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1258.9140625,
+				"text": "morphe the old struct into the new one {int in is the file descriptor of the last input file (default 0)}",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a9",
+			"id": "shape:8mFdr6-DNcRYgytKjkOrc",
+			"typeName": "shape"
+		},
+		{
+			"x": -333.125,
+			"y": 887.0889892578125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1289.3984375,
+				"text": "morphe the old struct into the new one {int out is the file descriptor of the last output file (default 1)}",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aA",
+			"id": "shape:deNqDDrsbGAnzzCwMA19W",
+			"typeName": "shape"
+		},
+		{
+			"x": 1673.48046875,
+			"y": 237.0928955078125,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "orange",
+				"size": "m",
+				"w": 398.7109375,
+				"text": "2 - change struct (free old one)",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aB",
+			"id": "shape:hBGmcfm16u6fVPc741GWi",
+			"typeName": "shape"
+		},
+		{
+			"x": -181.1953125,
+			"y": 1097.6527099609375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1117.3125,
+				"text": "in execution check if there is more than one command execute in child all of theme (fork)",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aC",
+			"id": "shape:rtcaCq4YhChalyHqIGNdf",
+			"typeName": "shape"
+		},
+		{
+			"x": 1057.83203125,
+			"y": 1115.9534912109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 36.1640625,
+				"text": "> 1",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aD",
+			"id": "shape:ABqz2E66NXDsH6EC9mqtI",
+			"typeName": "shape"
+		},
+		{
+			"x": 1066.35546875,
+			"y": 1178.4027099609375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "aE",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-green",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"type": "point",
+					"x": -3.109375,
+					"y": 90.48828125
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:6CsPgDHqDzbAD9HZw2b7O",
+			"typeName": "shape"
+		},
+		{
+			"x": 1040.4453125,
+			"y": 1321.5745849609375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 52.078125,
+				"text": "fork",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aF",
+			"id": "shape:1MBI5he9v2qXrlFyqA1ph",
+			"typeName": "shape"
+		},
+		{
+			"x": 1503.046875,
+			"y": 1110.4027099609375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 36.1640625,
+				"text": "= 1",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aG",
+			"id": "shape:r8J-R0Y-zTCV1Y5egpQ1r",
+			"typeName": "shape"
+		},
+		{
+			"x": 1410.6640625,
+			"y": 1186.9144287109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "aH",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-green",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 87.9609375,
+					"y": -28.7734375
+				},
+				"end": {
+					"type": "point",
+					"x": -3.109375,
+					"y": 90.48828125
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:EiGiUrHpQydDVNxUjiJPg",
+			"typeName": "shape"
+		},
+		{
+			"x": 1642.34765625,
+			"y": 1468.2581787109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 52.078125,
+				"text": "fork",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aI",
+			"id": "shape:6_j2Or3ieSnEuIkL2UjY9",
+			"typeName": "shape"
+		},
+		{
+			"x": 1521.04296875,
+			"y": 1196.4613037109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "aJ",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-green",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 3.484375,
+					"y": -41.78125
+				},
+				"end": {
+					"type": "point",
+					"x": 110.11328125,
+					"y": 90.02734375
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:sDJ9Ex7YclUGRIKscS1av",
+			"typeName": "shape"
+		},
+		{
+			"x": 1324.01953125,
+			"y": 1314.8779296875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 115.6015625,
+				"text": "if built-in",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aK",
+			"id": "shape:dkfkPKBK3dDQ5bfdk9q2b",
+			"typeName": "shape"
+		},
+		{
+			"x": 1603.7890625,
+			"y": 1318.7880859375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 68.609375,
+				"text": "if not",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aL",
+			"id": "shape:ThOpB9HwG6nF-2ynZz_GU",
+			"typeName": "shape"
+		},
+		{
+			"x": 1257.3515625,
+			"y": 1455.7021484375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 162.1875,
+				"text": "main process",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aM",
+			"id": "shape:tEPKUGoZ8vrZlG4Y15tYv",
+			"typeName": "shape"
+		},
+		{
+			"x": 1375.2890625,
+			"y": 1359.2880859375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "aN",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-green",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"type": "point",
+					"x": -23.91796875,
+					"y": 81.1171875
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:1E6BrNL0ZhcRjtdXsKGqW",
+			"typeName": "shape"
+		},
+		{
+			"x": 1639.99609375,
+			"y": 1365.2412109375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "arrow",
+			"parentId": "page:page",
+			"index": "aO",
+			"props": {
+				"dash": "draw",
+				"size": "m",
+				"fill": "none",
+				"color": "light-green",
+				"labelColor": "black",
+				"bend": 0,
+				"start": {
+					"type": "point",
+					"x": 0,
+					"y": 0
+				},
+				"end": {
+					"type": "point",
+					"x": 22.015625,
+					"y": 79.23046875
+				},
+				"arrowheadStart": "none",
+				"arrowheadEnd": "arrow",
+				"text": "",
+				"labelPosition": 0.5,
+				"font": "draw"
+			},
+			"id": "shape:Uh-yXkW4f12hUl0TTclJ_",
+			"typeName": "shape"
+		},
+		{
+			"x": 1247.81640625,
+			"y": 1021.967529296875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-green",
+				"size": "m",
+				"w": 189.546875,
+				"text": "how to execute",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aP",
+			"id": "shape:56_xm8SuS0cgCXa4GJ05A",
+			"typeName": "shape"
+		},
+		{
+			"x": 43.55078125,
+			"y": 1295.604248046875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 908.8984375,
+				"text": "make sure to get the exit status of execve via waitpid (watch codevault)\nso you can update the exit status wish is a global variable",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aQ",
+			"id": "shape:0r0UpR6s6DaYWE8gm4qpL",
+			"typeName": "shape"
+		},
+		{
+			"x": -29.609375,
+			"y": 1484.385498046875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"type": "text",
+			"props": {
+				"color": "light-blue",
+				"size": "m",
+				"w": 1129.078125,
+				"text": "if executed in main process you have to change exit status manually . check bash behavior",
+				"font": "draw",
+				"align": "middle",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "aR",
+			"id": "shape:RFceyMJ7AWKFuG-HdYCwi",
+			"typeName": "shape"
+		}
+	]
+}
