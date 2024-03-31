@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 14:47:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 18:38:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	free_node(t_env *node)
 	free(node);
 }
 
-void	unset_node(t_minishell *m, char *s)
+void	unset_node(char *s, t_env *envir)
 {
 	t_env	*tmp;
 	t_env	*pre;
 	t_env	**head;
 
-	head = &(m->envir);
+	head = &envir;
 	tmp = (*head);
 	while (tmp)
 	{
@@ -54,7 +54,7 @@ void	unset_node(t_minishell *m, char *s)
 // 	exit(1);
 // }
 
-int	check_unset(char *s, t_minishell *mini)
+int	check_unset(char *s, t_env *envir)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ int	check_unset(char *s, t_minishell *mini)
 		if (s[i] == '=')
 		{
 			i += 2;
-			printf("unset: %s : not a valid identifier", grep_from_env(mini, &s[i]));
+			printf("unset: %s : not a valid identifier", grep_from_env(envir, &s[i]));
 			return (1);
 		}
 		i++;
@@ -77,7 +77,7 @@ int	check_unset(char *s, t_minishell *mini)
 	return (0);
 }
 
-void	ft_unset(t_minishell *mini)
+void	ft_unset(t_minishell *mini, t_env *envir)
 {
 	int	i;
 
@@ -85,9 +85,9 @@ void	ft_unset(t_minishell *mini)
 	while (mini->cmd[i])
 	{
 		puts("1\n");
-		if (check_unset(mini->cmd[i], mini))
+		if (check_unset(mini->cmd[i], envir))
 			break ;
-		unset_node(mini, mini->cmd[i]);
+		unset_node(mini->cmd[i], envir);
 		i++;
 	}
 }

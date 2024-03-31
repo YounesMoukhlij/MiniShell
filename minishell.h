@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 16:36:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 18:36:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ typedef struct s_minishell
 	int					fd_in;
 	int					fd_out;
 	t_pipex				pipex;
-	t_env				*envir;
 	struct s_minishell	*next;
 }	t_minishell;
 
+// t_env *ENVIR;
+
 // YOUNES
-void	unset_node(t_minishell *m, char *str);
+void	unset_node(char *str, t_env *envir);
 
 int			ft_isdigit(int c);
 int			ft_isalpha(int c);
@@ -76,21 +77,18 @@ char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 void		ft_export(t_minishell *mini);
 void		ft_exit(void);
-void		ft_unset(t_minishell *mini);
+void		ft_unset(t_minishell *mini, t_env *envir);
 void		ft_cd(t_minishell *mini);
 void		ft_echo(t_minishell *mini);
 int			is_builtins(t_minishell *mini);
 void		ft_env(t_minishell *mini);
 void		ft_pwd(t_minishell *mini);
 
-char		*grep_from_env(t_minishell *mini, char *string);
+char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
+void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-
-void    	full_fill_path(t_minishell *mini);
-
-
-void		ft_execute(t_minishell **head);
+void		ft_execute(t_minishell **head, t_env *envir);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
@@ -100,7 +98,7 @@ void		check_fd(t_minishell *mini);
 char		**ft_split_executor(char *s, char c);
 t_env		*full_fill_env(char **env);
 int			ft_strlen(char *s);
-char		*ft_get_path(t_minishell *mini);
+char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);
 int			ft_strcmp_flag(char *s1, char *s2, int flag);
 
