@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:00 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 16:21:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:08:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int main(int ac, char **av, char **env)
     // mini->tab[1] = 1;
     // mini->tab[2] = 3;
     // mini->len_tab = 3;
-    mini->envir = full_fill_env(env);
     // puts("\t--**--\033[32mCommands before execution\033[0m--**--");
     // while (mini->cmd[i])
     // {
@@ -86,9 +85,10 @@ int main(int ac, char **av, char **env)
     //     i++;
     // }
     // puts("\t\t--**--\033[36mExecution\033[0m--**--");
+    mini->envir = full_fill_env(env);
     full_fill_path(mini);
     expander(mini);
-    // check_fd(mini);
+    check_fd(mini);
     ft_execute(&mini);
 
     // printf("in  %d    out   %d\n", mini->fd_in, mini->fd_out);

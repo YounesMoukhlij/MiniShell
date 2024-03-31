@@ -18,4 +18,3 @@ char    *ft_calloc(int num, int size)
     }
     return (r);
 }
-

@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/03/31 16:37:29 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/03/31 17:19:11 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,12 @@ SRC = main.c \
 	  Parser/help_func/minishell_functions.c \
 	  Parser/help_func/ft_split_executor.c \
 	  Parser/help_func/ft_strjoin_executor.c \
-	#   Parser/help_func/
-	#   Parser/help_func/
-	#   Parser/help_func/
-	#   Parser/help_func/
-	#   Parser/help_func/
-	#   Parser/help_func/
+	  Parser/help_func/ft_calloc_executor.c \
+	  Parser/help_func/ft_isalnum.c \
+	  Parser/help_func/ft_strdup.c \
+	  Parser/help_func/ft_isalpha.c \
+	  Parser/help_func/ft_substr_executor.c \
+	  Parser/help_func/ft_isdigit.c \
 	  
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
@@ -56,7 +56,7 @@ NAME = minishell
 all : ${NAME} clean play
 
 play :
-	@./minishell
+	./minishell
 
 %.o : %.c ../minishell.h
 	@cc ${CFLAGS} -c $< -o $@

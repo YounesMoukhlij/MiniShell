@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:36:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:19:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,20 @@ int	main(int ac, char **av, char **env)
 	t_minishell	*mini;
 
 	(void) env;
-	if (ac != 1 || !av[1])
+	(void) av;
+	if (ac != 1)
 		return (1);
 	while (1)
 	{
-		str = readline("minishell $> ");
+		str = readline("\033[31mಠ__ಠ\033[0m $> ");
 		if (is_empty(str))
-			break;
+			continue ;
 		mini = parcing(str);
-		
+		mini->envir = full_fill_env(env);
+    	// full_fill_path(mini);
+    	// expander(mini);
+    	// check_fd(mini);
+    	ft_execute(&mini);
 	}
 	return (0);
 }
