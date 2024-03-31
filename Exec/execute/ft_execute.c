@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 18:37:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:32:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_builtins(t_minishell *mini, t_env *envir)
 {
 	if (ft_strcmp_flag(mini->cmd[0], "cd", 0) == 0)
-		return (ft_cd(mini), 1);
+		return (ft_cd(mini, envir), 1);
 	else if (ft_strcmp_flag(mini->cmd[0], "env", 0) == 0)
 		return (ft_env(envir), 1);
 	else if (ft_strcmp_flag(mini->cmd[0], "pwd", 0) == 0)

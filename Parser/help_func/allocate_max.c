@@ -1,12 +1,12 @@
 #include "../../minishell.h"
 
-char    *allocate_max(t_minishell *mini)
+char    *allocate_max(t_env *envir)
 {
     t_env   *head;
     int     max;
     char    *r;
 
-    head = mini->envir;
+    head = envir;
     max = ft_strlen(head->value);
     while (head)
     {

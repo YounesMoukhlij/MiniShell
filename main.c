@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 18:25:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:05:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av, char **env)
 	envir = full_fill_env(env);
 	while (1)
 	{
-		str = readline("\033[31mಠ__ಠ\033[0m $> ");
+		str = readline("\033[31mಠ__ಠ\033[0m_$> ");
 		if (!str)
 			break ;
 		// if (is_empty(str))
@@ -62,7 +62,7 @@ int	main(int ac, char **av, char **env)
 		// 	mini = mini->next;
 		// }
     	// full_fill_path(mini);
-    	//expander(mini);
+    	expander(&mini, envir);
     	// check_fd(mini) ;
     	 ft_execute(&mini, envir);
 	}

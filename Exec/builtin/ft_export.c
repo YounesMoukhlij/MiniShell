@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 18:29:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 22:56:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int	is_num(char *s)
 	return (0x0);
 }
 
-int	is_exportable(t_minishell *mini, char *s)
+int	is_exportable(char *s, t_env *envir)
 {
 	int	i;
 
@@ -164,12 +164,12 @@ int	is_exportable(t_minishell *mini, char *s)
 			return (0x1);
 		i++;
 	}
-	if (!ft_strcmp_flag(grep_from_env(mini, s), "(null)", 0x0))
+	if (!ft_strcmp_flag(grep_from_env(envir, s), "(null)", 0x0))
 		return (0x0);
 	return (0x1);
 }
 
-int	already_exist(t_minishell *mini, char *s, t_env *envir)
+int	already_exist(char *s, t_env *envir)
 {
 	t_env	*head;
 	int		i;
@@ -185,14 +185,14 @@ int	already_exist(t_minishell *mini, char *s, t_env *envir)
 		if (!ft_strcmp_flag(head->key, ft_substr_executor(s, 0x0, i), 0x0))
 		{
 			head->value = &s[++i];
-			return (1);
+			return (0x1);
 		}
 		head = head->next;
 	}
 	return (0x0);
 }
 
-char	*special_case(t_minishell *mini, char *s)
+char	*special_case(char *s, t_env *envir)
 {
 	int		i;
 	char	*str;
@@ -205,8 +205,8 @@ char	*special_case(t_minishell *mini, char *s)
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
 			str = ft_substr_executor(s, 0x0, i);
-			you = ft_strjoin_executor(grep_from_env(mini, str), &s[i + 2]);
-			unset_node(mini, str);
+			you = ft_strjoin_executor(grep_from_env(envir, str), &s[i + 2]);
+			unset_node(str, envir);
 			break ;
 		}
 		i++;
@@ -257,13 +257,13 @@ void	ft_export(t_minishell *mini, t_env *envir)
 	{
 		while (mini->cmd[i])
 		{
-			if (is_exportable(mini, mini->cmd[i]))
+			if (is_exportable(mini->cmd[i], envir))
 			{
-				if (already_exist(mini, mini->cmd[i]))
+				if (already_exist(mini->cmd[i], envir))
 					break ;
 				else if (check_special_case(mini->cmd[i]))
 				{
-					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini, mini->cmd[i]));
+					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
 				}
 				else if (if_equal(mini->cmd[i]))
 				{

@@ -80,7 +80,7 @@ int even_odd(char *s)
     return (1);
 }
 
-char    *big_work(t_minishell *mini, char *s)
+char    *big_work(t_env *envir, char *s)
 {
     int     i;
     int     j;
@@ -89,7 +89,7 @@ char    *big_work(t_minishell *mini, char *s)
 
     i = 0;
     j = 0;
-    p = allocate_max(mini);
+    p = allocate_max(envir);
     if (!p)
         return (NULL);
     while (s[i])
@@ -114,8 +114,8 @@ char    *big_work(t_minishell *mini, char *s)
                 i++;
                 break ;
             }
-            p = add_t(p, grep_from_env(mini, grep_value(&s[i])));
-            if (ft_strlen(p) || !grep_from_env(mini, grep_value(&s[i])))
+            p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
+            if (ft_strlen(p) || !grep_from_env(envir, grep_value(&s[i])))
                 i += grep(&s[i]);
             j = ft_strlen(p);
             if (!s[i])
@@ -164,7 +164,7 @@ void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 	mini->cmd[0] = s;
 }
 
-void    expander(t_minishell *mini)
+void    expander(t_minishell **mini, t_env *envir)
 {
     char *str;
     int     i;
@@ -172,14 +172,14 @@ void    expander(t_minishell *mini)
 
     i = 0;
     flag = 0;
-    while (mini->cmd[i])
+    while ((*mini)->cmd[i])
     {
-        if (is_expanded(mini->cmd[i]))
+        if (is_expanded((*mini)->cmd[i]))
         {
-            str = big_work(mini, mini->cmd[i]);
-            mini->cmd[i] = without_quotes(str, flag);
+            str = big_work(envir, (*mini)->cmd[i]);
+            (*mini)->cmd[i] = without_quotes(str, flag);
         }
         i++;
     }
-    rmv_sgl_quotes_cmd(mini, mini->cmd[0]);
+    rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0]);
 }

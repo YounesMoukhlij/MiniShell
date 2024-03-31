@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 18:36:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:05:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,18 @@ int			case_1(char *s, int pos);
 int			case_2(char *s, int pos);
 int			dollar_position(char *s, int pos);
 int			ft_isalnum(int c);
-void		expander(t_minishell *mini);
-char		*allocate_max(t_minishell *mini);
+void		expander(t_minishell **mini, t_env *envir);
+char		*allocate_max(t_env *envir);
 char		*ft_calloc(int num, int size);
 char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
-void		ft_export(t_minishell *mini);
+void		ft_export(t_minishell *mini, t_env *envir);
 void		ft_exit(void);
 void		ft_unset(t_minishell *mini, t_env *envir);
-void		ft_cd(t_minishell *mini);
+void		ft_cd(t_minishell *mini, t_env *envir);
 void		ft_echo(t_minishell *mini);
-int			is_builtins(t_minishell *mini);
-void		ft_env(t_minishell *mini);
+int			is_builtins(t_minishell *mini, t_env *envir);
+void		ft_env(t_env *envir);
 void		ft_pwd(t_minishell *mini);
 
 char		*grep_from_env(t_env *envir, char *string);
