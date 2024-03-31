@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:39:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	case_1(char c, int *i, int *len)
+static void	case__1(char c, int *i, int *len)
 {
 	if (c == '<')
 	{
@@ -23,7 +23,7 @@ static void	case_1(char c, int *i, int *len)
 		*len += 1;
 }
 
-static void	case_2(char c, int *i, int *len)
+static void	case__2(char c, int *i, int *len)
 {
 	if (c == '>')
 	{
@@ -56,9 +56,9 @@ int	ft_set_tk(char *str)
 				break ;
 		}
 		if (str[i] == '<')
-			case_1(str[i], &i, &len);
+			case__1(str[i], &i, &len);
 		else if (str[i] == '>')
-			case_2(str[i], &i, &len);
+			case__2(str[i], &i, &len);
 		i++;
 	}
 	return (len);

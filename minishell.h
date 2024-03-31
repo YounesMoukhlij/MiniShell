@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 16:27:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:36:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int			ft_isascii(int c);
 int			ft_isdigit(int c);
 int			ft_isprint(int c);
 
-char		*strchr(char *s, int c);
+char		*ft_strchr(char *s, int c);
 int			ft_strlen(char *str);
 int			ft_isprint(int c);
 char		*ft_strrchr(char *s, int c);

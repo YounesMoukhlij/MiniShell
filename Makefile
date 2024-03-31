@@ -6,30 +6,28 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/03/31 16:32:12 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/03/31 16:37:29 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
-	  execute/check_fd.c \
-	  parsing.c \
-	  expand/expander.c \
-	  expand/expander_utils.c \
-	  tools/ft_substr_executor.c \
-	  tools/ft_calloc_executor.c \
-	  env/env_functions.c \
-	  builtin/ft_unset.c \
-	  builtin/ft_echo.c \
-	  builtin/ft_cd.c \
-	  builtin/ft_pwd.c \
-	  builtin/ft_env.c \
-	  builtin/ft_exit.c \
-	  builtin/ft_export.c \
-	  execute/ft_execute.c \
+	  Exec/execute/check_fd.c \
+	  Exec/parsing.c \
+	  Exec/expand/expander.c \
+	  Exec/expand/expander_utils.c \
+	  Exec/env/env_functions.c \
+	  Exec/builtin/ft_unset.c \
+	  Exec/builtin/ft_echo.c \
+	  Exec/builtin/ft_cd.c \
+	  Exec/builtin/ft_pwd.c \
+	  Exec/builtin/ft_env.c \
+	  Exec/builtin/ft_exit.c \
+	  Exec/builtin/ft_export.c \
+	  Exec/execute/ft_execute.c \
 	  Parser/parcfun_1.c \
-	  Parser/parcfun_2.c\
-	  Parser/ft_build_linker.c\
-	  Parser/tools.c\
+	  Parser/parcfun_2.c \
+	  Parser/ft_build_linker.c \
+	  Parser/tools.c \
 	  Parser/tools_1.c\
 	  Parser/tools_2.c\
 	  Parser/epur_str.c\

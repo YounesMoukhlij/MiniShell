@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:19:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:38:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	lstaddfront(t_minishell **head, t_minishell *node)
 	(*head) = node;
 }
 
-void	add_back_executor(t_minishell **head, t_minishell *node)
+void	add_back(t_minishell **head, t_minishell *node)
 {
 	if (!head || !node)
 		return ;
@@ -68,6 +68,7 @@ t_minishell	*get_link_cmd(char **str, int *b_arr, int len)
 	int			i;
 	int			*arr;
 
+	(void) b_arr;
 	head = 0x0;
 	i = 0;
 	while (str[i])
@@ -78,7 +79,7 @@ t_minishell	*get_link_cmd(char **str, int *b_arr, int len)
 			cmd = lst_cmd(ft_splits(str[i], 1)[0], str[i], arr, lens);
 		else
 			cmd = lst_cmd(ft_splits(str[i], 1)[0], str[i], arr, lens);
-		add_back_executor(&head, cmd);
+		add_back(&head, cmd);
 		i++;
 	}
 	return (head);

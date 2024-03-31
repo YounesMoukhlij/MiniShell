@@ -6,12 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:39:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdlib.h>
 
 static void	case_one(int *arr, char c, int *i, int *j)
 {
@@ -48,7 +47,6 @@ int	*ft_arr_tk(char *str, int len)
 	int	*arr;
 	int	i;
 	int	j;
-	int	op;
 
 	arr = malloc((len + 1) * sizeof(int));
 	i = 0;
@@ -95,7 +93,6 @@ int	number_of_word(char *str)
 {
 	int	i;
 	int	wc;
-	int	*arr;
 
 	i = 0;
 	wc = 0;
