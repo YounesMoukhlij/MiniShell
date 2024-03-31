@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_vtk.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 16:12:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Created: 2023/11/02 11:26:13 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	ft_vtk(char c)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	if (c == '|')
-		return (1);
-	return (0);
+	size_t			i;
+	unsigned char	*x;
+	unsigned char	*y;
+
+	x = (unsigned char *) s1;
+	y = (unsigned char *) s2;
+	i = 0;
+	while ((x[i] && y[i]) && n && (x[i] == y[i]))
+	{
+		i++;
+		n--;
+	}
+	if (n == 0)
+		return (0);
+	else
+	{
+		return (x[i] - y[i]);
+	}
 }

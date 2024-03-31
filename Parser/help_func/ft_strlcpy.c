@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_vtk.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 16:12:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Created: 2023/10/31 16:42:03 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	ft_vtk(char c)
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
-	if (c == '|')
-		return (1);
-	return (0);
+	size_t	lens;
+	size_t	i;
+
+	i = 0;
+	lens = ft_strlen((char *)src);
+	if (dstsize)
+	{
+		while (src[i] && i < dstsize - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (lens);
 }

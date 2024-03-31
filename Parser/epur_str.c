@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/30 15:16:55 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parcer.h"
+#include "../minishell.h"
 
 int	get_des(char c, int fg)
 {

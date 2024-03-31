@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcfun_2.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 17:21:56 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:25 by youmoukh         ###   ########.fr       */
+/*   Created: 2023/11/03 11:17:33 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-char	**handle_of_malloc(char **tab)
+static char	**handle_of_malloc(char **tab)
 {
 	unsigned int	i;
 
@@ -23,27 +23,54 @@ char	**handle_of_malloc(char **tab)
 	return (NULL);
 }
 
-static char	*hook(char *s1, int *id)
+static int	number_of_word(char *str, char c)
 {
-	size_t	len_word;
-	char	*word;
-	int		i;
-	int		op;
+	int	i;
+	int	wc;
 
-	op = 0;
-	len_word = 0;
 	i = 0;
-	while (ft_vtk(s1[*id]))
+	wc = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			i++;
+		else
+		{
+			wc++;
+			while (str[i] != c && str[i])
+				i++;
+		}
+	}
+	return (wc);
+}
+//yassine@nassibi@1337
+
+static char	*hook(char *s1, int *id, char c)
+{
+	char	*word;
+	size_t	len_word;
+	int		i;
+
+	len_word = 0;
+	while (s1[*id] == c)
 		(*id)++;
 	i = *id;
-	hudler_o(s1, i, &op, &len_word);
-	word = malloc(sizeof(char) * (len_word + 2));
+	while (s1[i] && s1[i] != c)
+	{
+		len_word++;
+		i++;
+	}
+	word = malloc(sizeof(char) * (len_word + 1));
 	if (!word)
 		return (NULL);
-	return (hudler_t(s1, word, id));
+	i = 0;
+	while (s1[*id] && s1[*id] != c)
+		word[i++] = s1[(*id)++];
+	word[i] = '\0';
+	return (word);
 }
 
-char	**ft_spliter(char *s)
+char	**ft_split(char const *s, char c)
 {
 	char	**arr;
 	int		id;
@@ -54,13 +81,13 @@ char	**ft_spliter(char *s)
 	i = 0;
 	if (!s)
 		return (NULL);
-	wc = number_of_word(s);
+	wc = number_of_word(s, c);
 	arr = malloc(sizeof(char *) * (wc + 1));
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
-		arr[i] = hook(s, &id);
+		arr[i] = hook(s, &id, c);
 		if (!arr[i])
 			return (handle_of_malloc(arr));
 		i++;

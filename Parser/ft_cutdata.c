@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cutdata.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:47:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/30 16:00:04 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "parcer.h"
+#include "../minishell.h"
 #include <stdio.h>
 #include <string.h>
 

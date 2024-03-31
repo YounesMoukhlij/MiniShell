@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_vtk.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 16:12:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Created: 2023/11/02 21:31:48 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	ft_vtk(char c)
+char	*ft_strnstr(char *haystack, char *needle, size_t len)
 {
-	if (c == '|')
-		return (1);
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	if (!haystack && !len)
+		return (0);
+	if (!*needle)
+		return ((char *) haystack);
+	while (haystack[i] && i < len)
+	{
+		while (needle[j] && haystack[i + j] == needle[j] && i + j < len)
+			j++;
+		if (!needle[j])
+			return ((char *) &haystack[i]);
+		j = 0;
+		i++;
+	}
 	return (0);
 }

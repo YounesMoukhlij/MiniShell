@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_join.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 14:31:26 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 15:14:44 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parcer.h"
+#include "../minishell.h"
 
 static int	strs_lens(char **str)
 {

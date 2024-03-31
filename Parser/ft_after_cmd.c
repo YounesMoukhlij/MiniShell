@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_after_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:25:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 14:12:21 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "parcer.h"
+#include "../minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
 

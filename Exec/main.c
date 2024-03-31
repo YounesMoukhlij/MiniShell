@@ -6,11 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:00 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 14:50:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:21:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+
 
 void    show(void)
 {

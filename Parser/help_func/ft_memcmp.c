@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_vtk.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 16:12:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Created: 2023/11/01 10:34:00 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	ft_vtk(char c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (c == '|')
-		return (1);
-	return (0);
+	unsigned char	*src_1;
+	unsigned char	*src_2;
+
+	src_1 = (unsigned char *)s1;
+	src_2 = (unsigned char *)s2;
+	while (n && (*src_1 == *src_2))
+	{
+		src_1++;
+		src_2++;
+		n--;
+	}
+	if (!n)
+		return (0);
+	return (*src_1 - *src_2);
 }

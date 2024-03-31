@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_concat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 22:00:46 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 15:35:56 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "parcer.h"
+#include "../minishell.h"
 
 int	calculateRows(char** arr) {
 	int	rows;
