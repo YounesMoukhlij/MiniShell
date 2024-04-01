@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/01 00:38:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/01 01:39:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,44 @@ int	is_bin_cmd(t_minishell *mini)
 	return (1);
 }
 
+void	big_execution(t_minishell *mini, t_env *envir, int stdin)
+{
+	int	t_pipe[2];
+	int	pid;
+	int	flag;
+	
+	if (pipe(t_pipe) == -1)
+		return ;
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(t_pipe[1], 1);
+		if (is_builtins(mini, envir))
+			flag = 1;
+		else if (is_bin_cmd(mini))
+			flag = 1;
+		if (!flag)
+			printf("not executed\n");
+	}
+	else
+	{
+		dup2(t_pipe[0], stdin);
+	}
+}
+
 void	ft_execute(t_minishell **head, t_env *envir)
 {
 	int			flag;
 	t_minishell	*tmp;
+	int			old_stdin;
 
 	flag = 0;
 	tmp = *head;
+	dup2(old_stdin, 0);
 	while (tmp->next)
 	{
-		
+		big_execution(tmp, envir, old_stdin);
+		tmp = tmp->next;
 	}
 }
 

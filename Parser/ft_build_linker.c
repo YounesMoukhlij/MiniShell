@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 18:09:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/01 01:37:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->afcmd_t = ft_after_cmd(ft_splits(file, 1));
 	lst->files = ft_files(ft_splits(file, 1));
 	lst->tab = arr;
-	lst->fd_in = -1;
-	lst->fd_out = -1;
+	lst->fd_in = 0;
+	lst->fd_out = 1;
 	lst->len_tab = len;
 	lst->cmd = ft_splits(ft_join(\
 	ft_concat(lst->cmdt,++lst->afcmd_t )),0);
