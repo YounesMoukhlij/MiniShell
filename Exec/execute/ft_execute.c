@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 22:32:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:38:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,40 @@ void	ft_execute(t_minishell **head, t_env *envir)
 
 	flag = 0;
 	tmp = *head;
-	while (tmp)
+	while (tmp->next)
 	{
-		puts("ok");
-		// puts("1111\n");
-		// if (tmp->next == NULL)
-		// {
-			if (is_builtins(tmp, envir))
-				flag = 1;
-			// else if (is_bin_cmd(tmp))
-			// 	flag = 1;
-			if (!flag)
-				printf("not executed\n");
-		// }
-		// if (tmp->next != NULL)
-		// {
-		// 	if (pipe(tmp->pipex.pipe_fd))
-		// 		return ;
-		// 	tmp->pipex.pid = fork();
-		// 	if (tmp->pipex.pid == 0)
-		// 	{
-		// 		dup2(tmp->pipex.pipe_fd[0], 0);
-		// 		if (is_builtins(tmp))
-		// 			flag = 1;
-		// 		else if (is_bin_cmd(tmp))
-		// 			flag = 1;
-		// 		if (!flag)
-		// 			printf("not executed\n");
-		// 	}
-		// }
-		tmp = tmp->next;
+		
 	}
 }
 
+
+	// puts("ok");
+	// 	// puts("1111\n");
+	// 		if (pipe(tmp->pipex.pipe_fd))
+	// 			return ;
+	// 		tmp->pipex.pid = fork();
+	// 	if (tmp->next == NULL)
+	// 	{
+	// 		if (tmp->pipex.pid == 0)
+	// 		{
+	// 			dup2(tmp->pipex.pipe_fd[0], 0);
+	// 			if (is_builtins(tmp, envir))
+	// 				flag = 1;
+	// 			else if (is_bin_cmd(tmp))
+	// 				flag = 1;
+	// 			if (!flag)
+	// 				printf("not executed\n");
+	// 		}
+	// 	}
+	// 	// if (tmp->next != NULL)
+	// 	// {
+	// 	// 	if (tmp->pipex.pid == 0)
+	// 	// 	{
+	// 	// 		if (is_builtins(tmp))
+	// 	// 			flag = 1;
+	// 	// 		else if (is_bin_cmd(tmp))
+	// 	// 			flag = 1;
+	// 	// 		if (!flag)
+	// 	// 			printf("not executed\n");
+	// 	// 	}
+	// 	// }
