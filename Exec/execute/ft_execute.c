@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/01 01:39:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/01 01:48:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin)
 	int	pid;
 	int	flag;
 	
+
+	flag =  -1;
 	if (pipe(t_pipe) == -1)
 		return ;
 	pid = fork();
@@ -84,17 +86,23 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin)
 
 void	ft_execute(t_minishell **head, t_env *envir)
 {
-	int			flag;
+	// int			flag;
 	t_minishell	*tmp;
 	int			old_stdin;
 
-	flag = 0;
+	old_stdin = 0;
+
 	tmp = *head;
 	dup2(old_stdin, 0);
 	while (tmp->next)
 	{
+		printf("asd");
 		big_execution(tmp, envir, old_stdin);
 		tmp = tmp->next;
+	}
+	if (tmp)
+	{
+		big_execution(tmp, envir, old_stdin);
 	}
 }
 
