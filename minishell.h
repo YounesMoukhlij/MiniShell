@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 23:05:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 01:04:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
 int			lst_size_executor(t_env **head);
 t_env		*lstnew_executor(char *key, char *value);
-void		check_fd(t_minishell *mini);
+void		check_fd(t_minishell *mini, t_env *envir);
 char		**ft_split_executor(char *s, char c);
 t_env		*full_fill_env(char **env);
 int			ft_strlen(char *s);

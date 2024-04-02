@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/01 01:48:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 01:03:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_execute(t_minishell **head, t_env *envir)
 	old_stdin = 0;
 
 	tmp = *head;
-	dup2(old_stdin, 0);
+	dup2(old_stdin, tmp->fd_in);
 	while (tmp->next)
 	{
 		printf("asd");
@@ -105,35 +105,3 @@ void	ft_execute(t_minishell **head, t_env *envir)
 		big_execution(tmp, envir, old_stdin);
 	}
 }
-
-
-	// puts("ok");
-	// 	// puts("1111\n");
-	// 		if (pipe(tmp->pipex.pipe_fd))
-	// 			return ;
-	// 		tmp->pipex.pid = fork();
-	// 	if (tmp->next == NULL)
-	// 	{
-	// 		if (tmp->pipex.pid == 0)
-	// 		{
-	// 			dup2(tmp->pipex.pipe_fd[0], 0);
-	// 			if (is_builtins(tmp, envir))
-	// 				flag = 1;
-	// 			else if (is_bin_cmd(tmp))
-	// 				flag = 1;
-	// 			if (!flag)
-	// 				printf("not executed\n");
-	// 		}
-	// 	}
-	// 	// if (tmp->next != NULL)
-	// 	// {
-	// 	// 	if (tmp->pipex.pid == 0)
-	// 	// 	{
-	// 	// 		if (is_builtins(tmp))
-	// 	// 			flag = 1;
-	// 	// 		else if (is_bin_cmd(tmp))
-	// 	// 			flag = 1;
-	// 	// 		if (!flag)
-	// 	// 			printf("not executed\n");
-	// 	// 	}
-	// 	// }

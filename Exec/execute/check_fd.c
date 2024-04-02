@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/30 22:08:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 01:04:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,18 @@ int	ft_fd_files(t_minishell *mini)
 	return (0);
 }
 
-void	check_fd(t_minishell *mini)
+void	heredoc_check(t_minishell *mini, t_env *env)
+{
+	(void) mini;
+	(void) env;
+}
+
+void	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
 
 	flag = 1;
+	heredoc_check(mini, env);
 	if (ft_fd_files(mini))
 		flag = 0;		
 	ft_open_others(mini);
