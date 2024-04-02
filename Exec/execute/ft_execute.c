@@ -6,13 +6,51 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 18:04:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:47:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_builtins(t_minishell *mini, t_env *envir)
+void	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
+{
+	int		i;
+	// char	*s = NULL;
+	// char	**str;
+	
+	(void) envir;
+	(void) env;
+	// t_env	*tmp;
+
+	// tmp = envir;
+	// str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
+	// if (!str)
+	// 	return ;
+	// i = 0;
+	// while ((tmp))
+	// {
+	// 	str[i] = ft_strdup(ft_strjoin_executor((tmp)->key, (tmp)->value));
+	// 	i++;
+	// 	(tmp) = (tmp)->next;
+	// }
+	// str[i] = 0;
+	i = 0;
+	while (mini->path_d[i])
+	{
+		printf("%s\n", mini->path_d[i]);
+		// s = ft_strjoin_space_executor(mini->path.path_d[i], mini->cmd[0], '/');
+		// s = ft_strjoin_space_executor(mini->path.path_d[i], mini->cmd[0], '/');
+		// if (access(s, X_OK) == 0)
+		// {
+		// 	execve(s, mini->cmd, NULL);
+		// }
+		// free (s);
+		i++;
+	}
+	// printf("MiniShell: command not found: %s\n", mini->cmd[0]);
+	// exit(1);
+}
+int	is_cmd(t_minishell *mini, t_env *envir, char **env)
 {
 	if (ft_strcmp_flag(mini->cmd[0], "cd", 0) == 0)
 		return (ft_cd(mini, envir));
@@ -29,88 +67,60 @@ int	is_builtins(t_minishell *mini, t_env *envir)
 	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0))
 		return (ft_echo(mini));
 	else
-		return (0);
+		is_bin_cmd(mini, envir, env);
+	return (0x0);
 }
 
-int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
-{
-	int		i;
-	char	*s;
-	// char	**str;
-	
-	(void) envir;
-	// t_env	*tmp;
-
-	// tmp = envir;
-	// str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
-	// if (!str)
-	// 	return (0);
-	// i = 0;
-	// while ((tmp))
-	// {
-	// 	str[i] = ft_strdup(ft_strjoin_executor((tmp)->key, (tmp)->value));
-	// 	i++;
-	// 	(tmp) = (tmp)->next;
-	// }
-	// str[i] = 0;
-	i = 0;
-	while (mini->path.path_d[i])
-	{
-		s = ft_strjoin_space_executor(mini->path.path_d[i], mini->cmd[0], '/');
-		if (access(s, X_OK) != -1)
-		{
-			execve(s, mini->cmd, env);
-		}
-		free (s);
-		i++;
-	}
-	return (1);
-}
 
 void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **env)
 {
-	int	t_pipe[2];
-	int	pid;
-	int	flag;
-
-	flag =  -1;
 	(void) f;
 	(void) std_in;
-	if (pipe(t_pipe) == -1)
-		return ;
-	pid = fork();
-	if (pid == 0)
-	{
-		if (f == 1)
+	(void) env;
+	(void) envir;
+	(void) mini;
+	
+	// int	t_pipe[2];
+	// int	pid;
+
+	// if (pipe(t_pipe) == -1)
+	// 	return ;
+	// pid = fork();
+	// if (pid == 0)
+	// {
+	// 	// if (mini->fd_out == 1)
+	// 	// else
+	// 	// 	dup2(mini->fd_out, 1);
+	// 	if (f == 1)
+	// 	{
+	// 		// close (t_pipe[0]);
+	// 		dup2(t_pipe[1], 1);
+	// 		// close (t_pipe[1]);
+		// }
+		int i = 0;
+		while (mini->cmd[i])
 		{
-			close (t_pipe[0]);
-			if (mini->fd_out == 1)
-				dup2(t_pipe[1], 1);
-			else
-				dup2(mini->fd_out, 1);	
-			close (t_pipe[1]);
+			
+		printf(">>>>>> [%s]\n",mini->cmd[i]);
+		i++;
 		}
-		if (is_builtins(mini, envir))
-			flag = 1;
-		else if (is_bin_cmd(mini, envir, env))
-			flag = 1;
-		if (!flag)
-			printf("MiniShell: command not found: %s\n", mini->cmd[0]);
-	}
-	else
-	{
-		if (f != 0)
-		{
-			dup2(std_in, mini->fd_in);
-			close(std_in);
-		}
-		else
-		{
-			close(t_pipe[1]);
-			dup2(t_pipe[0], mini->fd_in);
-			close(t_pipe[0]);
-		}
-	}	
+		// printf("%s\n",mini->cmd[0]);
+		is_cmd(mini, envir, env);
+	// }
+	// else
+	// {
+	// 	if (f == 0)
+	// 	{
+	// 		dup2(std_in, mini->fd_in);
+	// 		close(std_in);
+	// 	}
+	// 	else
+	// 	{
+	// 		close(t_pipe[1]);
+	// 		dup2(t_pipe[0], mini->fd_in);
+	// 		close(t_pipe[0]);
+	// 	}
+	// }	
 }
 
 void	ft_execute(t_minishell **head, t_env *envir, char **env)
@@ -119,10 +129,10 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	(void) envir;
 	(void) env;
 	t_minishell	*tmp;
-	int			old_stdin;
+	int			old_stdin = 0;
 
 	tmp = *head;
-	old_stdin = dup(tmp->fd_in);
+	// old_stdin = dup(tmp->fd_in);
 	// int i = 0;
 	// while ((*head))
 	// {
@@ -145,8 +155,8 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	// 		i++;
 	// 	}
 	// 	printf("len_tab=== [%d]\n", (*head)->len_tab);
-		// printf("fd_in=== [%d]\n", (*head)->fd_in);
-		// printf("fd_out=== [%d]\n", (*head)->fd_out);
+	// 	printf("fd_in=== [%d]\n", (*head)->fd_in);
+	// 	printf("fd_out=== [%d]\n", (*head)->fd_out);
 	// 	(*head) = (*head)->next;
 	// }
 	while (tmp->next)
@@ -155,9 +165,6 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 		tmp = tmp->next;
 	}
 	if (tmp)
-	{
-		// printf("%s\n", tmp->cmd[0]);
 		big_execution(tmp, envir, old_stdin, 0, env);
-	}
 	while (wait(0) != -1);
 }

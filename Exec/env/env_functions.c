@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 17:27:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:44:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ t_env	*full_fill_env(char **env)
 
 void    full_fill_path(t_minishell *mini, t_env *envir)
 {
-    mini->path.path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 1);
-    if (!mini->path.path)
-        return (free (mini->path.path));
-    mini->path.path = ft_get_path(envir);
-    mini->path.path_d = ft_split_executor(ft_get_path(envir), ':');
+    mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 1);
+    if (!mini->path)
+        return (free (mini->path));
+    mini->path = ft_get_path(envir);
+    mini->path_d = ft_split_executor(ft_get_path(envir), ':');
 }

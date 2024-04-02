@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 17:27:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:44:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef	struct	s_path
-{
-	char	*path;
-	char	**path_d;
-}	t_path;
+// typedef	struct	s_path
+// {
+// 	char	*path;
+// 	char	**path_d;
+// }	t_path;
 
 typedef struct s_minishell
 {
@@ -47,7 +47,8 @@ typedef struct s_minishell
 	char				**afcmd_t;
 	int					fd_in;
 	int					fd_out;
-	t_path				path;
+	char	*path;
+	char	**path_d;
 	struct s_minishell	*next;
 }	t_minishell;
 
@@ -78,7 +79,7 @@ int			ft_exit(void);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);
-int			is_builtins(t_minishell *mini, t_env *envir);
+int			is_cmd(t_minishell *mini, t_env *envir, char **env);
 int			ft_env(t_env *envir);
 int			ft_pwd(t_minishell *mini);
 
