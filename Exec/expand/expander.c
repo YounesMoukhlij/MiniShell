@@ -150,6 +150,8 @@ void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 
 	i = 0;
 	j = 0;
+    if (!str)
+        return ;
 	s = ft_calloc(ft_strlen(str) + 1, 1);
 	if (!s)
 		return ;
@@ -173,14 +175,8 @@ void    expander(t_minishell **mini, t_env *envir)
     (void) envir;
     i = 0;
     flag = 0;
-    // if (!((*mini)->cmd))
-    // {
-    //     puts("asdasd\n");
-    //     return ;
-    // }
     while ((*mini)->cmd[i])
     {
-        // printf("%s\n", (*mini)->cmd[i]);
         if (is_expanded((*mini)->cmd[i]))
         {
             str = big_work(envir, (*mini)->cmd[i]);

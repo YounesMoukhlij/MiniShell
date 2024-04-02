@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:31:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:27:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef	struct	s_pipex
+typedef	struct	s_path
 {
-	int		pid;
 	char	*path;
 	char	**path_d;
-	int		pipe_fd[2];
-}	t_pipex;
+}	t_path;
 
 typedef struct s_minishell
 {
@@ -49,7 +47,7 @@ typedef struct s_minishell
 	char				**afcmd_t;
 	int					fd_in;
 	int					fd_out;
-	t_pipex				pipex;
+	t_path				path;
 	struct s_minishell	*next;
 }	t_minishell;
 

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:30:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:33:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	ft_unset(t_minishell *mini, t_env *envir)
 	int	i;
 
 	i = 0x1;
+	if (!mini->cmd[0x0])
+		return (0x0);
 	while (mini->cmd[i])
 	{
 		puts("1\n");

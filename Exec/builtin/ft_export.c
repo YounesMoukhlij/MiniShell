@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:30:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:33:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ int	ft_export(t_minishell *mini, t_env *envir)
 	int		i;
 
 	i = 0x1;
+	if (!mini->cmd[0x0])
+		return (0x0);
 	head = &envir;
 	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
 		ft_env(envir);

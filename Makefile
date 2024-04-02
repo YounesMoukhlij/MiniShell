@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/02 13:02:42 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/02 17:28:51 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC = main.c \
 	  Parser/help_func/ft_isdigit.c \
 	  
 OBJ = ${SRC:.c=.o}
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
 
 all : ${NAME} clean play

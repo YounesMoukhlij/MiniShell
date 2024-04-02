@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:29:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:33:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	char	*path;
 
 	i = 0;
+	if (!mini->cmd[0x0])
+		return (0x0);
 	error_case(mini->cmd[1]);
 	if (!mini->cmd[1] || mini->cmd[1][0] == '~')
 	{

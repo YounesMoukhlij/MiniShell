@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:35:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:04:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	is_builtins(t_minishell *mini, t_env *envir)
 {
 	if (ft_strcmp_flag(mini->cmd[0], "cd", 0) == 0)
 		return (ft_cd(mini, envir));
-	else if (ft_strcmp_flag(mini->cmd[0], "env", 0) == 0)
+	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0))
 		return (ft_env(envir));
-	else if (ft_strcmp_flag(mini->cmd[0], "pwd", 0) == 0)
+	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0) || !ft_strcmp_flag(mini->cmd[0], "PWD", 0) )
 		return (ft_pwd(mini));
 	else if (ft_strcmp_flag(mini->cmd[0], "export", 0) == 0)
 		return (ft_export(mini, envir));
@@ -26,7 +26,7 @@ int	is_builtins(t_minishell *mini, t_env *envir)
 		return (ft_exit(), 1);
 	else if (ft_strcmp_flag(mini->cmd[0], "unset", 0) == 0)
 		return (ft_unset(mini, envir));
-	else if (ft_strcmp_flag(mini->cmd[0], "echo", 0) == 0)
+	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0))
 		return (ft_echo(mini));
 	else
 		return (0);
@@ -54,9 +54,9 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
 	// }
 	// str[i] = 0;
 	i = 0;
-	while (mini->pipex.path_d[i])
+	while (mini->path.path_d[i])
 	{
-		s = ft_strjoin_space_executor(mini->pipex.path_d[i], mini->cmd[0], '/');
+		s = ft_strjoin_space_executor(mini->path.path_d[i], mini->cmd[0], '/');
 		if (access(s, X_OK) != -1)
 		{
 			execve(s, mini->cmd, env);
@@ -67,13 +67,15 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
 	return (1);
 }
 
-void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env)
+void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **env)
 {
 	int	t_pipe[2];
 	int	pid;
 	int	flag;
 
 	flag =  -1;
+	(void) f;
+	(void) std_in;
 	if (pipe(t_pipe) == -1)
 		return ;
 	pid = fork();
@@ -82,7 +84,10 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env
 		if (f == 1)
 		{
 			close (t_pipe[0]);
-			dup2(t_pipe[1], 1);
+			if (mini->fd_out == 1)
+				dup2(t_pipe[1], 1);
+			else
+				dup2(mini->fd_out, 1);	
 			close (t_pipe[1]);
 		}
 		if (is_builtins(mini, envir))
@@ -94,15 +99,16 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env
 	}
 	else
 	{
-		if (f == 0)
+		if (f != 0)
 		{
-			dup2(stdin, mini->fd_in);
-			close(stdin);
+			dup2(std_in, mini->fd_in);
+			close(std_in);
 		}
 		else
 		{
 			close(t_pipe[1]);
 			dup2(t_pipe[0], mini->fd_in);
+			close(t_pipe[0]);
 		}
 	}	
 }
@@ -139,8 +145,8 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	// 		i++;
 	// 	}
 	// 	printf("len_tab=== [%d]\n", (*head)->len_tab);
-	// 	printf("fd_in=== [%d]\n", (*head)->fd_in);
-	// 	printf("fd_out=== [%d]\n", (*head)->fd_out);
+		// printf("fd_in=== [%d]\n", (*head)->fd_in);
+		// printf("fd_out=== [%d]\n", (*head)->fd_out);
 	// 	(*head) = (*head)->next;
 	// }
 	while (tmp->next)

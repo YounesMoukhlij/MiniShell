@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:33:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:33:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	ft_echo(t_minishell *mini)
 
 	i = 1;
 	flag_0 = 0;
+	if (!mini->cmd[0x0])
+		return (0x0);
 	if (mini->cmd[0] && !mini->cmd[1])
 	{
 		write(1, "\n", 1);
@@ -81,17 +83,17 @@ int	ft_echo(t_minishell *mini)
 	flag_0 = big_check(mini);
 	if (flag_0 != 0)
 		i = flag_0;
-	printf("%d\n", i);
-	printf("%d\n", flag_0);
+	// printf("%d\n", i);
+	// printf("%d\n", flag_0);
 	while (mini->cmd[i])
 	{
-		printf(">>>>>> %s\n", mini->cmd[i]);
+		// printf(">>>>>> %s\n", mini->cmd[i]);
 		// if (check(mini->cmd[i]))
-			ft_putstr_fd_executor(mini->cmd[i], 1, 0);
+			ft_putstr_fd_executor(mini->cmd[i], mini->fd_out, 0);
 		if (mini->cmd[i + 1] != NULL)
-			write(1, " ", 1);
+			write(mini->fd_out, " ", 1);
 		if (!(mini->cmd[i + 1]) && (flag_0 <= 1))
-			write(1, "\n", 1);
+			write(mini->fd_out, "\n", 1);
 		i++;
 	}
 	return (0x1);
