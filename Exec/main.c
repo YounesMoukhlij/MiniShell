@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:00 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 13:49:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:05:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int main(int ac, char **av, char **env)
     // puts("\t\t--**--\033[36mExecution\033[0m--**--");
     mini->envir = full_fill_env(env);
     full_fill_path(mini);
-    // expander(mini);
+    expander(mini);
     check_fd(mini);
     // ft_execute(&mini);
 

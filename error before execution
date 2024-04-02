@@ -1,10 +1,9 @@
 ## ERROR BEFORE EXECUTION
 
 
-/\
-one heredoc << without delimiter
-minishell $> << 
-
-!! Error
-\/
+* / error \ *
+minishell $> <<
+minishell $> <
+minishell $> >
+* \ error / *
 

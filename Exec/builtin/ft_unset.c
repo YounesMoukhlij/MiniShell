@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 18:38:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:30:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_unset(char *s, t_env *envir)
 	return (0);
 }
 
-void	ft_unset(t_minishell *mini, t_env *envir)
+int	ft_unset(t_minishell *mini, t_env *envir)
 {
 	int	i;
 
@@ -86,8 +86,9 @@ void	ft_unset(t_minishell *mini, t_env *envir)
 	{
 		puts("1\n");
 		if (check_unset(mini->cmd[i], envir))
-			break ;
+			return (0x0);
 		unset_node(mini->cmd[i], envir);
 		i++;
 	}
+	return (0x1);
 }

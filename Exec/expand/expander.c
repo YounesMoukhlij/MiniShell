@@ -166,27 +166,27 @@ void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 
 void    expander(t_minishell **mini, t_env *envir)
 {
-    // char *str;
+    char *str;
     int     i;
-    // int     flag;
+    int     flag;
 
     (void) envir;
     i = 0;
-    // flag = 0;
-    if (!((*mini)->cmd))
-    {
-        puts("asdasd\n");
-        return ;
-    }
+    flag = 0;
+    // if (!((*mini)->cmd))
+    // {
+    //     puts("asdasd\n");
+    //     return ;
+    // }
     while ((*mini)->cmd[i])
     {
-        printf("%s\n", (*mini)->cmd[i]);
-    //     if (is_expanded((*mini)->cmd[i]))
-    //     {
-    //         str = big_work(envir, (*mini)->cmd[i]);
-    //         (*mini)->cmd[i] = without_quotes(str, flag);
-    //     }
-        // i++;
+        // printf("%s\n", (*mini)->cmd[i]);
+        if (is_expanded((*mini)->cmd[i]))
+        {
+            str = big_work(envir, (*mini)->cmd[i]);
+            (*mini)->cmd[i] = without_quotes(str, flag);
+        }
+        i++;
     }
-    // rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0]);
+    rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0]);
 }

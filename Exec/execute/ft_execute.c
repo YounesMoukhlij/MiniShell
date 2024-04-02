@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 13:59:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:35:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 int	is_builtins(t_minishell *mini, t_env *envir)
 {
 	if (ft_strcmp_flag(mini->cmd[0], "cd", 0) == 0)
-		return (ft_cd(mini, envir), 1);
+		return (ft_cd(mini, envir));
 	else if (ft_strcmp_flag(mini->cmd[0], "env", 0) == 0)
-		return (ft_env(envir), 1);
+		return (ft_env(envir));
 	else if (ft_strcmp_flag(mini->cmd[0], "pwd", 0) == 0)
-		return (ft_pwd(mini), 1);
+		return (ft_pwd(mini));
 	else if (ft_strcmp_flag(mini->cmd[0], "export", 0) == 0)
-		return (ft_export(mini, envir), 1);
+		return (ft_export(mini, envir));
 	else if (ft_strcmp_flag(mini->cmd[0], "exit", 0) == 0)
 		return (ft_exit(), 1);
 	else if (ft_strcmp_flag(mini->cmd[0], "unset", 0) == 0)
-		return (ft_unset(mini, envir), 1);
+		return (ft_unset(mini, envir));
 	else if (ft_strcmp_flag(mini->cmd[0], "echo", 0) == 0)
-		return (ft_echo(mini), 1);
+		return (ft_echo(mini));
 	else
 		return (0);
 }
@@ -37,6 +37,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
 	int		i;
 	char	*s;
 	// char	**str;
+	
 	(void) envir;
 	// t_env	*tmp;
 
@@ -52,7 +53,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
 	// 	(tmp) = (tmp)->next;
 	// }
 	// str[i] = 0;
-	// while (str[i])
 	i = 0;
 	while (mini->pipex.path_d[i])
 	{
@@ -90,7 +90,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env
 		else if (is_bin_cmd(mini, envir, env))
 			flag = 1;
 		if (!flag)
-			printf("not executed\n");
+			printf("MiniShell: command not found: %s\n", mini->cmd[0]);
 	}
 	else
 	{
@@ -101,7 +101,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env
 		}
 		else
 		{
-			// close(t_pipe[1]);
+			close(t_pipe[1]);
 			dup2(t_pipe[0], mini->fd_in);
 		}
 	}	
@@ -117,43 +117,41 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 
 	tmp = *head;
 	old_stdin = dup(tmp->fd_in);
-	int i = 0;
-	while ((*head))
+	// int i = 0;
+	// while ((*head))
+	// {
+	// 	i = 0;
+	// 	while ((*head)->cmd[i])
+	// 	{
+	// 		printf("cmd[%i]==[%s]\n",i,  (*head)->cmd[i]);
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	while ((*head)->files[i])
+	// 	{
+	// 		printf("files[%i]==[%s]\n", i, (*head)->files[i]);
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	while (i < (*head)->len_tab)
+	// 	{
+	// 		printf("tab[%i]==[%d]\n", i, (*head)->tab[i]);
+	// 		i++;
+	// 	}
+	// 	printf("len_tab=== [%d]\n", (*head)->len_tab);
+	// 	printf("fd_in=== [%d]\n", (*head)->fd_in);
+	// 	printf("fd_out=== [%d]\n", (*head)->fd_out);
+	// 	(*head) = (*head)->next;
+	// }
+	while (tmp->next)
 	{
-		i = 0;
-		while ((*head)->cmd[i])
-		{
-			printf("cmd[%i]==[%s]\n",i,  (*head)->cmd[i]);
-			i++;
-		}
-		i = 0;
-		while ((*head)->files[i])
-		{
-			printf("files[%i]==[%s]\n", i, (*head)->files[i]);
-			i++;
-		}
-		i = 0;
-		while (i < (*head)->len_tab)
-		{
-			printf("tab[%i]==[%d]\n", i, (*head)->tab[i]);
-			i++;
-		}
-		printf("len_tab=== [%d]\n", (*head)->len_tab);
-		printf("fd_in=== [%d]\n", (*head)->fd_in);
-		printf("fd_out=== [%d]\n", (*head)->fd_out);
-		(*head) = (*head)->next;
+		big_execution(tmp, envir, old_stdin, 1, env);
+		tmp = tmp->next;
 	}
-	// while (tmp->next)
-	// {
-	// 	puts("11111\n");
-	// 	big_execution(tmp, envir, old_stdin, 1, env);
-	// 	tmp = tmp->next;
-	// }
-	// if (tmp)
-	// {
-	// 	// printf("%s\n", tmp->cmd[0]);
-	// 	puts("mmmmmmm");
-	// 	big_execution(tmp, envir, old_stdin, 0, env);
-	// }
-	// while (wait(0) != -1);
+	if (tmp)
+	{
+		// printf("%s\n", tmp->cmd[0]);
+		big_execution(tmp, envir, old_stdin, 0, env);
+	}
+	while (wait(0) != -1);
 }

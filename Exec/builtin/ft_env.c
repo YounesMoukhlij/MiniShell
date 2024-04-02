@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/31 18:26:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:30:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_env(t_env *envir)
+int	ft_env(t_env *envir)
 {
 	t_env	*tmp;
 
@@ -24,4 +24,5 @@ void	ft_env(t_env *envir)
 		ft_putstr_fd_executor(tmp->value, 1 ,1);
 		tmp = tmp->next;
 	}
+	return (0x1);
 }

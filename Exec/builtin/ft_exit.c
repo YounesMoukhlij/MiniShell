@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/03/13 16:53:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:29:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_exit(void)
+int	ft_exit(void)
 {
 	ft_putstr_fd_executor("exit", 1, 1);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 03:05:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:31:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ char		*allocate_max(t_env *envir);
 char		*ft_calloc(int num, int size);
 char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
-void		ft_export(t_minishell *mini, t_env *envir);
-void		ft_exit(void);
-void		ft_unset(t_minishell *mini, t_env *envir);
-void		ft_cd(t_minishell *mini, t_env *envir);
-void		ft_echo(t_minishell *mini);
+int			ft_export(t_minishell *mini, t_env *envir);
+int			ft_exit(void);
+int			ft_unset(t_minishell *mini, t_env *envir);
+int			ft_cd(t_minishell *mini, t_env *envir);
+int			ft_echo(t_minishell *mini);
 int			is_builtins(t_minishell *mini, t_env *envir);
-void		ft_env(t_env *envir);
-void		ft_pwd(t_minishell *mini);
+int			ft_env(t_env *envir);
+int			ft_pwd(t_minishell *mini);
 
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
