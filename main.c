@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/02 03:04:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:58:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	main(int ac, char **av, char **env)
 		// 	mini = mini->next;
 		// }
     	full_fill_path(mini, envir);
-    	expander(&mini, envir);
-    	check_fd(mini, envir);
+    	// check_fd(mini, envir);
+    	// expander(&mini, envir);
     	ft_execute(&mini, envir, env);
 	}
 	return (0);

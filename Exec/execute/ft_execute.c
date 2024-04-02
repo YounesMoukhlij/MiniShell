@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 03:04:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:59:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,36 +96,64 @@ void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env
 	{
 		if (f == 0)
 		{
-			dup2(stdin, 0);
+			dup2(stdin, mini->fd_in);
 			close(stdin);
 		}
 		else
 		{
-			close(t_pipe[1]);
-			dup2(t_pipe[0], 0);
+			// close(t_pipe[1]);
+			dup2(t_pipe[0], mini->fd_in);
 		}
 	}	
 }
 
 void	ft_execute(t_minishell **head, t_env *envir, char **env)
 {
+	(void) head;
+	(void) envir;
+	(void) env;
 	t_minishell	*tmp;
 	int			old_stdin;
 
 	tmp = *head;
 	old_stdin = dup(tmp->fd_in);
-	while (tmp->next)
+	int i = 0;
+	while ((*head))
 	{
-		puts("11111\n");
-		// printf("%s\n", tmp->cmd[0]);
-		big_execution(tmp, envir, old_stdin, 1, env);
-		tmp = tmp->next;
+		i = 0;
+		while ((*head)->cmd[i])
+		{
+			printf("cmd[%i]==[%s]\n",i,  (*head)->cmd[i]);
+			i++;
+		}
+		i = 0;
+		while ((*head)->files[i])
+		{
+			printf("files[%i]==[%s]\n", i, (*head)->files[i]);
+			i++;
+		}
+		i = 0;
+		while (i < (*head)->len_tab)
+		{
+			printf("tab[%i]==[%d]\n", i, (*head)->tab[i]);
+			i++;
+		}
+		printf("len_tab=== [%d]\n", (*head)->len_tab);
+		printf("fd_in=== [%d]\n", (*head)->fd_in);
+		printf("fd_out=== [%d]\n", (*head)->fd_out);
+		(*head) = (*head)->next;
 	}
-	if (tmp)
-	{
-		// printf("%s\n", tmp->cmd[0]);
-		puts("mmmmmmm");
-		big_execution(tmp, envir, old_stdin, 0, env);
-	}
-	while (wait(0) != -1);
+	// while (tmp->next)
+	// {
+	// 	puts("11111\n");
+	// 	big_execution(tmp, envir, old_stdin, 1, env);
+	// 	tmp = tmp->next;
+	// }
+	// if (tmp)
+	// {
+	// 	// printf("%s\n", tmp->cmd[0]);
+	// 	puts("mmmmmmm");
+	// 	big_execution(tmp, envir, old_stdin, 0, env);
+	// }
+	// while (wait(0) != -1);
 }

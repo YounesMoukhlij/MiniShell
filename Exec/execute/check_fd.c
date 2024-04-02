@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 01:04:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:49:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,57 +25,73 @@ int	ft_open_others(t_minishell *mini)
 	int	fd;
 
 	i = -1;
-	while (++i < mini->len_tab)
+	while (++i < mini->len_tab + 1)
 	{
 		if (mini->tab[i] == 1 || mini->tab[i] == 2)
 		{
-			fd = open(mini->files[i], O_CREAT | O_RDWR, 0777);
+			puts("ABC\n");
+			fd = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
 			if (fd == -1)
 			{
-				function_error(mini->files[i]);
+				function_error(mini->files[i + 1]);
 				return (1);
 			}	
 		}
 	}
-	mini->fd_out = fd;
+	if (fd != -1)
+		mini->fd_out = fd;
 	return (0);
 }
 
-int	ft_fd_files(t_minishell *mini)
+void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
+{
+	char	*s;
+
+	(void) mini;
+	(void) env;
+	while (1999)
+	{
+		s = readline("heredoc> ");
+		if (!s)
+			break;
+		if (!ft_strcmp_flag(s, delimiter, 0))
+			break;
+	}
+}
+
+int	ft_fd_files(t_minishell *mini, t_env *env)
 {
 	int	i;
 	int	fd;
 
+	(void) env;
 	i = -1;
-	while (++i < mini->len_tab)
+	while (++i < mini->len_tab + 1)
 	{
+		if (mini->tab[i] == 4)
+			heredoc_check(mini, env, mini->files[i + 1]);
 		if (mini->tab[i] == 3)
 		{
-			fd = open(mini->files[i], O_RDONLY);
+			fd = open(mini->files[i + 1], O_RDONLY);
 			if (fd == -1)
 			{
-				function_error(mini->files[i]);
+				function_error(mini->files[i + 1]);
 				return (1);
 			}
 		}
 	}
-	mini->fd_in = fd;
+	if (fd != -1)
+		mini->fd_in = fd;
 	return (0);
 }
 
-void	heredoc_check(t_minishell *mini, t_env *env)
-{
-	(void) mini;
-	(void) env;
-}
 
 void	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
 
 	flag = 1;
-	heredoc_check(mini, env);
-	if (ft_fd_files(mini))
+	if (ft_fd_files(mini, env))
 		flag = 0;		
 	ft_open_others(mini);
 	if (!flag)

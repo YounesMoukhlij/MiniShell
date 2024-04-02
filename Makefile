@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/03/31 18:30:16 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/02 13:02:42 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ all : ${NAME} clean play
 
 play :
 	@./minishell
+
 
 %.o : %.c ../minishell.h
 	@cc ${CFLAGS} -c $< -o $@
