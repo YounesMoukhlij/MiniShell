@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 02:57:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 03:04:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,34 @@ int	is_builtins(t_minishell *mini, t_env *envir)
 		return (0);
 }
 
-int	is_bin_cmd(t_minishell *mini, t_env **envir)
+int	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
 {
 	int		i;
 	char	*s;
-	char	**str;
+	// char	**str;
+	(void) envir;
+	// t_env	*tmp;
 
-	
-	str = malloc(sizeof(char *) * lst_size_executor(envir) + 1);
-	if (!str)
-		return (0);
-	i = 0;
-	while ((*envir))
-	{
-		str[i] = ft_strdup(ft_strjoin_executor((*envir)->key, (*envir)->value));
-		i++;
-		(*envir) = (*envir)->next;
-	}
-	str[i] = 0;
+	// tmp = envir;
+	// str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
+	// if (!str)
+	// 	return (0);
+	// i = 0;
+	// while ((tmp))
+	// {
+	// 	str[i] = ft_strdup(ft_strjoin_executor((tmp)->key, (tmp)->value));
+	// 	i++;
+	// 	(tmp) = (tmp)->next;
+	// }
+	// str[i] = 0;
+	// while (str[i])
 	i = 0;
 	while (mini->pipex.path_d[i])
 	{
 		s = ft_strjoin_space_executor(mini->pipex.path_d[i], mini->cmd[0], '/');
 		if (access(s, X_OK) != -1)
 		{
-			execve(s, mini->cmd, str);
+			execve(s, mini->cmd, env);
 		}
 		free (s);
 		i++;
@@ -64,7 +67,7 @@ int	is_bin_cmd(t_minishell *mini, t_env **envir)
 	return (1);
 }
 
-void	big_execution(t_minishell *mini, t_env **envir, int stdin, int f)
+void	big_execution(t_minishell *mini, t_env *envir, int stdin, int f, char **env)
 {
 	int	t_pipe[2];
 	int	pid;
@@ -82,9 +85,9 @@ void	big_execution(t_minishell *mini, t_env **envir, int stdin, int f)
 			dup2(t_pipe[1], 1);
 			close (t_pipe[1]);
 		}
-		if (is_builtins(mini, *envir))
+		if (is_builtins(mini, envir))
 			flag = 1;
-		else if (is_bin_cmd(mini, envir))
+		else if (is_bin_cmd(mini, envir, env))
 			flag = 1;
 		if (!flag)
 			printf("not executed\n");
@@ -104,7 +107,7 @@ void	big_execution(t_minishell *mini, t_env **envir, int stdin, int f)
 	}	
 }
 
-void	ft_execute(t_minishell **head, t_env *envir)
+void	ft_execute(t_minishell **head, t_env *envir, char **env)
 {
 	t_minishell	*tmp;
 	int			old_stdin;
@@ -115,14 +118,14 @@ void	ft_execute(t_minishell **head, t_env *envir)
 	{
 		puts("11111\n");
 		// printf("%s\n", tmp->cmd[0]);
-		big_execution(tmp, &envir, old_stdin, 1);
+		big_execution(tmp, envir, old_stdin, 1, env);
 		tmp = tmp->next;
 	}
 	if (tmp)
 	{
 		// printf("%s\n", tmp->cmd[0]);
 		puts("mmmmmmm");
-		big_execution(tmp, &envir, old_stdin, 0);
+		big_execution(tmp, envir, old_stdin, 0, env);
 	}
 	while (wait(0) != -1);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 01:04:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 03:05:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-void		ft_execute(t_minishell **head, t_env *envir);
+void		ft_execute(t_minishell **head, t_env *envir, char **env);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
