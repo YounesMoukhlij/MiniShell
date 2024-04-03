@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 15:35:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/02 23:58:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ int	ft_open_others(t_minishell *mini)
 	{
 		if (mini->tab[i] == 1 || mini->tab[i] == 2)
 		{
-			puts("ABC\n");
 			fd = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
 			if (fd == -1)
 			{
 				function_error(mini->files[i + 1]);
 				return (1);
 			}
+			if (i < mini-> len_tab - 1)
+				close(fd);
 		}
 	}
 	mini->fd_out = fd;
@@ -80,6 +81,8 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 				return (1);
 			}
 		}
+		if (i < mini->len_tab - 1)
+				close(fd);
 	}
 	mini->fd_in = fd;
 	return (0);
