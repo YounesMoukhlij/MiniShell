@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/02 18:39:11 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/03 18:20:50 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
 
-all : ${NAME} clean play
+all : ${NAME} clean
 
 play :
 	@./minishell

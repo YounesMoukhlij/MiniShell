@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 18:44:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:30:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,22 @@ char	*ft_get_path(t_env *envir)
 t_env	*full_fill_env(char **env)
 {
 	int		i;
-	char	**key_value;
+	int		j;
 	t_env	*lst_env;
 	t_env	*head;
+	char	*s1;
+	char	*s2;
 
 	i = 0;
 	head = NULL;
 	while (env[i])
 	{
-		key_value = ft_split_executor(env[i], '=');
-		if (!key_value)
-			return (NULL);
-		lst_env = lstnew_executor(key_value[0], key_value[1]);
+		j = 0;
+		while (env[i][j] != '=')
+			j++;
+		s1 = ft_substr_executor(env[i], 0, j);
+		s2 = ft_substr_executor(env[i], j + 1, ft_strlen(env[i]));
+		lst_env = lstnew_executor(s1, s2);
 		add_back_executor(&head, lst_env);
 		i++;
 	}

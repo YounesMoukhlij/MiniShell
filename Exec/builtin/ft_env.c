@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:30:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:00:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_env(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		ft_putstr_fd_executor(tmp->key, 1 ,0);
+		ft_putstr_fd_executor(tmp->key, 1, 0);
 		write(1, "=", 1);
-		ft_putstr_fd_executor(tmp->value, 1 ,1);
+		ft_putstr_fd_executor(tmp->value, 1, 1);
 		tmp = tmp->next;
 	}
 	return (0x1);
