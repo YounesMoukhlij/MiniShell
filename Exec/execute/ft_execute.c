@@ -60,7 +60,6 @@ void	is_bin_cmd(t_minishell *mini, t_env *envir)
 		free (s);
 		i++;
 	}
-	exit(1);
 }
 
 int	is_cmd(t_minishell *mini, t_env *envir)
@@ -94,7 +93,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 // 		else
 // 			dup2(one, 1);
 // 		close (one);
-// 	}	
+// 	}
 // }
 
 // void	parent_pipes(int zero, int one, t_minishell *m, int f)
@@ -153,7 +152,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 				close(t_pipe[0]);
 			}
 		}
-	}	
+	}
 }
 
 void	ft_execute(t_minishell **head, t_env *envir)

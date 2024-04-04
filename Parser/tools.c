@@ -38,20 +38,17 @@ int	ft_set_tk(char *str)
 {
 	int	len;
 	int	i;
-	int	op;
 
 	len = 0;
 	i = 0;
-	op = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 		{
 			if (str[i] == '\'')
-				op = ft_parq(str, &i, 's');
+				ft_parq(str, &i, 's');
 			else if (str[i] == '\"')
-				op = ft_parq(str, &i, 'q');
-			op = 0;
+				ft_parq(str, &i, 'q');
 			if (!str[i])
 				break ;
 		}
