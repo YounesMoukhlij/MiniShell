@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:20:45 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 18:01:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/03 23:35:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,40 @@
 t_minishell	*parcing(char *str)
 {
 	int i = 0;
-	int	*arr ;
+	int	*arr;
 	int	len;
-	t_minishell *cmp;
+	// t_minishell *cmp;
+	t_minishell *tmp;
 	len = ft_set_tk(str);
 	arr = ft_arr_tk(str, len);
 
 	i = 0;
 	char **strs = ft_spliter(str);
-	cmp = get_link_cmd(strs,arr,len);
+	tmp = get_link_cmd(strs,arr,len);
+	
+	// cmp = tmp;
 	// while (cmp)
 	// {
 	// 	i = 0;
 	// 	printf("\n");
 	// 	printf("---------commad:-----------\n");
-	// 	while(cmp->cmdt[i])
+	// 	while(cmp->cmd[i])
 	// 	{
-	// 		printf("cmdt[%i]:%s\n",i,cmp->cmdt[i]);
+	// 		printf("cmd[%i]:%s\n",i,cmp->cmd[i]);
 	// 		i++;
 	// 	}
+	// 	// while(cmp->cmdt[i])
+	// 	// {
+	// 	// 	printf("cmdt[%i]:%s\n",i,cmp->cmdt[i]);
+	// 	// 	i++;
+	// 	// }
 	// 	printf("---------FILES:-----------\n");
 	// 	i = 1;
 	// 	if (cmp->files)
 	// 	{
 	// 		while(cmp->files[i])
 	// 	{
-	// 		printf("file [%i]: %s\n",i,cmp->files[i]);
+	// 		printf("file [%i]: %s\n",i, cmp->files[i]);
 	// 		i++;
 	// 	}
 	// 	}
@@ -70,5 +78,5 @@ t_minishell	*parcing(char *str)
 	// 		printf("%s\n",cmp->cmd[i++]);
 	// 	cmp =  cmp->next;
 	// }
-	return (cmp);
+	return (tmp);
 }

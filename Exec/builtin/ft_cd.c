@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 17:33:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 00:57:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	print_error(char *s, int i)
 {
-	(void) i;
 	ft_putstr_fd_executor("cd: no such file or directory: ", 2, 0);
 	if (i == 1)
 		ft_putstr_fd_executor(s, 2, 1);
-	exit(1);
+	// exit(1);
 }
 
 void	error_case(char *s)
@@ -42,7 +41,7 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	i = 0;
 	if (!mini->cmd[0x0])
 		return (0x0);
-	error_case(mini->cmd[1]);
+	// error_case(mini->cmd[1]);
 	if (!mini->cmd[1] || mini->cmd[1][0] == '~')
 	{
 		path = grep_from_env(envir, "HOME");
@@ -67,7 +66,5 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);
-	if (i != -1)
-		ft_pwd(mini);
-	return (0x1);
+	return (exit(0x0), 0x1);
 }

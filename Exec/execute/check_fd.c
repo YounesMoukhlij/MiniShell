@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 23:58:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:34:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	ft_open_others(t_minishell *mini)
 				function_error(mini->files[i + 1]);
 				return (1);
 			}
-			if (i < mini-> len_tab - 1)
-				close(fd);
+			// if (i < mini-> len_tab - 1)
+			// 	close(fd);
 		}
 	}
 	mini->fd_out = fd;
@@ -57,6 +57,7 @@ void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
 			break;
 		if (!ft_strcmp_flag(s, delimiter, 0))
 			break;
+		free (s);
 	}
 }
 
@@ -81,13 +82,12 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 				return (1);
 			}
 		}
-		if (i < mini->len_tab - 1)
-				close(fd);
+		// if (i < mini->len_tab - 1)
+		// 		close(fd);
 	}
 	mini->fd_in = fd;
 	return (0);
 }
-
 
 void	check_fd(t_minishell *mini, t_env *env)
 {

@@ -118,9 +118,9 @@ char    *big_work(t_env *envir, char *s)
             if (ft_strlen(p) || !grep_from_env(envir, grep_value(&s[i])))
                 i += grep(&s[i]);
             j = ft_strlen(p);
-            if (!s[i])
-                break ;
         }
+        if (!s[i])
+            break ;
         p[j] = s[i];
         i++;
         j++;
@@ -175,6 +175,11 @@ void    expander(t_minishell **mini, t_env *envir)
     (void) envir;
     i = 0;
     flag = 0;
+    // while ((*mini)->cmd[i])
+    // {
+    //     printf("========[%s]\n", (*mini)->cmd[i]);
+    //     i++;
+    // }
     while ((*mini)->cmd[i])
     {
         if (is_expanded((*mini)->cmd[i]))

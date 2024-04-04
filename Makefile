@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/03 18:20:50 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/03 22:11:48 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,9 @@ SRC = main.c \
 	  Parser/help_func/ft_isalpha.c \
 	  Parser/help_func/ft_substr_executor.c \
 	  Parser/help_func/ft_isdigit.c \
+	  Parser/help_func/ft_putendl_fd.c \
+	  Parser/help_func/ft_putchar_fd.c \
+	  Parser/help_func/ft_putstr_fd.c \
 	  
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address

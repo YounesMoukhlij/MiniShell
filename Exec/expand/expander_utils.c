@@ -66,20 +66,17 @@ char    *without_quotes(char *s, int flag)
         return (NULL);
     while (s[i])
     {
-        // while (s[i] == dbl && s[i])
-        // {
-            if (s[i] == '\"' && s[i] && flag == 0)
-            {
-                flag = 1;
-                i++;
-            }
-            if (s[i] == '\"' && flag == 1)
-            {
-                i++;
-                flag = 0;
-            }
-        // }
-        while (s[i] == '\'' && flag == 0)
+        if (s[i] == dbl && s[i] && flag == 0)
+        {
+            flag = 1;
+            i++;
+        }
+        if (s[i] == dbl && flag == 1)
+        {
+            i++;
+            flag = 0;
+        }
+        while (s[i] == sgl && flag == 0)
           i++;
         if (!s[i])
             break ;

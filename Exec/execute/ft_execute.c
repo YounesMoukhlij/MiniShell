@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/03 18:41:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 00:50:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ int	is_cmd(t_minishell *mini, t_env *envir, char **env)
 
 // void	parent_pipes(int zero, int one, t_minishell *m, int f)
 // {
-	
 // }
 
 void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **env)
 {
 	int	t_pipe[2];
 	int	pid;
-	
+
+	(void) std_in;
     full_fill_path(mini, envir);
 	check_fd(mini, envir);
     expander(&mini, envir);
@@ -121,80 +121,100 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **en
 	pid = fork();
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	if (pid == 0)
-	{
-		if (f == 1)
-		{
-			close (t_pipe[0]);
-			// if (mini->fd_out != 1)
-				dup2(t_pipe[1], mini->fd_out);
-			// else
-				// dup2(t_pipe[1], 1);
-			close (t_pipe[1]);
-		}	
-		is_cmd(mini, envir, env);
-	}
-	else
-	{
-		if (f == 0)
-		{
-			if (mini->fd_in != 0)
-				dup2(std_in, mini->fd_in);
-			else
-				dup2(std_in, 0);
-			close(std_in);
-		}
-		else
-		{
-			close(t_pipe[1]);
-			if (mini->fd_in != 0)
-				dup2(t_pipe[0], mini->fd_in);
-			else
-				dup2(t_pipe[0], 0);
-			close(t_pipe[0]);
-		}
-	}
-	// dsfdsfdsfdsdsfsdsf
+	// printf("____> [%d]\n", mini->fd_out);
+	// printf("____> [%d]\n", mini->fd_in);
 	// if (pid == 0)
 	// {
 	// 	if (f == 1)
 	// 	{
-	// 		// if (mini->fd_out == 1)
 	// 		close (t_pipe[0]);
-	// 		dup2(t_pipe[1], mini->fd_out);
+	// 		// if (mini->fd_out != 1)
+	// 			dup2(t_pipe[1], mini->fd_out);
+	// 		// else
+	// 			// dup2(t_pipe[1], 1);
 	// 		close (t_pipe[1]);
-	// 	}
+	// 	}	
 	// 	is_cmd(mini, envir, env);
 	// }
 	// else
 	// {
 	// 	if (f == 0)
 	// 	{
-	// 		dup2(std_in, mini->fd_in);
+	// 		if (mini->fd_in != 0)
+	// 			dup2(std_in, mini->fd_in);
+	// 		else
+	// 			dup2(std_in, 0);
 	// 		close(std_in);
 	// 	}
 	// 	else
 	// 	{
 	// 		close(t_pipe[1]);
-	// 		dup2(t_pipe[0], mini->fd_in);
+	// 		if (mini->fd_in != 0)
+	// 			dup2(t_pipe[0], mini->fd_in);
+	// 		else
+	// 			dup2(t_pipe[0], 0);
 	// 		close(t_pipe[0]);
 	// 	}
-	// }	
+	// }
+	if (pid == 0)
+	{
+		if (f == 1)
+		{
+			close (t_pipe[0]);
+			if (mini->fd_out != 1)
+			{
+				dup2(mini->fd_out, 1);
+				close(mini->fd_out);
+			}
+			else
+				dup2(t_pipe[1], 1);
+			// close (t_pipe[1]);
+		}
+		else
+		{
+		// 		// puts("HERER");
+			dup2(mini->fd_out, 1);
+			// close(mini->fd_out);
+		}
+		is_cmd(mini, envir, env);
+	}
+	else
+	{
+		if (f == 0)
+		{
+			// else
+			// {
+				dup2(std_in, 0);
+				// close(std_in);
+			// }
+		}
+		else
+		{
+			if (mini->fd_in != 0)
+				dup2(mini->fd_in, 0);
+			else
+			{
+				close(t_pipe[1]);
+				if (mini->fd_in != 0)
+					dup2(t_pipe[0], mini->fd_in);
+				else
+					dup2(t_pipe[0], 0);
+				close(t_pipe[0]);
+			}
+		}
+	}	
 }
 
 void	ft_execute(t_minishell **head, t_env *envir, char **env)
 {
-	(void) head;
-	(void) envir;
-	(void) env;
 	t_minishell	*tmp;
 	int			old_stdin = 0;
 
 	tmp = *head;
 	old_stdin = dup(tmp->fd_in);
-
 	while (tmp->next)
 	{
+		// puts("asdsadd");
 		big_execution(tmp, envir, old_stdin, 1, env);
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 18:44:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:11:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ typedef struct s_minishell
 // t_env *ENVIR;
 
 // YOUNES
-void	unset_node(char *str, t_env *envir);
-
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		unset_node(char *str, t_env *envir);
 int			ft_isdigit(int c);
 int			ft_isalpha(int c);
 void		ft_free_env(t_env **env);

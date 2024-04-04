@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/03 18:28:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 00:39:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ int	is_empty(char *s)
 int	main(int ac, char **av, char **env)
 {
 	char		*str;
-	t_minishell	*mini = NULL;
+	t_minishell	*mini;
 	t_env		*envir;
 
-	(void) env;
 	(void) av;
 	if (ac != 1)
 		return (1);
+		(void) mini;
 	envir = full_fill_env(env);
+	// int i;
 	while (1)
 	{
 		str = readline("\033[31mಠ__ಠ\033[0m_$> ");
@@ -46,24 +47,21 @@ int	main(int ac, char **av, char **env)
 			break ;
 		if (is_empty(str))
 			continue ;
-		// if (parcing(str) == NULL)
-		// 	continue ;
 		add_history(str);
 		mini = parcing(str);
-		// int i =0;
-		// ft_env(mini);
-		// ft_env(mini);
 		// while (mini)
-		// {
+		// // {
 		// 	i = 0;
+		// 	puts("__________________________\n");
 		// 	while (mini->cmd[i])
 		// 	{
-		// 		printf("%s\n", mini->cmd[i]);
+		// 		printf("------>[%s]\n", mini->cmd[i]);
 		// 		i++;
 		// 	}
+		// 	puts("__________________________\n");
 		// 	mini = mini->next;
 		// }
-    	
+    	// expander(&mini, envir);
     	ft_execute(&mini, envir, env);
 	}
 	return (0);
