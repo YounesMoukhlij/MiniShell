@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 00:57:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:58:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,9 +264,7 @@ int	ft_export(t_minishell *mini, t_env *envir)
 				if (already_exist(mini->cmd[i], envir))
 					break ;
 				else if (check_special_case(mini->cmd[i]))
-				{
 					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
-				}
 				else if (if_equal(mini->cmd[i]))
 				{
 					p = ft_split_export(mini->cmd[i]);
@@ -280,5 +278,5 @@ int	ft_export(t_minishell *mini, t_env *envir)
 			i++;
 		}
 	}
-	return (exit(0x0), 0x1);
+	return ( 0x1);
 }

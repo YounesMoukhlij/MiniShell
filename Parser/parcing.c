@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:20:45 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/03 23:35:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:56:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_minishell	*parcing(char *str)
 {
-	int i = 0;
+	// int i = 0;
 	int	*arr;
 	int	len;
-	// t_minishell *cmp;
 	t_minishell *tmp;
 	len = ft_set_tk(str);
 	arr = ft_arr_tk(str, len);
 
-	i = 0;
+	// i = 0;
 	char **strs = ft_spliter(str);
 	tmp = get_link_cmd(strs,arr,len);
 	
+	// t_minishell *cmp;
 	// cmp = tmp;
 	// while (cmp)
 	// {

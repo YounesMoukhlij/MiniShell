@@ -6,70 +6,64 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 00:50:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:11:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	is_bin_cmd(t_minishell *mini, t_env *envir, char **env)
+char	**execv_env(t_env *envir)
+{
+	char	**str;
+	char	*string;
+	t_env 	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = envir;
+	str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
+	if (!str)
+		return (NULL);
+	while (tmp)
+	{
+		string = ft_strjoin_space_executor(tmp->key, tmp->value, '=');
+		if (tmp->next)
+		 	str[i++] = strdup(string);
+		free (string);
+		tmp = tmp->next;
+	}
+	str[i] = 0;
+	return (str);
+}
+
+int	check______(char *s)
+{
+	if (s[0] == '.' && s[1] == '/')
+		return (0x1);
+	return (0x0);
+}
+
+void	is_bin_cmd(t_minishell *mini, t_env *envir)
 {
 	int		i;
-	char	*string;
-	char	**str;
 	char	*s;
 
-	(void) env;
-	(void) mini;
-	(void) string;
-	str = malloc(sizeof(char *) * lst_size_executor(&envir) + 1);
-	if (!str)
-		return ;
-	i = 0;
-	// while (env[i])
-	// {
-	// 	// printf("%s\n", env[i]);
-	// 	i++;
-	// }
-	// printf("%d && %d\n", i, lst_size_executor(envir) + 1);
-	// while ((*envir))
-	// {
-	// 	// if (!((*envir)->key) || !((*envir)->value))
-	// 	// {
-	// 	printf("key[%s]=value[%s]\n", (*envir)->key, (*envir)->value);
-	// 	// 	break ;
-	// 	// }
-	// 	// puts("asdasd");
-	// 	// string = ft_strjoin_space_executor((*envir)->key, (*envir)->value, '=');
-	// 	// if (!string)
-	// 	// 	break ;
-	// 	// // printf("%s\n", string);
-	// 	// str[i] = ft_strdup(string);
-	// 	// i++;
-	// 	// // free (string);
-	// 	(*envir) = (*envir)->next;
-	// }
-	// str[i] = 0;
-	// i = 0;
-	// while (str[i])
-	// {
-	// 	printf("%s\n", str[i]);
-	// 	i++;
-	// }
 	i = 0;
 	while (mini->path_d[i])
 	{
 		s = ft_strjoin_space_executor(mini->path_d[i], mini->cmd[0], '/');
 		if (access(s, X_OK) == 0)
-			execve(s, mini->cmd, env);
+		{
+			if (execve(s, mini->cmd, execv_env(envir)) == -1)
+				printf("MiniShell: command not found: %s\n", mini->cmd[0]);
+		}
 		free (s);
 		i++;
 	}
-	printf("MiniShell: command not found: %s\n", mini->cmd[0]);
 	exit(1);
 }
 
-int	is_cmd(t_minishell *mini, t_env *envir, char **env)
+int	is_cmd(t_minishell *mini, t_env *envir)
 {
 	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0))
 		return (ft_cd(mini, envir));
@@ -86,7 +80,7 @@ int	is_cmd(t_minishell *mini, t_env *envir, char **env)
 	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0))
 		return (ft_echo(mini));
 	else
-		is_bin_cmd(mini, envir, env);
+		is_bin_cmd(mini, envir);
 	return (0x0);
 }
 
@@ -107,7 +101,7 @@ int	is_cmd(t_minishell *mini, t_env *envir, char **env)
 // {
 // }
 
-void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **env)
+void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 {
 	int	t_pipe[2];
 	int	pid;
@@ -121,41 +115,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **en
 	pid = fork();
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	// printf("____> [%d]\n", mini->fd_out);
-	// printf("____> [%d]\n", mini->fd_in);
-	// if (pid == 0)
-	// {
-	// 	if (f == 1)
-	// 	{
-	// 		close (t_pipe[0]);
-	// 		// if (mini->fd_out != 1)
-	// 			dup2(t_pipe[1], mini->fd_out);
-	// 		// else
-	// 			// dup2(t_pipe[1], 1);
-	// 		close (t_pipe[1]);
-	// 	}	
-	// 	is_cmd(mini, envir, env);
-	// }
-	// else
-	// {
-	// 	if (f == 0)
-	// 	{
-	// 		if (mini->fd_in != 0)
-	// 			dup2(std_in, mini->fd_in);
-	// 		else
-	// 			dup2(std_in, 0);
-	// 		close(std_in);
-	// 	}
-	// 	else
-	// 	{
-	// 		close(t_pipe[1]);
-	// 		if (mini->fd_in != 0)
-	// 			dup2(t_pipe[0], mini->fd_in);
-	// 		else
-	// 			dup2(t_pipe[0], 0);
-	// 		close(t_pipe[0]);
-	// 	}
-	// }
 	if (pid == 0)
 	{
 		if (f == 1)
@@ -168,25 +127,17 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **en
 			}
 			else
 				dup2(t_pipe[1], 1);
-			// close (t_pipe[1]);
 		}
 		else
-		{
-		// 		// puts("HERER");
 			dup2(mini->fd_out, 1);
-			// close(mini->fd_out);
-		}
-		is_cmd(mini, envir, env);
+		is_cmd(mini, envir);
 	}
 	else
 	{
 		if (f == 0)
 		{
-			// else
-			// {
 				dup2(std_in, 0);
-				// close(std_in);
-			// }
+				close(std_in);
 		}
 		else
 		{
@@ -205,7 +156,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f, char **en
 	}	
 }
 
-void	ft_execute(t_minishell **head, t_env *envir, char **env)
+void	ft_execute(t_minishell **head, t_env *envir)
 {
 	t_minishell	*tmp;
 	int			old_stdin = 0;
@@ -214,11 +165,10 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	old_stdin = dup(tmp->fd_in);
 	while (tmp->next)
 	{
-		// puts("asdsadd");
-		big_execution(tmp, envir, old_stdin, 1, env);
+		big_execution(tmp, envir, old_stdin, 1);
 		tmp = tmp->next;
 	}
 	if (tmp)
-		big_execution(tmp, envir, old_stdin, 0, env);
+		big_execution(tmp, envir, old_stdin, 0);
 	while (wait(0) != -1);
 }

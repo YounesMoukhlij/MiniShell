@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/03 22:11:48 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/04 17:28:56 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC = main.c \
 	  Parser/help_func/ft_putstr_fd.c \
 	  
 OBJ = ${SRC:.c=.o}
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 NAME = minishell
 
 all : ${NAME} clean

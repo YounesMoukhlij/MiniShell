@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/03 22:11:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:39:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,21 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-// typedef	struct	s_path
-// {
-// 	char	*path;
-// 	char	**path_d;
-// }	t_path;
-
 typedef struct s_minishell
 {
 	char				**cmd;
 	char				**cmdt;
+	char				**afcmd_t;
     char				**files;
 	int					*tab;
     int					len_tab;
-	char				**afcmd_t;
 	int					fd_in;
 	int					fd_out;
-	char	*path;
-	char	**path_d;
+	int					heredoc;
+	char				*path;
+	char				**path_d;
 	struct s_minishell	*next;
 }	t_minishell;
-
-// t_env *ENVIR;
 
 // YOUNES
 void		ft_putendl_fd(char *s, int fd);
@@ -81,7 +74,7 @@ int			ft_exit(void);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);
-int			is_cmd(t_minishell *mini, t_env *envir, char **env);
+int			is_cmd(t_minishell *mini, t_env *envir);
 int			ft_env(t_env *envir);
 int			ft_pwd(t_minishell *mini);
 
@@ -89,7 +82,7 @@ char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-void		ft_execute(t_minishell **head, t_env *envir, char **env);
+void		ft_execute(t_minishell **head, t_env *envir);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
