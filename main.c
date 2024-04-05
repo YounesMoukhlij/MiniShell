@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/04 17:30:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:51:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,20 @@ int	main(int ac, char **av, char **env)
 		(void) mini;
 	envir = full_fill_env(env);
 	// int i;
-	atexit(show);
-	// while (1)
-	// {
+	// atexit(show);
+	while (1)
+	{
 		str = readline("\033[31mಠ__ಠ\033[0m_$> ");
-		// if (!str)
-		// 	break ;
-		// if (is_empty(str))
-		// 	continue ;
+		if (!str)
+			break ;
+		if (is_empty(str))
+			continue ;
 		add_history(str);
 		mini = parcing(str);
-		// while (mini)
-		// // {
-		// 	i = 0;
-		// 	puts("__________________________\n");
-		// 	while (mini->cmd[i])
-		// 	{
-		// 		printf("------>[%s]\n", mini->cmd[i]);
-		// 		i++;
-		// 	}
-		// 	puts("__________________________\n");
-		// 	mini = mini->next;
-		// }
-    	// expander(&mini, envir);
     	ft_execute(&mini, envir);
-		free (str);
-		ft_free_env(&envir);
+		// free (str);
+		// ft_free_env(&envir);
 		// ft_free_env(envir);
-	// }
+	}
 	return (0);
 }
