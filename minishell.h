@@ -24,6 +24,8 @@
 
 # define sgl '\''
 # define dbl '\"'
+# define NO 0
+# define YES 1
 
 typedef struct s_env
 {
@@ -43,12 +45,17 @@ typedef struct s_minishell
 	int					fd_in;
 	int					fd_out;
 	int					heredoc;
+	int					forked;
 	char				*path;
 	char				**path_d;
 	struct s_minishell	*next;
 }	t_minishell;
 
 // YOUNES
+void		clear_envir(t_env *head);
+void		print_export(t_env **head);
+void		signal_handler_one(int sig_v);
+void		signal_handler_two(int sig_v);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
@@ -71,7 +78,7 @@ char		*ft_calloc(int num, int size);
 char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 int			ft_export(t_minishell *mini, t_env *envir);
-int			ft_exit(void);
+int			ft_exit(t_minishell *mini);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);

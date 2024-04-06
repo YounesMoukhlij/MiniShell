@@ -225,7 +225,7 @@ int	check_special_case(char *s)
 			return (0x1);
 		i++;
 	}
-	return (0x0);	
+	return (0x0);
 }
 
 char	*ft_key(char *s)
@@ -242,73 +242,6 @@ char	*ft_key(char *s)
 	return (NULL);
 }
 
-
-typedef struct s_export
-{
-	char	*key;
-	char	*value;
-	struct s_export *next;
-}	t_export;
-
-t_export	*create_exp(char *key, char *value)
-{
-	t_export	*lst;
-
-	lst = malloc(sizeof(t_export));
-	if (!lst)
-		return (NULL);
-	lst->key = key;
-	lst->value = value;
-	lst->next = 0x0;
-	return (lst);
-}
-
-t_export	*last_node_executor(t_export *lst)
-{
-	t_export	*tmp;
-
-	if (!lst)
-		return (NULL);
-	tmp = lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-void	add_front_exp(t_export **head, t_export *node)
-{
-	node->next = (*head);
-	(*head) = node;
-}
-
-void	add_back_exp(t_export **head, t_export *node)
-{
-	if (!head || !node)
-		return ;
-	if (*head == NULL)
-		add_front_exp(head, node);
-	last_node_executor(*head)->next = node;
-	node->next = NULL;
-}
-
-void	fill_export(t_env *env)
-{
-	t_export	*head;
-	t_env		*tmp;
-	t_export	*lst;
-	int			i;
-
-	i = 0;
-	tmp = env;
-	while (tmp)
-	{
-		lst = create_exp(tmp->key, tmp->value);
-		add_back_executor(head, lst);
-		i++;
-	}
-}
-
-
 int	ft_export(t_minishell *mini, t_env *envir)
 {
 	t_env 	**head;
@@ -321,7 +254,7 @@ int	ft_export(t_minishell *mini, t_env *envir)
 		return (0x0);
 	head = &envir;
 	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
-		print_export(envir, exp);
+		print_export(&envir);
 	else
 	{
 		while (mini->cmd[i])

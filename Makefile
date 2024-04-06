@@ -12,6 +12,8 @@
 
 SRC = main.c \
 	  Exec/execute/check_fd.c \
+	  Exec/signals/signal_handler_1.c \
+	  Exec/signals/signal_handler_2.c \
 	  Exec/expand/expander.c \
 	  Exec/expand/expander_utils.c \
 	  Exec/env/env_functions.c \
@@ -22,6 +24,7 @@ SRC = main.c \
 	  Exec/builtin/ft_env.c \
 	  Exec/builtin/ft_exit.c \
 	  Exec/builtin/ft_export.c \
+	  Exec/builtin/print_export.c \
 	  Exec/execute/ft_execute.c \
 	  Parser/parcfun_1.c \
 	  Parser/parcfun_2.c \
@@ -51,7 +54,8 @@ SRC = main.c \
 	  Parser/help_func/ft_putchar_fd.c \
 	  Parser/help_func/ft_putstr_fd.c \
 	  Parser/help_func/ft_itoa.c \
-	  
+	  Parser/help_func/ft_atoi.c \
+
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 NAME = minishell

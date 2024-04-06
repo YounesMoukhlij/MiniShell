@@ -23,6 +23,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->afcmd_t = ft_after_cmd(ft_splits(file, 1));
 	lst->files = ft_files(ft_splits(file, 1));
 	lst->tab = arr;
+	lst->forked = NO;
 	lst->fd_in = 0;
 	lst->fd_out = 1;
 	lst->heredoc = -1;

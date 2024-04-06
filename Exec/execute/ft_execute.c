@@ -43,9 +43,10 @@ int	check______(char *s)
 	return (0x0);
 }
 
-void	is_bin_cmd(t_minishell *mini, t_env *envir)
+int	is_bin_cmd(t_minishell *mini, t_env *envir)
 {
 	int		i;
+	int		err;
 	char	*s;
 
 	i = 0;
@@ -54,13 +55,30 @@ void	is_bin_cmd(t_minishell *mini, t_env *envir)
 		s = ft_strjoin_space_executor(mini->path_d[i], mini->cmd[0], '/');
 		if (access(s, X_OK) == 0)
 		{
-			if (execve(s, mini->cmd, execv_env(envir)) == -1)
+			err = execve(s, mini->cmd, execv_env(envir));
+			if (err == -1)
 				printf("MiniShell: command not found: %s\n", mini->cmd[0]);
 		}
 		free (s);
 		i++;
 	}
+	return (err);
 }
+
+
+// int	ft_file_check(t_minishell *mini, t_env **head)
+// {
+// 	struct stat		buf;
+
+// 	if (stat(mini->cmd, &buf) == -1)
+// 		return (ft_put_err(mini->cmd, ": No such file or directory", 127));
+// 	else if (buf.st_mode & S_IFDIR)
+// 		return (ft_put_err(mini->cmd, ": Is a directory", 126));
+// 	else if ((buf.st_mode & S_IXUSR) == 0)
+// 		return (ft_put_err(mini->cmd, ": Permission denied", 126));
+// 	return (ft_exec(mini, head));
+// }
+
 
 int	is_cmd(t_minishell *mini, t_env *envir)
 {
@@ -73,14 +91,13 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
 		return (ft_export(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
-		return (ft_exit(), 1);
+		return (ft_exit(mini), 1);
 	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
 		return (ft_unset(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
 		return (ft_echo(mini));
 	else
-		is_bin_cmd(mini, envir);
-	return (0x0);
+		return (is_bin_cmd(mini, envir));
 }
 
 // void	childs_pipes(int zero, int one, t_minishell *m, int f)
@@ -107,12 +124,14 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
     full_fill_path(mini, envir);
 	check_fd(mini, envir);
     expander(&mini, envir);
+	// signal(SIGINT, signal_handler_two);
 	if (pipe(t_pipe) == -1)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
 	if (fork() == 0)
 	{
+		mini->forked = YES;
 		if (f == 1)
 		{
 			close (t_pipe[0]);

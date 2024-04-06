@@ -8,3 +8,6 @@ minishell $> >
 * \ error / *
 
 export t+=
+
+echo $_ last cmd
+

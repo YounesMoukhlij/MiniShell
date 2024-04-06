@@ -45,6 +45,8 @@ int	main(int ac, char **av, char **env)
 	envir = full_fill_env(env);
 	// int i;
 	// atexit(show);
+	signal(SIGINT, signal_handler_one);
+	signal(SIGQUIT, signal_handler_one);
 	while (1)
 	{
 		str = readline("\033[31mಠ__ಠ\033[0m_$> ");
@@ -55,7 +57,7 @@ int	main(int ac, char **av, char **env)
 		add_history(str);
 		mini = parcing(str);
     	ft_execute(&mini, envir);
-		// free (str);
+		free (str);
 		// ft_free_env(&envir);
 		// ft_free_env(envir);
 	}
