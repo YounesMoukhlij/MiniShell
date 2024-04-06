@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   allocate_max.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/05 23:31:29 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/04/05 23:33:13 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 char    *allocate_max(t_env *envir)
@@ -21,12 +33,12 @@ char    *allocate_max(t_env *envir)
 void    ft_free_env(t_env **env)
 {
 	t_env   *current;
-	t_env   *temp;
+    t_env   *temp;
 
-	current = *env;
+    current = *env;
 	while (current)
 	{
-		temp = current->next;
+        temp = current->next;
 		free (current);
 		current = temp;
 	}
@@ -40,9 +52,9 @@ void    ft_free_strings(char **s)
     i = 0;
     while (s[i])
     {
-        free(s[i]);
+        free (s[i]);
         i++;
     }
-    free(s);
+    free (s);
     s = NULL;
 }

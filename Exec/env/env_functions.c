@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 16:21:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:29:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*grep_from_env(t_env *envir, char *string)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, string, 0))
+		if (!ft_strcmp_flag(tmp->key, string, 0, 0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -33,7 +33,7 @@ char	*ft_get_path(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, "PATH", 0))
+		if (!ft_strcmp_flag(tmp->key, "PATH", 0, 0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}

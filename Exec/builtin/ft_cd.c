@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 00:57:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:29:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);
-	return (exit(0x0), 0x1);
+	return (0x1);
 }

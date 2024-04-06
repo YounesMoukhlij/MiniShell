@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 17:11:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:34:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,19 @@ void	is_bin_cmd(t_minishell *mini, t_env *envir)
 
 int	is_cmd(t_minishell *mini, t_env *envir)
 {
-	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0))
+	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
 		return (ft_cd(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
 		return (ft_env(envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0) || !ft_strcmp_flag(mini->cmd[0], "PWD", 0) )
+	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(mini));
-	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
 		return (ft_export(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
 		return (ft_exit(), 1);
-	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
 		return (ft_unset(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
 		return (ft_echo(mini));
 	else
 		is_bin_cmd(mini, envir);
@@ -103,18 +103,15 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 {
 	int	t_pipe[2];
-	int	pid;
 
-	(void) std_in;
     full_fill_path(mini, envir);
 	check_fd(mini, envir);
     expander(&mini, envir);
 	if (pipe(t_pipe) == -1)
 		return ;
-	pid = fork();
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	if (pid == 0)
+	if (fork() == 0)
 	{
 		if (f == 1)
 		{

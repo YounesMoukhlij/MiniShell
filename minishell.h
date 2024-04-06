@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 16:27:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:28:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
 #include <readline/readline.h>
 
 # define sgl '\''
@@ -94,7 +95,7 @@ t_env		*full_fill_env(char **env);
 int			ft_strlen(char *s);
 char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);
-int			ft_strcmp_flag(char *s1, char *s2, int flag);
+int			ft_strcmp_flag(char *s1, char *s2, int flag, int i);
 
 
 t_minishell	*return_data(void);

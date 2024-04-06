@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 00:57:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:29:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check(t_minishell *mini)
 	i = 1;
 	while (mini->cmd[i])
 	{
-		if (!ft_strcmp_flag(mini->cmd[i], "-n", 0))
+		if (!ft_strcmp_flag(mini->cmd[i], "-n", 0x0, 0x0))
 			return (i);
 		i++;
 	}
@@ -56,7 +56,7 @@ int	check(char *s)
 	int	i;
 
 	i = 0;
-	if (!ft_strcmp_flag(s, "-n", 0x0))
+	if (!ft_strcmp_flag(s, "-n", 0x0, 0x0))
 		return (0x0);
 	while (s[i])
 	{

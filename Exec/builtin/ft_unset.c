@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/04 17:12:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:29:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	unset_node(char *s, t_env *envir)
 	tmp = (*head);
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, s, 0))
+		if (!ft_strcmp_flag(tmp->key, s, 0x0, 0x0))
 		{
 			pre->next = tmp->next;
 			pre = tmp->next;

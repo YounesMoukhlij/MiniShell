@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 17:24:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:28:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,14 @@ int	ft_open_others(t_minishell *mini)
 	return (0);
 }
 
-char	*hidden_name(char *s)
+char	*hidden_name()
 {
 	static int	i;
 	char		*s1;
-	char		*s2;
 
 	s1 = ft_strjoin_executor(".", ft_itoa(i));
-	
 	i++;
-	s2 = ft_strjoin_executor(s1, s);
-	printf("%s\n", s2);
-	printf("%i\n", i);
-	return (s2);
+	return (s1);
 }
 void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
 {
@@ -64,20 +59,20 @@ void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
 	char	*hdd_f;
 
 	(void) env;
-	(void) mini;
-	hdd_f = hidden_name(delimiter);
-	mini->heredoc = open(hdd_f, O_CREAT | O_RDONLY, 0777);
-	if (mini->heredoc == -1)
+	hdd_f = hidden_name();
+	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
+	if (mini->fd_in == -1)
 		return ;
 	printf("delimiter [%s]\n", delimiter);
-	printf("hidden_file [%s]\n", hdd_f);
 	while (1999)
 	{
 		s = readline("heredoc> ");
-		if (!s || !ft_strcmp_flag(s, delimiter, 0))
+		if (!s || !ft_strcmp_flag(s, delimiter, 0, 0))
 			break;
+		ft_putstr_fd_executor(s, mini->fd_in, 1);
 		free (s);
 	}
+	// unlink (hdd_f);
 }
 
 int	ft_fd_files(t_minishell *mini, t_env *env)

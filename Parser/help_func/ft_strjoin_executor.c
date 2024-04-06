@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 22:13:29 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:25:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char	*ft_add(char *r, char *s1, char *s2)
 		j++;
 	}
 	r[i] = '\0';
-	// free (s1);
 	return (r);
 }
 
@@ -39,12 +38,6 @@ char	*ft_strjoin_executor(char *s1, char *s2)
 {
 	char	*r;
 
-	// if (!s1 && s2)
-	// 	return ((char *)s2);
-	// if (!s2 && s1)
-	// 	return ((char *)s1);
-	// if (!s1 && !s2)
-	// 	return (NULL);
 	r = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!r)
 		return (NULL);

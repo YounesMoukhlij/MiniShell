@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 09:32:34 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/05 23:26:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char		*str;
 	size_t		i;
-	char	*tracker;
+	char		*tracker;
 
 	if (!s)
 		return (NULL);
