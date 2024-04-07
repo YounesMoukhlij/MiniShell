@@ -27,6 +27,7 @@
 # define NO 0
 # define YES 1
 
+
 typedef struct s_env
 {
 	char			*key;
@@ -41,6 +42,7 @@ typedef struct s_minishell
 	char				**afcmd_t;
     char				**files;
 	int					*tab;
+	int					exit_status;
     int					len_tab;
 	int					fd_in;
 	int					fd_out;
@@ -78,7 +80,7 @@ char		*ft_calloc(int num, int size);
 char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 int			ft_export(t_minishell *mini, t_env *envir);
-int			ft_exit(t_minishell *mini);
+int			ft_exit(t_minishell *mini, t_env *envir);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);

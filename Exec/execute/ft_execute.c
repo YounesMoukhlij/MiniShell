@@ -57,12 +57,15 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir)
 		{
 			err = execve(s, mini->cmd, execv_env(envir));
 			if (err == -1)
+			{
 				printf("MiniShell: command not found: %s\n", mini->cmd[0]);
+				mini->exit_status = 127;
+			}
 		}
 		free (s);
 		i++;
 	}
-	return (err);
+	return (0x0);
 }
 
 
@@ -91,7 +94,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
 		return (ft_export(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
-		return (ft_exit(mini), 1);
+		return (ft_exit(mini, envir), 1);
 	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
 		return (ft_unset(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))

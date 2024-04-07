@@ -231,12 +231,17 @@ int	check_special_case(char *s)
 char	*ft_key(char *s)
 {
 	int		i;
+	char	*str;
 
 	i = 0x0;
 	while (s[i])
 	{
-		if (s[i] != '+' || s[i] != '=')
-			return (ft_substr_executor(s, 0x0, i + 1));
+		if (s[i] == '+' || s[i] == '=')
+		{
+			str = ft_substr_executor(s, 0x0, i);
+			printf("%s\n", str);
+			return (str);
+		}
 		i++;
 	}
 	return (NULL);
@@ -278,5 +283,6 @@ int	ft_export(t_minishell *mini, t_env *envir)
 			i++;
 		}
 	}
+	// exit(1);
 	return (0x1);
 }

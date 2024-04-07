@@ -21,65 +21,29 @@ int	ft_put_err(char *input, char *message, int ret)
 	return (ret);
 }
 
-void	ft_check_digit(char	*arg)
+void	ft_close(t_minishell *mini, t_env *head, int i)
 {
-	char	*error;
-	int		estatus;
-	int		i;
+	// // free_cmdarg(copy);
+	ft_free_strings(mini->cmd);
+	clear_envir(head);
 
-	i = 0;
-	while (arg[i])
-	{
-		if (!ft_isdigit(arg[i]))
-		{
-			error = ft_strjoin_executor(arg, ": numeric argument required");
-			estatus = ft_put_err("exit: ", error, 255);
-			free(error);
-			exit(estatus);
-		}
-		i++;
-	}
+	// if (copy->cmdssep)
+	// 	free(copy->cmdssep);
+	if (i == 1)
+		ft_putstr_fd("exit\n", 2);
+	exit(0);
 }
 
-int	ft_check_exit(char *arg)
+int	ft_exit(t_minishell *mini, t_env *head)
 {
-	int			i;
-	char		*error;
-	long long	estatus;
+	int	i;
 
-	i = 0;
-	if (arg[i] == '-')
+	i = 1;
+	if (!mini->cmd[0x1])
+		ft_close(mini, head, 1);
+	while (mini->cmd[i])
 		i++;
-	ft_check_digit(arg + i);
-	estatus = ft_atoi(arg + i);
-	if (estatus < 0)
-	{
-		error = ft_strjoin_executor(arg, ": numeric argument required");
-		estatus = ft_put_err("exit: ", error, 255);
-		free(error);
-		exit(estatus);
-	}
-	if (i == 0)
-		return (estatus);
-	return (estatus * -1);
-}
-
-int	ft_exit(t_minishell *mini)
-{
-	int		i;
-
-	i = 0;
-	puts("|sadsad\n");
-	if (!(mini->cmd[0x1]))
-	{
-		if (mini->forked == NO)
-			ft_putstr_fd_executor("exit", 1, 1);
-		exit(0);
-	}
-	if (mini->forked == NO)
-			ft_putstr_fd_executor("exit", 1, 1);
-	// i = ft_check_exit(mini->cmd[1]);
-	if (mini->next != NULL)
-		return (ft_put_err("exit", ": too many arguments", 1));
-	exit(i);
+	if (i > 2)
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+	return (ft_close(mini, head, 1), 0x0);
 }
