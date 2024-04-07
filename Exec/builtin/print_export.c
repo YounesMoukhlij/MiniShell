@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:04:52 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:31:24 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:13:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_swap_nodes(t_env	*tmp)
+void	ft_swap_nodes(t_export	*tmp)
 {
 	char	*str;
 
@@ -31,11 +31,11 @@ void	ft_swap_nodes(t_env	*tmp)
 	}
 }
 
-t_env	*copy_list(t_env *head)
+t_export	*copy_list(t_env *head)
 {
 	t_env	*tmp;
-	t_env	*newnode;
-	t_env	*copy;
+	t_export	*newnode;
+	t_export	*copy;
 
 	tmp = head;
 	copy = NULL;
@@ -51,10 +51,10 @@ t_env	*copy_list(t_env *head)
 }
 
 
-t_env	*sortlist(t_env **head)
+t_export	*sortlist(t_env **head)
 {
-	t_env	*sorted_list;
-	t_env	*tmp;
+	t_export	*sorted_list;
+	t_export	*tmp;
 	int		i;
 
 	sorted_list = copy_list(*head);
@@ -73,10 +73,10 @@ t_env	*sortlist(t_env **head)
 	return (sorted_list);
 }
 
-// void	clear_envir(t_env *head)
+// void	clear_envir(t_export *head)
 // {
-// 	t_env	*tmp;
-// 	t_env	*current;
+// 	t_export	*tmp;
+// 	t_export	*current;
 
 // 	tmp = head;
 // 	if (!head)
@@ -92,18 +92,18 @@ t_env	*sortlist(t_env **head)
 // }
 
 
-t_env	**full_fill_print(t_env **env)
+t_export	*full_fill_print(t_env **env)
 {
-	t_env	**head = NULL;
+	t_export	*head;
 
-	*head = sortlist(env);
+	head = sortlist(env);
 	return (head);
 }
 
-void	print_export(t_env **head)
+void	print_export(t_export **head)
 {
-	t_env	*tmp;
-	// t_env	*sorted_list;
+	t_export	*tmp;
+	// t_export	*sorted_list;
 
 	tmp = *head;
 	while (tmp != NULL)

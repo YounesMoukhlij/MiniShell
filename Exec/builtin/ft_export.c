@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:30:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:14:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,17 +261,17 @@ int	no_equal(char *s)
 
 int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
-	t_env 	**head;
-	t_env	*lst;
-	char	**p;
-	t_env	**print;
+	t_env 		**head;
+	t_env		*lst;
+	char		**p;
+	// t_export	**print;
 
 	if (!mini->cmd[0x0])
 		return (0x0);
-	print = full_fill_print(&envir);
+	mini->export = full_fill_print(&envir);
 	head = &envir;
 	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
-		print_export(print);
+		print_export(&mini->export);
 	else
 	{
 		while (mini->cmd[i])
@@ -301,7 +301,7 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 					// print_export(&print);
 					lst = lstnew_executor(mini->cmd[i], "");
 					printf("[%s=%s]\n", lst->key, lst->value);
-					add_back_executor(print, lst);
+					// add_back_executor(print, lst);
 					break;
 				}
 				else if (no_value(mini->cmd[i]))

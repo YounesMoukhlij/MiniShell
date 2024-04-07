@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:31:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:14:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_export
+{
+	char			*key;
+	char			*value;
+	struct s_export	*next;
+}	t_export;
+
 typedef struct s_minishell
 {
 	char				**cmd;
@@ -50,14 +57,17 @@ typedef struct s_minishell
 	int					forked;
 	char				*path;
 	char				**path_d;
+	struct s_export		*export;
 	struct s_minishell	*next;
 }	t_minishell;
 
 // YOUNES
-t_env		**full_fill_print(t_env **env);
-t_env		*copy_list(t_env *head);
+t_export		*full_fill_print(t_env **env);
+t_export		*copy_list(t_env *head);
+void		print_export(t_export **head);
+
+
 void		clear_envir(t_env *head);
-void		print_export(t_env **head);
 void		signal_handler_one(int sig_v);
 void		signal_handler_two(int sig_v);
 void		ft_putendl_fd(char *s, int fd);
