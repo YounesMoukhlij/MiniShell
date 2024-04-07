@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:28:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:31:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_minishell
 }	t_minishell;
 
 // YOUNES
+t_env		**full_fill_print(t_env **env);
+t_env		*copy_list(t_env *head);
 void		clear_envir(t_env *head);
 void		print_export(t_env **head);
 void		signal_handler_one(int sig_v);
@@ -79,7 +81,10 @@ char		*allocate_max(t_env *envir);
 char		*ft_calloc(int num, int size);
 char		*ft_substr_executor(char *s, int start, int len);
 char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
-int			ft_export(t_minishell *mini, t_env *envir);
+// ******************************************************************************
+// *									BUILT IN							 	*
+// ******************************************************************************
+int			ft_export(t_minishell *mini, t_env *envir, int i);
 int			ft_exit(t_minishell *mini, t_env *envir);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);

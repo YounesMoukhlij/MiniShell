@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:34:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:08:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(mini));
 	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
-		return (ft_export(mini, envir));
+		return (ft_export(mini, envir, 0x1));
 	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
 		return (ft_exit(mini, envir), 1);
 	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))

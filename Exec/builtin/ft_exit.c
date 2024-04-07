@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/02 14:29:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:13:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int	ft_put_err(char *input, char *message, int ret)
 
 void	ft_close(t_minishell *mini, t_env *head, int i)
 {
-	// // free_cmdarg(copy);
-	ft_free_strings(mini->cmd);
-	clear_envir(head);
+	(void) head;
+	(void) mini;
+	// ft_free_strings(mini->cmd);
+	// clear_envir(head);
 
-	// if (copy->cmdssep)
-	// 	free(copy->cmdssep);
 	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:51:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:30:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ int	no_value(char *s)
 		}
 	}
 	if (flag == 0x1)
-		return (free(str), 0x0);
-	return (free(str), 0x1);
+		return ( 0x0);
+	return (0x1);
 }
 
 int	is_num(char *s)
@@ -239,7 +239,6 @@ char	*ft_key(char *s)
 		if (s[i] == '+' || s[i] == '=')
 		{
 			str = ft_substr_executor(s, 0x0, i);
-			printf("%s\n", str);
 			return (str);
 		}
 		i++;
@@ -247,19 +246,32 @@ char	*ft_key(char *s)
 	return (NULL);
 }
 
-int	ft_export(t_minishell *mini, t_env *envir)
+int	no_equal(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	while (s[i])
+	{
+		if (s[i++] == '=')
+			return (0x0);
+	}
+	return (0x1);
+}
+
+int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
 	t_env 	**head;
 	t_env	*lst;
 	char	**p;
-	int		i;
+	t_env	**print;
 
-	i = 0x1;
 	if (!mini->cmd[0x0])
 		return (0x0);
+	print = full_fill_print(&envir);
 	head = &envir;
 	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
-		print_export(&envir);
+		print_export(print);
 	else
 	{
 		while (mini->cmd[i])
@@ -267,17 +279,36 @@ int	ft_export(t_minishell *mini, t_env *envir)
 			if (is_exportable(mini->cmd[i], envir))
 			{
 				if (already_exist(mini->cmd[i], envir))
+				{
+					puts("0");
 					break ;
+				}
 				else if (check_special_case(mini->cmd[i]))
+				{
+					puts("1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
+				}
 				else if (if_equal(mini->cmd[i]))
 				{
+					puts("2");
 					p = ft_split_export(mini->cmd[i]);
 					check_export(p[0x0]);
 					lst = lstnew_executor(p[0x0], p[0x1]);
 				}
-				else if (no_value(mini->cmd[i]))
+				else if (no_equal(mini->cmd[i]))
+				{
+					puts("4");
+					// print_export(&print);
 					lst = lstnew_executor(mini->cmd[i], "");
+					printf("[%s=%s]\n", lst->key, lst->value);
+					add_back_executor(print, lst);
+					break;
+				}
+				else if (no_value(mini->cmd[i]))
+				{
+					puts("3");
+					lst = lstnew_executor(mini->cmd[i], "");
+				}
 				add_back_executor(head, lst);
 			}
 			i++;
