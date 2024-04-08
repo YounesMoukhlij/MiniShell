@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 23:11:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:22:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct s_minishell
 t_env		*full_fill_print(t_env **env);
 t_env		*copy_list(t_env *head);
 void		print_export(t_env **head);
+char    *big_work(t_env *envir, char *s);
+char    *without_quotes(char *s, int flag);
+void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 
 
 void		clear_envir(t_env *head);

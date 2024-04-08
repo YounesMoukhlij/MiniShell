@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/08 00:09:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:45:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,42 @@ char	*hidden_name()
 	i++;
 	return (s1);
 }
-int	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
+
+int	expanded_content(char *s)
+{
+	if ((s[0x0] == sgl && s[0x2] == sgl)
+		|| (s[0x0] == dbl && s[0x2] == dbl))
+		return (0x1);
+	return (0x0);
+}
+
+int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
 	char	*s;
+	char	*p;
 	char	*hdd_f;
 
-	(void) env;
 	hdd_f = hidden_name();
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
 	if (mini->fd_in == -1)
 		return (-1);
-	printf("delimiter [%s]\n", delimiter);
+	if (expanded_content(delim))
+		flag = 0x1;
+	p = without_quotes(delim, 0);
 	while (1999)
 	{
 		s = readline("heredoc> ");
-		if (!s || !ft_strcmp_flag(s, delimiter, 0, 0))
+		if (!s || !ft_strcmp_flag(s, p, 0, 0))
 			break;
+		if (flag == 0x0)
+			s = big_work(env, s);
 		write(mini->fd_in, s, ft_strlen(s));
-		// if (s)
 		write(mini->fd_in, "\n", 1);
 		free (s);
 	}
 	close(mini->fd_in);
 	mini->fd_in = open(hdd_f, O_RDWR, 0644);
-	// unlink (hdd_f);
+	unlink (hdd_f);
 	return (mini->fd_in);
 }
 
@@ -85,13 +97,12 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 	int	i;
 	int	fd;
 
-	(void) env;
 	i = -1;
 	fd = 0;
 	while (++i < mini->len_tab + 1)
 	{
 		if (mini->tab[i] == 4)
-			fd = heredoc_check(mini, env, mini->files[i + 1]);
+			fd = heredoc_check(mini, env, mini->files[i + 1], 0x0);
 		if (mini->tab[i] == 3)
 		{
 			fd = open(mini->files[i + 1], O_RDONLY);
@@ -101,8 +112,6 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 				return (1);
 			}
 		}
-		// if (i < mini->len_tab - 1)
-		// 		close(fd);
 	}
 	if (fd != 0)
 		mini->fd_in = fd;
