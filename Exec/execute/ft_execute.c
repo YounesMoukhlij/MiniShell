@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:08:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:51:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,18 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
     full_fill_path(mini, envir);
 	check_fd(mini, envir);
     expander(&mini, envir);
+	mini->export = full_fill_print(&envir);
 	// signal(SIGINT, signal_handler_two);
 	if (pipe(t_pipe) == -1)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
+	printf("fd in == %d\n", mini->fd_in);
+	if (mini->fd_in != 0)
+	{
+		dup2(mini->fd_in, 0);
+		close(mini->fd_in);
+	}
 	if (fork() == 0)
 	{
 		mini->forked = YES;
@@ -154,8 +161,13 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 	{
 		if (f == 0)
 		{
+			// if (mini->fd_in != 0)
+			// 	dup2(mini->fd_in, 0);
+			// else
+			// {
 				dup2(std_in, 0);
 				close(std_in);
+			// }
 		}
 		else
 		{
@@ -187,6 +199,8 @@ void	ft_execute(t_minishell **head, t_env *envir)
 		tmp = tmp->next;
 	}
 	if (tmp)
+	{
 		big_execution(tmp, envir, old_stdin, 0);
+	}
 	while (wait(0) != -1);
 }

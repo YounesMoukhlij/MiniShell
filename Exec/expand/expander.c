@@ -172,14 +172,8 @@ void    expander(t_minishell **mini, t_env *envir)
     int     i;
     int     flag;
 
-    (void) envir;
     i = 0;
     flag = 0;
-    // while ((*mini)->cmd[i])
-    // {
-    //     printf("========[%s]\n", (*mini)->cmd[i]);
-    //     i++;
-    // }
     while ((*mini)->cmd[i])
     {
         if (is_expanded((*mini)->cmd[i]))

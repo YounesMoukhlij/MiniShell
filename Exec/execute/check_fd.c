@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:28:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/08 00:09:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*hidden_name()
 	i++;
 	return (s1);
 }
-void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
+int	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
 {
 	char	*s;
 	char	*hdd_f;
@@ -62,17 +62,22 @@ void	heredoc_check(t_minishell *mini, t_env *env, char *delimiter)
 	hdd_f = hidden_name();
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
 	if (mini->fd_in == -1)
-		return ;
+		return (-1);
 	printf("delimiter [%s]\n", delimiter);
 	while (1999)
 	{
 		s = readline("heredoc> ");
 		if (!s || !ft_strcmp_flag(s, delimiter, 0, 0))
 			break;
-		ft_putstr_fd_executor(s, mini->fd_in, 1);
+		write(mini->fd_in, s, ft_strlen(s));
+		// if (s)
+		write(mini->fd_in, "\n", 1);
 		free (s);
 	}
+	close(mini->fd_in);
+	mini->fd_in = open(hdd_f, O_RDWR, 0644);
 	// unlink (hdd_f);
+	return (mini->fd_in);
 }
 
 int	ft_fd_files(t_minishell *mini, t_env *env)
@@ -86,7 +91,7 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 	while (++i < mini->len_tab + 1)
 	{
 		if (mini->tab[i] == 4)
-			heredoc_check(mini, env, mini->files[i + 1]);
+			fd = heredoc_check(mini, env, mini->files[i + 1]);
 		if (mini->tab[i] == 3)
 		{
 			fd = open(mini->files[i + 1], O_RDONLY);
@@ -99,7 +104,8 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 		// if (i < mini->len_tab - 1)
 		// 		close(fd);
 	}
-	mini->fd_in = fd;
+	if (fd != 0)
+		mini->fd_in = fd;
 	return (0);
 }
 
