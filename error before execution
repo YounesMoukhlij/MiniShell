@@ -9,5 +9,8 @@ minishell $> >
 
 export t+=
 
-echo $_ last cmd
+echo "$_" last cmd
+
+
+parsing : ls <> l
 

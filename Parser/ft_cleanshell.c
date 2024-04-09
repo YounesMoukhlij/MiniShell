@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_vtk.c                                        :+:      :+:    :+:   */
+/*   ft_cleanshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 16:12:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:25 by youmoukh         ###   ########.fr       */
+/*   Created: 2024/04/01 17:19:55 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/04/09 16:24:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-int	ft_vtk(char c)
+void	ft_cleanshell(t_minishell **node)
 {
-	if (c == '|')
-		return (1);
-	return (0);
+	t_minishell	*temp;
+	t_minishell	*current;
+
+	current = *node;
+	while (current)
+	{
+		temp = current->next;
+		ft_cleantach(current->cmdt);
+		ft_cleantach(current->afcmd_t);
+		// ft_cleantach(current->files);
+		// ft_cleantach(current->cmd);
+		// free(current->tab);
+		// current->len_tab = 0;
+		free(current);
+		current = temp;
+	}
+	*node = NULL;
 }

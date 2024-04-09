@@ -6,11 +6,12 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:25:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:39:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:19:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 
 char	*get_word(char **strs, int len)
 {
@@ -32,6 +33,7 @@ char	*get_word(char **strs, int len)
 		ii++;
 	}
 	word[i] = 0;
+	ft_cleantach(strs);
 	return (word);
 }
 
@@ -61,11 +63,16 @@ char	*ft_aftercmd(char *s)
 	int		i;
 	int		q;
 	char	**strs;
+	int		j;
 
 	i = 0;
 	q = 0;
+	j = 0;
 	while (s[i] == 9 || s[i] == 32)
+	{
 		s++;
+		j++;
+	}
 	is_quot_(s, &q);
 	s += q;
 	while ((s[i] != 9 && s[i] != 32) && s[i])

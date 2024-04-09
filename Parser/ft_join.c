@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 14:31:26 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:20:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:20:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	strs_lens(char **str)
 	return (len + i);
 }
 
-char *ft_collection (char **str,char *st)
+char	*ft_collection(char **str, char *st)
 {
 	int	i;
 	int	ii;
@@ -43,20 +43,21 @@ char *ft_collection (char **str,char *st)
 	while (str[i])
 	{
 		j = 0;
-		while(str[i][j])
+		while (str[i][j])
 			st[ii++] = str[i][j++];
 		if (str[i])
 			st[ii++] = ' ';
 		i++;
 	}
 	st[ii] = 0;
+	ft_cleantach(str);
 	return (st);
 }
+
 char	*ft_join(char **str)
 {
 	char	*st;
-	int	len;
-
+	int		len;
 
 	if (!(*str))
 		return (NULL);

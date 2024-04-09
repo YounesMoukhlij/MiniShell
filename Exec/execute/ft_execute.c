@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/09 01:15:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:23:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,16 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 				close(mini->fd_out);
 			}
 			else
+			{
 				dup2(t_pipe[1], 1);
+				close(t_pipe[1]);
+			}
 		}
 		else
+		{
 			dup2(mini->fd_out, 1);
+			// close(mini->fd_out);
+		}
 		is_cmd(mini, envir);
 	}
 	else

@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/05 16:27:32 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/09 16:38:57 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,10 @@ SRC = main.c \
 	  Parser/ft_after_cmd.c\
 	  Parser/ft_join.c \
 	  Parser/ft_concat.c \
+	  Parser/checker.c \
+	  Parser/pip_checker.c \
+	  Parser/ft_cleantach.c \
+	  Parser/ft_cleanshell.c \
 	  Parser/help_func/lst_functions.c \
 	  Parser/help_func/allocate_max.c \
 	  Parser/help_func/minishell_functions.c \

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/08 22:58:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:32:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,20 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 		path = grep_from_env(envir, "HOME");
 		i = chdir(path);
 		if (i == -1)
-		{
-			return (print_error("dfgdfgdfgdfgdfg", 1), 0x0);
-		}
+			return (print_error("No such file or directory", 1), 0x0);
 	}
 	else if (mini->cmd[1][0] == '-')
 	{
 		path = grep_from_env(envir, "OLDPWD");
 		i = chdir(path);
 		if (i == -1)
-			return (print_error("dfgdfgdfgdfgdfg", 1), 0x0);
+			return (print_error("No such file or directory", 1), 0x0);
 	}
 	else if (mini->cmd[1])
 	{
 		i = chdir(mini->cmd[1]);
 		if (i == -1)
-			return (print_error("dfgdfgdfgdfgdfg", 1), 0x0);
+			return (print_error("No such file or directory", 1), 0x0);
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);

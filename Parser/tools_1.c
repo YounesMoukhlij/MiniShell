@@ -6,11 +6,21 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:40:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:21:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	errq(int op)
+{
+	if (!op)
+	{
+		ft_putendl_fd("bash: syntax error near `'\"", 2);
+		exit(1);
+	}
+	return ;
+}
 
 void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 {
@@ -25,8 +35,7 @@ void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 				else if (s1[i] == '\'')
 					*op = ft_parq(s1, &i, 's');
 			}
-			if (!(*op))
-				printf("syntax error");
+			errq(*op);
 			*op = 0;
 			*len_word += i;
 		}
@@ -91,11 +100,15 @@ char	*hudler_t(char *s1, char *word, int *id)
 
 void	ft_skep(char *str, int *i)
 {
+	int	op;
+
+	op = 0;
 	if (str[*i] == '\'' || str[*i] == '\"')
 	{
 		if (str[*i] == '\'')
-			ft_parq(str, i, 's');
+			op = ft_parq(str, i, 's');
 		else if (str[*i] == '\"')
-			ft_parq(str, i, 'q');
+			op = ft_parq(str, i, 'q');
+		op = 0;
 	}
 }
