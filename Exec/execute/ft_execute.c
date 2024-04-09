@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/08 23:15:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 01:15:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	printf("fd in == %d\n", mini->fd_in);
 	if (mini->fd_in != 0)
 	{
 		dup2(mini->fd_in, 0);

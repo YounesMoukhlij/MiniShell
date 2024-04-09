@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:29:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/09 01:54:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,46 +48,47 @@ int	big_check(t_minishell *mini)
 		}
 		i++;
 	}
-	return (1);
+	return (0x1);
 }
 
 int	check(char *s)
 {
-	int	i;
+	int	j;
 
-	i = 0;
+	j = 0x0;
 	if (!ft_strcmp_flag(s, "-n", 0x0, 0x0))
-		return (0x0);
-	while (s[i])
+		return (0x1);
+	while (s[j])
 	{
-		if (!(s[i] == '-' && s[i] == 'n'))
-			return (0x0);
-		i++;
+		if (!(s[0] == '-' && s[j] == 'n'))
+			return (j);
+		j++;
 	}
-	return (0x1);
+	return (0x0);
 }
 
 int	ft_echo(t_minishell *mini)
 {
-	int	flag_0;
 	int	i;
+	int	flag_0;
 
-	i = 1;
-	flag_0 = 0;
+	i = 0x1;
+	flag_0 = 0x0;
 	if (!mini->cmd[0x0])
 		return (0x0);
-	if (mini->cmd[0] && !mini->cmd[1])
+	if (mini->cmd[0x0] && !mini->cmd[0x1])
 		return (ft_putendl_fd("\n", 1), 0x1);
 	flag_0 = big_check(mini);
-	if (flag_0 != 0)
+	if (flag_0 != 0x0)
 		i = flag_0;
 	while (mini->cmd[i])
 	{
-		ft_putstr_fd_executor(mini->cmd[i], 1, 0);
-		if (mini->cmd[i + 1] != NULL)
-			write(1, " ", 1);
-		if (!(mini->cmd[i + 1]) && (flag_0 <= 1))
-			write(1, "\n", 1);
+		if (!check(mini->cmd[i]))
+			ft_putstr_fd_executor(mini->cmd[i], 0x1, 0x0);
+		if (mini->cmd[i + 0x1] != NULL)
+			write(0x1, " ", 0x1);
+		if (!(mini->cmd[i + 0x1]) && (flag_0 <= 0x1) && !check(mini->cmd[i]))
+			write(0x1, "\n", 0x1);
 		i++;
 	}
 	return (exit(0x0), 0x1);
