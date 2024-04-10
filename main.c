@@ -21,15 +21,15 @@ void	show()
 void	ft_puterror(int p)
 {
 	if (p == 0)
-		ft_putendl_fd("\033[31m ಠ__ಠ!\033[0m: syntax error near unexpected token `|'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'", 2);
 	if (p == 1)
-		ft_putendl_fd("\033[31m ಠ__ಠ!\033[0m: syntax error near unexpected token `>'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'", 2);
 	if (p == 3 || p == 5)
-		ft_putendl_fd("\033[31m ಠ__ಠ!\033[0m: syntax error near unexpected token `<'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'", 2);
 	if (p == 6)
-		ft_putendl_fd("\033[31m ಠ__ಠ!\033[0m: syntax error near unexpected token `newline'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'", 2);
 	if (p == 7)
-		ft_putendl_fd("\033[31m ಠ__ಠ!\033[0m: syntax error near unexpected token `? '", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '", 2);
 }
 
 int	is_empty(char *s)
@@ -48,7 +48,15 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
+void	display_prompt_msg(void)
+{
+	char	*cwd;
+	char	buff[4096 + 1];
 
+	cwd = getcwd(buff, 4096);
+	ft_putstr_fd_executor(cwd, 1, 0);
+	ft_putstr_fd_executor(" \033[32m$>\033[0m", 1, 0);
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -68,7 +76,8 @@ int	main(int ac, char **av, char **env)
 	// signal(SIGQUIT, signal_handler_one);
 	while (1)
 	{
-		str = readline("\033[1;32m ಠ__ಠ $\033[0m> ");
+		display_prompt_msg();
+		str = readline(" ");
 		if (!str)
 			break ;
 		if (is_empty(str))

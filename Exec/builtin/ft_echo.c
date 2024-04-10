@@ -77,7 +77,7 @@ int	ft_echo(t_minishell *mini)
 	if (!mini->cmd[0x0])
 		return (0x0);
 	if (mini->cmd[0x0] && !mini->cmd[0x1])
-		return (ft_putendl_fd("\n", 1), 0x1);
+		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
 	flag_0 = big_check(mini);
 	if (flag_0 != 0x0)
 		i = flag_0;
