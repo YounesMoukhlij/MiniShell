@@ -89,6 +89,7 @@ int	ft_echo(t_minishell *mini)
 			write(0x1, " ", 0x1);
 		if (!(mini->cmd[i + 0x1]) && (flag_0 <= 0x1) && !check(mini->cmd[i]))
 			write(0x1, "\n", 0x1);
+
 		i++;
 	}
 	return (exit(0x0), 0x1);

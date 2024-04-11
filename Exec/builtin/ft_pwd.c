@@ -12,22 +12,22 @@
 
 #include "../../minishell.h"
 
-int	ft_pwd(t_minishell *mini)
+int	ft_pwd(t_env **head)
 {
-	char	cwd[1024];
-	char	*dir;
+	char	*pwd;
+	char	*buff;
+	char	*input;
 
-	(void) mini;
-	dir = getcwd(cwd, sizeof(cwd));
-	if (!dir)
+	buff = NULL;
+	pwd = getcwd(buff, sizeof(pwd));
+	if (pwd)
+		ft_putstr_fd_executor(pwd, 0x1, 0x1);
+	else
 	{
-		perror("minishell: pwd: ");
-		return (0x0);
+		input = grep_from_env(*head, "PWD");
+		if (input)
+			ft_putstr_fd_executor(input, 0x1, 0x1);
 	}
-	printf("%s\n", dir);
+	free(pwd);
 	return (0x1);
 }
-
-
-
-

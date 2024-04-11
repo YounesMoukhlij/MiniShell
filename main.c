@@ -92,7 +92,6 @@ int	main(int ac, char **av, char **env)
 		}
 		mini = parcing(str);
     	ft_execute(&mini, envir);
-		usleep(100);
 		free (str);
 		// ft_free_env(&envir);
 	}
