@@ -100,15 +100,11 @@ char	*hudler_t(char *s1, char *word, int *id)
 
 void	ft_skep(char *str, int *i)
 {
-	int	op;
-
-	op = 0;
 	if (str[*i] == '\'' || str[*i] == '\"')
 	{
 		if (str[*i] == '\'')
-			op = ft_parq(str, i, 's');
+			ft_parq(str, i, 's');
 		else if (str[*i] == '\"')
-			op = ft_parq(str, i, 'q');
-		op = 0;
+			ft_parq(str, i, 'q');
 	}
 }

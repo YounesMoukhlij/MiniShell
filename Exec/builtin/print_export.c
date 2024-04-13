@@ -50,7 +50,6 @@ t_env	*copy_list(t_env *head)
 	return (copy);
 }
 
-
 t_env	*sortlist(t_env **head)
 {
 	t_env	*sorted_list;
@@ -90,7 +89,6 @@ void	clear_envir(t_env *head)
 		tmp = current;
 	}
 }
-
 
 t_env	*full_fill_print(t_env **env)
 {

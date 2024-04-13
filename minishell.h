@@ -53,7 +53,6 @@ typedef struct s_minishell
     int					len_tab;
 	int					fd_in;
 	int					fd_out;
-	int					heredoc;
 	int					forked;
 	char				*path;
 	char				**path_d;
@@ -62,12 +61,14 @@ typedef struct s_minishell
 }	t_minishell;
 
 // YOUNES
+void	ft_put_err(char *input, char *message);
 t_env		*full_fill_print(t_env **env);
 t_env		*copy_list(t_env *head);
 void		print_export(t_env **head);
 char		*big_work(t_env *envir, char *s);
 char		*without_quotes(char *s, int flag);
 void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
+void		display_prompt_msg(void);
 
 
 void		clear_envir(t_env *head);
@@ -104,7 +105,7 @@ int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);
 int			is_cmd(t_minishell *mini, t_env *envir);
 int			ft_env(t_env *envir);
-int			ft_pwd(t_minishell *mini);
+int			ft_pwd(t_env **head);
 
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
@@ -191,9 +192,9 @@ int			ft_strncmp(char *s1, char *s2, int n);
 char		*ft_strdup(char *s1);
 int			ft_strlcpy(char *dst, char *src, int dstsize);
 int			ft_strlcat(char *dst, char *src, int dstsize);
-void		ft_bzero(void *s, int n);
+// void		ft_bzero(void *s, int n);
 int			ft_memcmp(void *s1, void *s2, int n);
-void		*ft_memcpy(void *dst, void *src, int n);
+// void		*ft_memcpy(void *dst, void *src, int n);
 void		*ft_memset(void *b, int c, int len);
 void		*ft_memchr(void *s, int c, int n);
 void		*ft_memmove(void *dest, void *src, int n);

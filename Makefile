@@ -59,6 +59,7 @@ SRC = main.c \
 	  Parser/help_func/ft_putstr_fd.c \
 	  Parser/help_func/ft_itoa.c \
 	  Parser/help_func/ft_atoi.c \
+	#   Parser/help_func/ft_bzero.c \
 
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/09 15:32:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:04:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,49 +20,117 @@ void	print_error(char *s, int i)
 	// exit(1);
 }
 
-void	error_case(char *s)
+int	cmd_length(t_minishell *m)
+{
+	int	i;
+
+	i = 0;
+	while (m->cmd[i])
+		i++;
+	return (i);
+}
+
+int	error_case(t_minishell *mini, char *s)
 {
 	int i;
 
     i = 0;
+	if (cmd_length(mini) > 2)
+		return (ft_put_err("cd:", " too many arguments"), 0x1);
     while (s[i])
     {
         if (s[i] == dbl && s[i + 2] == dbl && s[i + 1] == '~')
-            print_error("~", 1);
+            return (print_error("~", 1), 0x1);
         i++;
     }
+	return (0x0);
+}
+
+t_env	*env_node(t_env **envi, char *keyy)
+{
+	while ((*envi))
+	{
+		if (!ft_strcmp_flag((*envi)->key, keyy, 0x0, 0x0))
+			return (*envi);
+		(*envi) = (*envi)->next;
+	}
+	return (NULL);
+}
+
+//             khra
+void	change_dir(t_env *envi, int flag)
+{
+	t_env	*tmp;
+	t_env	*tmp_1;
+ 	char	*new_pwd;
+	char	*buff;
+
+	buff = NULL;
+	if (flag == 0x1)
+	{
+		tmp = env_node(&envi, "PWD");
+		tmp_1 = env_node(&envi, "OLDPWD");
+		if (tmp_1)
+		{
+			free(tmp_1->value);
+			tmp_1->value = ft_strdup(tmp->value);
+		}
+	}
+	else
+	{
+		new_pwd = getcwd(buff, 100);
+		if (new_pwd)
+		{
+			tmp = env_node(&envi, "PWD");
+			if (tmp)
+			{
+				// free(tmp->value);
+				printf("<<>> %s", new_pwd);
+				tmp->value = ft_strdup(new_pwd);
+			}
+		}
+	}
 }
 
 int	ft_cd(t_minishell *mini, t_env *envir)
 {
 	int		i;
-	char	*path;
+	char	*path = NULL;
 
 	i = 0;
 	if (!mini->cmd[0x0])
+		return (0x1);
+	if (error_case(mini, mini->cmd[1]))
 		return (0x0);
-	error_case(mini->cmd[1]);
-	if (!mini->cmd[1] || mini->cmd[1][0] == '~')
+	if (cmd_length(mini) == 1 || !ft_strcmp_flag(mini->cmd[1], "~", 0x0, 0x0))
 	{
 		path = grep_from_env(envir, "HOME");
 		i = chdir(path);
+		printf(">>>>> path : %s\n", path);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x0);
+			return (print_error("No such file or directory", 1), 0x1);
 	}
 	else if (mini->cmd[1][0] == '-')
 	{
 		path = grep_from_env(envir, "OLDPWD");
+		// change_dir(envir, path);
 		i = chdir(path);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x0);
+			return (print_error("No such file or directory", 1), 0x1);
 	}
 	else if (mini->cmd[1])
 	{
+		change_dir(envir, 0x1);
 		i = chdir(mini->cmd[1]);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x0);
+			return (print_error("No such file or directory", 1), 0x1);
+		change_dir(envir, 0x0);
+		
 	}
 	else
+	{
 		print_error("zsh: bad pattern: ", 1);
-	return (0x1);
+		mini->exit_status = 127;
+	}
+	return (0x0);
 }
