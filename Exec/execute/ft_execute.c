@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/13 14:54:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:33:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 			flag = 1;
 			err = execve(s, mini->cmd, execv_env(envir));
 			if (err != 0)
-				exit(0x1);
+			{
+				// exit_s = 127;
+				exit(127);
+			}
 		}
 		free (s);
 		i++;
@@ -67,6 +70,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 
 int	is_cmd(t_minishell *mini, t_env *envir)
 {
+	// printf(">>>>[%s]\n", mini->cmd[0]);
 	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
 		return (ft_cd(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
@@ -141,11 +145,11 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 			dup2(mini->fd_out, 1);
 			// close(mini->fd_out);
 		}
-		if (is_cmd(mini, envir))
-			mini->exit_status = 0x0;
-		else
-			mini->exit_status = 127;
-		printf("%d\n", mini->exit_status);
+		// if (is_cmd(mini, envir))
+		// 	mini->exit_status = 0x0;
+		// else
+		// 	mini->exit_status = 127;
+		// printf("%d\n", mini->exit_status);
 	}
 	else
 	{

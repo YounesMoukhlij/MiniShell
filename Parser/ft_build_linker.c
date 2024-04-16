@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:21:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:20:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->cmd = ft_splits(s, 0);
 	lst->fd_in = 0;
 	lst->fd_out = 1;
-	lst->exit_status = 0;
 	free(s);
 	ft_cleantach(str);
 	--lst->afcmd_t;

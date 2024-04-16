@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:13:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:33:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ int	ft_exit(t_minishell *mini, t_env *head)
 {
 	(void) mini;
 	(void) head;
-	exit(0);
+	puts("exit\n");
+	printf("cmd __ length>>[%d]\n\n\n", cmd_length(mini));
+	if (cmd_length(mini) == 1)
+	{
+		puts("1\n");
+		// exit_s = 0x0;
+		exit(0x0);
+	}
 // 	if (!mini->cmd[0x1])
 // 		ft_close(mini, head, 1);
 // 	while (mini->cmd[i])
 // 		i++;
 // 	if (i > 2)
 // 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-// 	return (ft_close(mini, head, 1), 0x0);
+	// return (ft_close(mini, head, 1), 0x0);
+	return (0x0);
 }

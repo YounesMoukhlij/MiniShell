@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:53:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:15:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	show()
 {
 	system("leaks minishell");
 }
-
 
 void	ft_puterror(int p)
 {

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/09 16:14:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:32:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define NO 0
 # define YES 1
 
+// int	exit_s;
 
 typedef struct s_env
 {
@@ -49,7 +50,7 @@ typedef struct s_minishell
 	char				**afcmd_t;
     char				**files;
 	int					*tab;
-	int					exit_status;
+	// int					exit_status;
     int					len_tab;
 	int					fd_in;
 	int					fd_out;
@@ -61,7 +62,7 @@ typedef struct s_minishell
 }	t_minishell;
 
 // YOUNES
-void	ft_put_err(char *input, char *message);
+void		ft_put_err(char *input, char *message);
 t_env		*full_fill_print(t_env **env);
 t_env		*copy_list(t_env *head);
 void		print_export(t_env **head);
@@ -69,6 +70,7 @@ char		*big_work(t_env *envir, char *s);
 char		*without_quotes(char *s, int flag);
 void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 void		display_prompt_msg(void);
+int			cmd_length(t_minishell *m);
 
 
 void		clear_envir(t_env *head);
