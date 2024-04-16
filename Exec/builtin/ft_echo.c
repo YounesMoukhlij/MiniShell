@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/09 01:54:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:40:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ int	ft_echo(t_minishell *mini)
 
 		i++;
 	}
-	return (exit(0x0), 0x1);
+	return (0x1);
 }

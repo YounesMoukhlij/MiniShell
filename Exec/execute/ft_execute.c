@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 15:33:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:11:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,31 @@ char	**execv_env(t_env *envir)
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
-	int		err;
 	char	*s;
+	int		err;
 
-	i = 0;
+	i = 0x0;
 	while (mini->path_d[i])
 	{
-		s = ft_strjoin_space_executor(mini->path_d[i], mini->cmd[0], '/');
-		if (access(s, X_OK) == 0)
+		s = ft_strjoin_space_executor(mini->path_d[i], mini->cmd[0x0], '/');
+		if (access(s, X_OK) == 0x0)
 		{
-			flag = 1;
+			flag = 0x1;
 			err = execve(s, mini->cmd, execv_env(envir));
-			if (err != 0)
+			if (err == -0x1)
 			{
-				// exit_s = 127;
-				exit(127);
+				free (s);
+				break;
 			}
 		}
 		free (s);
 		i++;
 	}
-	if (flag == 0)
+	if (flag == 0x0 || err == -1)
 	{
-		printf("MiniShell: command not found: %s\n", mini->cmd[0]);
-		exit(0x1);
+		exit_status = 127;
+		printf("MiniShell: command not found: %s\n", mini->cmd[0x0]);
+		exit(127);
 	}
 	return (0x1);
 }
@@ -70,7 +71,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 
 int	is_cmd(t_minishell *mini, t_env *envir)
 {
-	// printf(">>>>[%s]\n", mini->cmd[0]);
 	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
 		return (ft_cd(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
@@ -109,10 +109,12 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 {
 	int	t_pipe[2];
+	int	flag;
 
     full_fill_path(mini, envir);
 	check_fd(mini, envir);
     expander(&mini, envir);
+	flag = -1;
 	mini->export = full_fill_print(&envir);
 	// signal(SIGINT, signal_handler_two);
 	if (pipe(t_pipe) == -1)
@@ -145,11 +147,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 			dup2(mini->fd_out, 1);
 			// close(mini->fd_out);
 		}
-		// if (is_cmd(mini, envir))
-		// 	mini->exit_status = 0x0;
-		// else
-		// 	mini->exit_status = 127;
-		// printf("%d\n", mini->exit_status);
+		flag = is_cmd(mini, envir);
 	}
 	else
 	{
@@ -181,6 +179,11 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 			}
 		}
 	}
+	if (flag == 0x1)
+		exit_status = 0x0;
+	else
+		exit_status = 127;
+	printf(">>%d\n",exit_status);
 }
 
 void	ft_execute(t_minishell **head, t_env *envir)
@@ -196,8 +199,6 @@ void	ft_execute(t_minishell **head, t_env *envir)
 		tmp = tmp->next;
 	}
 	if (tmp)
-	{
 		big_execution(tmp, envir, old_stdin, 0);
-	}
 	while (wait(0) != -1);
 }

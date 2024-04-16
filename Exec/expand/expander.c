@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 14:17:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:38:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ char    *big_work(t_env *envir, char *s)
     p = allocate_max(envir);
     if (!p)
         return (NULL);
+    printf("exit_status_[%d]_$\n", exit_status);
     while (s[i])
     {
         while (s[i] == '$' && dollar_position(s, i))
@@ -114,19 +115,29 @@ char    *big_work(t_env *envir, char *s)
                 i++;
                 c++;
             }
-            if (c % 2 == 0x0)
-                break ;
-            if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
-            {
-                i--;
-                break ;
-            }
+            // if (c % 2 == 0x0)
+            //     break ;
+            // if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
+            // {
+            //     i--;
+            //     break ;
+            // }
             if (!ft_isalpha(s[i]))
             {
                 i++;
                 break ;
             }
-            p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
+            if (s[i] == '?')
+            {
+                puts("11\n");
+                p = ft_strjoin_executor(p, ft_itoa(exit_status));
+                i += ft_strlen(ft_itoa(exit_status));
+                j = ft_strlen(p);
+                printf("[%s]\n\n", p);
+                break ;
+            }
+            else
+                p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
             if (ft_strlen(p) || !grep_from_env(envir, grep_value(&s[i])))
                 i += grep(&s[i]);
             j = ft_strlen(p);

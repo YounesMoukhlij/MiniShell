@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 15:33:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:25:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ int	ft_exit(t_minishell *mini, t_env *head)
 	(void) mini;
 	(void) head;
 	puts("exit\n");
-	printf("cmd __ length>>[%d]\n\n\n", cmd_length(mini));
+	printf("cmd_____length [%d]\n\n\n", cmd_length(mini));
 	if (cmd_length(mini) == 1)
 	{
-		puts("1\n");
-		// exit_s = 0x0;
+		exit_status = 0x0;
 		exit(0x0);
 	}
 // 	if (!mini->cmd[0x1])

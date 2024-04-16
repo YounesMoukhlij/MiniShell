@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/16 15:15:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:08:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	main(int ac, char **av, char **env)
 		return (1);
 		(void) mini;
 	envir = full_fill_env(env);
+	exit_status = 0;
 	// int i;
 	// atexit(show);
 	signal(SIGINT, signal_handler_one);
@@ -81,6 +82,7 @@ int	main(int ac, char **av, char **env)
 			break ;
 		if (is_empty(str))
 			continue ;
+		printf("exit____>[%d]\n\n", exit_status);
 		p = ft_checker(str);
 		add_history(str);
 		ft_puterror(p);
