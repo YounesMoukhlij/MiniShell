@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/13 18:04:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:43:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	print_error(char *s, int i)
 	ft_putstr_fd_executor("cd: no such file or directory: ", 2, 0);
 	if (i == 1)
 		ft_putstr_fd_executor(s, 2, 1);
-	// exit(1);
 }
 
 int	cmd_length(t_minishell *m)
@@ -57,7 +56,6 @@ t_env	*env_node(t_env **envi, char *keyy)
 	return (NULL);
 }
 
-//             khra
 void	change_dir(t_env *envi, int flag)
 {
 	t_env	*tmp;
@@ -84,8 +82,39 @@ void	change_dir(t_env *envi, int flag)
 			tmp = env_node(&envi, "PWD");
 			if (tmp)
 			{
-				// free(tmp->value);
+				free(tmp->value);
 				printf("<<>> %s", new_pwd);
+				tmp->value = ft_strdup(new_pwd);
+			}
+		}
+	}
+}
+
+void	change_dir_1(t_env *e, char *path, int f)
+{
+	t_env	*tmp;
+ 	char	*new_pwd;
+	char	*buff;
+
+	buff = NULL;
+	if (f == 0x1)
+	{
+		tmp = env_node(&e, "PWD");
+		if (tmp)
+		{
+			free(tmp->value);
+			tmp->value = ft_strdup(path);
+		}
+	}
+	else
+	{
+		new_pwd = getcwd(buff, 100);
+		if (new_pwd)
+		{
+			tmp = env_node(&e, "OLDPWD");
+			if (tmp)
+			{
+				free(tmp->value);
 				tmp->value = ft_strdup(new_pwd);
 			}
 		}
@@ -95,7 +124,8 @@ void	change_dir(t_env *envi, int flag)
 int	ft_cd(t_minishell *mini, t_env *envir)
 {
 	int		i;
-	char	*path = NULL;
+	t_env	*tmp;
+	char *p;
 
 	i = 0;
 	if (!mini->cmd[0x0])
@@ -104,28 +134,27 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 		return (0x0);
 	if (cmd_length(mini) == 1 || !ft_strcmp_flag(mini->cmd[1], "~", 0x0, 0x0))
 	{
-		path = grep_from_env(envir, "HOME");
-		i = chdir(path);
-		printf(">>>>> path : %s\n", path);
+		tmp = env_node(&envir, "HOME");
+		i = chdir(tmp->value);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x1);
+			return (print_error(tmp->value, 1), 0x1);
 	}
 	else if (mini->cmd[1][0] == '-')
 	{
-		path = grep_from_env(envir, "OLDPWD");
-		// change_dir(envir, path);
-		i = chdir(path);
+		p = grep_from_env(envir, "OLDPWD");
+		change_dir_1(envir, p, 0x0);
+		i = chdir(p);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x1);
+			return (print_error(p, 1), 0x1);
+		change_dir_1(envir, p, 0x1);
 	}
 	else if (mini->cmd[1])
 	{
 		change_dir(envir, 0x1);
 		i = chdir(mini->cmd[1]);
 		if (i == -1)
-			return (print_error("No such file or directory", 1), 0x1);
+			return (print_error(mini->cmd[1], 1), 0x1);
 		change_dir(envir, 0x0);
-		
 	}
 	else
 	{
