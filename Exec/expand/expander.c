@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/19 18:25:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:50:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,13 @@ int even_odd(char *s)
 int non_requesed(char *s)
 {
     int i;
+    int c;
 
     i = 0;
+    c = 0;
     while (s[i])
     {
-        if (s[i] != '$')
+        if (s[i] != '$' && s[i])
             return (0x0);
         i++;
     }
@@ -138,34 +140,41 @@ char    *ft_exit_status(char *s)
     int     i;
     int     j;
     char    *r;
-    int     c;
+    // int     c;
 
     r = ft_calloc(200, 1);
     i = 0x0;
     j = 0x0;
     while (s[i])
     {
-        while (s[i] == '$' && s[i + 1] == '?' && dollar_position(s, i) && s[i])
-        {
-            c = 0x0;
-            while (s[i] == '$' && s[i])
-            {
-                i++;
-                c++;
-            }
-            if (c % 2 == 0x0)
-                break ;
-            r = ft_strjoin_executor(r, ft_itoa(exit_status));
-            if (ft_strlen(r))
-                i += 2;
-            j = ft_strlen(r);
-        }
+        // while (s[i] == '$' && s[i + 1] == '?' && dollar_position(s, i) && s[i])
+        // {
+        //     // c = 0x0;
+        //     // while (s[i] == '$' && s[i])
+        //     // {
+        //     //     i++;
+        //     //     c++;
+        //     // }
+        //     // if (c % 2 == 0x0)
+        //     //     break ;
+        //     // if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum_1(s[i]))
+        //     // {
+        //     //     i--;
+        //     //     break ;
+        //     // }
+        //     // r = ft_strjoin_executor(r, ft_itoa(exit_status));
+        //     // printf("r == [%s]\n", r);
+        //     // if (ft_strlen(r))
+        //     //     i += 2;
+        //     // j = ft_strlen(r);
+        // }
         if (!s[i] || i > ft_strlen(s))
             break;
         r[j] = s[i];
         i++;
         j++;
     }
+    printf(">>> [%s] <<<\n\n", r);
     return (r);
 }
 
@@ -186,6 +195,7 @@ char    *big_work(t_env *envir, char *r)
     if (non_requesed(r))
         return ("");
     s = ft_exit_status(r);
+    printf("-.-.-.-. after ft_exit-.-.-.-.-.-.\n> [%s]\n", s);
     while (s[i])
     {
         while (s[i] == '$' && dollar_position(s, i))
