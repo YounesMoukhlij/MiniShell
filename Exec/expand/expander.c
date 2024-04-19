@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 17:38:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:25:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,100 @@ int even_odd(char *s)
     return (0x1);
 }
 
-char    *big_work(t_env *envir, char *s)
+int non_requesed(char *s)
+{
+    int i;
+
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] != '$')
+            return (0x0);
+        i++;
+    }
+    return (0x1);
+}
+
+int ft_isalpha_1(int c)
+{
+	if ((c >= 65 && c <= 90) || (char)c == '?')
+		return (1);
+	else if ((c >= 97 && c <= 122) || (char)c == '?')
+		return (1);
+	return (0);
+}
+
+int is_existed(char *s)
+{
+    int i;
+
+    i = 0x0;
+    while (s[i])
+    {
+        if (s[i] == '$' && s[i + 1] == '?')
+            return (0x1);
+        i++;
+    }
+    return (0x0);
+}
+int	ft_isalnum_1(int c)
+{
+	return (ft_isdigit(c) || ft_isalpha_1(c));
+}
+
+char    *ft_exit_status(char *s)
+{
+    int     i;
+    int     j;
+    char    *r;
+    int     c;
+
+    r = ft_calloc(200, 1);
+    i = 0x0;
+    j = 0x0;
+    while (s[i])
+    {
+        while (s[i] == '$' && s[i + 1] == '?' && dollar_position(s, i) && s[i])
+        {
+            c = 0x0;
+            while (s[i] == '$' && s[i])
+            {
+                i++;
+                c++;
+            }
+            if (c % 2 == 0x0)
+                break ;
+            r = ft_strjoin_executor(r, ft_itoa(exit_status));
+            if (ft_strlen(r))
+                i += 2;
+            j = ft_strlen(r);
+        }
+        if (!s[i] || i > ft_strlen(s))
+            break;
+        r[j] = s[i];
+        i++;
+        j++;
+    }
+    return (r);
+}
+
+
+char    *big_work(t_env *envir, char *r)
 {
     int     i;
     int     j;
     int     c;
     char    *p;
+    char    *s;
 
     i = 0x0;
     j = 0x0;
     p = allocate_max(envir);
     if (!p)
         return (NULL);
-    printf("exit_status_[%d]_$\n", exit_status);
+    if (non_requesed(r))
+        return ("");
+    s = ft_exit_status(r);
     while (s[i])
     {
         while (s[i] == '$' && dollar_position(s, i))
@@ -115,52 +196,38 @@ char    *big_work(t_env *envir, char *s)
                 i++;
                 c++;
             }
-            // if (c % 2 == 0x0)
-            //     break ;
-            // if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
-            // {
-            //     i--;
-            //     break ;
-            // }
+            if (c % 2 == 0x0)
+                break ;
+            if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
+            {
+                i--;
+                break ;
+            }
             if (!ft_isalpha(s[i]))
             {
                 i++;
                 break ;
             }
-            if (s[i] == '?')
-            {
-                puts("11\n");
-                p = ft_strjoin_executor(p, ft_itoa(exit_status));
-                i += ft_strlen(ft_itoa(exit_status));
-                j = ft_strlen(p);
-                printf("[%s]\n\n", p);
-                break ;
-            }
-            else
-                p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
+            p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
             if (ft_strlen(p) || !grep_from_env(envir, grep_value(&s[i])))
                 i += grep(&s[i]);
             j = ft_strlen(p);
         }
-        if (!s[i])
+        if (!s[i] || i > ft_strlen(s))
             break ;
         p[j] = s[i];
         i++;
         j++;
     }
+    // printf(">>> final :P ===== [%s]\n", p);
     return (p);
 }
 
 int is_expanded(t_minishell *mini, char *s)
 {
     int i;
+
     (void) mini;
-    // i = 0x0x0x0;
-    // while (i < mini->len_tab + 0x1)
-	// {
-	// 	if (mini->tab[i++] == 4)
-    //         return (0x0x0x0);
-	// }
     i = 0x0;
     while (s[i])
     {

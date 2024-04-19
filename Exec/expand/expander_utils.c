@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:20:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/08 23:21:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:47:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,17 @@ char    *without_quotes(char *s, int flag)
 
     i = 0x0;
     j = 0x0;
-    res = calloc(strlen(s) + 1, 1);
+    res = calloc(strlen(s) + 0x1, 0x1);
     if (!res)
         return (NULL);
     while (s[i])
     {
         if (s[i] == dbl && s[i] && flag == 0x0)
         {
-            flag = 1;
+            flag = 0x1;
             i++;
         }
-        if (s[i] == dbl && flag == 1)
+        if (s[i] == dbl && flag == 0x1)
         {
             i++;
             flag = 0x0;
@@ -92,11 +92,11 @@ char    *without_quotes(char *s, int flag)
           i++;
         if (!s[i])
             break ;
-        if (s[i] != dbl)
+        if (s[i] != dbl &&s[i])
         {
             res[j] = s[i];
-        i++;
-        j++;
+            i++;
+            j++;
         }
     }
     return (res);

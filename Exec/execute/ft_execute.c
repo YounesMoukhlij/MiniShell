@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 18:11:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:08:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
 	char	*s;
-	int		err;
 
 	i = 0x0;
 	while (mini->path_d[i])
@@ -49,9 +48,9 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		if (access(s, X_OK) == 0x0)
 		{
 			flag = 0x1;
-			err = execve(s, mini->cmd, execv_env(envir));
-			if (err == -0x1)
+			if (execve(s, mini->cmd, execv_env(envir)) == -1)
 			{
+				puts(">(((((( exeve fails )))))))\n\n");
 				free (s);
 				break;
 			}
@@ -59,7 +58,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		free (s);
 		i++;
 	}
-	if (flag == 0x0 || err == -1)
+	if (flag == 0x0)
 	{
 		exit_status = 127;
 		printf("MiniShell: command not found: %s\n", mini->cmd[0x0]);
@@ -179,11 +178,11 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 			}
 		}
 	}
-	if (flag == 0x1)
-		exit_status = 0x0;
-	else
-		exit_status = 127;
-	printf(">>%d\n",exit_status);
+		if (flag == 0x1)
+			exit_status = 0x0;
+		else
+			exit_status = 127;
+	// printf("final value >>%d\n",exit_status);
 }
 
 void	ft_execute(t_minishell **head, t_env *envir)

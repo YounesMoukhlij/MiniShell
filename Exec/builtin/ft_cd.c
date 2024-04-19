@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 16:08:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:39:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	cmd_length(t_minishell *m)
 	int	i;
 
 	i = 0;
+	if (!(m->cmd))
+		return (0);
 	while (m->cmd[i])
 		i++;
 	return (i);

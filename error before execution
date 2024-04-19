@@ -14,3 +14,4 @@ echo "$_" last cmd
 
 parsing : ls <> l
 
+echo "$HOME $\" ask ?

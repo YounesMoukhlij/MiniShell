@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/16 18:08:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:46:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int	main(int ac, char **av, char **env)
 			break ;
 		if (is_empty(str))
 			continue ;
-		printf("exit____>[%d]\n\n", exit_status);
 		p = ft_checker(str);
 		add_history(str);
 		ft_puterror(p);
@@ -94,9 +93,10 @@ int	main(int ac, char **av, char **env)
 		mini = parcing(str);
     	ft_execute(&mini, envir);
 		free (str);
+		// printf("exit____>[%d]\n\n", exit_status);
 		// ft_free_env(&envir);
 	}
-	ft_cleanshell(&mini);
+	// ft_cleanshell(&mini);
 	// clear_envir(envir);
 	return (0);
 }

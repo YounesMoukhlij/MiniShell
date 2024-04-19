@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/09 16:38:57 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/19 17:31:40 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,9 @@ SRC = main.c \
 	  Parser/help_func/ft_putstr_fd.c \
 	  Parser/help_func/ft_itoa.c \
 	  Parser/help_func/ft_atoi.c \
-	#   Parser/help_func/ft_bzero.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
 
 all : ${NAME} clean
@@ -70,6 +69,8 @@ all : ${NAME} clean
 play :
 	@./minishell
 
+younes :
+	cclean
 
 %.o : %.c ../minishell.h
 	@cc ${CFLAGS} -c $< -o $@

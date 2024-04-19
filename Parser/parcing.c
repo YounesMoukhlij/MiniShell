@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:20:45 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:44:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ t_minishell	*parcing(char *str)
 	head = NULL;
 	strs = ft_spliter(str);
 	cmp = get_link_cmd(strs, head , cmp);
-	ft_cleantach(strs);
+	// ft_cleantach(strs);
 	return (cmp);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:25:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:19:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:42:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_word(char **strs, int len)
 		ii++;
 	}
 	word[i] = 0;
-	ft_cleantach(strs);
+	// ft_cleantach(strs);
 	return (word);
 }
 
