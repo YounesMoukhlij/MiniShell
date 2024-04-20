@@ -95,10 +95,8 @@ int even_odd(char *s)
 int non_requesed(char *s)
 {
     int i;
-    int c;
 
     i = 0;
-    c = 0;
     while (s[i])
     {
         if (s[i] != '$' && s[i])
@@ -106,15 +104,6 @@ int non_requesed(char *s)
         i++;
     }
     return (0x1);
-}
-
-int ft_isalpha_1(int c)
-{
-	if ((c >= 65 && c <= 90) || (char)c == '?')
-		return (1);
-	else if ((c >= 97 && c <= 122) || (char)c == '?')
-		return (1);
-	return (0);
 }
 
 int is_existed(char *s)
@@ -130,51 +119,48 @@ int is_existed(char *s)
     }
     return (0x0);
 }
-int	ft_isalnum_1(int c)
-{
-	return (ft_isdigit(c) || ft_isalpha_1(c));
-}
 
 char    *ft_exit_status(char *s)
 {
     int     i;
     int     j;
     char    *r;
-    // int     c;
+    int     c;
 
     r = ft_calloc(200, 1);
     i = 0x0;
     j = 0x0;
     while (s[i])
     {
-        // while (s[i] == '$' && s[i + 1] == '?' && dollar_position(s, i) && s[i])
-        // {
-        //     // c = 0x0;
-        //     // while (s[i] == '$' && s[i])
-        //     // {
-        //     //     i++;
-        //     //     c++;
-        //     // }
-        //     // if (c % 2 == 0x0)
-        //     //     break ;
-        //     // if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum_1(s[i]))
-        //     // {
-        //     //     i--;
-        //     //     break ;
-        //     // }
-        //     // r = ft_strjoin_executor(r, ft_itoa(exit_status));
-        //     // printf("r == [%s]\n", r);
-        //     // if (ft_strlen(r))
-        //     //     i += 2;
-        //     // j = ft_strlen(r);
-        // }
+        while (s[i] == '$' && dollar_position(s, i) && s[i])
+        {
+            c = 0x0;
+            while (s[i] == '$' && s[i])
+            {
+                i++;
+                c++;
+            }
+            if (c % 2 == 0x0)
+                break ;
+            if (s[i] == '?')
+            {
+                r = add_t(r, ft_itoa(exit_status));
+                if (ft_strlen(r))
+                    i += 1;
+                j = ft_strlen(r);
+            }
+            else
+            {
+                i--;
+                break;
+            }
+        }
         if (!s[i] || i > ft_strlen(s))
             break;
         r[j] = s[i];
         i++;
         j++;
     }
-    printf(">>> [%s] <<<\n\n", r);
     return (r);
 }
 
@@ -192,10 +178,7 @@ char    *big_work(t_env *envir, char *r)
     p = allocate_max(envir);
     if (!p)
         return (NULL);
-    if (non_requesed(r))
-        return ("");
     s = ft_exit_status(r);
-    printf("-.-.-.-. after ft_exit-.-.-.-.-.-.\n> [%s]\n", s);
     while (s[i])
     {
         while (s[i] == '$' && dollar_position(s, i))
@@ -229,7 +212,6 @@ char    *big_work(t_env *envir, char *r)
         i++;
         j++;
     }
-    // printf(">>> final :P ===== [%s]\n", p);
     return (p);
 }
 

@@ -36,19 +36,46 @@ char	**execv_env(t_env *envir)
 	return (str);
 }
 
+int	check_cmd(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ' ' && ft_isalnum(s[i - 1] && ft_isalnum(s[i + 1])))
+			return (0x1);
+		i++;
+	}
+	return (0x0);
+}
+
+
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
 	char	*s;
+	char	**res;
 
 	i = 0x0;
+	if (check_cmd(mini->cmd[0x0]))
+		res = ft_split_executor(mini->cmd[0x0], ' ');
+	else
+		res = mini->cmd;
+	int k = 0;
+	puts("> ?res\n");
+	while (res[k])
+	{
+		printf("%s\n", res[k]);
+		k++;
+	}
 	while (mini->path_d[i])
 	{
-		s = ft_strjoin_space_executor(mini->path_d[i], mini->cmd[0x0], '/');
+		s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
 		if (access(s, X_OK) == 0x0)
 		{
 			flag = 0x1;
-			if (execve(s, mini->cmd, execv_env(envir)) == -1)
+			if (execve(s, res, execv_env(envir)) == -1)
 			{
 				puts(">(((((( exeve fails )))))))\n\n");
 				free (s);
