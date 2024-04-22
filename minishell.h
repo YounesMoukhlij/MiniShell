@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 16:08:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:31:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_minishell
 }	t_minishell;
 
 // YOUNES
-void	ft_put_err(char *input, char *message);
+void		ft_put_err(char *input, char *message);
 t_env		*full_fill_print(t_env **env);
 t_env		*copy_list(t_env *head);
 void		print_export(t_env **head);
@@ -70,8 +70,6 @@ char		*without_quotes(char *s, int flag);
 void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 void		display_prompt_msg(void);
 int			cmd_length(t_minishell *m);
-
-
 void		clear_envir(t_env *head);
 void		signal_handler_one(int sig_v);
 void		signal_handler_two(int sig_v);
