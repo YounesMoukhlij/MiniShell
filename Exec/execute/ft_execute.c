@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/22 13:30:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:16:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_cmd(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == ' ' && ft_isalnum(s[i - 1] && ft_isalnum(s[i + 1])))
+		if (s[i] == ' ')
 			return (0x1);
 		i++;
 	}
@@ -58,16 +58,9 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 
 	i = 0x0;
 	if (check_cmd(mini->cmd[0x0]))
-		res = ft_split(mini->cmd[0x0], ' ');
+		res = ft_split_executor(mini->cmd[0x0], ' ');
 	else
 		res = mini->cmd;
-	int k = 0;
-	puts("> ?res\n");
-	while (res[k])
-	{
-		printf("res[%d] = %s\n", k, res[k]);
-		k++;
-	}
 	while (mini->path_d[i])
 	{
 		s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
@@ -140,8 +133,8 @@ void	big_execution(t_minishell *mini, t_env *envir, int std_in, int f)
 	check_fd(mini, envir);
     expander(&mini, envir);
 	flag = -1;
-	printf("cmd[0] = %s\n", mini->cmd[0]);
-	printf("cmd[1] = %s\n", mini->cmd[1]);
+	// printf("cmd[0] = %s\n", mini->cmd[0]);
+	// printf("cmd[1] = %s\n", mini->cmd[1]);
 	mini->export = full_fill_print(&envir);
 	// signal(SIGINT, signal_handler_two);
 	if (pipe(t_pipe) == -1)

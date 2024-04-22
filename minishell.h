@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/22 13:31:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:24:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef struct s_minishell
 	t_env				*export;
 	struct s_minishell	*next;
 }	t_minishell;
+
+
+void	print_cmd(t_minishell *mini);
 
 // YOUNES
 void		ft_put_err(char *input, char *message);

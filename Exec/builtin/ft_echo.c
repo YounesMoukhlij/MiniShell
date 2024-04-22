@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/19 16:15:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:04:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	big_check(t_minishell *mini)
 
 	i = 1;
 	j = 1;
-	// printf("%s\n", mini->cmd[1]);
 	a = ft_check(mini);
 	if (a != -1)
 		i = a;
@@ -43,7 +42,7 @@ int	big_check(t_minishell *mini)
 	while (mini->cmd[i])
 	{
 		j = 1;
-		while (mini->cmd[i][j])
+		while (mini->cmd[i][j] || ft_strlen(mini->cmd[i]) == 1)
 		{
 			if (!(mini->cmd[i][0] == '-' && mini->cmd[i][j] == 'n'))
 				return (i);

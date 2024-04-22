@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/18 14:46:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:23:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ void	display_prompt_msg(void)
 	cwd = getcwd(buff, 4096);
 	ft_putstr_fd_executor(cwd, 1, 0);
 	ft_putstr_fd_executor(" \033[32m$>\033[0m", 1, 0);
+}
+
+void	print_cmd(t_minishell *mini)
+{
+	int k = 0;
+	while (mini->cmd[k])
+	{
+		printf("cmd[%d]=[%s]\n", k, mini->cmd[k]);
+		k++;
+	}
 }
 
 int	main(int ac, char **av, char **env)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:29:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:02:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_node(t_env *node)
 {
 	free(node->key);
 	free(node->value);
-	free(node);
+	// free(node);
 }
 
 void	unset_node(char *s, t_env *envir)
@@ -31,6 +31,8 @@ void	unset_node(char *s, t_env *envir)
 	{
 		if (!ft_strcmp_flag(tmp->key, s, 0x0, 0x0))
 		{
+			printf("unset >>> s== [%s]\n", s);
+			printf("unset >>> key== [%s]\n", tmp->key);
 			pre->next = tmp->next;
 			pre = tmp->next;
 			free_node(tmp);
