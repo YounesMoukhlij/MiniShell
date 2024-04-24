@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/22 14:51:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:28:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,40 +276,34 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 		{
 			if (!ft_strlen(mini->cmd[i]))
 				break;
-			puts("one\n");
-			printf("::::::: %s\n", mini->cmd[i]);
 			if (is_exportable(mini->cmd[i], envir))
 			{
 				if (already_exist(mini->cmd[i], envir))
 				{
-					puts("0");
+					puts(">0");
 					break ;
 				}
 				else if (check_special_case(mini->cmd[i]))
 				{
-					puts("1");
+					puts(">1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
 				}
 				else if (if_equal(mini->cmd[i]))
 				{
 					puts(">2");
 					p = ft_split_export(mini->cmd[i]);
-					printf("test\n : p[0] = %s && p[1] == %s\n\n", p[0], p[1]);
 					check_export(p[0x0]);
 					lst = lstnew_executor(p[0x0], p[0x1]);
 				}
 				else if (no_equal(mini->cmd[i]))
 				{
-					
-					puts(">4");
-					printf("test\n : cmd[1] = %s\n\n", mini->cmd[i]);
-					
+					puts(">3");
 					lst = lstnew_executor(mini->cmd[i], NULL);
 					add_back_executor(&mini->export, lst);
 				}
 				else if (no_value(mini->cmd[i]))
 				{
-					puts("3");
+					puts(">4");
 					lst = lstnew_executor(mini->cmd[i], "");
 				}
 				add_back_executor(head, lst);

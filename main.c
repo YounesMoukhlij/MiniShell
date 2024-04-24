@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/22 15:23:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:16:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-void	display_prompt_msg(void)
+char *display_prompt_msg(void)
 {
 	char	*cwd;
+	char	*str;
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	ft_putstr_fd_executor(cwd, 1, 0);
-	ft_putstr_fd_executor(" \033[32m$>\033[0m", 1, 0);
+	str = ft_strjoin_executor(cwd, " $> ");
+	return (str);
 }
 
 void	print_cmd(t_minishell *mini)
@@ -67,27 +68,30 @@ void	print_cmd(t_minishell *mini)
 	}
 }
 
+void	sig_func()
+{
+	signal(SIGINT, signal_handler_one);
+	signal(SIGQUIT, signal_handler_one);
+	// rl_catch_signals = 0;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char		*str;
 	t_minishell	*mini;
-	t_env		*envir;
+	t_env		*envir;	
 	int		p;
 
 	(void) av;
-	if (ac != 1)
-		return (1);
-		(void) mini;
-	envir = full_fill_env(env);
-	exit_status = 0;
-	// int i;
+	if (ac != 0x1)
+		return (0x1);
+	envir = full_fill_env(env, 0x0, 0x0);
+	exit_status = 23;
 	// atexit(show);
-	signal(SIGINT, signal_handler_one);
-	// signal(SIGQUIT, signal_handler_one);
+	sig_func();
 	while (1)
 	{
-		display_prompt_msg();
-		str = readline(" ");
+		str = readline("$_> ");
 		if (!str)
 			break ;
 		if (is_empty(str))
@@ -98,15 +102,16 @@ int	main(int ac, char **av, char **env)
 		if (p != -1)
 		{
 			free(str);
-			continue;
+			continue;;
 		}
 		mini = parcing(str);
-    	ft_execute(&mini, envir);
+		if (mini)
+    		ft_execute(&mini, envir, env);
 		free (str);
 		// printf("exit____>[%d]\n\n", exit_status);
 		// ft_free_env(&envir);
 	}
 	// ft_cleanshell(&mini);
 	// clear_envir(envir);
-	return (0);
+	return (0x0);
 }

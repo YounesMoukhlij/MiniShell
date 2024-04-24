@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/22 15:24:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:38:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <readline/readline.h>
+ #include <stdio.h>
+       #include <readline/readline.h>
+       #include <readline/history.h>
 
 # define sgl '\''
 # define dbl '\"'
@@ -62,16 +65,16 @@ typedef struct s_minishell
 
 
 void	print_cmd(t_minishell *mini);
+void	sig_func();
 
 // YOUNES
 void		ft_put_err(char *input, char *message);
 t_env		*full_fill_print(t_env **env);
 t_env		*copy_list(t_env *head);
 void		print_export(t_env **head);
-char		*big_work(t_env *envir, char *s);
+char		*big_work(t_env *envir, char *s, int i, int j);
 char		*without_quotes(char *s, int flag);
 void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
-void		display_prompt_msg(void);
 int			cmd_length(t_minishell *m);
 void		clear_envir(t_env *head);
 void		signal_handler_one(int sig_v);
@@ -101,7 +104,7 @@ char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 // *									BUILT IN							 	*
 // ******************************************************************************
 int			ft_export(t_minishell *mini, t_env *envir, int i);
-int			ft_exit(t_minishell *mini, t_env *envir);
+int			ft_exit(t_minishell *mini);
 int			ft_unset(t_minishell *mini, t_env *envir);
 int			ft_cd(t_minishell *mini, t_env *envir);
 int			ft_echo(t_minishell *mini);
@@ -113,7 +116,7 @@ char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-void		ft_execute(t_minishell **head, t_env *envir);
+void		ft_execute(t_minishell **head, t_env *envir, char **env);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
@@ -121,7 +124,7 @@ int			lst_size_executor(t_env **head);
 t_env		*lstnew_executor(char *key, char *value);
 void		check_fd(t_minishell *mini, t_env *envir);
 char		**ft_split_executor(char *s, char c);
-t_env		*full_fill_env(char **env);
+t_env		*full_fill_env(char **env, int i, int j);
 int			ft_strlen(char *s);
 char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);

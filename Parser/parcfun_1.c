@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:27:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,13 @@ void	fun(char *str, int *i)
 					op = ft_parq(str, i, 'q');
 				else if (str[*i] == '\'')
 					op = ft_parq(str, i, 's');
+				if (!str[*i])
+					break;
 			}
 			op = 0;
 		}
+		if (!str[*i])
+			break;
 		(*i)++;
 	}
 }
@@ -104,6 +108,8 @@ int	number_of_word(char *str)
 		{
 			wc++;
 			fun(str, &i);
+			if (!str[i])
+				break;
 		}
 	}
 	return (wc);

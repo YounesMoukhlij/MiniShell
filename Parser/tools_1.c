@@ -6,20 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:21:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:29:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	errq(int op)
+int	errq(int op)
 {
 	if (!op)
 	{
 		ft_putendl_fd("bash: syntax error near `'\"", 2);
-		exit(1);
+		return (0x1);
 	}
-	return ;
+	return(0x0);
 }
 
 void	hudler_o(char *s1, int i, int *op, size_t *len_word)
@@ -35,9 +35,10 @@ void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 				else if (s1[i] == '\'')
 					*op = ft_parq(s1, &i, 's');
 			}
-			errq(*op);
-			*op = 0;
 			*len_word += i;
+			if (errq(*op))
+				return ;
+			*op = 0;
 		}
 		else if (!ft_vtk(s1[i]))
 		{
@@ -92,6 +93,8 @@ char	*hudler_t(char *s1, char *word, int *id)
 				op = 0;
 			}
 		}
+		if (!s1[*id])
+			return (NULL);
 		word[i++] = s1[(*id)++];
 	}
 	word[i] = '\0';

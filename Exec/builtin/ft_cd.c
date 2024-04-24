@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/18 12:39:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:56:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ int	cmd_length(t_minishell *m)
 	int	i;
 
 	i = 0;
-	if (!(m->cmd))
+	if (!(m->cmd[i]))
 		return (0);
 	while (m->cmd[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
@@ -140,7 +142,7 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 		if (i == -1)
 			return (print_error(tmp->value, 1), 0x1);
 	}
-	else if (mini->cmd[1][0] == '-')
+	else if (!ft_strcmp_flag(mini->cmd[0x1], "-", 0x0, 0x0))
 	{
 		p = grep_from_env(envir, "OLDPWD");
 		change_dir_1(envir, p, 0x0);
@@ -158,8 +160,6 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 		change_dir(envir, 0x0);
 	}
 	else
-	{
 		print_error("zsh: bad pattern: ", 1);
-	}
-	return (0x0);
+	return (0x1);
 }

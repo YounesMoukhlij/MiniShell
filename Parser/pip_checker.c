@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:53:06 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:21:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	pip_check(char *str)
 	while (str[i])
 	{
 		ft_skep(str, &i);
+		if (!str[i])
+			break;
 		if (pip_loading(str, &i, &t))
 			return (1);
 	}

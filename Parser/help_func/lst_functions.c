@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:37:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 17:30:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:53:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ void	add_front_executor(t_env **head, t_env *node)
 void	add_back_executor(t_env **head, t_env *node)
 {
 	if (!head || !node)
-	{
-		puts("asdasd\n");
 		return ;
-	}
 	if (*head == NULL)
 		add_front_executor(head, node);
 	last_node_executor(*head)->next = node;

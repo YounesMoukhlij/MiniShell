@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 23:34:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:41:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int	ft_env(t_env *envir)
 	t_env	*tmp;
 
 	tmp = envir;
+
+	if (!envir)
+		return (-1);
 	while (tmp)
 	{
 		if (tmp->value != NULL)

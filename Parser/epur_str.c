@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:19:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:19:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	*hudler_ts(char *s1, char *word, int *id, int fg)
 				op = 0;
 			}
 		}
+		if (!s1[*id])
+			break ;
 		word[i++] = s1[(*id)++];
 	}
 	word[i] = '\0';

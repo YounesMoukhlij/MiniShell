@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:29:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:12:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,44 @@ char	*ft_get_path(t_env *envir)
 	return (NULL);
 }
 
-t_env	*full_fill_env(char **env)
+void	back_up(t_env **ennv, int i)
 {
-	int		i;
-	int		j;
+	(void) ennv;
+	t_env	*lst;
+	char	*pwd;
+	char	*buff;
+
+	buff = NULL;
+	// pwd = getcwd(buff, sizeof(pwd));
+	pwd = getcwd(buff, 4096);
+	puts("asd\n");
+	pwd = getcwd(buff, sizeof(pwd));
+	if (!pwd)
+		return ;
+	while (i++ < 4)
+	{
+		if (i == 0)
+			lst = lstnew_executor("PWD", pwd);
+		if (i == 1)
+			lst = lstnew_executor("SHLVL", "1");
+		if (i == 2)
+			lst = lstnew_executor("_", "/usr/bin/env");
+		if (i == 3)
+			lst = lstnew_executor("PATH", "/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
+		add_back_executor(ennv, lst);
+	}
+}
+
+t_env	*full_fill_env(char **env, int i, int j)
+{
 	t_env	*lst_env;
 	t_env	*head;
 	char	*s1;
 	char	*s2;
 
-	i = 0;
 	head = NULL;
+	if (!*env)
+		back_up(&head, 0x0);
 	while (env[i])
 	{
 		j = 0;

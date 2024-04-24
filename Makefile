@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/22 14:03:16 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/24 16:22:27 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,11 @@ SRC = main.c \
 	  Parser/help_func/ft_atoi.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
-
+READLINE_L = $(shell brew --prefix readline)/lib
+READLINE_I = $(shell brew --prefix readline)/include
+CC = cc
 all : ${NAME} clean
 
 play :
@@ -72,11 +74,18 @@ play :
 younes :
 	cclean
 
-%.o : %.c ../minishell.h
-	@cc ${CFLAGS} -c $< -o $@
 
-${NAME} : ${OBJ}
-	@cc ${CFLAGS} ${OBJ} -lreadline -o $@
+# $(NAME): $(OBJ)
+# 	${CC} ${CFLAG} ${OBJ} -lreadline -o ${NAME}
+
+# %.o: %.c minishell.h
+# 	${CC} ${CFLAG} -lreadline -c $< -o $@ 
+
+$(NAME): $(OBJ)
+	${CC} ${CFLAG} ${OBJ} -o ${NAME} -L ${READLINE_L} -lreadline
+
+%.o: %.c minishell.h
+	${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@ 
 
 norm :
 	@norminette

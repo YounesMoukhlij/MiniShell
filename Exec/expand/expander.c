@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/19 18:50:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:36:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,14 +164,21 @@ char    *ft_exit_status(char *s)
     return (r);
 }
 
-
-char    *big_work(t_env *envir, char *r)
+int extra_check(char *s)
 {
-    int     i;
-    int     j;
+    if (s[0] == '$' &&
+        (s[1] == dbl ||
+        s[1] == sgl))
+        return (0x1);
+    return (0x0);
+}
+
+char    *big_work(t_env *envir, char *r, int i, int j)
+{
     int     c;
     char    *p;
     char    *s;
+    char    *res;
 
     i = 0x0;
     j = 0x0;
@@ -189,7 +196,7 @@ char    *big_work(t_env *envir, char *r)
                 i++;
                 c++;
             }
-            if (c % 2 == 0x0)
+            if (c % 2 == 0x0 || extra_check(s))
                 break ;
             if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
             {
@@ -201,8 +208,9 @@ char    *big_work(t_env *envir, char *r)
                 i++;
                 break ;
             }
-            p = add_t(p, grep_from_env(envir, grep_value(&s[i])));
-            if (ft_strlen(p) || !grep_from_env(envir, grep_value(&s[i])))
+            res = grep_from_env(envir, grep_value(&s[i]));
+            p = add_t(p, res);
+            if (ft_strlen(p) || !ft_strcmp_flag(res, "", 0x0, 0x0))
                 i += grep(&s[i]);
             j = ft_strlen(p);
         }
@@ -260,11 +268,13 @@ void    expander(t_minishell **mini, t_env *envir)
     char    *str;
 
     i = 0x0;
+    if (!envir)
+        return ;
     while ((*mini)->cmd[i])
     {
         if (is_expanded(*mini, (*mini)->cmd[i]))
         {
-            str = big_work(envir, (*mini)->cmd[i]);
+            str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
             (*mini)->cmd[i] = without_quotes(str, 0x0);
         }
         i++;

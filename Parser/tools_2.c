@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 15:55:01 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:21:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:22:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	is_quot_(char *str, int *i)
 		if (str[*i] == '\'')
 		{
 			(*i)++;
-			while (str[*i] != '\'')
+			while (str[*i] != '\'' && str[*i])
 				(*i)++;
 		}
 		else if (str[*i] == '\"')
 		{
 			(*i)++;
-			while (str[*i] != '\"')
+			while (str[*i] != '\"' && str[*i])
 				(*i)++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:19:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:23:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,27 @@ int	red_check(char *str)
 	while (str[i])
 	{
 		ft_skep(str, &i);
+		if (!str[i])
+			break;
 		if (str[i] == '>')
 		{
-			while (str[i] == '>')
+			while (str[i] == '>' && str[i])
 			{
 				if (str[i + 1] == '<')
 					return (5);
+				if (!str[i])
+					break;
 				i++;
 				t++;
 			}
+				if (!str[i])
+					break;
 			if (t >= 3)
 				return (1);
 			t = 0;
 		}
+				if (!str[i])
+					break;
 		i++;
 	}
 	return (0);
@@ -50,10 +58,14 @@ int	infile_check(char *str)
 	while (str[i])
 	{
 		ft_skep(str, &i);
+				if (!str[i])
+					break;
 		if (str[i] == '<')
 		{
-			while (str[i] == '<')
+			while (str[i] == '<' && str[i])
 			{
+				if (!str[i])
+					break;
 				i++;
 				t++;
 			}
@@ -61,6 +73,8 @@ int	infile_check(char *str)
 				return (1);
 			t = 0;
 		}
+				if (!str[i])
+					break;
 		i++;
 	}
 	return (0);

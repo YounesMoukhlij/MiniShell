@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/08 23:45:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:09:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	function_error(char *s)
 {
 	ft_putstr_fd_executor("no such file or directory : ", 2, 0);
 	ft_putstr_fd_executor(s, 2, 1);
-	exit(1);
 }
 
 int	ft_open_others(t_minishell *mini)
@@ -36,8 +35,6 @@ int	ft_open_others(t_minishell *mini)
 				function_error(mini->files[i + 1]);
 				return (1);
 			}
-			// if (i < mini-> len_tab - 1)
-			// 	close(fd);
 		}
 	}
 	mini->fd_out = fd;
@@ -74,14 +71,15 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 		return (-1);
 	if (expanded_content(delim))
 		flag = 0x1;
-	p = without_quotes(delim, 0);
+	p = without_quotes(delim, 0x0);
+	sig_func();
 	while (1999)
 	{
 		s = readline("heredoc> ");
-		if (!s || !ft_strcmp_flag(s, p, 0, 0))
+		if (!s || !ft_strcmp_flag(s, p, 0x0, 0x0))
 			break;
 		if (flag == 0x0)
-			s = big_work(env, s);
+			s = big_work(env, s, 0x0, 0x1);
 		write(mini->fd_in, s, ft_strlen(s));
 		write(mini->fd_in, "\n", 1);
 		free (s);

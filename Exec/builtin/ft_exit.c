@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/16 16:25:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:51:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,66 @@ void	ft_close(t_minishell *mini, t_env *head, int i)
 	exit(0);
 }
 
-int	ft_exit(t_minishell *mini, t_env *head)
+void	error_exit(char *input, char *msg)
 {
-	(void) mini;
-	(void) head;
+	ft_putstr_fd("Minishell: ", 2);
+	ft_putstr_fd("exit: ", 2);
+	if (input != NULL)
+		ft_putstr_fd(input, 2);
+	ft_putendl_fd(msg, 2);
+}
+
+int	is_digit(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0x0);
+		i++;
+	}
+	return (0x1);
+}
+
+int	ft_exit(t_minishell *mini)
+{
 	puts("exit\n");
-	printf("cmd_____length [%d]\n\n\n", cmd_length(mini));
 	if (cmd_length(mini) == 1)
 	{
+		// puts("11");
 		exit_status = 0x0;
 		exit(0x0);
 	}
-// 	if (!mini->cmd[0x1])
-// 		ft_close(mini, head, 1);
-// 	while (mini->cmd[i])
-// 		i++;
-// 	if (i > 2)
-// 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-	// return (ft_close(mini, head, 1), 0x0);
+	else if (cmd_length(mini) == 2)
+	{
+		puts("22");
+		if (is_digit(mini->cmd[0x1]))
+		{
+			exit_status = ft_atoi(mini->cmd[0x1]);
+			exit(ft_atoi(mini->cmd[0x1]));
+		}
+		else if (!is_digit(mini->cmd[0x1]))
+		{
+			error_exit(mini->cmd[0x1], " numeric argument required");
+			exit_status = 255;
+			exit(255);
+		}
+	}
+	else if (cmd_length(mini) == 3)
+	{
+		// puts("33");
+		if (is_digit(mini->cmd[0x1]) && is_digit(mini->cmd[0x2]))
+			error_exit(NULL, " too many arguments");
+		else if (!is_digit(mini->cmd[0x1]) && is_digit(mini->cmd[0x2]))
+		{
+			error_exit(mini->cmd[0x1], " numeric argument required");
+			exit_status = 0x0;
+			exit(0x0);
+		}
+		else
+			error_exit(NULL, " too many arguments");
+	}
 	return (0x0);
 }
