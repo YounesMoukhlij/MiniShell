@@ -20,6 +20,7 @@ echo -n -
 
 '
 "
+ls | exit 5 y
 
 
 ./minishell < /dev/urandom

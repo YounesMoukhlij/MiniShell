@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:03:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:41:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ int	ft_cd(t_minishell *mini, t_env *envir, int size)
 	i = 0;
 	if (!mini->cmd[0x0])
 		return (0x1);
-	if (error_case(mini, mini->cmd[1]))
-		return (0x0);
+	// if (error_case(mini, mini->cmd[1]))
+	// 	return (0x0);
 	if (cmd_length(mini) == 1 || !ft_strcmp_flag(mini->cmd[1], "~", 0x0, 0x0))
 	{
 		tmp = env_node(&envir, "HOME");

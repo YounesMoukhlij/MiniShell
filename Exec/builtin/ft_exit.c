@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:28:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:41:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	is_digit(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0x1);
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))

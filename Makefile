@@ -6,14 +6,13 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/25 16:26:42 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/25 18:38:07 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  Exec/execute/check_fd.c \
 	  Exec/signals/signal_handler_1.c \
-	  Exec/signals/signal_handler_2.c \
 	  Exec/expand/expander.c \
 	  Exec/expand/expander_utils.c \
 	  Exec/env/env_functions.c \
@@ -61,7 +60,7 @@ SRC = main.c \
 	  Parser/help_func/ft_atoi.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g #-fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
