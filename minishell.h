@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/24 17:38:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:28:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_export
 typedef struct s_minishell
 {
 	char				**cmd;
+	int					size;
 	char				**cmdt;
 	char				**afcmd_t;
     char				**files;
@@ -66,6 +67,7 @@ typedef struct s_minishell
 
 void	print_cmd(t_minishell *mini);
 void	sig_func();
+int		lst_size(t_minishell **head);
 
 // YOUNES
 void		ft_put_err(char *input, char *message);
@@ -103,20 +105,20 @@ char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 // ******************************************************************************
 // *									BUILT IN							 	*
 // ******************************************************************************
-int			ft_export(t_minishell *mini, t_env *envir, int i);
+int			ft_export(t_minishell *mini, t_env *envir, int i, int size);
 int			ft_exit(t_minishell *mini);
-int			ft_unset(t_minishell *mini, t_env *envir);
-int			ft_cd(t_minishell *mini, t_env *envir);
-int			ft_echo(t_minishell *mini);
-int			is_cmd(t_minishell *mini, t_env *envir);
-int			ft_env(t_env *envir);
-int			ft_pwd(t_env **head);
+int			ft_unset(t_minishell *mini, t_env *envir, int size);
+int			ft_cd(t_minishell *mini, t_env *envir, int size);
+int			ft_echo(t_minishell *mini, int size);
+int			is_cmd(t_minishell *mini, t_env *envir, int size);
+int			ft_env(t_minishell *mini, t_env *envir, int size);
+int			ft_pwd(t_minishell *mini, t_env **head, int size);
 
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-void		ft_execute(t_minishell **head, t_env *envir, char **env);
+void		ft_execute(t_minishell **head, t_env *envir, char **env, int size);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
@@ -130,6 +132,7 @@ char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);
 int			ft_strcmp_flag(char *s1, char *s2, int flag, int i);
 
+int			is_digit(char *s);
 
 t_minishell	*return_data(void);
 t_minishell	*return_data_1(void);

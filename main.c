@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/24 18:16:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:26:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,20 @@ void	sig_func()
 {
 	signal(SIGINT, signal_handler_one);
 	signal(SIGQUIT, signal_handler_one);
-	// rl_catch_signals = 0;
+	rl_catch_signals = 0;
+}
+
+
+t_minishell	*last_node(t_minishell *lst)
+{
+	t_minishell	*tmp;
+
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }
 
 int	main(int ac, char **av, char **env)
@@ -86,12 +99,14 @@ int	main(int ac, char **av, char **env)
 	if (ac != 0x1)
 		return (0x1);
 	envir = full_fill_env(env, 0x0, 0x0);
-	exit_status = 23;
-	// atexit(show);
+	exit_status = 0x0;
 	sig_func();
+	// atexit(show);
 	while (1)
 	{
-		str = readline("$_> ");
+		// str = readline("( ͡° ͜ʖ ͡° ) $> ");
+		str = readline("prompt: ");
+
 		if (!str)
 			break ;
 		if (is_empty(str))
@@ -105,11 +120,13 @@ int	main(int ac, char **av, char **env)
 			continue;;
 		}
 		mini = parcing(str);
+		// printf("SIZE OF LINKED LIST: [%d]\n", lst_size(mini));
 		if (mini)
-    		ft_execute(&mini, envir, env);
+    		ft_execute(&mini, envir, env, lst_size(&mini));
+		// printf("!!!! SIZE OF LINKED LIST: [%d]\n", last_node(mini)->size);
 		free (str);
 		// printf("exit____>[%d]\n\n", exit_status);
-		// ft_free_env(&envir);
+		//  ft_free_env(&envir);
 	}
 	// ft_cleanshell(&mini);
 	// clear_envir(envir);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/24 14:09:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:18:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
-	sig_func();
 	while (1999)
 	{
+		// sig_func();
 		s = readline("heredoc> ");
 		if (!s || !ft_strcmp_flag(s, p, 0x0, 0x0))
 			break;

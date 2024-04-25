@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/04/24 16:22:27 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/04/25 16:26:42 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,13 +76,13 @@ younes :
 
 
 # $(NAME): $(OBJ)
-# 	${CC} ${CFLAG} ${OBJ} -lreadline -o ${NAME}
+# 	${CC} ${CFLAG} ${OBJ} -o ${NAME} -lreadline
 
 # %.o: %.c minishell.h
-# 	${CC} ${CFLAG} -lreadline -c $< -o $@ 
+# 	${CC} ${CFLAG} -c $< -o $@ 
 
 $(NAME): $(OBJ)
-	${CC} ${CFLAG} ${OBJ} -o ${NAME} -L ${READLINE_L} -lreadline
+	${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
 
 %.o: %.c minishell.h
 	${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@ 

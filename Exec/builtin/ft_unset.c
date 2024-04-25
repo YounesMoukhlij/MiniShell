@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/22 15:02:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:41:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	unset_node(char *s, t_env *envir)
 	{
 		if (!ft_strcmp_flag(tmp->key, s, 0x0, 0x0))
 		{
-			printf("unset >>> s== [%s]\n", s);
-			printf("unset >>> key== [%s]\n", tmp->key);
 			pre->next = tmp->next;
 			pre = tmp->next;
 			free_node(tmp);
@@ -79,7 +77,7 @@ int	check_unset(char *s, t_env *envir)
 	return (0);
 }
 
-int	ft_unset(t_minishell *mini, t_env *envir)
+int	ft_unset(t_minishell *mini, t_env *envir, int size)
 {
 	int	i;
 
@@ -93,5 +91,7 @@ int	ft_unset(t_minishell *mini, t_env *envir)
 		unset_node(mini->cmd[i], envir);
 		i++;
 	}
+	if (size > 1)
+		exit (0x1);
 	return (0x1);
 }

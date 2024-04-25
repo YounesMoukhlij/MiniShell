@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/24 16:56:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:06:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,25 @@ int	cmd_length(t_minishell *m)
 	if (!(m->cmd[i]))
 		return (0);
 	while (m->cmd[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
 int	error_case(t_minishell *mini, char *s)
 {
-	int i;
+	int		i;
+	char	*d;
 
     i = 0;
+	d = mini->cmd[0x1];
+	if (is_digit(d))
+		return (ft_put_err("cd:", " string not in pwd"), 0x1);
 	if (cmd_length(mini) > 2)
 		return (ft_put_err("cd:", " too many arguments"), 0x1);
     while (s[i])
     {
-        if (s[i] == dbl && s[i + 2] == dbl && s[i + 1] == '~')
-            return (print_error("~", 1), 0x1);
+        if (s[i] == dbl && s[i + 2] == dbl && s[i + 1] == '~' && s[i])
+            return (print_error("~", 0x1), 0x1);
         i++;
     }
 	return (0x0);
@@ -124,7 +126,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 	}
 }
 
-int	ft_cd(t_minishell *mini, t_env *envir)
+int	ft_cd(t_minishell *mini, t_env *envir, int size)
 {
 	int		i;
 	t_env	*tmp;
@@ -161,5 +163,7 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);
+	if (size > 1)
+		exit (0x1);
 	return (0x1);
 }
