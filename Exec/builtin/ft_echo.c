@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 16:04:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:03:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ int	big_check(t_minishell *mini)
 	return (0x1);
 }
 
-int	check(char *s)
+int	check(char *s, int f, int flag_0)
 {
 	int	j;
 
 	j = 0x0;
+	if (f != flag_0)
+		return (0x0);
 	if (!ft_strcmp_flag(s, "-n", 0x0, 0x0))
 		return (0x1);
 	while (s[j])
@@ -85,15 +87,15 @@ int	ft_echo(t_minishell *mini, int size)
 		i = flag_0;
 	while (mini->cmd[i])
 	{
-		if (!check(mini->cmd[i]))
+		if (!check(mini->cmd[i], i, flag_0))
 			ft_putstr_fd_executor(mini->cmd[i], 0x1, 0x0);
 		if (mini->cmd[i + 0x1] != NULL)
 			write(0x1, " ", 0x1);
-		if (!(mini->cmd[i + 0x1]) && (flag_0 <= 0x1) && !check(mini->cmd[i]))
+		if (!(mini->cmd[i + 0x1]) && (flag_0 <= 0x1) && !check(mini->cmd[i], i, flag_0))
 			write(0x1, "\n", 0x1);
 		i++;
 	}
 	if (size > 1)
-		exit (0x1);
+		exit (0x0);
 	return (0x1);
 }

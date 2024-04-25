@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/24 17:51:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:28:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ int	is_digit(char *s)
 	return (0x1);
 }
 
-int	ft_exit(t_minishell *mini)
+int	ft_exit(t_minishell *mini, int size)
 {
-	puts("exit\n");
+	if (size == 1)
+		puts("exit\n");
 	if (cmd_length(mini) == 1)
 	{
 		// puts("11");
@@ -66,7 +67,7 @@ int	ft_exit(t_minishell *mini)
 	}
 	else if (cmd_length(mini) == 2)
 	{
-		puts("22");
+		// puts("22");
 		if (is_digit(mini->cmd[0x1]))
 		{
 			exit_status = ft_atoi(mini->cmd[0x1]);

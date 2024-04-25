@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 16:28:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:28:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 // *									BUILT IN							 	*
 // ******************************************************************************
 int			ft_export(t_minishell *mini, t_env *envir, int i, int size);
-int			ft_exit(t_minishell *mini);
+int			ft_exit(t_minishell *mini, int size);
 int			ft_unset(t_minishell *mini, t_env *envir, int size);
 int			ft_cd(t_minishell *mini, t_env *envir, int size);
 int			ft_echo(t_minishell *mini, int size);

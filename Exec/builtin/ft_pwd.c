@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:50:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 16:09:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:04:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	ft_pwd(t_minishell *mini, t_env **head, int size)
 	}
 	free(pwd);
 	if (size > 1)
-		exit (0x1);
+		exit (0x0);
 	return (0x1);
 }
