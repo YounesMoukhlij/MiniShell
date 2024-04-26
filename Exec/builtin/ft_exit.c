@@ -24,8 +24,6 @@ void	ft_close(t_minishell *mini, t_env *head, int i)
 {
 	(void) head;
 	(void) mini;
-	// ft_free_strings(mini->cmd);
-	// clear_envir(head);
 
 	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
@@ -60,16 +58,14 @@ int	is_digit(char *s)
 int	ft_exit(t_minishell *mini, int size)
 {
 	if (size == 1)
-		puts("exit\n");
+		puts("exit");
 	if (cmd_length(mini) == 1)
 	{
-		// puts("11");
 		exit_status = 0x0;
 		exit(0x0);
 	}
 	else if (cmd_length(mini) == 2)
 	{
-		// puts("22");
 		if (is_digit(mini->cmd[0x1]))
 		{
 			exit_status = ft_atoi(mini->cmd[0x1]);
@@ -84,17 +80,23 @@ int	ft_exit(t_minishell *mini, int size)
 	}
 	else if (cmd_length(mini) == 3)
 	{
-		// puts("33");
 		if (is_digit(mini->cmd[0x1]) && is_digit(mini->cmd[0x2]))
+		{
 			error_exit(NULL, " too many arguments");
+			exit (0x1);
+		}
 		else if (!is_digit(mini->cmd[0x1]) && is_digit(mini->cmd[0x2]))
 		{
 			error_exit(mini->cmd[0x1], " numeric argument required");
-			exit_status = 0x0;
-			exit(0x0);
+			exit_status = 255;
+			exit(255);
 		}
 		else
+		{
 			error_exit(NULL, " too many arguments");
+			exit_status = 0x1;
+			exit (0x1);
+		}
 	}
 	return (0x0);
 }

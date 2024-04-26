@@ -54,7 +54,7 @@ char *display_prompt_msg(void)
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " $> ");
+	str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
 	return (str);
 }
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **env)
 {
 	char		*str;
 	t_minishell	*mini;
-	t_env		*envir;	
+	t_env		*envir;
 	int		p;
 
 	(void) av;
@@ -105,7 +105,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		// str = readline("( ͡° ͜ʖ ͡° ) $> ");
-		str = readline("prompt: ");
+		str = readline(display_prompt_msg());
 
 		if (!str)
 			break ;

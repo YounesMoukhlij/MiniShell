@@ -60,31 +60,19 @@ SRC = main.c \
 	  Parser/help_func/ft_atoi.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
 CC = cc
+
 all : ${NAME} clean
-
-play :
-	@./minishell
-
-younes :
-	cclean
-
-
-# $(NAME): $(OBJ)
-# 	${CC} ${CFLAG} ${OBJ} -o ${NAME} -lreadline
-
-# %.o: %.c minishell.h
-# 	${CC} ${CFLAG} -c $< -o $@ 
 
 $(NAME): $(OBJ)
 	${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
 
 %.o: %.c minishell.h
-	${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@ 
+	${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@
 
 norm :
 	@norminette
@@ -95,6 +83,6 @@ clean :
 fclean : clean
 	@rm -rf ${NAME}
 
-re : all fclean
+re : fclean all
 
 .PHONY : clean norm

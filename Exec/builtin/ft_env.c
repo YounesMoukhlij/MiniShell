@@ -17,7 +17,6 @@ int	ft_env(t_minishell *mini, t_env *envir, int size)
 	t_env	*tmp;
 
 	(void) mini;
-	(void) size;
 	tmp = envir;
 	if (!envir)
 		return (-1);
@@ -31,12 +30,7 @@ int	ft_env(t_minishell *mini, t_env *envir, int size)
 		}
 		tmp = tmp->next;
 	}
-	printf("lst > %d\n", lst_size(&mini));
-	printf("size > %d\n", size);
 	if (size > 1)
-	{
-		puts("BIG BIG EXIT\n");
 		exit (0x0);
-	}
 	return (0x1);
 }

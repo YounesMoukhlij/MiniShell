@@ -21,9 +21,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <readline/readline.h>
- #include <stdio.h>
-       #include <readline/readline.h>
-       #include <readline/history.h>
+#include <readline/history.h>
 
 # define sgl '\''
 # define dbl '\"'

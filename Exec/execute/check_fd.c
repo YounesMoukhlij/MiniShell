@@ -74,14 +74,13 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	p = without_quotes(delim, 0x0);
 	while (1999)
 	{
-		// sig_func();
+		sig_func();
 		s = readline("heredoc> ");
 		if (!s || !ft_strcmp_flag(s, p, 0x0, 0x0))
 			break;
 		if (flag == 0x0)
 			s = big_work(env, s, 0x0, 0x1);
-		write(mini->fd_in, s, ft_strlen(s));
-		write(mini->fd_in, "\n", 1);
+		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
 		free (s);
 	}
 	close(mini->fd_in);
@@ -122,7 +121,7 @@ void	check_fd(t_minishell *mini, t_env *env)
 
 	flag = 1;
 	if (ft_fd_files(mini, env))
-		flag = 0;		
+		flag = 0;
 	ft_open_others(mini);
 	if (!flag)
 		return ;
