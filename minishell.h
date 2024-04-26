@@ -78,7 +78,7 @@ void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int			cmd_length(t_minishell *m);
 void		clear_envir(t_env *head);
 void		signal_handler_one(int sig_v);
-void		signal_handler_two(int sig_v);
+
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);

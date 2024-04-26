@@ -54,7 +54,7 @@ char *display_prompt_msg(void)
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
+	str = ft_strjoin_executor(cwd, " $> ");
 	return (str);
 }
 
@@ -101,12 +101,9 @@ int	main(int ac, char **av, char **env)
 	envir = full_fill_env(env, 0x0, 0x0);
 	exit_status = 0x0;
 	sig_func();
-	// atexit(show);
-	while (1)
+	while (1999)
 	{
-		// str = readline("( ͡° ͜ʖ ͡° ) $> ");
-		str = readline(display_prompt_msg());
-
+		str = readline("> ");
 		if (!str)
 			break ;
 		if (is_empty(str))
@@ -120,15 +117,9 @@ int	main(int ac, char **av, char **env)
 			continue;;
 		}
 		mini = parcing(str);
-		// printf("SIZE OF LINKED LIST: [%d]\n", lst_size(mini));
 		if (mini)
     		ft_execute(&mini, envir, env, lst_size(&mini));
-		// printf("!!!! SIZE OF LINKED LIST: [%d]\n", last_node(mini)->size);
 		free (str);
-		// printf("exit____>[%d]\n\n", exit_status);
-		//  ft_free_env(&envir);
 	}
-	// ft_cleanshell(&mini);
-	// clear_envir(envir);
 	return (0x0);
 }

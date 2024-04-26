@@ -246,20 +246,40 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir, int size)
 		return (-1);
 }
 
+int	is_builtin(t_minishell *m)
+{
+	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(m->cmd[0], "PWD", 0, 0 ))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "export", 0, 0))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "exit", 0, 0))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "unset", 0, 0))
+		return (0x1);
+	else if (!ft_strcmp_flag(m->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ECHO", 0, 0))
+		return (0x1);
+	else
+		return (0x0);
+}
+
 void	ft_execute(t_minishell **head, t_env *envir, char **env, int size)
 {
 	t_minishell	*tmp;
 	(void) env;
 	int			old_stdin;
 	int			flag;
-	
+
 	old_stdin = 0x0;
 	flag = 0x0;
 	old_stdin = dup((*head)->fd_in);
 	tmp = *head;
 	// printf("%d\n", exit_status);
 	// printf("sizd before %d\n", size);
-	if (size == 0x1)
+	if (size == 0x1 && is_builtin(*head))
 	{
 		// puts("under size");
 		flag = is_builtin_cmd(*head, envir, size);

@@ -59,12 +59,48 @@ int	expanded_content(char *s)
 	return (0x0);
 }
 
+void	signal_handler_two(int sig_va)
+{
+	(void) sig_va;
+	// if (sig_va == SIGINT)
+	// {
+	// 	// puts("aa");
+	// 	// FLAG = 1;
+	// }
+}
+
+// void	sig_herdoc()
+// {
+// 	signal(SIGINT, signal_handler_two);
+// 	signal(SIGQUIT, signal_handler_two);
+// }
+
+// int	sig(void)
+// {
+// 	if (sig)
+// 	return (0x0);
+// }
+
+int	ft_helper_heredoc(t_minishell *m, char *s)
+{
+	if (cmd_length(m) == 0)
+		return (0x0);
+	close(m->fd_in);
+	m->fd_in = open(s, O_RDWR, 0644);
+	if (m->fd_in == -1)
+		return (0x0);
+	unlink (s);
+	return (m->fd_in);
+}
+
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
 	char	*s;
 	char	*p;
 	char	*hdd_f;
 
+	(void) env;
+	(void) flag;
 	hdd_f = hidden_name();
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
 	if (mini->fd_in == -1)
@@ -72,9 +108,10 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
+		// sig_herdoc();
+	// signal(SIGINT, signal_handler_two);
 	while (1999)
 	{
-		sig_func();
 		s = readline("heredoc> ");
 		if (!s || !ft_strcmp_flag(s, p, 0x0, 0x0))
 			break;
@@ -83,10 +120,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
 		free (s);
 	}
-	close(mini->fd_in);
-	mini->fd_in = open(hdd_f, O_RDWR, 0644);
-	unlink (hdd_f);
-	return (mini->fd_in);
+	return (ft_helper_heredoc(mini, hdd_f));
 }
 
 int	ft_fd_files(t_minishell *mini, t_env *env)
@@ -119,7 +153,7 @@ void	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
 
-	flag = 1;
+	flag = 0x1;
 	if (ft_fd_files(mini, env))
 		flag = 0;
 	ft_open_others(mini);
