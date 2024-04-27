@@ -95,6 +95,24 @@ t_env	*full_fill_print(t_env **env)
 	return (sortlist(env));
 }
 
+void	print_export_helper(t_env *tmp)
+{
+	int	sum;
+
+	sum = 0x1;
+	if (!ft_strcmp_flag(tmp->key, "SHLVL", 0x0, 0x0))
+	{
+		sum = ft_atoi(tmp->value) + 1;
+		ft_putstr_fd("=\"", 0x1);
+		ft_putstr_fd_executor(ft_itoa(sum), 0x1, 0x0);
+		ft_putchar_fd('"', 0x1);
+		return ;
+	}
+	ft_putstr_fd("=\"", 0x1);
+	ft_putstr_fd(tmp->value, 0x1);
+	ft_putchar_fd('"', 0x1);
+}
+
 void	print_export(t_env **head)
 {
 	t_env	*tmp;
@@ -105,11 +123,7 @@ void	print_export(t_env **head)
 		ft_putstr_fd("declare -x ", 1);
 		ft_putstr_fd(tmp->key, 1);
 		if (tmp->value != NULL)
-		{
-			ft_putstr_fd("=\"", 1);
-			ft_putstr_fd(tmp->value, 1);
-			ft_putchar_fd('"', 1);
-		}
+			print_export_helper(tmp);
 		ft_putchar_fd('\n', 1);
 		tmp = tmp->next;
 	}

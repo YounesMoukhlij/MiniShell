@@ -52,11 +52,26 @@ int	check_cmd(char *s)
 	return (0x0);
 }
 
-int	env_check(t_env	**eenv)
+int	check_path(t_env **env, char *s)
 {
-	if (!eenv)
+	t_env	*tmp;
+
+	tmp = *env;
+	while (tmp)
+	{
+		if (!ft_strcmp_flag("PATH", tmp->key, 0x0, 0x0))
+			return (0x0);
+		tmp = tmp->next;
+	}
+	ft_putstr_fd(s, 0x2);
+	ft_putendl_fd(": no such file or directory", 0x2);
+	return (0x1);
+}
+
+int	env_check(t_env	**eenv, char *s)
+{
+	if (!eenv || check_path(eenv, s))
 		return (0x1);
-	(void) eenv;
 	return (0x0);
 }
 
@@ -67,7 +82,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	char	**res;
 
 	i = 0x0;
-	if (env_check(&envir))
+	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
 		res = ft_split_executor(mini->cmd[0x0], ' ');
@@ -102,9 +117,11 @@ int	is_cmd(t_minishell *mini, t_env *envir, int size)
 {
 	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
 		return (ft_cd(mini, envir, size));
-	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
-		return (ft_env(mini, envir, size));
-	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
+	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0)
+		|| !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
+		return (ft_env(envir, size));
+	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0)
+		|| !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(mini ,&envir, size));
 	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
 		return (ft_export(mini, envir, 0x1, size));
@@ -112,7 +129,8 @@ int	is_cmd(t_minishell *mini, t_env *envir, int size)
 		return (ft_exit(mini, size), 1);
 	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
 		return (ft_unset(mini, envir, size));
-	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
+	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0)
+		|| !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
 		return (ft_echo(mini, size));
 	else
 		return (is_bin_cmd(mini, envir, 0x0));
@@ -231,7 +249,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir, int size)
 	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
 		return (ft_cd(m, envir, size));
 	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
-		return (ft_env(m, envir, size));
+		return (ft_env(envir, size));
 	else if (!ft_strcmp_flag(m->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(m->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(m, &envir, size));
 	else if (!ft_strcmp_flag(m->cmd[0], "export", 0, 0))

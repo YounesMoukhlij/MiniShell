@@ -109,7 +109,7 @@ int			ft_unset(t_minishell *mini, t_env *envir, int size);
 int			ft_cd(t_minishell *mini, t_env *envir, int size);
 int			ft_echo(t_minishell *mini, int size);
 int			is_cmd(t_minishell *mini, t_env *envir, int size);
-int			ft_env(t_minishell *mini, t_env *envir, int size);
+int			ft_env(t_env *envir, int size);
 int			ft_pwd(t_minishell *mini, t_env **head, int size);
 
 char		*grep_from_env(t_env *envir, char *string);

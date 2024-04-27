@@ -99,8 +99,6 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	char	*p;
 	char	*hdd_f;
 
-	(void) env;
-	(void) flag;
 	hdd_f = hidden_name();
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
 	if (mini->fd_in == -1)

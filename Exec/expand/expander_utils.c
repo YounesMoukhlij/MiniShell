@@ -94,7 +94,7 @@ char    *without_quotes(char *s, int flag)
           i++;
         if (!s[i])
             break ;
-        if (s[i] != dbl &&s[i])
+        if (s[i] != dbl && s[i])
         {
             res[j] = s[i];
             i++;

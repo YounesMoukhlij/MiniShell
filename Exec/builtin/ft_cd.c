@@ -75,22 +75,16 @@ void	change_dir(t_env *envi, int flag)
 		tmp = env_node(&envi, "PWD");
 		tmp_1 = env_node(&envi, "OLDPWD");
 		if (tmp_1)
-		{
-			free(tmp_1->value);
 			tmp_1->value = ft_strdup(tmp->value);
-		}
 	}
 	else
 	{
-		new_pwd = getcwd(buff, 100);
+		new_pwd = getcwd(buff, sizeof(new_pwd));
 		if (new_pwd)
 		{
 			tmp = env_node(&envi, "PWD");
 			if (tmp)
-			{
-				free(tmp->value);
 				tmp->value = ft_strdup(new_pwd);
-			}
 		}
 	}
 }
@@ -106,10 +100,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 	{
 		tmp = env_node(&e, "PWD");
 		if (tmp)
-		{
-			free(tmp->value);
 			tmp->value = ft_strdup(path);
-		}
 	}
 	else
 	{
@@ -118,48 +109,71 @@ void	change_dir_1(t_env *e, char *path, int f)
 		{
 			tmp = env_node(&e, "OLDPWD");
 			if (tmp)
-			{
-				free(tmp->value);
 				tmp->value = ft_strdup(new_pwd);
-			}
 		}
 	}
 }
 
-int	ft_cd(t_minishell *mini, t_env *envir, int size)
+int	cd_1(t_env *envir)
+{
+	t_env	*tmp;
+	int		i;
+
+	i = 0x0;
+	tmp = env_node(&envir, "HOME");
+	change_dir(envir, 0x1);
+	i = chdir(tmp->value);
+	if (i == -1)
+		return (print_error(tmp->value, 0x1), 0x0);
+	change_dir(envir, 0x0);
+	return (0x1);
+}
+
+int	cd_2(t_env *envir)
 {
 	int		i;
-	t_env	*tmp;
-	char *p;
+	char	*p;
 
-	i = 0;
-	if (!mini->cmd[0x0])
-		return (0x1);
-	// if (error_case(mini, mini->cmd[1]))
-	// 	return (0x0);
+	i = 0x0;
+	p = grep_from_env(envir, "OLDPWD");
+	change_dir_1(envir, p, 0x0);
+	i = chdir(p);
+	if (i == -1)
+		return (print_error(p, 0x1), 0x0);
+	change_dir_1(envir, p, 0x1);
+	return (0x1);
+}
+
+int	cd_3(t_minishell *mini, t_env *envir)
+{
+	int	i;
+
+	i = 0x0;
+	change_dir(envir, 0x1);
+	i = chdir(mini->cmd[1]);
+	if (i == -1)
+		return (print_error(mini->cmd[1], 1), 0x0);
+	change_dir(envir, 0x0);
+	return (0x1);
+}
+int	ft_cd(t_minishell *mini, t_env *envir, int size)
+{
+	if (error_case(mini, mini->cmd[1]) || !mini->cmd[0x0])
+		return (0x0);
 	if (cmd_length(mini) == 1 || !ft_strcmp_flag(mini->cmd[1], "~", 0x0, 0x0))
 	{
-		tmp = env_node(&envir, "HOME");
-		i = chdir(tmp->value);
-		if (i == -1)
-			return (print_error(tmp->value, 1), 0x1);
+		if (!cd_1(envir))
+			return (0x0);
 	}
 	else if (!ft_strcmp_flag(mini->cmd[0x1], "-", 0x0, 0x0))
 	{
-		p = grep_from_env(envir, "OLDPWD");
-		change_dir_1(envir, p, 0x0);
-		i = chdir(p);
-		if (i == -1)
-			return (print_error(p, 1), 0x1);
-		change_dir_1(envir, p, 0x1);
+		if (!cd_2(envir))
+			return (0x0);
 	}
 	else if (mini->cmd[1])
 	{
-		change_dir(envir, 0x1);
-		i = chdir(mini->cmd[1]);
-		if (i == -1)
-			return (print_error(mini->cmd[1], 1), 0x1);
-		change_dir(envir, 0x0);
+		if (!cd_3(mini, envir))
+			return (0x0);
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);

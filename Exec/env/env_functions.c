@@ -19,7 +19,7 @@ char	*grep_from_env(t_env *envir, char *string)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, string, 0, 0))
+		if (!ft_strcmp_flag(tmp->key, string, 0x0, 0x0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -33,7 +33,7 @@ char	*ft_get_path(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, "PATH", 0, 0))
+		if (!ft_strcmp_flag(tmp->key, "PATH", 0x0, 0x0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -42,27 +42,23 @@ char	*ft_get_path(t_env *envir)
 
 void	back_up(t_env **ennv, int i)
 {
-	(void) ennv;
 	t_env	*lst;
 	char	*pwd;
 	char	*buff;
 
 	buff = NULL;
-	// pwd = getcwd(buff, sizeof(pwd));
-	pwd = getcwd(buff, 4096);
-	puts("asd\n");
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
-	while (i++ < 4)
+	while (i++ < 0x4)
 	{
-		if (i == 0)
+		if (i == 0x0)
 			lst = lstnew_executor("PWD", pwd);
-		if (i == 1)
+		if (i == 0x1)
 			lst = lstnew_executor("SHLVL", "1");
-		if (i == 2)
+		if (i == 0x2)
 			lst = lstnew_executor("_", "/usr/bin/env");
-		if (i == 3)
+		if (i == 0x3)
 			lst = lstnew_executor("PATH", "/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
 		add_back_executor(ennv, lst);
 	}
@@ -80,11 +76,11 @@ t_env	*full_fill_env(char **env, int i, int j)
 		back_up(&head, 0x0);
 	while (env[i])
 	{
-		j = 0;
+		j = 0x0;
 		while (env[i][j] != '=')
 			j++;
-		s1 = ft_substr_executor(env[i], 0, j);
-		s2 = ft_substr_executor(env[i], j + 1, ft_strlen(env[i]));
+		s1 = ft_substr_executor(env[i], 0x0, j);
+		s2 = ft_substr_executor(env[i], j + 0x1, ft_strlen(env[i]));
 		lst_env = lstnew_executor(s1, s2);
 		add_back_executor(&head, lst_env);
 		i++;
@@ -94,7 +90,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 void    full_fill_path(t_minishell *mini, t_env *envir)
 {
-    mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 1);
+    mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1);
     if (!mini->path)
         return (free (mini->path));
     mini->path = ft_get_path(envir);
