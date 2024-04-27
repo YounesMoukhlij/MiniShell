@@ -127,7 +127,7 @@ int	no_value(char *s)
 		}
 	}
 	if (flag == 0x1)
-		return ( 0x0);
+		return (0x0);
 	return (0x1);
 }
 
@@ -196,7 +196,7 @@ char	*special_case(char *s, t_env *envir)
 {
 	int		i;
 	char	*str;
-	char 	*you;
+	char	*you;
 
 	i = 0x0;
 	you = NULL;
@@ -261,7 +261,7 @@ int	no_equal(char *s)
 
 int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
-	t_env 		**head;
+	t_env		**head;
 	t_env		*lst;
 	char		**p;
 
