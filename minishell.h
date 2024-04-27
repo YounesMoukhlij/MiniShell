@@ -115,7 +115,7 @@ t_env		*env_node(t_env **envi, char *keyy);
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
-
+char		*add_t(char *p, char *o);
 void		ft_execute(t_minishell **head, t_env *envir, char **env);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
@@ -129,9 +129,9 @@ int			ft_strlen(char *s);
 char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);
 int			ft_strcmp_flag(char *s1, char *s2, int flag, int i);
-
+char		*grep_value(char *s);
 int			is_digit(char *s);
-
+int			grep(char *s);
 t_minishell	*return_data(void);
 t_minishell	*return_data_1(void);
 t_minishell	*return_data_2(void);

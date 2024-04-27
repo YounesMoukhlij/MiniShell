@@ -307,6 +307,7 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 			return ;
 		}
 	}
+	puts("a");
 	while (tmp->next)
 	{
 		big_execution(tmp, envir, 0x1, old_stdin);

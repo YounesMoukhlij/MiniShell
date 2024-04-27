@@ -196,7 +196,7 @@ char    *big_work(t_env *envir, char *r, int i, int j)
                 i++;
                 c++;
             }
-            if (c % 2 == 0x0 || extra_check(s))
+            if (c % 2 == 0x0)
                 break ;
             if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
             {
@@ -273,22 +273,17 @@ void    check_arg(t_minishell *mini, t_env *env)
     if (s[0x0] == '$')
     {
         tmp = env_node(&env, &s[0x1]);
-        if (tmp)
-            mini->cmd[0x1] = tmp->value;
-        else
+        if (!tmp)
             mini->cmd[0x1] = NULL;
     }
 }
 
-void    expander(t_minishell **mini, t_env *envir)
+void    expand_cmd(t_minishell **mini, t_env *envir)
 {
     int     i;
     char    *str;
 
     i = 0x0;
-    if (!envir)
-        return ;
-    check_arg(*mini, envir);
     while ((*mini)->cmd[i])
     {
         if (is_expanded(*mini, (*mini)->cmd[i]))
@@ -299,4 +294,48 @@ void    expander(t_minishell **mini, t_env *envir)
         i++;
     }
     rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0x0]);
+}
+
+// void    expand_files(t_minishell **mini, t_env *envir)
+// {
+//     int     i;
+//     char    *str;
+
+//     i = 0x0;
+//     while ((*mini)->files[i + 0x1])
+//     {
+//         printf("%s\n", (*mini)->files[i + 1]);
+//         // if (is_expanded(*mini, (*mini)->files[i + 0x1]))
+//         // {
+//             str = big_work(envir, (*mini)->files[i + 0x1], 0x0, 0x0);
+//             printf(">> %s", str);
+//             (*mini)->files[i + 0x1] = without_quotes(str, 0x0);
+//         // }m
+
+//         i++;
+//     }
+//     // rmv_sgl_quotes_cmd((*mini), (*mini)->files[0x0]);
+// }
+
+void    expander(t_minishell **mini, t_env *envir)
+{
+    // int     i;
+    // char    *str;
+
+    // i = 0x0;
+    if (!envir)
+        return ;
+    // check_arg(*mini, envir);
+    expand_cmd(mini, envir);
+    // expand_files(mini, envir);
+    // while ((*mini)->cmd[i])
+    // {
+    //     if (is_expanded(*mini, (*mini)->cmd[i]))
+    //     {
+    //         str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
+    //         (*mini)->cmd[i] = without_quotes(str, 0x0);
+    //     }
+    //     i++;
+    // }
+    // rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0x0]);
 }
