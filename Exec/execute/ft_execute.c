@@ -159,9 +159,10 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	int	pid;
 	int	return_exve;
 
-    full_fill_path(mini, envir);
-	check_fd(mini, envir);
-    expander(&mini, envir);
+	full_fill_path(mini, envir);
+	if (check_fd(mini, envir))
+		return ;
+	expander(&mini, envir);
 	mini->export = full_fill_print(&envir);
 	if (pipe(t_pipe) == -1)
 		return ;
@@ -241,7 +242,8 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	if (m->size > 0x1)
 		return (0x0);
 	full_fill_path(m, envir);
-	check_fd(m, envir);
+	if (check_fd(m, envir))
+		return (0x1);
     expander(&m, envir);
 	m->export = full_fill_print(&envir);
 	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))

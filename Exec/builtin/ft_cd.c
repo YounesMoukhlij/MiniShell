@@ -156,6 +156,7 @@ int	cd_3(t_minishell *mini, t_env *envir)
 	change_dir(envir, 0x0);
 	return (0x1);
 }
+
 int	ft_cd(t_minishell *mini, t_env *envir)
 {
 	if (error_case(mini, mini->cmd[1]) || !mini->cmd[0x0])

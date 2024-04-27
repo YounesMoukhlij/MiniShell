@@ -119,7 +119,6 @@ int	main(int ac, char **av, char **env)
 			continue;;
 		}
 		mini = parcing(str);
-		printf("%d\n", mini->size);
 		if (mini)
     		ft_execute(&mini, envir, env);
 		free (str);

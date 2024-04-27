@@ -12,10 +12,10 @@
 
 #include "../../minishell.h"
 
-void	function_error(char *s)
+void	func_err(char *s)
 {
 	ft_putstr_fd_executor("no such file or directory : ", 2, 0);
-	ft_putstr_fd_executor(s, 2, 1);
+	ft_putstr_fd_executor(s, 0x2, 0x1);
 }
 
 int	ft_open_others(t_minishell *mini)
@@ -23,18 +23,15 @@ int	ft_open_others(t_minishell *mini)
 	int	i;
 	int	fd;
 
-	i = -1;
-	fd = 1;
-	while (++i < mini->len_tab + 1)
+	i = -0x1;
+	fd = 0x1;
+	while (++i < mini->len_tab + 0x1)
 	{
-		if (mini->tab[i] == 1 || mini->tab[i] == 2)
+		if (mini->tab[i] == 0x1 || mini->tab[i] == 0x2)
 		{
-			fd = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
-			if (fd == -1)
-			{
-				function_error(mini->files[i + 1]);
-				return (1);
-			}
+			fd = open(mini->files[i + 0x1], O_CREAT | O_RDWR, 0777);
+			if (fd == -0x1)
+				return (func_err(mini->files[i + 0x1]), 0x1);
 		}
 	}
 	mini->fd_out = fd;
@@ -83,11 +80,11 @@ void	signal_handler_two(int sig_va)
 
 int	ft_helper_heredoc(t_minishell *m, char *s)
 {
-	if (cmd_length(m) == 0)
+	if (cmd_length(m) == 0x0)
 		return (0x0);
 	close(m->fd_in);
 	m->fd_in = open(s, O_RDWR, 0644);
-	if (m->fd_in == -1)
+	if (m->fd_in == -0x1)
 		return (0x0);
 	unlink (s);
 	return (m->fd_in);
@@ -101,8 +98,8 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 
 	hdd_f = hidden_name();
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
-	if (mini->fd_in == -1)
-		return (-1);
+	if (mini->fd_in == -0x1)
+		return (-0x1);
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
@@ -126,35 +123,57 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 	int	i;
 	int	fd;
 
-	i = -1;
-	fd = 0;
-	while (++i < mini->len_tab + 1)
+	i = -0x1;
+	fd = 0x0;
+	while (++i < mini->len_tab + 0x1)
 	{
-		if (mini->tab[i] == 4)
-			fd = heredoc_check(mini, env, mini->files[i + 1], 0x0);
-		if (mini->tab[i] == 3)
+		if (mini->tab[i] == 0x4)
+			fd = heredoc_check(mini, env, mini->files[i + 0x1], 0x0);
+		if (mini->tab[i] == 0x3)
 		{
-			fd = open(mini->files[i + 1], O_RDONLY);
-			if (fd == -1)
+			fd = open(mini->files[i + 0x1], O_RDONLY);
+			if (fd == -0x1)
 			{
-				function_error(mini->files[i + 1]);
-				return (1);
+				func_err(mini->files[i + 0x1]);
+				return (0x1);
 			}
 		}
 	}
-	if (fd != 0)
+	if (fd != 0x0)
 		mini->fd_in = fd;
-	return (0);
+	return (0x0);
 }
 
-void	check_fd(t_minishell *mini, t_env *env)
+int	check_files(t_minishell *m)
+{
+	int	i;
+
+	i = 0x0;
+	while (i < m->len_tab)
+	{
+		if (m->files[i + 0x1][0x0] == '$')
+		{
+			ft_putstr_fd("Minishell: ", 0x2);
+			ft_putstr_fd(m->files[i + 0x1], 0x2);
+			ft_putendl_fd(": ambiguous redirect", 0x2);
+			return (0x1);
+		}
+		i++;
+	}
+	return (0x0);
+}
+
+int	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
 
 	flag = 0x1;
+	if (check_files(mini))
+		return (0x1);
 	if (ft_fd_files(mini, env))
 		flag = 0;
 	ft_open_others(mini);
 	if (!flag)
-		return ;
+		return (0x1);
+	return (0x0);
 }

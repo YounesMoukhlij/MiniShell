@@ -111,7 +111,7 @@ int			ft_echo(t_minishell *mini);
 int			is_cmd(t_minishell *mini, t_env *envir);
 int			ft_env(t_minishell *mini, t_env *envir);
 int			ft_pwd(t_minishell *mini, t_env **head);
-
+t_env		*env_node(t_env **envi, char *keyy);
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
@@ -122,7 +122,7 @@ void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
 int			lst_size_executor(t_env **head);
 t_env		*lstnew_executor(char *key, char *value);
-void		check_fd(t_minishell *mini, t_env *envir);
+int			check_fd(t_minishell *mini, t_env *envir);
 char		**ft_split_executor(char *s, char c);
 t_env		*full_fill_env(char **env, int i, int j);
 int			ft_strlen(char *s);

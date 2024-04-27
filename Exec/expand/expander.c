@@ -262,6 +262,22 @@ void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 	mini->cmd[0x0] = s;
 }
 
+void    check_arg(t_minishell *mini, t_env *env)
+{
+    char    *s;
+    t_env   *tmp;
+
+    s = mini->cmd[0x1];
+    if (s[0x0] == '$')
+    {
+        tmp = env_node(&env, &s[0x1]);
+        if (tmp)
+            mini->cmd[0x1] = tmp->value;
+        else
+            mini->cmd[0x1] = 0x0;
+    }
+}
+
 void    expander(t_minishell **mini, t_env *envir)
 {
     int     i;
@@ -270,6 +286,7 @@ void    expander(t_minishell **mini, t_env *envir)
     i = 0x0;
     if (!envir)
         return ;
+    check_arg(*mini, envir);
     while ((*mini)->cmd[i])
     {
         if (is_expanded(*mini, (*mini)->cmd[i]))
