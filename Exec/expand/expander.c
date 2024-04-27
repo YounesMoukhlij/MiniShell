@@ -268,13 +268,13 @@ void    check_arg(t_minishell *mini, t_env *env)
     t_env   *tmp;
 
     s = mini->cmd[0x1];
+    if (!s)
+        return ;
     if (s[0x0] == '$')
     {
         tmp = env_node(&env, &s[0x1]);
         if (tmp)
             mini->cmd[0x1] = tmp->value;
-        else
-            mini->cmd[0x1] = 0x0;
     }
 }
 
