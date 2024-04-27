@@ -103,20 +103,20 @@ char		*ft_strjoin_space_executor(char *s1, char *s2, char sep);
 // ******************************************************************************
 // *									BUILT IN							 	*
 // ******************************************************************************
-int			ft_export(t_minishell *mini, t_env *envir, int i, int size);
-int			ft_exit(t_minishell *mini, int size);
-int			ft_unset(t_minishell *mini, t_env *envir, int size);
-int			ft_cd(t_minishell *mini, t_env *envir, int size);
-int			ft_echo(t_minishell *mini, int size);
-int			is_cmd(t_minishell *mini, t_env *envir, int size);
-int			ft_env(t_env *envir, int size);
-int			ft_pwd(t_minishell *mini, t_env **head, int size);
+int			ft_export(t_minishell *mini, t_env *envir, int i);
+int			ft_exit(t_minishell *mini);
+int			ft_unset(t_minishell *mini, t_env *envir);
+int			ft_cd(t_minishell *mini, t_env *envir);
+int			ft_echo(t_minishell *mini);
+int			is_cmd(t_minishell *mini, t_env *envir);
+int			ft_env(t_minishell *mini, t_env *envir);
+int			ft_pwd(t_minishell *mini, t_env **head);
 
 char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 
-void		ft_execute(t_minishell **head, t_env *envir, char **env, int size);
+void		ft_execute(t_minishell **head, t_env *envir, char **env);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
@@ -156,7 +156,7 @@ char  *hudler_t(char *s1,char *word, int *id);
 void	ft_skep (char *str, int *i);
 char	**handle_of_malloc(char **tab);
 int	get_des(char c,int fg);
-t_minishell	*get_link_cmd(char **str, t_minishell *head , t_minishell *cmd);
+t_minishell	*get_link_cmd(char **str, t_minishell *head , t_minishell *cmd, int d);
 void	shell_at_back(t_minishell **head, t_minishell *node);
 void	shell_at_font(t_minishell **head, t_minishell *node);
 t_minishell	*last_shell(t_minishell *lst);

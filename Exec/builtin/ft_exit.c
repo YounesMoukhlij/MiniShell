@@ -55,9 +55,9 @@ int	is_digit(char *s)
 	return (0x1);
 }
 
-int	ft_exit(t_minishell *mini, int size)
+int	ft_exit(t_minishell *mini)
 {
-	if (size == 1)
+	if (mini->size == 1)
 		puts("exit");
 	if (cmd_length(mini) == 1)
 	{

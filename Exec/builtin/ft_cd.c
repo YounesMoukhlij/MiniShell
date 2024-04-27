@@ -156,7 +156,7 @@ int	cd_3(t_minishell *mini, t_env *envir)
 	change_dir(envir, 0x0);
 	return (0x1);
 }
-int	ft_cd(t_minishell *mini, t_env *envir, int size)
+int	ft_cd(t_minishell *mini, t_env *envir)
 {
 	if (error_case(mini, mini->cmd[1]) || !mini->cmd[0x0])
 		return (0x0);
@@ -177,7 +177,7 @@ int	ft_cd(t_minishell *mini, t_env *envir, int size)
 	}
 	else
 		print_error("zsh: bad pattern: ", 1);
-	if (size > 1)
+	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
 }

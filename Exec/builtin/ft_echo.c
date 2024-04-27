@@ -71,7 +71,7 @@ int	check(char *s, int f, int flag_0)
 	return (0x0);
 }
 
-int	ft_echo(t_minishell *mini, int size)
+int	ft_echo(t_minishell *mini)
 {
 	int	i;
 	int	flag_0;
@@ -95,7 +95,7 @@ int	ft_echo(t_minishell *mini, int size)
 			write(0x1, "\n", 0x1);
 		i++;
 	}
-	if (size > 1)
+	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
 }

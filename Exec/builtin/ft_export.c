@@ -259,7 +259,7 @@ int	no_equal(char *s)
 	return (0x1);
 }
 
-int	ft_export(t_minishell *mini, t_env *envir, int i, int size)
+int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
 	t_env 		**head;
 	t_env		*lst;
@@ -311,7 +311,7 @@ int	ft_export(t_minishell *mini, t_env *envir, int i, int size)
 			i++;
 		}
 	}
-	if (size >  1)
+	if (mini->size >  1)
 		exit (0x0);
 	return (0x1);
 }

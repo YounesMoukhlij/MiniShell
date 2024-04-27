@@ -45,7 +45,7 @@ int	print_env(t_env *tmp)
 	return (0x0);
 }
 
-int	ft_env(t_env *envir, int size)
+int	ft_env(t_minishell *mini, t_env *envir)
 {
 	t_env	*tmp;
 
@@ -60,7 +60,7 @@ int	ft_env(t_env *envir, int size)
 			print_helper(tmp);
 		tmp = tmp->next;
 	}
-	if (size > 1)
+	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
 }

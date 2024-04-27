@@ -12,7 +12,7 @@
 
 #include "../../minishell.h"
 
-int	ft_pwd(t_minishell *mini, t_env **head, int size)
+int	ft_pwd(t_minishell *mini, t_env **head)
 {
 	char	*pwd;
 	char	*buff;
@@ -30,7 +30,7 @@ int	ft_pwd(t_minishell *mini, t_env **head, int size)
 			ft_putstr_fd_executor(input, 0x1, 0x1);
 	}
 	free(pwd);
-	if (size > 1)
+	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
 }

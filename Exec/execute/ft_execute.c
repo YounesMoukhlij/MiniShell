@@ -113,25 +113,25 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 }
 
 
-int	is_cmd(t_minishell *mini, t_env *envir, int size)
+int	is_cmd(t_minishell *mini, t_env *envir)
 {
 	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
-		return (ft_cd(mini, envir, size));
+		return (ft_cd(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0)
 		|| !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
-		return (ft_env(envir, size));
+		return (ft_env(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0)
 		|| !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
-		return (ft_pwd(mini ,&envir, size));
+		return (ft_pwd(mini ,&envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
-		return (ft_export(mini, envir, 0x1, size));
+		return (ft_export(mini, envir, 0x1));
 	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
-		return (ft_exit(mini, size), 1);
+		return (ft_exit(mini), 1);
 	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
-		return (ft_unset(mini, envir, size));
+		return (ft_unset(mini, envir));
 	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0)
 		|| !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(mini, size));
+		return (ft_echo(mini));
 	else
 		return (is_bin_cmd(mini, envir, 0x0));
 }
@@ -153,7 +153,7 @@ int	is_cmd(t_minishell *mini, t_env *envir, int size)
 // {
 // }
 
-void	big_execution(t_minishell *mini, t_env *envir, int f, int size, int old_stdin)
+void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {
 	int	t_pipe[2];
 	int	pid;
@@ -185,19 +185,17 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int size, int old_std
 		}
 		else
 			dup2(mini->fd_out, 1);
-		is_cmd(mini, envir, size);
+		is_cmd(mini, envir);
 	}
 	else
 	{
 		if (waitpid(-1, &return_exve, 0x0) == -1)
 			return ;
 		return_exve >>= 0x8;
-		// printf("exit ->[%d]\n", return_exve);
 		if (return_exve != 0x0)
 			exit_status = return_exve;
 		else
 			exit_status = 0x0;
-		// printf("exit after [%d]\n", exit_status);
 		if (f == 0)
 		{
 			dup2(old_stdin, 0);
@@ -238,28 +236,28 @@ int	lst_size(t_minishell **head)
 	return (i);
 }
 
-int	is_builtin_cmd(t_minishell *m, t_env *envir, int size)
+int	is_builtin_cmd(t_minishell *m, t_env *envir)
 {
-	if (size > 0x1)
+	if (m->size > 0x1)
 		return (0x0);
 	full_fill_path(m, envir);
 	check_fd(m, envir);
     expander(&m, envir);
 	m->export = full_fill_print(&envir);
 	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
-		return (ft_cd(m, envir, size));
+		return (ft_cd(m, envir));
 	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
-		return (ft_env(envir, size));
+		return (ft_env(m, envir));
 	else if (!ft_strcmp_flag(m->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(m->cmd[0], "PWD", 0, 0 ))
-		return (ft_pwd(m, &envir, size));
+		return (ft_pwd(m, &envir));
 	else if (!ft_strcmp_flag(m->cmd[0], "export", 0, 0))
-		return (ft_export(m, envir, 0x1, size));
+		return (ft_export(m, envir, 0x1));
 	else if (!ft_strcmp_flag(m->cmd[0], "exit", 0, 0))
-		return (ft_exit(m, size), 1);
+		return (ft_exit(m), 1);
 	else if (!ft_strcmp_flag(m->cmd[0], "unset", 0, 0))
-		return (ft_unset(m, envir, size));
+		return (ft_unset(m, envir));
 	else if (!ft_strcmp_flag(m->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(m, size));
+		return (ft_echo(m));
 	else
 		return (-1);
 }
@@ -284,7 +282,7 @@ int	is_builtin(t_minishell *m)
 		return (0x0);
 }
 
-void	ft_execute(t_minishell **head, t_env *envir, char **env, int size)
+void	ft_execute(t_minishell **head, t_env *envir, char **env)
 {
 	t_minishell	*tmp;
 	(void) env;
@@ -295,34 +293,24 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env, int size)
 	flag = 0x0;
 	old_stdin = dup((*head)->fd_in);
 	tmp = *head;
-	// printf("%d\n", exit_status);
-	// printf("sizd before %d\n", size);
-	if (size == 0x1 && is_builtin(*head))
+	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
-		// puts("under size");
-		flag = is_builtin_cmd(*head, envir, size);
+		flag = is_builtin_cmd(*head, envir);
 		if (flag != -1)
 		{
-			// puts("YOUNES MOUKHLIJ\n");
 			if (flag == 0x1)
-			{
-				// puts(">1<");
 				exit_status = 0x0;
-			}
 			else if (flag != -1)
-			{
-				// puts(">2<");
 				exit_status = 127;
-			}
 			return ;
 		}
 	}
 	while (tmp->next)
 	{
-		big_execution(tmp, envir, 0x1, size, old_stdin);
+		big_execution(tmp, envir, 0x1, old_stdin);
 		tmp = tmp->next;
 	}
 	if (tmp)
-		big_execution(tmp, envir, 0x0, size, old_stdin);
+		big_execution(tmp, envir, 0x0, old_stdin);
 	while (wait(0) != -1);
 }

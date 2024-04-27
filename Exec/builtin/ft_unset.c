@@ -77,7 +77,7 @@ int	check_unset(char *s, t_env *envir)
 	return (0);
 }
 
-int	ft_unset(t_minishell *mini, t_env *envir, int size)
+int	ft_unset(t_minishell *mini, t_env *envir)
 {
 	int	i;
 
@@ -91,7 +91,7 @@ int	ft_unset(t_minishell *mini, t_env *envir, int size)
 		unset_node(mini->cmd[i], envir);
 		i++;
 	}
-	if (size > 1)
+	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
 }

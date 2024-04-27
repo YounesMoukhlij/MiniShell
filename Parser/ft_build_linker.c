@@ -31,12 +31,11 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->cmd = ft_splits(s, 0);
 	lst->fd_in = 0;
 	lst->fd_out = 1;
-	// lst->size = lst_size(lst);
 	lst->size = 0;
 	free(s);
 	// ft_cleantach(str);
 	--lst->afcmd_t;
-	lst->next = 0x0;
+	lst->next = 0;
 	return (lst);
 }
 
@@ -68,14 +67,27 @@ void	add_back(t_minishell **head, t_minishell *node)
 	node->next = NULL;
 }
 
-t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd)
+
+void	add_size(t_minishell *m, int full_size)
+{
+	t_minishell	*tmp;
+
+	tmp = m;
+	while (tmp)
+	{
+		tmp->size = full_size;
+		tmp = tmp->next;
+	}
+}
+
+t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d)
 {
 	int			lens;
 	int			i;
 	int			*arr;
 	char		**pt;
 
-	head = 0x0;
+	head = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -90,5 +102,6 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd)
 		i++;
 		// ft_cleantach(pt);
 	}
+	add_size(head, d);
 	return (head);
 }

@@ -96,6 +96,8 @@ int	main(int ac, char **av, char **env)
 	int		p;
 
 	(void) av;
+	(void) mini;
+	(void) envir;
 	if (ac != 0x1)
 		return (0x1);
 	envir = full_fill_env(env, 0x0, 0x0);
@@ -117,8 +119,9 @@ int	main(int ac, char **av, char **env)
 			continue;;
 		}
 		mini = parcing(str);
+		printf("%d\n", mini->size);
 		if (mini)
-    		ft_execute(&mini, envir, env, lst_size(&mini));
+    		ft_execute(&mini, envir, env);
 		free (str);
 	}
 	return (0x0);
