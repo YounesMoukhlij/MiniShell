@@ -105,7 +105,7 @@ int	main(int ac, char **av, char **env)
 	sig_func();
 	while (1999)
 	{
-		str = readline("> ");
+		str = readline("promt> ");
 		if (!str)
 			break ;
 		if (is_empty(str))
