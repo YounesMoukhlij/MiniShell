@@ -173,6 +173,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		dup2(mini->fd_in, 0);
 		close(mini->fd_in);
 	}
+	printf("fdfd>>%d\n", mini->fd_out);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -237,6 +238,28 @@ int	lst_size(t_minishell **head)
 	return (i);
 }
 
+void	handle_fd(t_minishell *mini)
+{
+	puts("here");
+	if (mini->fd_out != 0x1)
+	{
+		puts("aaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbYOUNES");
+		dup2(mini->fd_out, 1);
+		puts("aaaaaaaa");
+		// close(mini->fd_out);
+		// if (dup2(mini->fd_out, 0x1) == -1)
+		// 	return (ft_putstr_fd("dup failed", 0x2));
+	}
+	if (mini->fd_in != 0x0)
+	{
+		puts("NNNNANANNA");
+		dup2(mini->fd_in, 0x0);
+		// close(mini->fd_in);
+		// if (dup2(mini->fd_in, 0x0) == -0x1)
+		// 	return (ft_putstr_fd("dup failed", 0x2));
+	}
+}
+
 int	is_builtin_cmd(t_minishell *m, t_env *envir)
 {
 	if (m->size > 0x1)
@@ -246,6 +269,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 		return (0x1);
     expander(&m, envir);
 	m->export = full_fill_print(&envir);
+	// handle_fd(m);
 	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
 		return (ft_cd(m, envir));
 	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
@@ -284,6 +308,7 @@ int	is_builtin(t_minishell *m)
 		return (0x0);
 }
 
+
 void	ft_execute(t_minishell **head, t_env *envir, char **env)
 {
 	t_minishell	*tmp;
@@ -307,7 +332,6 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 			return ;
 		}
 	}
-	puts("a");
 	while (tmp->next)
 	{
 		big_execution(tmp, envir, 0x1, old_stdin);

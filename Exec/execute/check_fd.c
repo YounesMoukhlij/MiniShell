@@ -147,15 +147,18 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 int	check_files(t_minishell *m, t_env *env)
 {
 	int		i;
+	int		j;
 	t_env	*tmp;
 
 	i = -0x1;
+	j = 0x0;
 	if (!m->files)
 		return (0x0);
 	while (++i < m->len_tab)
 	{
-		tmp = env_node(&env, m->files[i + 1]);
-		printf("][%s][]", tmp->key);
+		if (m->files[i + 1][j] == '$')
+			j = 0x1;
+		tmp = env_node(&env, &(m->files[i + 1][j]));
 		if (m->files[i + 0x1][0x0] == '$' && !tmp)
 		{
 			ft_putstr_fd("Minishell: ", 0x2);
@@ -167,17 +170,31 @@ int	check_files(t_minishell *m, t_env *env)
 	return (0x0);
 }
 
+char	*get_str(char *s)
+{
+	int	i;
+	int	count;
+
+	i = 0x0;
+	count = 0x0;
+	while (s[i])
+	{
+		if (s[i] == '$')
+			count++;
+		i++;
+	}
+	return (&s[count]);
+}
+
 int	already_here(t_env *env, char *s)
 {
 	t_env	*tmp;
 
-	printf("11>> [%s]\n", s);
 	if (!s)
 		return (0x1);
-	tmp = env_node(&env, s);
+	tmp = env_node(&env, get_str(s));
 	if (tmp)
 		return (0x0);
-	puts("aaaaaaaadasdasdas");
 	return (0x1);
 }
 
@@ -229,52 +246,102 @@ void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
 	mini->files[index] = s;
 }
 
-int	expand_files(t_minishell **mini, t_env *envir)
+char    *ultra_expand_file(t_env *envir, char *s, int i, int j)
 {
-    int     i;
-    // int     j;
+    char    *p;
+    char    *res;
+
+    i = 0x0;
+    p = ft_calloc(100, 0x1);
+    if (!p)
+        return (NULL);
+    while (s[i])
+    {
+        while (s[i] == '$')
+        {
+            while (s[i] == '$')
+                i++;
+            if (!ft_isalnum(s[i]))
+            {
+                i--;
+                break ;
+            }
+            if (!ft_isalpha(s[i]))
+            {
+                i++;
+                break ;
+            }
+            res = grep_from_env(envir, grep_value(&s[i]));
+            p = add_t(p, res);
+            if (ft_strlen(p) || !ft_strcmp_flag(res, "", 0x0, 0x0))
+                i += grep(&s[i]);
+            j = ft_strlen(p);
+        }
+        if (!s[i] || i > ft_strlen(s))
+            break ;
+        p[j] = s[i];
+        i++;
+        j++;
+    }
+    return (p);
+}
+
+char    *files_without_quotes(char *s, int flag, int i, int j)
+{
+    char    *res;
+
+    if (!s)
+        return ("");
+    res = calloc(strlen(s) + 0x1, 0x1);
+    if (!res)
+        return (NULL);
+	if (s[i] == dbl && s[ft_strlen(s) - 1] == dbl)
+		flag = 0x1;
+    while (s[i])
+    {
+        if (s[i] == dbl && s[i] && flag == 0x1)
+            i++;
+        if (s[i] == sgl && flag == 0x0)
+          i++;
+        if (!s[i])
+            break ;
+        res[j] = s[i];
+        i++;
+        j++;
+    }
+    return (res);
+}
+
+int	expand_files(t_minishell **mini, t_env *envir, int i)
+{
     char    **s;
 	t_env	*tmp;
 
-	(void) envir;
-    i = 0x1;
 	s = (*mini)->files;
+	if (!s)
+		return (0x1);
 	if (check_files(*mini, envir))
 		return (0x0);
-	puts("am here");
     while (s[i])
     {
-		// j = 0x0;
-		// while (s[i][j])
-		// {
-			if (is_file_expanded(s[i]))
-        	{
-				puts("problem solving\n");
-				printf("><%s<>\n", s[i]);
-        	    s[i] = without_quotes(s[i], 0x0);
-				if (already_here(envir, s[i]))
-					return (0x1);
-				printf("down >>>> %s\n", s[i]);
-				tmp = env_node(&envir, s[i]);
-				if (tmp)
-        	    	(*mini)->files[i] = big_work(envir, s[i], 0x0, 0x0);
-				else
-				// {
-					(*mini)->files[i] = s[i];
-				// 	// return (0x1);
-			}
+		if (is_file_expanded(s[i]))
+        {
+			s[i] = without_quotes(s[i], 0x0);
+			if (already_here(envir, s[i]))
+				return (0x1);
+			tmp = env_node(&envir, get_str(s[i]));
+			if (tmp)
+				(*mini)->files[i] = ultra_expand_file(envir, s[i], 0x0, 0x0);
 			else
-			{
-				puts("wlh m3rft\n");
-				(*mini)->files[i] = without_quotes(s[i], 0x0);
-			}
-			// j++;
-        i++;
+				(*mini)->files[i] = get_str(s[i]);
 		}
-	// }
-	i = -0x1;
-	while (++i < ((*mini)->len_tab))
-    	rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
+		else
+		{
+			(*mini)->files[i] = files_without_quotes(s[i], 0x0, 0x0, 0x0);
+    		rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
+		}
+		i++;
+	}
 	return (0x0);
 }
 
@@ -283,10 +350,8 @@ int	check_fd(t_minishell *mini, t_env *env)
 	int	flag;
 
 	flag = 0x1;
-	print_cmd(mini);
-    if (expand_files(&mini, env))
+    if (expand_files(&mini, env, 0x0))
 	{
-		print_cmd(mini);
 		func_err("file");
 		return (0x1);
 	}

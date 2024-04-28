@@ -85,6 +85,7 @@ int	ft_echo(t_minishell *mini)
 	flag_0 = big_check(mini);
 	if (flag_0 != 0x0)
 		i = flag_0;
+	printf("echo fd>>%d\n", mini->fd_out);
 	while (mini->cmd[i])
 	{
 		if (!check(mini->cmd[i], i, flag_0))
