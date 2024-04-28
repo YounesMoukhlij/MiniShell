@@ -340,7 +340,6 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	flag = 0x0;
 	old_stdin = dup((*head)->fd_in);
 	tmp = *head;
-	// puts("123");
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);
@@ -355,7 +354,6 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 		else if (flag == 11)
 			return ;
 	}
-	// puts("44444");
 	while (tmp->next)
 	{
 		big_execution(tmp, envir, 0x1, old_stdin);

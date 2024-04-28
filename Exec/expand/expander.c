@@ -223,16 +223,35 @@ char    *big_work(t_env *envir, char *r, int i, int j)
     return (p);
 }
 
+int no_dollar(char *s)
+{
+    int i;
+
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == '$')
+            return (0x1);
+        i++;
+    }
+    return (0x0);
+}
+
 int is_expanded(t_minishell *mini, char *s)
 {
     int i;
 
     (void) mini;
     i = 0x0;
+    if (no_dollar(s))
+        return (0x1);
     while (s[i])
     {
-        if (s[i] == dbl && s[i + 0x2] == dbl && s[i + 0x1] == '~')
-            return (0x0);
+        if (s[i] == '~')
+        {
+            if (s[i] == dbl && s[i + 0x2] == dbl && s[i + 0x1] == '~' && ft_strlen(s) > 2)
+                return (0x0);
+        }
         i++;
     }
     return (0x1);
@@ -293,7 +312,7 @@ void    expand_cmd(t_minishell **mini, t_env *envir)
         }
         i++;
     }
-    rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0x0]);
+    rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
 }
 
 void    expander(t_minishell **mini, t_env *envir)
