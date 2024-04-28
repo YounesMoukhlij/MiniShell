@@ -98,25 +98,6 @@ int	exve_err(char *s)
 	return (ft_put_err(s, ": Command not found"), 127);
 }
 
-// void	ft_exec_file(t_minishell *m, t_env **head, int *status)
-// {
-// 	struct stat		buf;
-// 	char			*full_path;
-
-// 	buf.st_mode = 0;
-// 	full_path = ft_join_path(path, cmd->command);
-// 	stat(full_path, &buf);
-// 	if (((buf.st_mode & S_IXUSR) > 0
-// 			&& (buf.st_mode & S_IFREG) > 0) && *status == -77)
-// 	{
-// 		free(cmd->command);
-// 		cmd->command = ft_strdup(full_path);
-// 		*status = ft_exec(cmd, head);
-// 	}
-// 	free(full_path);
-// }
-
-
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
