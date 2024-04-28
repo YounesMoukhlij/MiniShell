@@ -66,6 +66,7 @@ typedef struct s_minishell
 void	print_cmd(t_minishell *mini);
 void	sig_func();
 int		lst_size(t_minishell **head);
+void	export_error(t_minishell *m, int option, char *s, char *o);
 
 // YOUNES
 void		ft_put_err(char *input, char *message);

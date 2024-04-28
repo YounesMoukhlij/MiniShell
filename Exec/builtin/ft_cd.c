@@ -31,6 +31,11 @@ int	cmd_length(t_minishell *m)
 	return (i);
 }
 
+// int	correct(t_env *m, char *s)
+// {
+
+// }
+
 int	error_case(t_minishell *mini, char *s)
 {
 	int		i;
@@ -38,6 +43,8 @@ int	error_case(t_minishell *mini, char *s)
 
     i = 0;
 	d = mini->cmd[0x1];
+	if (d[0] == '$')
+		return (0x0);
 	if (is_digit(d))
 		return (ft_put_err("cd:", " string not in pwd"), 0x1);
 	if (cmd_length(mini) > 2)
@@ -160,7 +167,11 @@ int	cd_3(t_minishell *mini, t_env *envir)
 int	ft_cd(t_minishell *mini, t_env *envir)
 {
 	if (error_case(mini, mini->cmd[1]) || !mini->cmd[0x0])
-		return (0x0);
+	{
+		if (mini->size > 1)
+			exit (0x0);
+		return (0x1);
+	}
 	if (cmd_length(mini) == 1 || !ft_strcmp_flag(mini->cmd[1], "~", 0x0, 0x0))
 	{
 		if (!cd_1(envir))

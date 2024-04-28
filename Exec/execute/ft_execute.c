@@ -173,7 +173,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		dup2(mini->fd_in, 0);
 		close(mini->fd_in);
 	}
-	printf("fdfd>>%d\n", mini->fd_out);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -252,7 +251,6 @@ void	handle_fd(t_minishell *mini)
 	}
 	if (mini->fd_in != 0x0)
 	{
-		puts("NNNNANANNA");
 		dup2(mini->fd_in, 0x0);
 		// close(mini->fd_in);
 		// if (dup2(mini->fd_in, 0x0) == -0x1)
@@ -328,7 +326,7 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 			if (flag == 0x1)
 				exit_status = 0x0;
 			else if (flag != -1)
-				exit_status = 127;
+				exit_status = 0x1;
 			return ;
 		}
 	}

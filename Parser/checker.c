@@ -102,11 +102,22 @@ int	check_expected_token(char *str)
 	return (0);
 }
 
+int	check_yns(char *i)
+{
+	if (i[0x0] == sgl && i[ft_strlen(i) - 1] == sgl)
+		return (0x1);
+	if (i[0x0] == dbl && i[ft_strlen(i) - 1] == dbl)
+		return (0x1);
+	return (0x0);
+}
+
 int	ft_checker(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (check_yns(str))
+		return (-1);
 	if (str[i] == '>' || str[i] == '<')
 	{
 		if (ft_strlen(str) <= 2)

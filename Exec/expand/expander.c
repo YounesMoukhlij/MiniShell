@@ -296,27 +296,6 @@ void    expand_cmd(t_minishell **mini, t_env *envir)
     rmv_sgl_quotes_cmd((*mini), (*mini)->cmd[0x0]);
 }
 
-// void    expand_files(t_minishell **mini, t_env *envir)
-// {
-//     int     i;
-//     char    *str;
-
-//     i = 0x0;
-//     while ((*mini)->files[i + 0x1])
-//     {
-//         printf("%s\n", (*mini)->files[i + 1]);
-//         // if (is_expanded(*mini, (*mini)->files[i + 0x1]))
-//         // {
-//             str = big_work(envir, (*mini)->files[i + 0x1], 0x0, 0x0);
-//             printf(">> %s", str);
-//             (*mini)->files[i + 0x1] = without_quotes(str, 0x0);
-//         // }m
-
-//         i++;
-//     }
-//     // rmv_sgl_quotes_cmd((*mini), (*mini)->files[0x0]);
-// }
-
 void    expander(t_minishell **mini, t_env *envir)
 {
     // int     i;

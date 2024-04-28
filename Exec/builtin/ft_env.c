@@ -25,9 +25,6 @@ void	print_helper(t_env *tmp)
 		ft_putstr_fd_executor(ft_itoa(sum), 0x1, 0x1);
 		return ;
 	}
-	ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
-	ft_putstr_fd("=", 0x1);
-	ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
 }
 
 int	print_env(t_env *tmp)
@@ -56,8 +53,19 @@ int	ft_env(t_minishell *mini, t_env *envir)
 	{
 		if (print_env(tmp))
 			break ;
-		if (tmp->value != NULL)
-			print_helper(tmp);
+		// if (!ft_strcmp_flag(tmp->key, "YOUMOU", 0x0, 0x0))
+		// 	printf("[%s] && [%s]\n", tmp->key , tmp->value);
+		// if (tmp->value != NULL)
+		// {
+		// 	// if (!ft_strcmp_flag(tmp->key, "SHLVL", 0x0, 0x0))
+			// 	print_helper(tmp);
+			// else
+			// {
+				ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
+				ft_putstr_fd("=", 0x1);
+				ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
+			// }
+		// }
 		tmp = tmp->next;
 	}
 	if (mini->size > 1)

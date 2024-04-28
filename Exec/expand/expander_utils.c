@@ -65,6 +65,33 @@ int dollar_position(char *s, int pos)
     return (0x0);
 }
 
+int check_single(char *s)
+{
+    if (s[0x0] == sgl && s[ft_strlen(s) - 1] == sgl)
+        return (0x1);
+    return (0x0);
+}
+
+char    *do_single(char *s, int i, int j)
+{
+    char    *r;
+
+    r = ft_calloc(ft_strlen(s), 1);
+    if (!r)
+        return (NULL);
+    while (s[i])
+    {
+        while (s[i] == sgl)
+            i++;
+        if (!s[i])
+            break ;
+        r[j] = s[i];
+        i++;
+        j++;
+    }
+    return (r);
+}
+
 char    *without_quotes(char *s, int flag)
 {
     int     i;
@@ -73,6 +100,8 @@ char    *without_quotes(char *s, int flag)
 
     i = 0x0;
     j = 0x0;
+    if (check_single(s))
+        return (do_single(s, 0x0, 0x0));
     if (!s)
         return ("");
     res = calloc(strlen(s) + 0x1, 0x1);
