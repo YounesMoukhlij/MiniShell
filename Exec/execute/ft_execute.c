@@ -75,7 +75,14 @@ int	env_check(t_env	**eenv, char *s)
 	return (0x0);
 }
 
-int	exve_err(char *s, int size)
+int	check_s(char *s)
+{
+	if (s[0x0] == '.' && s[0x1] == '/')
+		return (0x1);
+	return (0x0);
+}
+
+int	exve_err(char *s)
 {
 	struct stat		buf;
 
@@ -86,7 +93,7 @@ int	exve_err(char *s, int size)
 		else if ((buf.st_mode & S_IXUSR) == 0)
 			return (ft_put_err(s, ": Permission denied"), 127);
 	}
-	else if (s && size == 1)
+	else if (check_s(s))
 		return (ft_put_err(s, ": No such file or directory"), 127);
 	return (ft_put_err(s, ": Command not found"), 127);
 }
@@ -139,7 +146,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
-		sum = exve_err(mini->cmd[0x0], cmd_length(mini));
+		sum = exve_err(mini->cmd[0x0]);
 		exit_status = sum;
 		exit(sum);
 	}
