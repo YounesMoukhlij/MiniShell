@@ -21,6 +21,7 @@ echo -n -
 '
 "
 ls | exit 5 y
+export t="     one  ywo"
 
 
 ./minishell < /dev/urandom
