@@ -143,33 +143,6 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 		mini->fd_in = fd;
 	return (0x0);
 }
-
-int	check_files(t_minishell *m, t_env *env)
-{
-	int		i;
-	int		j;
-	t_env	*tmp;
-
-	i = -0x1;
-	j = 0x0;
-	if (!m->files)
-		return (0x0);
-	while (++i < m->len_tab)
-	{
-		if (m->files[i + 1][j] == '$')
-			j = 0x1;
-		tmp = env_node(&env, &(m->files[i + 1][j]));
-		if (m->files[i + 0x1][0x0] == '$' && !tmp)
-		{
-			ft_putstr_fd("Minishell: ", 0x2);
-			ft_putstr_fd(m->files[i + 0x1], 0x2);
-			ft_putendl_fd(": ambiguous redirect", 0x2);
-			return (0x1);
-		}
-	}
-	return (0x0);
-}
-
 char	*get_str(char *s)
 {
 	int	i;
@@ -185,6 +158,29 @@ char	*get_str(char *s)
 	}
 	return (&s[count]);
 }
+
+int	check_files(t_minishell *m, t_env *env)
+{
+	int		i;
+	t_env	*tmp;
+
+	i = -0x1;
+	if (!m->files)
+		return (0x0);
+	while (++i < m->len_tab)
+	{
+		tmp = env_node(&env, get_str(m->files[i + 0x1]));
+		if (m->files[i + 0x1][0x0] == '$' && !tmp)
+		{
+			ft_putstr_fd("Minishell: ", 0x2);
+			ft_putstr_fd(m->files[i + 0x1], 0x2);
+			ft_putendl_fd(": ambiguous redirect", 0x2);
+			return (0x1);
+		}
+	}
+	return (0x0);
+}
+
 
 int	already_here(t_env *env, char *s)
 {
