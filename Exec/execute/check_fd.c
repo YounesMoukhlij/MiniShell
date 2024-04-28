@@ -14,8 +14,16 @@
 
 void	func_err(char *s)
 {
-	ft_putstr_fd_executor("no such file or directory : ", 2, 0);
-	ft_putstr_fd_executor(s, 0x2, 0x1);
+	struct stat		buf;
+
+	if (stat(s, &buf) == 0)
+	{
+		if (buf.st_mode & S_IFDIR)
+			return (ft_put_err(s, ": Is a directory"));
+		else if ((buf.st_mode & S_IXUSR) == 0)
+			return (ft_put_err(s, ": Permission denied"));
+	}
+	return (ft_put_err(s, ": No such file or directory"));
 }
 
 int	ft_open_others(t_minishell *mini)
@@ -108,7 +116,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	while (1999)
 	{
 		s = readline("heredoc> ");
-		if (!s || !ft_strcmp_flag(s, p, 0x0, 0x0))
+		if (!s || !strcmp_f(s, p, 0x0, 0x0))
 			break;
 		if (flag == 0x0)
 			s = big_work(env, s, 0x0, 0x1);
@@ -269,7 +277,7 @@ char    *ultra_expand_file(t_env *envir, char *s, int i, int j)
             }
             res = grep_from_env(envir, grep_value(&s[i]));
             p = add_t(p, res);
-            if (ft_strlen(p) || !ft_strcmp_flag(res, "", 0x0, 0x0))
+            if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
                 i += grep(&s[i]);
             j = ft_strlen(p);
         }

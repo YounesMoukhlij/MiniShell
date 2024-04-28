@@ -29,7 +29,7 @@ void	unset_node(char *s, t_env *envir)
 	tmp = (*head);
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, s, 0x0, 0x0))
+		if (!strcmp_f(tmp->key, s, 0x0, 0x0))
 		{
 			pre->next = tmp->next;
 			pre = tmp->next;
@@ -69,7 +69,8 @@ int	check_unset(char *s, t_env *envir)
 		if (s[i] == '=')
 		{
 			i += 2;
-			printf("unset: %s : not a valid identifier", grep_from_env(envir, &s[i]));
+			printf("unset: %s : not a valid identifier",
+				grep_from_env(envir, &s[i]));
 			return (1);
 		}
 		i++;

@@ -210,7 +210,7 @@ char    *big_work(t_env *envir, char *r, int i, int j)
             }
             res = grep_from_env(envir, grep_value(&s[i]));
             p = add_t(p, res);
-            if (ft_strlen(p) || !ft_strcmp_flag(res, "", 0x0, 0x0))
+            if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
                 i += grep(&s[i]);
             j = ft_strlen(p);
         }

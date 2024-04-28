@@ -40,7 +40,7 @@ void	ft_putstr_fd_executor(char *s, int fd, int flag_newline)
 		write(fd, "\n", 1);
 }
 
-int	ft_strcmp_flag(char *s1, char *s2, int flag, int i)
+int	strcmp_f(char *s1, char *s2, int flag, int i)
 {
 	if (!s1 || !s2)
 		return (-1);

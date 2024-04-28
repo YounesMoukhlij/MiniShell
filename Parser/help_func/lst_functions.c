@@ -64,6 +64,7 @@ void	add_back_executor(t_env **head, t_env *node)
 		return ;
 	if (*head == NULL)
 		add_front_executor(head, node);
-	last_node_executor(*head)->next = node;
+	if (last_node_executor(*head))
+		last_node_executor(*head)->next = node;
 	node->next = NULL;
 }

@@ -19,7 +19,7 @@ int	ft_check(t_minishell *mini)
 	i = 1;
 	while (mini->cmd[i])
 	{
-		if (!ft_strcmp_flag(mini->cmd[i], "-n", 0x0, 0x0))
+		if (!strcmp_f(mini->cmd[i], "-n", 0x0, 0x0))
 			return (i);
 		i++;
 	}
@@ -60,7 +60,7 @@ int	check(char *s, int f, int flag_0)
 	j = 0x0;
 	if (f != flag_0)
 		return (0x0);
-	if (!ft_strcmp_flag(s, "-n", 0x0, 0x0))
+	if (!strcmp_f(s, "-n", 0x0, 0x0))
 		return (0x1);
 	while (s[j])
 	{
@@ -74,25 +74,24 @@ int	check(char *s, int f, int flag_0)
 int	ft_echo(t_minishell *mini)
 {
 	int	i;
-	int	flag_0;
+	int	f;
 
 	i = 0x1;
-	flag_0 = 0x0;
+	f = 0x0;
 	if (!mini->cmd[0x0])
 		return (0x0);
 	if (mini->cmd[0x0] && !mini->cmd[0x1])
 		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
-	flag_0 = big_check(mini);
-	if (flag_0 != 0x0)
-		i = flag_0;
-	// print_cmd((mini));
+	f = big_check(mini);
+	if (f != 0x0)
+		i = f;
 	while (mini->cmd[i])
 	{
-		if (!check(mini->cmd[i], i, flag_0))
+		if (!check(mini->cmd[i], i, f))
 			ft_putstr_fd_executor(mini->cmd[i], 0x1, 0x0);
 		if (mini->cmd[i + 0x1] != NULL)
 			write(0x1, " ", 0x1);
-		if (!(mini->cmd[i + 0x1]) && (flag_0 <= 0x1) && !check(mini->cmd[i], i, flag_0))
+		if (!(mini->cmd[i + 0x1]) && (f <= 0x1) && !check(mini->cmd[i], i, f))
 			write(0x1, "\n", 0x1);
 		i++;
 	}

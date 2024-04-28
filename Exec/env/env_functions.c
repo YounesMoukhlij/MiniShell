@@ -19,7 +19,7 @@ char	*grep_from_env(t_env *envir, char *string)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, string, 0x0, 0x0))
+		if (!strcmp_f(tmp->key, string, 0x0, 0x0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -33,7 +33,7 @@ char	*ft_get_path(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag(tmp->key, "PATH", 0x0, 0x0))
+		if (!strcmp_f(tmp->key, "PATH", 0x0, 0x0))
 			return (tmp->value);
 		tmp = tmp->next;
 	}

@@ -11,42 +11,45 @@
 # **************************************************************************** #
 
 SRC = main.c \
-	  Exec/execute/check_fd.c \
-	  Exec/signals/signal_handler_1.c \
+	  Parser/tools.c \
+	  Parser/tools_1.c\
+	  Parser/parcing.c \
+	  Parser/tools_2.c\
+	  Parser/epur_str.c\
+	  Parser/ft_join.c \
+	  Parser/parcfun_2.c \
+	  Parser/checker.c \
+	  Parser/ft_ft_vtk.c \
+	  Parser/parcfun_1.c \
+	  Parser/ft_concat.c \
+	  Parser/ft_cutdata.c\
+	  Parser/pip_checker.c \
+	  Exec/builtin/ft_cd.c \
+	  Parser/ft_after_cmd.c\
 	  Exec/expand/expander.c \
-	  Exec/expand/expander_utils.c \
-	  Exec/env/env_functions.c \
+	  Exec/execute/check_fd.c \
 	  Exec/builtin/ft_unset.c \
 	  Exec/builtin/ft_echo.c \
-	  Exec/builtin/ft_cd.c \
+	  Exec/builtin/ft_cd_1.c \
 	  Exec/builtin/ft_pwd.c \
 	  Exec/builtin/ft_env.c \
 	  Exec/builtin/ft_exit.c \
 	  Exec/builtin/ft_export.c \
-	  Exec/builtin/print_export.c \
+	  Exec/env/env_functions.c \
+	  Exec/builtin/ft_exit_1.c \
 	  Exec/execute/ft_execute.c \
-	  Parser/parcfun_1.c \
-	  Parser/parcfun_2.c \
+	  Exec/builtin/print_export.c \
+	  Exec/expand/expander_utils.c \
 	  Parser/ft_build_linker.c \
-	  Parser/tools.c \
-	  Parser/tools_1.c\
-	  Parser/tools_2.c\
-	  Parser/epur_str.c\
-	  Parser/ft_cutdata.c\
-	  Parser/ft_ft_vtk.c \
-	  Parser/parcing.c \
-	  Parser/ft_after_cmd.c\
-	  Parser/ft_join.c \
-	  Parser/ft_concat.c \
-	  Parser/checker.c \
-	  Parser/pip_checker.c \
 	  Parser/ft_cleantach.c \
 	  Parser/ft_cleanshell.c \
 	  Parser/help_func/lst_functions.c \
+	  Exec/signals/signal_handler_1.c \
 	  Parser/help_func/allocate_max.c \
 	  Parser/help_func/minishell_functions.c \
 	  Parser/help_func/ft_split_executor.c \
 	  Parser/help_func/ft_strjoin_executor.c \
+	  Exec/builtin/print_export_1.c \
 	  Parser/help_func/ft_calloc_executor.c \
 	  Parser/help_func/ft_isalnum.c \
 	  Parser/help_func/ft_strdup.c \

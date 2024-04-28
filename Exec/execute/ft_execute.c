@@ -59,7 +59,7 @@ int	check_path(t_env **env, char *s)
 	tmp = *env;
 	while (tmp)
 	{
-		if (!ft_strcmp_flag("PATH", tmp->key, 0x0, 0x0))
+		if (!strcmp_f("PATH", tmp->key, 0x0, 0x0))
 			return (0x0);
 		tmp = tmp->next;
 	}
@@ -75,13 +75,50 @@ int	env_check(t_env	**eenv, char *s)
 	return (0x0);
 }
 
+int	exve_err(char *s, int size)
+{
+	struct stat		buf;
+
+	if (stat(s, &buf) == 0)
+	{
+		if (buf.st_mode & S_IFDIR)
+			return (ft_put_err(s, ": Is a directory"), 126);
+		else if ((buf.st_mode & S_IXUSR) == 0)
+			return (ft_put_err(s, ": Permission denied"), 127);
+	}
+	else if (s && size == 1)
+		return (ft_put_err(s, ": No such file or directory"), 127);
+	return (ft_put_err(s, ": Command not found"), 127);
+}
+
+// void	ft_exec_file(t_minishell *m, t_env **head, int *status)
+// {
+// 	struct stat		buf;
+// 	char			*full_path;
+
+// 	buf.st_mode = 0;
+// 	full_path = ft_join_path(path, cmd->command);
+// 	stat(full_path, &buf);
+// 	if (((buf.st_mode & S_IXUSR) > 0
+// 			&& (buf.st_mode & S_IFREG) > 0) && *status == -77)
+// 	{
+// 		free(cmd->command);
+// 		cmd->command = ft_strdup(full_path);
+// 		*status = ft_exec(cmd, head);
+// 	}
+// 	free(full_path);
+// }
+
+
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
 	char	*s;
 	char	**res;
+	int		sum;
 
 	i = 0x0;
+	sum = 0x0;
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
@@ -95,19 +132,16 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		{
 			flag = 0x1;
 			if (execve(s, res, execv_env(envir)) == -1)
-			{
-				free (s);
-				break;
-			}
+				break ;
 		}
 		free (s);
 		i++;
 	}
 	if (flag == 0x0)
 	{
-		exit_status = 127;
-		printf("MiniShell: command not found: %s\n", mini->cmd[0x0]);
-		exit(127);
+		sum = exve_err(mini->cmd[0x0], cmd_length(mini));
+		exit_status = sum;
+		exit(sum);
 	}
 	return (0x1);
 }
@@ -115,22 +149,22 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 
 int	is_cmd(t_minishell *mini, t_env *envir)
 {
-	if (!ft_strcmp_flag(mini->cmd[0], "cd", 0, 0))
+	if (!strcmp_f(mini->cmd[0], "cd", 0, 0))
 		return (ft_cd(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "env", 0, 0)
-		|| !ft_strcmp_flag(mini->cmd[0], "ENV", 0, 0))
+	else if (!strcmp_f(mini->cmd[0], "env", 0, 0)
+		|| !strcmp_f(mini->cmd[0], "ENV", 0, 0))
 		return (ft_env(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "pwd", 0, 0)
-		|| !ft_strcmp_flag(mini->cmd[0], "PWD", 0, 0 ))
+	else if (!strcmp_f(mini->cmd[0], "pwd", 0, 0)
+		|| !strcmp_f(mini->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(mini ,&envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "export", 0, 0))
+	else if (!strcmp_f(mini->cmd[0], "export", 0, 0))
 		return (ft_export(mini, envir, 0x1));
-	else if (!ft_strcmp_flag(mini->cmd[0], "exit", 0, 0))
+	else if (!strcmp_f(mini->cmd[0], "exit", 0, 0))
 		return (ft_exit(mini), 1);
-	else if (!ft_strcmp_flag(mini->cmd[0], "unset", 0, 0))
+	else if (!strcmp_f(mini->cmd[0], "unset", 0, 0))
 		return (ft_unset(mini, envir));
-	else if (!ft_strcmp_flag(mini->cmd[0], "echo", 0, 0)
-		|| !ft_strcmp_flag(mini->cmd[0], "ECHO", 0, 0))
+	else if (!strcmp_f(mini->cmd[0], "echo", 0, 0)
+		|| !strcmp_f(mini->cmd[0], "ECHO", 0, 0))
 		return (ft_echo(mini));
 	else
 		return (is_bin_cmd(mini, envir, 0x0));
@@ -268,19 +302,19 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
     expander(&m, envir);
 	m->export = full_fill_print(&envir);
 	// handle_fd(m);
-	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
+	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (ft_cd(m, envir));
-	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "env", 0, 0) || !strcmp_f(m->cmd[0], "ENV", 0, 0))
 		return (ft_env(m, envir));
-	else if (!ft_strcmp_flag(m->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(m->cmd[0], "PWD", 0, 0 ))
+	else if (!strcmp_f(m->cmd[0], "pwd", 0, 0) || !strcmp_f(m->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(m, &envir));
-	else if (!ft_strcmp_flag(m->cmd[0], "export", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "export", 0, 0))
 		return (ft_export(m, envir, 0x1));
-	else if (!ft_strcmp_flag(m->cmd[0], "exit", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "exit", 0, 0))
 		return (ft_exit(m), 1);
-	else if (!ft_strcmp_flag(m->cmd[0], "unset", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (ft_unset(m, envir));
-	else if (!ft_strcmp_flag(m->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ECHO", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
 		return (ft_echo(m));
 	else
 		return (-1);
@@ -288,19 +322,19 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 
 int	is_builtin(t_minishell *m)
 {
-	if (!ft_strcmp_flag(m->cmd[0], "cd", 0, 0))
+	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "env", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ENV", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "env", 0, 0) || !strcmp_f(m->cmd[0], "ENV", 0, 0))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "pwd", 0, 0) || !ft_strcmp_flag(m->cmd[0], "PWD", 0, 0 ))
+	else if (!strcmp_f(m->cmd[0], "pwd", 0, 0) || !strcmp_f(m->cmd[0], "PWD", 0, 0 ))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "export", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "export", 0, 0))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "exit", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "exit", 0, 0))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "unset", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (0x1);
-	else if (!ft_strcmp_flag(m->cmd[0], "echo", 0, 0) || !ft_strcmp_flag(m->cmd[0], "ECHO", 0, 0))
+	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
 		return (0x1);
 	else
 		return (0x0);
@@ -318,6 +352,7 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 	flag = 0x0;
 	old_stdin = dup((*head)->fd_in);
 	tmp = *head;
+	// puts("123");
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);
@@ -329,7 +364,10 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 				exit_status = 0x1;
 			return ;
 		}
+		else if (flag == 11)
+			return ;
 	}
+	// puts("44444");
 	while (tmp->next)
 	{
 		big_execution(tmp, envir, 0x1, old_stdin);

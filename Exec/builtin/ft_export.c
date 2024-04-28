@@ -137,10 +137,9 @@ int	is_exportable(t_minishell *m, char *s, t_env *envir)
 {
 	int	i;
 
-	(void) m;
 	i = 0x0;
-	// if (ft_isdigit(s[0x0]))
-	// 	return (export_error(m, 0x0, s, 0x0), 0x0);
+	if (ft_isdigit(s[0x0]))
+		return (export_error(m, 0x0, s, 0x0), 0x0);
 	while (s[i])
 	{
 		if (s[0x0] && s[0x1] == ' ')
@@ -153,7 +152,32 @@ int	is_exportable(t_minishell *m, char *s, t_env *envir)
 			return (0x1);
 		i++;
 	}
-	if (!ft_strcmp_flag(grep_from_env(envir, s), "(null)", 0x0, 0x0))
+	if (!strcmp_f(grep_from_env(envir, s), "(null)", 0x0, 0x0))
+		return (0x0);
+	return (0x1);
+}
+
+int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
+{
+	int	i;
+
+	i = 0x0;
+	(void) m;
+	if (ft_isdigit(s[0x0]))
+		return (0x0);
+	while (s[i])
+	{
+		if (s[0x0] && s[0x1] == ' ')
+			return (0x1);
+		if (s[i] == '+' && s[i + 1] == '=')
+			return (0x1);
+		if (s[i] == '=' && s[i + 0x1] == ' ' && is_num(&s[i + 0x2]))
+			return (0x0);
+		if (s[i] == '=')
+			return (0x1);
+		i++;
+	}
+	if (!strcmp_f(grep_from_env(envir, s), "(null)", 0x0, 0x0))
 		return (0x0);
 	return (0x1);
 }
@@ -171,7 +195,7 @@ int	already_exist(char *s, t_env *envir)
 		return (0x0);
 	while (head)
 	{
-		if (!ft_strcmp_flag(head->key, ft_substr_executor(s, 0x0, i), 0x0, 0x0))
+		if (!strcmp_f(head->key, ft_substr_executor(s, 0x0, i), 0x0, 0x0))
 		{
 			head->value = &s[++i];
 			return (0x1);
@@ -260,6 +284,7 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 	ft_putendl_fd(s, 0x2);
 	if (o)
 	ft_putendl_fd(0, 0x2);
+	exit_status = 0x1;
 	if (m)
 	{
 		if (m->size > 1)
@@ -329,7 +354,7 @@ int	check_arg_ex(t_minishell *m, int i, int j)
 int	err_check(t_minishell *m)
 {
 	if (m->cmd[0x1] &&
-		!ft_strcmp_flag("=", m->cmd[0x2], 0x0, 0x0) && m->cmd[0x3])
+		!strcmp_f("=", m->cmd[0x2], 0x0, 0x0) && m->cmd[0x3])
 		return (export_error(m, 0x0, m->cmd[0x1], m->cmd[0x3]), 0x1);
 	// if (hard_check(m, 0x0, 0x1))
 	// 	return (0x1);
@@ -338,11 +363,29 @@ int	err_check(t_minishell *m)
 	return (0x0);
 }
 
+int	ft_is_equal_1(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	if (!strcmp_f("=", s, 0x0, 0x0))
+		return (0x1);
+	while (s[i])
+	{
+		if (s[i] == '=' && !ft_isalnum(s[i - 1]))
+			return (0x1);
+		i++;
+	}
+	return (0x0);
+}
+
 int	ft_is_equal(char *s)
 {
 	int	i;
 
 	i = 0x0;
+	if (!strcmp_f("=", s, 0x0, 0x0))
+		return (export_error(NULL, 0x0, s, 0x0), 0x1);
 	while (s[i])
 	{
 		if (s[i] == '=' && !ft_isalnum(s[i - 1]))
@@ -365,6 +408,7 @@ int	is_eq_exist(char *s)
 	}
 	return (0);
 }
+
 int	is_correct(char *s)
 {
 	int		i;
@@ -391,11 +435,45 @@ int	is_correct(char *s)
 	return (0x0);
 }
 
+int	is_correct_1(char *s)
+{
+	int		i;
+	char	*r;
+
+	i = 0x0;
+	if (is_eq_exist(s) != 0x0)
+	{
+		r = ft_substr_executor(s, 0x0, is_eq_exist(s));
+		while (r[i])
+		{
+			if (!ft_isalnum(s[i++]))
+				return (0x1);
+		}
+	}
+	else
+	{
+		while (s[i])
+		{
+			if (!ft_isalnum(s[i++]))
+				return (0x1);
+		}
+	}
+	return (0x0);
+}
+
 int	err_export(char *s)
 {
 	(void) s;
-	// if (is_equal(s))
-	// 	return (0x0);
+	if (ft_is_equal(s) || is_correct(s))
+		return (0x0);
+	return (0x1);
+}
+
+int	err_export_1(char *s)
+{
+	(void) s;
+	if (ft_is_equal_1(s) || is_correct_1(s))
+		return (0x0);
 	return (0x1);
 }
 
@@ -406,55 +484,61 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 	char		**p;
 	// int			flag;
 
-	print_cmd(mini);
+	// print_cmd(mini);
 	if (!mini->cmd[0x0])
 		return (0x0);
 	head = &envir;
-	// if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
-	// 	print_export(&mini->export);
-	// else
-	// {
+	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
+		print_export(&mini->export);
+	else
+	{
 		while (mini->cmd[i])
 		{
 			if (!ft_strlen(mini->cmd[i]))
 				break;
-			if (is_exportable(mini, mini->cmd[i], envir))
+			if (is_exportable(mini, mini->cmd[i], envir) && err_export(mini->cmd[i]))
 			{
 				if (already_exist(mini->cmd[i], envir))
 				{
-					puts(">0");
+					// puts(">0");
 					break ;
 				}
 				else if (check_special_case(mini->cmd[i]))
 				{
-					puts(">1");
+					// puts(">1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
 				}
 				else if (no_equal(mini->cmd[i]))
 				{
-					puts(">3");
+					// puts(">3");
 					lst = lstnew_executor(mini->cmd[i], NULL);
 					add_back_executor(&mini->export, lst);
 				}
 				else if (if_equal(mini->cmd[i]))
 				{
-					puts(">2");
+					// puts(">2");
 					p = ft_split_export(mini->cmd[i]);
 					check_export(mini, p[0x0]);
 					lst = lstnew_executor(p[0x0], p[0x1]);
-					printf("[%s] && [%s]\n", lst->key , lst->value);
 				}
 				else if (no_value(mini->cmd[i]))
 				{
-					puts(">4");
+					// puts(">4");
 					lst = lstnew_executor(mini->cmd[i], "");
 				}
 				add_back_executor(head, lst);
 			}
 			i++;
 		}
-	// }
+	}
 	if (mini->size > 1)
 		exit (0x0);
+	i = 0;
+	while (mini->cmd[i])
+	{
+		if (!(is_exportable_1(mini, mini->cmd[i], envir) && err_export_1(mini->cmd[i])))
+			return (0x0);
+		i++;
+	}
 	return (0x1);
 }

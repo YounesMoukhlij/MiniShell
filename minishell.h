@@ -23,6 +23,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
+
+
+
+# include <errno.h>
+
+
 # define sgl '\''
 # define dbl '\"'
 # define NO 0
@@ -67,6 +74,19 @@ void	print_cmd(t_minishell *mini);
 void	sig_func();
 int		lst_size(t_minishell **head);
 void	export_error(t_minishell *m, int option, char *s, char *o);
+
+void	change_dir(t_env *envi, int flag);
+int		error_case(t_minishell *mini, char *s);
+void	print_error(char *s, int i);
+int		is_negative(char *s);
+void	error_exit(char *input, char *msg);
+void	ft_close(t_minishell *mini, t_env *head, int i);
+void	ft_swap_nodes(t_env	*tmp);
+t_env	*sortlist(t_env **head);
+
+t_env	*copy_list(t_env *head);
+
+
 
 // YOUNES
 void		ft_put_err(char *input, char *message);
@@ -129,7 +149,7 @@ t_env		*full_fill_env(char **env, int i, int j);
 int			ft_strlen(char *s);
 char		*ft_get_path(t_env *envir);
 void		ft_putstr_fd_executor(char *s, int fd, int flag_newline);
-int			ft_strcmp_flag(char *s1, char *s2, int flag, int i);
+int			strcmp_f(char *s1, char *s2, int flag, int i);
 char		*grep_value(char *s);
 int			is_digit(char *s);
 int			grep(char *s);
