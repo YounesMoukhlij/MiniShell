@@ -477,6 +477,30 @@ int	err_export_1(char *s)
 	return (0x1);
 }
 
+char	*no_space(char *s)
+{
+	int		i;
+	int		j;
+	char	*r;
+
+	i = 0x0;
+	j = 0x0;
+	r = ft_calloc(ft_strlen(s) + 1, 0x1);
+	if (!r)
+		return (r);
+	while (s[i])
+	{
+		while (s[i] && (s[i] == ' ' || s[i] == '\t'))
+			i++;
+		if (r[j] != '\0' && ft_isalpha(s[i]))
+			i--;
+		r[j] = s[i];
+		j++;
+		i++;
+	}
+	return (r);
+}
+
 int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
 	t_env		**head;
@@ -500,30 +524,31 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 			{
 				if (already_exist(mini->cmd[i], envir))
 				{
-					// puts(">0");
+					puts(">0");
 					break ;
 				}
 				else if (check_special_case(mini->cmd[i]))
 				{
-					// puts(">1");
+					puts(">1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]), special_case(mini->cmd[i], envir));
 				}
 				else if (no_equal(mini->cmd[i]))
 				{
-					// puts(">3");
+					puts(">3");
 					lst = lstnew_executor(mini->cmd[i], NULL);
 					add_back_executor(&mini->export, lst);
 				}
 				else if (if_equal(mini->cmd[i]))
 				{
-					// puts(">2");
+					puts(">2");
 					p = ft_split_export(mini->cmd[i]);
 					check_export(mini, p[0x0]);
-					lst = lstnew_executor(p[0x0], p[0x1]);
+					printf(">>%s<< && >>%s<<\n", no_space(p[0x0]), no_space(p[0x1]));
+					lst = lstnew_executor(no_space(p[0x0]), no_space(p[0x1]));
 				}
 				else if (no_value(mini->cmd[i]))
 				{
-					// puts(">4");
+					puts(">4");
 					lst = lstnew_executor(mini->cmd[i], "");
 				}
 				add_back_executor(head, lst);
