@@ -315,6 +315,21 @@ void    expand_cmd(t_minishell **mini, t_env *envir)
     rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
 }
 
+void    check_cmd_one(t_minishell *mini, t_env *env)
+{
+    int i;
+
+    i = 0x0;
+    if (mini->cmd[0x0][0x0] == '$' && !env_node(&env, mini->cmd[0x0]))
+    {
+        while (mini->cmd[i])
+        {
+            ft_strcpy(mini->cmd[i], mini->cmd[i + 0x1]);
+            i++;
+        }
+    }
+}
+
 void    expander(t_minishell **mini, t_env *envir)
 {
     // int     i;
@@ -325,6 +340,7 @@ void    expander(t_minishell **mini, t_env *envir)
         return ;
     // check_arg(*mini, envir);
     expand_cmd(mini, envir);
+    check_cmd_one(*mini, envir);
     // expand_files(mini, envir);
     // while ((*mini)->cmd[i])
     // {

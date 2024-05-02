@@ -289,7 +289,6 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 		return (0x1);
     expander(&m, envir);
 	m->export = full_fill_print(&envir);
-	// handle_fd(m);
 	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (ft_cd(m, envir));
 	else if (!strcmp_f(m->cmd[0], "env", 0, 0) || !strcmp_f(m->cmd[0], "ENV", 0, 0))
@@ -328,18 +327,14 @@ int	is_builtin(t_minishell *m)
 		return (0x0);
 }
 
-
-void	ft_execute(t_minishell **head, t_env *envir, char **env)
+void	ft_execute(t_minishell **head, t_env *envir, int flag)
 {
 	t_minishell	*tmp;
-	(void) env;
 	int			old_stdin;
-	int			flag;
 
-	old_stdin = 0x0;
-	flag = 0x0;
-	old_stdin = dup((*head)->fd_in);
 	tmp = *head;
+	old_stdin = 0x0;
+	old_stdin = dup((*head)->fd_in);
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);
@@ -351,8 +346,6 @@ void	ft_execute(t_minishell **head, t_env *envir, char **env)
 				exit_status = 0x1;
 			return ;
 		}
-		else if (flag == 11)
-			return ;
 	}
 	while (tmp->next)
 	{

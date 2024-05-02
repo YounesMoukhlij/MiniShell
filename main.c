@@ -90,14 +90,12 @@ t_minishell	*last_node(t_minishell *lst)
 
 int	main(int ac, char **av, char **env)
 {
+	int			p;
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
-	int		p;
 
 	(void) av;
-	(void) mini;
-	(void) envir;
 	if (ac != 0x1)
 		return (0x1);
 	envir = full_fill_env(env, 0x0, 0x0);
@@ -121,7 +119,7 @@ int	main(int ac, char **av, char **env)
 		mini = parcing(str);
 		// print_cmd(mini);
 		if (mini)
-    		ft_execute(&mini, envir, env);
+    		ft_execute(&mini, envir, 0x0);
 		free (str);
 	}
 	return (0x0);
