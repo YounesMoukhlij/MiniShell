@@ -19,9 +19,15 @@ void	func_err(char *s)
 	if (stat(s, &buf) == 0)
 	{
 		if (buf.st_mode & S_IFDIR)
+		{
+			exit_status = 126;
 			return (ft_put_err(s, ": Is a directory"));
+		}
 		else if ((buf.st_mode & S_IXUSR) == 0)
+		{
+			exit_status = 126;
 			return (ft_put_err(s, ": Permission denied"));
+		}
 	}
 	return (ft_put_err(s, ": No such file or directory"));
 }
@@ -64,28 +70,6 @@ int	expanded_content(char *s)
 	return (0x0);
 }
 
-void	signal_handler_two(int sig_va)
-{
-	(void) sig_va;
-	// if (sig_va == SIGINT)
-	// {
-	// 	// puts("aa");
-	// 	// FLAG = 1;
-	// }
-}
-
-// void	sig_herdoc()
-// {
-// 	signal(SIGINT, signal_handler_two);
-// 	signal(SIGQUIT, signal_handler_two);
-// }
-
-// int	sig(void)
-// {
-// 	if (sig)
-// 	return (0x0);
-// }
-
 int	ft_helper_heredoc(t_minishell *m, char *s)
 {
 	if (cmd_length(m) == 0x0)
@@ -112,8 +96,6 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
 	rl_catch_signals = 0;
-		// sig_herdoc();
-	// signal(SIGINT, signal_handler_two);
 	while (1999)
 	{
 		s = readline("heredoc> ");
@@ -152,6 +134,7 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 		mini->fd_in = fd;
 	return (0x0);
 }
+
 char	*get_str(char *s)
 {
 	int	i;
@@ -355,6 +338,8 @@ int	check_fd(t_minishell *mini, t_env *env)
 	int	flag;
 
 	flag = 0x1;
+	if (!mini->files[0x1])
+		return (0x0);
     if (expand_files(&mini, env, 0x0))
 	{
 		func_err("file");

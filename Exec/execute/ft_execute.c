@@ -68,8 +68,41 @@ int	check_path(t_env **env, char *s)
 	return (0x1);
 }
 
+t_env	*env_node_v(t_env **envi, char *value)
+{
+	while ((*envi))
+	{
+		if (!strcmp_f((*envi)->value, value, 0x0, 0x0))
+			return (*envi);
+		(*envi) = (*envi)->next;
+	}
+	return (NULL);
+}
+
+int	ex_err(char *s)
+{
+	struct stat		buf;
+
+	if (stat(s, &buf) == 0)
+	{
+		if (buf.st_mode & S_IFDIR)
+			return (126);
+		else if ((buf.st_mode & S_IXUSR) == 0)
+			return (127);
+	}
+	else
+		return (0x0);
+	return (0x1);
+}
+
+
 int	env_check(t_env	**eenv, char *s)
 {
+	// if (env_node_v(eenv, s))
+	// {
+	// 	if (!ex_err(s))
+	// 		return (0x1);
+	// }
 	if (!eenv || check_path(eenv, s))
 		return (0x1);
 	return (0x0);
@@ -113,6 +146,12 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		res = ft_split_executor(mini->cmd[0x0], ' ');
 	else
 		res = mini->cmd;
+	// if (!strcmp_f(res[0x0], "", 0x0, 0x0))
+	// {
+	// 	sum = exve_err(res[0x0]);
+	// 	exit_status = sum;
+	// 	exit(sum);
+	// }
 	while (mini->path_d[i])
 	{
 		s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
@@ -120,7 +159,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		{
 			flag = 0x1;
 			if (execve(s, res, execv_env(envir)) == -1)
-				break ;
+					break ;
 		}
 		free (s);
 		i++;

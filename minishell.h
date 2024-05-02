@@ -99,6 +99,8 @@ void		rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int			cmd_length(t_minishell *m);
 void		clear_envir(t_env *head);
 void		signal_handler_one(int sig_v);
+void		ft_put_err(char *input, char *message);
+int			check_s(char *s);
 
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
@@ -137,7 +139,7 @@ char		*grep_from_env(t_env *envir, char *string);
 char		*ft_strjoin_executor(char *s1, char *s2);
 void    	full_fill_path(t_minishell *mini, t_env *envir);
 char		*add_t(char *p, char *o);
-void		ft_execute(t_minishell **head, t_env *envir, char **env);
+void		ft_execute(t_minishell **head, t_env *envir, int flag);
 void		add_back_executor(t_env **head, t_env *node);
 void		add_front_executor(t_env **head, t_env *node);
 t_env		*last_node_executor(t_env *lst);
