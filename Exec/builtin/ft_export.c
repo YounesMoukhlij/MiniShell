@@ -482,18 +482,26 @@ char	*no_space(char *s)
 	int		i;
 	int		j;
 	char	*r;
+	int		flag;
 
 	i = 0x0;
 	j = 0x0;
+	flag = 0x0;
 	r = ft_calloc(ft_strlen(s) + 1, 0x1);
 	if (!r)
 		return (r);
 	while (s[i])
 	{
 		while (s[i] && (s[i] == ' ' || s[i] == '\t'))
+		{
+			flag = 1;
 			i++;
-		if (r[j] != '\0' && ft_isalpha(s[i]))
+		}
+		if (j > 1 && s[i - 1] == ' ' && ft_isalpha(s[i]) && flag == 1)
+		{
 			i--;
+			flag = 0;
+		}
 		r[j] = s[i];
 		j++;
 		i++;

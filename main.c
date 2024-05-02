@@ -54,7 +54,7 @@ char *display_prompt_msg(void)
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " $> ");
+	str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
 	return (str);
 }
 
@@ -105,7 +105,7 @@ int	main(int ac, char **av, char **env)
 	sig_func();
 	while (1999)
 	{
-		str = readline("promt> ");
+		str = readline(display_prompt_msg());
 		if (!str)
 			break ;
 		if (is_empty(str))

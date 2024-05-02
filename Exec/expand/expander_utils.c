@@ -67,7 +67,9 @@ int dollar_position(char *s, int pos)
 
 int check_single(char *s)
 {
-    if (s[0x0] == sgl && s[ft_strlen(s) - 1] == sgl)
+    if (!s)
+        return (0x0);
+    if (s[0x0] == sgl && s[ft_strlen(s) - 1] == sgl && ft_strlen(s) > 2)
         return (0x1);
     return (0x0);
 }
