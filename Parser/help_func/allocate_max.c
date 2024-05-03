@@ -58,3 +58,19 @@ void    ft_free_strings(char **s)
     free (s);
     s = NULL;
 }
+
+int	lst_size(t_minishell **head)
+{
+	int			i;
+	t_minishell	*tmp;
+
+	i = 0;
+	tmp = *head;
+	while ((tmp))
+	{
+		(tmp) = (tmp)->next;
+		i++;
+	}
+	return (i);
+}
+

@@ -35,11 +35,21 @@ SRC = main.c \
 	  Exec/builtin/ft_env.c \
 	  Exec/builtin/ft_exit.c \
 	  Exec/builtin/ft_export.c \
+	  Exec/builtin/ft_export_1.c \
+	  Exec/builtin/ft_export_2.c \
+	  Exec/builtin/ft_export_3.c \
+	  Exec/builtin/ft_export_4.c \
+	  Exec/builtin/ft_export_5.c \
 	  Exec/env/env_functions.c \
 	  Exec/builtin/ft_exit_1.c \
 	  Exec/execute/ft_execute.c \
+	  Exec/execute/ft_execute_1.c \
+	  Exec/execute/ft_execute_2.c \
 	  Exec/builtin/print_export.c \
 	  Exec/expand/expander_utils.c \
+	  Exec/expand/expander_utils_1.c \
+	  Exec/expand/expander_utils_2.c \
+	  Exec/expand/expander_utils_3.c \
 	  Parser/ft_build_linker.c \
 	  Parser/ft_cleantach.c \
 	  Parser/ft_cleanshell.c \

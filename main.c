@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	show()
+void	show(void)
 {
 	system("leaks minishell");
 }
@@ -20,15 +20,20 @@ void	show()
 void	ft_puterror(int p)
 {
 	if (p == 0)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'",
+						2);
 	if (p == 1)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'",
+						2);
 	if (p == 3 || p == 5)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'",
+						2);
 	if (p == 6)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'",
+						2);
 	if (p == 7)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '", 2);
+		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '",
+						2);
 }
 
 int	is_empty(char *s)
@@ -47,7 +52,7 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-char *display_prompt_msg(void)
+char	*display_prompt_msg(void)
 {
 	char	*cwd;
 	char	*str;
@@ -60,7 +65,9 @@ char *display_prompt_msg(void)
 
 void	print_cmd(t_minishell *mini)
 {
-	int k = 0;
+	int	k;
+
+	k = 0;
 	while (mini->cmd[k])
 	{
 		printf("cmd[%d]=[%s]\n", k, mini->cmd[k]);
@@ -68,13 +75,12 @@ void	print_cmd(t_minishell *mini)
 	}
 }
 
-void	sig_func()
+void	sig_func(void)
 {
 	signal(SIGINT, signal_handler_one);
 	signal(SIGQUIT, signal_handler_one);
 	rl_catch_signals = 0;
 }
-
 
 t_minishell	*last_node(t_minishell *lst)
 {
@@ -94,9 +100,7 @@ int	main(int ac, char **av, char **env)
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
-
-	(void) av;
-	if (ac != 0x1)
+	if (ac != 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
 	envir = full_fill_env(env, 0x0, 0x0);
 	exit_status = 0x0;
@@ -114,13 +118,12 @@ int	main(int ac, char **av, char **env)
 		if (p != -1)
 		{
 			free(str);
-			continue;;
+			continue ;
 		}
 		mini = parcing(str);
-		// print_cmd(mini);
 		if (mini)
-    		ft_execute(&mini, envir, 0x0);
-		free (str);
+			ft_execute(&mini, envir, 0x0);
+		free(str);
 	}
 	return (0x0);
 }

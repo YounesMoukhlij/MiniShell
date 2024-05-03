@@ -14,7 +14,7 @@
 
 void	func_err(char *s)
 {
-	struct stat		buf;
+	struct stat	buf;
 
 	if (stat(s, &buf) == 0)
 	{
@@ -52,7 +52,7 @@ int	ft_open_others(t_minishell *mini)
 	return (0);
 }
 
-char	*hidden_name()
+char	*hidden_name(void)
 {
 	static int	i;
 	char		*s1;
@@ -64,8 +64,7 @@ char	*hidden_name()
 
 int	expanded_content(char *s)
 {
-	if ((s[0x0] == sgl && s[0x2] == sgl)
-		|| (s[0x0] == dbl && s[0x2] == dbl))
+	if ((s[0x0] == sgl && s[0x2] == sgl) || (s[0x0] == dbl && s[0x2] == dbl))
 		return (0x1);
 	return (0x0);
 }
@@ -78,7 +77,7 @@ int	ft_helper_heredoc(t_minishell *m, char *s)
 	m->fd_in = open(s, O_RDWR, 0644);
 	if (m->fd_in == -0x1)
 		return (0x0);
-	unlink (s);
+	unlink(s);
 	return (m->fd_in);
 }
 
@@ -100,11 +99,11 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	{
 		s = readline("heredoc> ");
 		if (!s || !strcmp_f(s, p, 0x0, 0x0))
-			break;
+			break ;
 		if (flag == 0x0)
 			s = big_work(env, s, 0x0, 0x1);
 		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
-		free (s);
+		free(s);
 	}
 	return (ft_helper_heredoc(mini, hdd_f));
 }
@@ -173,7 +172,6 @@ int	check_files(t_minishell *m, t_env *env)
 	return (0x0);
 }
 
-
 int	already_here(t_env *env, char *s)
 {
 	t_env	*tmp;
@@ -216,8 +214,8 @@ void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
 
 	i = 0x0;
 	j = 0x0;
-    if (!str || is_file_expanded(str))
-        return ;
+	if (!str || is_file_expanded(str))
+		return ;
 	s = ft_calloc(ft_strlen(str) + 0x1, 0x1);
 	if (!s)
 		return ;
@@ -234,75 +232,75 @@ void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
 	mini->files[index] = s;
 }
 
-char    *ultra_expand_file(t_env *envir, char *s, int i, int j)
+char	*ultra_expand_file(t_env *envir, char *s, int i, int j)
 {
-    char    *p;
-    char    *res;
+	char	*p;
+	char	*res;
 
-    i = 0x0;
-    p = ft_calloc(100, 0x1);
-    if (!p)
-        return (NULL);
-    while (s[i])
-    {
-        while (s[i] == '$')
-        {
-            while (s[i] == '$')
-                i++;
-            if (!ft_isalnum(s[i]))
-            {
-                i--;
-                break ;
-            }
-            if (!ft_isalpha(s[i]))
-            {
-                i++;
-                break ;
-            }
-            res = grep_from_env(envir, grep_value(&s[i]));
-            p = add_t(p, res);
-            if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
-                i += grep(&s[i]);
-            j = ft_strlen(p);
-        }
-        if (!s[i] || i > ft_strlen(s))
-            break ;
-        p[j] = s[i];
-        i++;
-        j++;
-    }
-    return (p);
+	i = 0x0;
+	p = ft_calloc(100, 0x1);
+	if (!p)
+		return (NULL);
+	while (s[i])
+	{
+		while (s[i] == '$')
+		{
+			while (s[i] == '$')
+				i++;
+			if (!ft_isalnum(s[i]))
+			{
+				i--;
+				break ;
+			}
+			if (!ft_isalpha(s[i]))
+			{
+				i++;
+				break ;
+			}
+			res = grep_from_env(envir, grep_value(&s[i]));
+			p = add_t(p, res);
+			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
+				i += grep(&s[i]);
+			j = ft_strlen(p);
+		}
+		if (!s[i] || i > ft_strlen(s))
+			break ;
+		p[j] = s[i];
+		i++;
+		j++;
+	}
+	return (p);
 }
 
-char    *files_without_quotes(char *s, int flag, int i, int j)
+char	*files_without_quotes(char *s, int flag, int i, int j)
 {
-    char    *res;
+	char	*res;
 
-    if (!s)
-        return ("");
-    res = calloc(strlen(s) + 0x1, 0x1);
-    if (!res)
-        return (NULL);
+	if (!s)
+		return ("");
+	res = calloc(strlen(s) + 0x1, 0x1);
+	if (!res)
+		return (NULL);
 	if (s[i] == dbl && s[ft_strlen(s) - 1] == dbl)
 		flag = 0x1;
-    while (s[i])
-    {
-        if (s[i] == dbl && s[i] && flag == 0x1)
-            i++;
-        if (s[i] == sgl && flag == 0x0)
-          i++;
-        if (!s[i])
-            break ;
-        res[j] = s[i];
-        i++;
-        j++;
-    }
-    return (res);
+	while (s[i])
+	{
+		if (s[i] == dbl && s[i] && flag == 0x1)
+			i++;
+		if (s[i] == sgl && flag == 0x0)
+			i++;
+		if (!s[i])
+			break ;
+		res[j] = s[i];
+		i++;
+		j++;
+	}
+	return (res);
 }
 
 int	expand_files(t_minishell **mini, t_env *envir, int i)
 {
-    char    **s;
+	char	**s;
 	t_env	*tmp;
 
 	s = (*mini)->files;
@@ -310,10 +308,10 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 		return (0x1);
 	if (check_files(*mini, envir))
 		return (0x0);
-    while (s[i])
-    {
+	while (s[i])
+	{
 		if (is_file_expanded(s[i]))
-        {
+		{
 			s[i] = without_quotes(s[i], 0x0);
 			if (already_here(envir, s[i]))
 				return (0x1);
@@ -326,7 +324,7 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 		else
 		{
 			(*mini)->files[i] = files_without_quotes(s[i], 0x0, 0x0, 0x0);
-    		rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
+			rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
 		}
 		i++;
 	}
@@ -340,7 +338,7 @@ int	check_fd(t_minishell *mini, t_env *env)
 	flag = 0x1;
 	if (!mini->files[0x1])
 		return (0x0);
-    if (expand_files(&mini, env, 0x0))
+	if (expand_files(&mini, env, 0x0))
 	{
 		func_err("file");
 		return (0x1);

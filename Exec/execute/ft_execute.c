@@ -12,125 +12,6 @@
 
 #include "../../minishell.h"
 
-char	**execv_env(t_env *envir)
-{
-	char	**str;
-	char	*string;
-	t_env 	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = envir;
-	str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
-	if (!str)
-		return (NULL);
-	while (tmp)
-	{
-		string = ft_strjoin_space_executor(tmp->key, tmp->value, '=');
-		if (tmp->next)
-		 	str[i++] = strdup(string);
-		free (string);
-		tmp = tmp->next;
-	}
-	str[i] = 0;
-	return (str);
-}
-
-int	check_cmd(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0x0);
-	while (s[i])
-	{
-		if (s[i] == ' ')
-			return (0x1);
-		i++;
-	}
-	return (0x0);
-}
-
-int	check_path(t_env **env, char *s)
-{
-	t_env	*tmp;
-
-	tmp = *env;
-	while (tmp)
-	{
-		if (!strcmp_f("PATH", tmp->key, 0x0, 0x0))
-			return (0x0);
-		tmp = tmp->next;
-	}
-	ft_putstr_fd(s, 0x2);
-	ft_putendl_fd(": no such file or directory", 0x2);
-	return (0x1);
-}
-
-t_env	*env_node_v(t_env **envi, char *value)
-{
-	while ((*envi))
-	{
-		if (!strcmp_f((*envi)->value, value, 0x0, 0x0))
-			return (*envi);
-		(*envi) = (*envi)->next;
-	}
-	return (NULL);
-}
-
-int	ex_err(char *s)
-{
-	struct stat		buf;
-
-	if (stat(s, &buf) == 0)
-	{
-		if (buf.st_mode & S_IFDIR)
-			return (126);
-		else if ((buf.st_mode & S_IXUSR) == 0)
-			return (127);
-	}
-	else
-		return (0x0);
-	return (0x1);
-}
-
-
-int	env_check(t_env	**eenv, char *s)
-{
-	// if (env_node_v(eenv, s))
-	// {
-	// 	if (!ex_err(s))
-	// 		return (0x1);
-	// }
-	if (!eenv || check_path(eenv, s))
-		return (0x1);
-	return (0x0);
-}
-
-int	check_s(char *s)
-{
-	if (s[0x0] == '.' && s[0x1] == '/')
-		return (0x1);
-	return (0x0);
-}
-
-int	exve_err(char *s)
-{
-	struct stat		buf;
-
-	if (stat(s, &buf) == 0)
-	{
-		if (buf.st_mode & S_IFDIR)
-			return (ft_put_err(s, ": Is a directory"), 126);
-		else if ((buf.st_mode & S_IXUSR) == 0)
-			return (ft_put_err(s, ": Permission denied"), 127);
-	}
-	else if (check_s(s))
-		return (ft_put_err(s, ": No such file or directory"), 127);
-	return (ft_put_err(s, ": Command not found"), 127);
-}
-
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
@@ -146,12 +27,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		res = ft_split_executor(mini->cmd[0x0], ' ');
 	else
 		res = mini->cmd;
-	// if (!strcmp_f(res[0x0], "", 0x0, 0x0))
-	// {
-	// 	sum = exve_err(res[0x0]);
-	// 	exit_status = sum;
-	// 	exit(sum);
-	// }
 	while (mini->path_d[i])
 	{
 		s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
@@ -174,28 +49,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 }
 
 
-int	is_cmd(t_minishell *mini, t_env *envir)
-{
-	if (!strcmp_f(mini->cmd[0], "cd", 0, 0))
-		return (ft_cd(mini, envir));
-	else if (!strcmp_f(mini->cmd[0], "env", 0, 0)
-		|| !strcmp_f(mini->cmd[0], "ENV", 0, 0))
-		return (ft_env(mini, envir));
-	else if (!strcmp_f(mini->cmd[0], "pwd", 0, 0)
-		|| !strcmp_f(mini->cmd[0], "PWD", 0, 0 ))
-		return (ft_pwd(mini ,&envir));
-	else if (!strcmp_f(mini->cmd[0], "export", 0, 0))
-		return (ft_export(mini, envir, 0x1));
-	else if (!strcmp_f(mini->cmd[0], "exit", 0, 0))
-		return (ft_exit(mini), 1);
-	else if (!strcmp_f(mini->cmd[0], "unset", 0, 0))
-		return (ft_unset(mini, envir));
-	else if (!strcmp_f(mini->cmd[0], "echo", 0, 0)
-		|| !strcmp_f(mini->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(mini));
-	else
-		return (is_bin_cmd(mini, envir, 0x0));
-}
+
 
 // void	childs_pipes(int zero, int one, t_minishell *m, int f)
 // {
@@ -281,21 +135,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 			}
 		}
 	}
-}
-
-int	lst_size(t_minishell **head)
-{
-	int			i;
-	t_minishell	*tmp;
-
-	i = 0;
-	tmp = *head;
-	while ((tmp))
-	{
-		(tmp) = (tmp)->next;
-		i++;
-	}
-	return (i);
 }
 
 void	handle_fd(t_minishell *mini)
