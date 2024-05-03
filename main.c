@@ -94,21 +94,39 @@ t_minishell	*last_node(t_minishell *lst)
 	return (tmp);
 }
 
+int	first_check(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	if (ft_strlen(s) > 1)
+	{
+		while (s[i])
+		{
+			if (!ft_isascii(s[i]) || !ft_isprint(s[i]))
+				return (0x1);
+			i++;
+		}
+	}
+	return (0x0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int			p;
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
-	if (ac != 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
+
+	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	envir = full_fill_env(env, 0x0, 0x0);
 	exit_status = 0x0;
+	envir = full_fill_env(env, 0x0, 0x0);
 	sig_func();
 	while (1999)
 	{
 		str = readline(display_prompt_msg());
-		if (!str)
+		if (!str || first_check(str))
 			break ;
 		if (is_empty(str))
 			continue ;
