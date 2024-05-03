@@ -27,7 +27,7 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		}
 		i++;
 	}
-	rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
+	rmv_SGL_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
 }
 
 int	before_err(char *s)
@@ -82,5 +82,4 @@ void	expander(t_minishell **mini, t_env *envir)
 	flag = before_err((*mini)->cmd[0x0]);
 	if (flag != 0x0)
 		exit_status = flag;
-	// print_cmd(*mini);
 }

@@ -14,7 +14,7 @@ int	is_expanded(t_minishell *mini, char *s)
 	{
 		if (s[i] == '~')
 		{
-			if (s[i] == dbl && s[i + 0x2] == dbl && s[i + 0x1] == '~'
+			if (s[i] == DBL && s[i + 0x2] == DBL && s[i + 0x1] == '~'
 				&& ft_strlen(s) > 2)
 				return (0x0);
 		}
@@ -23,7 +23,7 @@ int	is_expanded(t_minishell *mini, char *s)
 	return (0x1);
 }
 
-void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
+void	rmv_SGL_quotes_cmd(t_minishell *mini, char *str)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 		return ;
 	while (str[i])
 	{
-		if (str[i] == sgl)
+		if (str[i] == SGL)
 			i++;
 		s[j] = str[i];
 		j++;

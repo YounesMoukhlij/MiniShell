@@ -19,10 +19,10 @@ int	case_1(char *s, int pos)
 	i = 0x0;
 	while (s[i])
 	{
-		if (s[i] == dbl)
+		if (s[i] == DBL)
 		{
 			i++;
-			while (s[i] != dbl && s[i])
+			while (s[i] != DBL && s[i])
 			{
 				if (i == pos)
 					return (0x1);
@@ -41,10 +41,10 @@ int	case_2(char *s, int pos)
 	i = 0x0;
 	while (s[i])
 	{
-		if (s[i] == sgl)
+		if (s[i] == SGL)
 		{
 			i++;
-			while (s[i] != sgl && s[i])
+			while (s[i] != SGL && s[i])
 			{
 				if (i == pos)
 					return (0x0);
@@ -69,7 +69,7 @@ int	check_single(char *s)
 {
 	if (!s)
 		return (0x0);
-	if (s[0x0] == sgl && s[ft_strlen(s) - 1] == sgl && ft_strlen(s) > 2)
+	if (s[0x0] == SGL && s[ft_strlen(s) - 1] == SGL && ft_strlen(s) > 2)
 		return (0x1);
 	return (0x0);
 }
@@ -83,7 +83,7 @@ char	*do_single(char *s, int i, int j)
 		return (NULL);
 	while (s[i])
 	{
-		while (s[i] == sgl)
+		while (s[i] == SGL)
 			i++;
 		if (!s[i])
 			break ;
@@ -111,21 +111,21 @@ char	*without_quotes(char *s, int flag)
 		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == dbl && s[i] && flag == 0x0)
+		if (s[i] == DBL && s[i] && flag == 0x0)
 		{
 			flag = 0x1;
 			i++;
 		}
-		if (s[i] == dbl && flag == 0x1)
+		if (s[i] == DBL && flag == 0x1)
 		{
 			i++;
 			flag = 0x0;
 		}
-		while (s[i] == sgl && flag == 0x0)
+		while (s[i] == SGL && flag == 0x0)
 			i++;
 		if (!s[i])
 			break ;
-		if (s[i] != dbl && s[i])
+		if (s[i] != DBL && s[i])
 		{
 			res[j] = s[i];
 			i++;

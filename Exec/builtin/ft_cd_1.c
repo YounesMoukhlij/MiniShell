@@ -36,7 +36,7 @@ int	error_case(t_minishell *mini, char *s)
 		return (ft_put_err("cd:", " too many arguments"), 0x1);
 	while (s[i])
 	{
-		if (s[i] == dbl && s[i + 2] == dbl && s[i + 1] == '~' && s[i])
+		if (s[i] == DBL && s[i + 2] == DBL && s[i + 1] == '~' && s[i])
 			return (print_error("~", 0x1), 0x1);
 		i++;
 	}

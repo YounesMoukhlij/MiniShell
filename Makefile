@@ -28,6 +28,9 @@ SRC = main.c \
 	  Parser/ft_after_cmd.c\
 	  Exec/expand/expander.c \
 	  Exec/execute/check_fd.c \
+	  Exec/execute/check_fd_1.c \
+	  Exec/execute/check_fd_2.c \
+	  Exec/execute/check_fd_3.c \
 	  Exec/builtin/ft_unset.c \
 	  Exec/builtin/ft_echo.c \
 	  Exec/builtin/ft_cd_1.c \
@@ -45,6 +48,7 @@ SRC = main.c \
 	  Exec/execute/ft_execute.c \
 	  Exec/execute/ft_execute_1.c \
 	  Exec/execute/ft_execute_2.c \
+	  Exec/execute/ft_execute_3.c \
 	  Exec/builtin/print_export.c \
 	  Exec/expand/expander_utils.c \
 	  Exec/expand/expander_utils_1.c \
@@ -82,10 +86,13 @@ CC = cc
 all : ${NAME} clean
 
 $(NAME): $(OBJ)
-	${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
+	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
+	@echo "\033[31mLinking ...\033[0m"
+	@echo "\033[33m<.>DONE<.>\033[0m"
 
 %.o: %.c minishell.h
-	${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@
+	@${CC} ${CFLAG} -I ${READLINE_I} -c $< -o $@
+	@echo "\033[32mCompiling ...\033[0m"
 
 norm :
 	@norminette

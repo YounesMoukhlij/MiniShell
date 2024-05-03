@@ -1,5 +1,4 @@
 
-
 #include "../../minishell.h"
 
 int	check_special_case(char *s)

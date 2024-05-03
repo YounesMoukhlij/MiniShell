@@ -59,7 +59,8 @@ void	back_up(t_env **ennv, int i)
 		if (i == 0x2)
 			lst = lstnew_executor("_", "/usr/bin/env");
 		if (i == 0x3)
-			lst = lstnew_executor("PATH", "/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
+			lst = lstnew_executor("PATH",
+					"/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
 		add_back_executor(ennv, lst);
 	}
 }
@@ -88,11 +89,11 @@ t_env	*full_fill_env(char **env, int i, int j)
 	return (head);
 }
 
-void    full_fill_path(t_minishell *mini, t_env *envir)
+void	full_fill_path(t_minishell *mini, t_env *envir)
 {
-    mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1);
-    if (!mini->path)
-        return (free (mini->path));
-    mini->path = ft_get_path(envir);
-    mini->path_d = ft_split_executor(ft_get_path(envir), ':');
+	mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1);
+	if (!mini->path)
+		return (free(mini->path));
+	mini->path = ft_get_path(envir);
+	mini->path_d = ft_split_executor(ft_get_path(envir), ':');
 }

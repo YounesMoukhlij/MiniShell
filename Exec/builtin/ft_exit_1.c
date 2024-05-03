@@ -1,5 +1,4 @@
 
-
 #include "../../minishell.h"
 
 void	ft_put_err(char *input, char *message)

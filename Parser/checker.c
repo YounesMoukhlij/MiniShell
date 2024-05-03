@@ -35,14 +35,14 @@ int	red_check(char *str)
 				i++;
 				t++;
 			}
-				if (!str[i])
-					break;
+			if (!str[i])
+				break;
 			if (t >= 3)
 				return (1);
 			t = 0;
 		}
-				if (!str[i])
-					break;
+		if (!str[i])
+			break;
 		i++;
 	}
 	return (0);
@@ -73,8 +73,8 @@ int	infile_check(char *str)
 				return (1);
 			t = 0;
 		}
-				if (!str[i])
-					break;
+		if (!str[i])
+			break;
 		i++;
 	}
 	return (0);
@@ -104,9 +104,9 @@ int	check_expected_token(char *str)
 
 int	check_yns(char *i)
 {
-	if (i[0x0] == sgl && i[ft_strlen(i) - 1] == sgl)
+	if (i[0x0] == SGL && i[ft_strlen(i) - 1] == SGL)
 		return (0x1);
-	if (i[0x0] == dbl && i[ft_strlen(i) - 1] == dbl)
+	if (i[0x0] == DBL && i[ft_strlen(i) - 1] == DBL)
 		return (0x1);
 	return (0x0);
 }

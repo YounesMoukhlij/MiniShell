@@ -1,18 +1,18 @@
 
 #include "../../minishell.h"
 
-int is_existed(char *s)
+int	is_existed(char *s)
 {
-    int i;
+	int	i;
 
-    i = 0x0;
-    while (s[i])
-    {
-        if (s[i] == '$' && s[i + 1] == '?')
-            return (0x1);
-        i++;
-    }
-    return (0x0);
+	i = 0x0;
+	while (s[i])
+	{
+		if (s[i] == '$' && s[i + 1] == '?')
+			return (0x1);
+		i++;
+	}
+	return (0x0);
 }
 
 char	*ft_exit_status(char *s)
@@ -47,11 +47,11 @@ char	*ft_exit_status(char *s)
 			else
 			{
 				i--;
-				break;
+				break ;
 			}
 		}
 		if (!s[i] || i > ft_strlen(s))
-			break;
+			break ;
 		r[j] = s[i];
 		i++;
 		j++;
@@ -59,11 +59,11 @@ char	*ft_exit_status(char *s)
 	return (r);
 }
 
-int extra_check(char *s)
+int	extra_check(char *s)
 {
 	if (s[0] == '$' &&
-		(s[1] == dbl ||
-		s[1] == sgl))
+		(s[1] == DBL ||
+			s[1] == SGL))
 		return (0x1);
 	return (0x0);
 }
@@ -106,7 +106,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 			res = grep_from_env(envir, grep_value(&s[i]));
 			p = add_t(p, res);
 			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
-			i += grep(&s[i]);
+				i += grep(&s[i]);
 			j = ft_strlen(p);
 		}
 		if (!s[i] || i > ft_strlen(s))

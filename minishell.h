@@ -18,14 +18,14 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/stat.h>
 # include <unistd.h>
-# include <string.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
-# define sgl '\''
-# define dbl '\"'
+# define SGL '\''
+# define DBL '\"'
 # define NO 0
 # define YES 1
 
@@ -63,6 +63,29 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+
+int						is_builtin_cmd(t_minishell *m, t_env *envir);
+int						is_builtin(t_minishell *m);
+int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag);
+int						is_file_expanded(char *s);
+void					rmv_SGL_quotes_file(t_minishell *mini, char *str,
+							int index);
+char					*files_without_quotes(char *s, int flag, int i, int j);
+char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
+
+int						expand_files(t_minishell **mini, t_env *envir, int i);
+int						ft_open_others(t_minishell *mini);
+int						heredoc_check(t_minishell *mini, t_env *env,
+							char *delim, int flag);
+char					*hidden_name(void);
+int						check_files(t_minishell *m, t_env *env);
+int						expanded_content(char *s);
+char					*get_str(char *s);
+int						ft_helper_heredoc(t_minishell *m, char *s);
+int						ft_fd_files(t_minishell *mini, t_env *env);
+void					func_err(char *s);
+int						already_here(t_env *env, char *s);
+
 int						no_dollar(char *s);
 int						get_len(char *s, int mode);
 char					**ft_split_export(char *s);
@@ -80,7 +103,7 @@ int						ft_is_equal(char *s);
 int						is_eq_exist(char *s);
 int						check_arg_ex(t_minishell *m, int i, int j);
 int						err_check(t_minishell *m);
-void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
+void					rmv_SGL_quotes_cmd(t_minishell *mini, char *str);
 void					check_arg(t_minishell *mini, t_env *env);
 int						is_expanded(t_minishell *mini, char *s);
 t_env					*env_node_v(t_env **envi, char *value);
@@ -124,7 +147,7 @@ t_env					*copy_list(t_env *head);
 void					print_export(t_env **head);
 char					*big_work(t_env *envir, char *s, int i, int j);
 char					*without_quotes(char *s, int flag);
-void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
+void					rmv_SGL_quotes_cmd(t_minishell *mini, char *str);
 int						cmd_length(t_minishell *m);
 void					clear_envir(t_env *head);
 void					signal_handler_one(int sig_v);

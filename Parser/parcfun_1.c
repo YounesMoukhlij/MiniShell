@@ -57,9 +57,9 @@ int	*ft_arr_tk(char *str, int len)
 		if (str[i] == '|')
 			arr[j++] = 0;
 		else if (str[i] == '<')
-			case_one(arr, str[i + 1], &i, &j);
+			case_one (arr, str[i + 1], &i, &j);
 		else if (str[i] == '>')
-			case_two(arr, str[i + 1], &i, &j);
+			case_two (arr, str[i + 1], &i, &j);
 		if (!str[i])
 			break ;
 		i++;

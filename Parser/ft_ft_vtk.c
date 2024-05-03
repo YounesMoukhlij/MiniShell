@@ -12,7 +12,6 @@
 
 #include "../minishell.h"
 
-
 int	ft_vtk(char c)
 {
 	if (c == '|')
