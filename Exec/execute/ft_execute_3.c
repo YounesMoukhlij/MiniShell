@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_execute_3.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/04 15:27:07 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -53,10 +64,8 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	int		i;
 	char	*s;
 	char	**res;
-	int		sum;
 
 	i = 0x0;
-	sum = 0x0;
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
@@ -65,7 +74,10 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		res = mini->cmd;
 	while (mini->path_d[i])
 	{
-		s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
+		if (!(res[0x0][0x0] == '.' ||  res[0x0][0x0] == '/'))
+			s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
+		else
+			s = res[0x0];
 		if (access(s, X_OK) == 0x0)
 		{
 			flag = 0x1;
@@ -76,10 +88,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		i++;
 	}
 	if (flag == 0x0)
-	{
-		sum = exve_err(mini->cmd[0x0]);
-		exit_status = sum;
-		exit(sum);
-	}
+		exit((exit_status = exve_err(mini->cmd[0x0])));
 	return (0x1);
 }

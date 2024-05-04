@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:04:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:40:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	print_env(t_env *env)
 	{
 		while (tmp)
 		{
-			if (strcmp_f("PATH", tmp->key, 0x0, 0x0))
+			if (strcmp_f("PATH", tmp->key, 0x0, 0x0) ||
+				strcmp_f("tiliphikhizo", tmp->key, 0x0, 0x0))
 				print_helper(tmp);
 			tmp = tmp->next;
 		}

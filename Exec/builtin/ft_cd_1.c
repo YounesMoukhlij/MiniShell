@@ -24,21 +24,24 @@ int	cmd_length(t_minishell *m)
 int	error_case(t_minishell *mini, char *s)
 {
 	int		i;
-	char	*d;
 
-	i = 0;
-	d = mini->cmd[0x1];
-	if (d[0] == '$')
-		return (0x0);
-	// if (is_digit(d))
-	// 	return (ft_put_err("cd:", " string not in pwd"), 0x1);
+	i = 0x0;
+	(void) s;
+	if (mini->cmd[0x1])
+	{
+		if (ft_strlen(mini->cmd[0x1]) == 0 && mini->cmd[0x1][0] == '$')
+			return (0x0);
+	}
 	if (cmd_length(mini) > 2)
 		return (ft_put_err("cd:", " too many arguments"), 0x1);
-	while (s[i])
+	if (s)
 	{
-		if (s[i] == DBL && s[i + 2] == DBL && s[i + 1] == '~' && s[i])
-			return (print_error("~", 0x1), 0x1);
-		i++;
+		while (s[i])
+		{
+			if (s[i] == DBL && s[i + 1] == '~' && s[i + 2] == DBL)
+				return (print_error("~", 0x1), 0x1);
+			i++;
+		}
 	}
 	return (0x0);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:28:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:45:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define NO 0
 # define YES 1
 
-int						exit_status;
+// int						exit_status;
 
 typedef struct s_env
 {
@@ -53,6 +53,7 @@ typedef struct s_minishell
 	char				**afcmd_t;
 	char				**files;
 	int					*tab;
+	int					exit_status;
 	int					len_tab;
 	int					fd_in;
 	int					fd_out;
@@ -72,7 +73,6 @@ void					rmv_SGL_quotes_file(t_minishell *mini, char *str,
 							int index);
 char					*files_without_quotes(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
-
 int						expand_files(t_minishell **mini, t_env *envir, int i);
 int						ft_open_others(t_minishell *mini);
 int						heredoc_check(t_minishell *mini, t_env *env,
@@ -85,7 +85,6 @@ int						ft_helper_heredoc(t_minishell *m, char *s);
 int						ft_fd_files(t_minishell *mini, t_env *env);
 void					func_err(char *s);
 int						already_here(t_env *env, char *s);
-
 int						no_dollar(char *s);
 int						get_len(char *s, int mode);
 char					**ft_split_export(char *s);
@@ -140,7 +139,6 @@ char					*special_case(char *s, t_env *envir);
 int						already_exist(char *s, t_env *envir);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
-// YOUNES
 void					ft_put_err(char *input, char *message);
 t_env					*full_fill_print(t_env **env);
 t_env					*copy_list(t_env *head);
@@ -176,7 +174,6 @@ char					*ft_calloc(int num, int size);
 char					*ft_substr_executor(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);
-
 int						ft_export(t_minishell *mini, t_env *envir, int i);
 int						ft_exit(t_minishell *mini);
 int						ft_unset(t_minishell *mini, t_env *envir);
@@ -210,11 +207,7 @@ int						grep(char *s);
 t_minishell				*return_data(void);
 t_minishell				*return_data_1(void);
 t_minishell				*return_data_2(void);
-
-// YASSINE
-
 t_minishell				*parcing(char *str);
-
 void					ft_get_len(char *s1, int i, size_t *len_word, int fg);
 char					**ft_splitt(char *str);
 void					hun_par(char *s1, int *id, int *i, char *word);
@@ -252,9 +245,6 @@ void					ft_cleanshell(t_minishell **node);
 int						ft_checker(char *str);
 int						pip_check(char *str);
 void					show_me(t_minishell *cmp);
-
-// LIBFT
-
 int						ft_tolower(int c);
 int						ft_toupper(int c);
 int						ft_atoi(char *str);
@@ -263,7 +253,6 @@ int						ft_isalpha(int c);
 int						ft_isascii(int c);
 int						ft_isdigit(int c);
 int						ft_isprint(int c);
-
 char					*ft_strchr(char *s, int c);
 int						ft_strlen(char *str);
 int						ft_isprint(int c);
