@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:14:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:36:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	sig_n(int sig_v)
 	if (sig_v == SIGINT)
 		printf("Herer aaaaa\n");
 }
+
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
 	char	*s;

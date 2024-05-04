@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:34:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:41:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	handle_fd(t_minishell *mini)
 	if (mini->fd_out != 0x1)
 	{
 		printf("%d\n", mini->fd_out);
-		dup2(3, 1);
+		if (dup2(mini->fd_out, 1)== -1)
+			write(2, "error\n", 6);
 	}
 	// if (mini->fd_in != 0x0)
 	// {
