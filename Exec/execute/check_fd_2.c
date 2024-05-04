@@ -2,6 +2,11 @@
 
 #include "../../minishell.h"
 
+void	sig_n(int sig_v)
+{
+	if (sig_v == SIGINT)
+		printf("Herer aaaaa\n");
+}
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
 	char	*s;
@@ -15,7 +20,6 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
-	rl_catch_signals = 0;
 	while (1999)
 	{
 		s = readline("heredoc> ");

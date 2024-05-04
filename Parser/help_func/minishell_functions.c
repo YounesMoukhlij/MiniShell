@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:38:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/23 15:40:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:08:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_putstr_fd_executor(char *s, int fd, int flag_newline)
 int	strcmp_f(char *s1, char *s2, int flag, int i)
 {
 	if (!s1 || !s2)
+		return (-1);
+	if (!ft_strlen(s1) || !ft_strlen(s2))
 		return (-1);
 	if (flag == 0)
 	{

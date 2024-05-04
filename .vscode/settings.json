@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"chrono": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"minishell.h": "c"
 	},
 	"[c]": {
 		"editor.defaultFormatter": "keyhr.42-c-format"

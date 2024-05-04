@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/24 17:36:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:37:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	check_cmd_one(t_minishell *mini, t_env *env)
 	char	**res;
 
 	i = 0x0;
+	if (!mini->cmd[0x0])
+		return ;
 	res = mini->cmd;
 	if (!strcmp_f(res[0x0], "$", 0x0, 0x0) || !strcmp_f(res[0x0], "$?", 0x0,
 			0x0))

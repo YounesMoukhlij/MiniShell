@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:04:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:12:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,11 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 	{
 		while (mini->cmd[i])
 		{
-			if (!ft_strlen(mini->cmd[i]))
-				break ;
 			if (is_exportable(mini, mini->cmd[i], envir)
-				&& err_export(mini->cmd[i]))
+				&& err_export(mini->cmd[i]) && 
+				!already_exist(mini->cmd[i], envir) && ft_strlen(mini->cmd[i]))
 			{
-				if (already_exist(mini->cmd[i], envir))
-				{
-					// puts(">0");
-					break ;
-				}
-				else if (check_special_case(mini->cmd[i]))
+				if (check_special_case(mini->cmd[i]))
 				{
 					// puts(">1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]),
