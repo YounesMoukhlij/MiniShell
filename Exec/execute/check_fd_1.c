@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_fd_1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/04 18:35:24 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -10,12 +20,12 @@ void	func_err(char *s)
 	{
 		if (buf.st_mode & S_IFDIR)
 		{
-			exit_status = 126;
+			ex_st_f(126, 0x1);
 			return (ft_put_err(s, ": Is a directory"));
 		}
 		else if ((buf.st_mode & S_IXUSR) == 0)
 		{
-			exit_status = 126;
+			ex_st_f(126, 0x1);
 			return (ft_put_err(s, ": Permission denied"));
 		}
 	}

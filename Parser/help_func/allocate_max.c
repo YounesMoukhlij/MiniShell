@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 23:31:29 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/05 23:33:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:04:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*allocate_max(t_env *envir)
 			max = ft_strlen(head->value);
 		head = head->next;
 	}
-	r = ft_calloc(max, 1);
+	r = ft_calloc(max + 10, 1);
 	return (r);
 }
 

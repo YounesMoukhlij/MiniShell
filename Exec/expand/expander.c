@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 13:37:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:13:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		}
 		i++;
 	}
-	rmv_SGL_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
+	rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
 }
 
 int	before_err(char *s)
@@ -60,7 +60,7 @@ void	check_cmd_one(t_minishell *mini, t_env *env)
 	if (!strcmp_f(res[0x0], "$", 0x0, 0x0) || !strcmp_f(res[0x0], "$?", 0x0,
 			0x0))
 	{
-		exit_status = 127;
+		ex_st_f(127, 0x1);
 		return ;
 	}
 	if (mini->cmd[0x0][0x0] == '$' && !env_node(&env, &mini->cmd[0x0][0x1]))
@@ -83,5 +83,5 @@ void	expander(t_minishell **mini, t_env *envir)
 	expand_cmd(mini, envir);
 	flag = before_err((*mini)->cmd[0x0]);
 	if (flag != 0x0)
-		exit_status = flag;
+		ex_st_f(flag, 0x1);
 }

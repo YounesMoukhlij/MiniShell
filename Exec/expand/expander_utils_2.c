@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander_utils_2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/04 18:05:40 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -39,7 +50,8 @@ char	*ft_exit_status(char *s)
 				break ;
 			if (s[i] == '?')
 			{
-				r = add_t(r, ft_itoa(exit_status));
+				puts("111111");
+				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)));
 				if (ft_strlen(r))
 					i += 1;
 				j = ft_strlen(r);
@@ -75,8 +87,6 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 	char	*s;
 	char	*res;
 
-	i = 0x0;
-	j = 0x0;
 	p = allocate_max(envir);
 	if (!p)
 		return (NULL);
@@ -103,7 +113,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 				i++;
 				break ;
 			}
-			res = grep_from_env(envir, grep_value(&s[i]));
+			res = env_node(&envir, grep_value(&s[i]))->value;
 			p = add_t(p, res);
 			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
 				i += grep(&s[i]);

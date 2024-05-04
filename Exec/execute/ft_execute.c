@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:27:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:34:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 			return ;
 		return_exve >>= 0x8;
 		if (return_exve != 0x0)
-			exit_status = return_exve;
+			ex_st_f(return_exve, 0x1);
 		else
-			exit_status = 0x0;
+			ex_st_f(0x0, 0x1);
 		if (f == 0)
 		{
 			dup2(old_stdin, 0);
@@ -83,23 +83,18 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 
 void	handle_fd(t_minishell *mini)
 {
-	puts("here");
 	if (mini->fd_out != 0x1)
 	{
-		puts("aaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbYOUNES");
-		dup2(mini->fd_out, 1);
-		puts("aaaaaaaa");
-		// close(mini->fd_out);
-		// if (dup2(mini->fd_out, 0x1) == -1)
-		// 	return (ft_putstr_fd("dup failed", 0x2));
+		printf("%d\n", mini->fd_out);
+		dup2(3, 1);
 	}
-	if (mini->fd_in != 0x0)
-	{
-		dup2(mini->fd_in, 0x0);
-		// close(mini->fd_in);
-		// if (dup2(mini->fd_in, 0x0) == -0x1)
-		// 	return (ft_putstr_fd("dup failed", 0x2));
-	}
+	// if (mini->fd_in != 0x0)
+	// {
+	// 	dup2(mini->fd_in, 0x0);
+	// 	// close(mini->fd_in);
+	// 	// if (dup2(mini->fd_in, 0x0) == -0x1)
+	// 	// 	return (ft_putstr_fd("dup failed", 0x2));
+	// }
 }
 
 void	ft_execute(t_minishell **head, t_env *envir, int flag)
@@ -116,9 +111,9 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 		if (flag != -1)
 		{
 			if (flag == 0x1)
-				exit_status = 0x0;
+				ex_st_f(0x0, 0x1);
 			else if (flag != -1)
-				exit_status = 0x1;
+				ex_st_f(0x0, 0x1);
 			return ;
 		}
 	}

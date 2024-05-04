@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:45:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:26:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@
 # define NO 0
 # define YES 1
 
-// int						exit_status;
+// int						mini->exit_stt.exit_status;
+
+
+// typedef struct s_exit
+// {
+// 	int	exit_status;
+// }						t_exit;
 
 typedef struct s_env
 {
@@ -53,7 +59,6 @@ typedef struct s_minishell
 	char				**afcmd_t;
 	char				**files;
 	int					*tab;
-	int					exit_status;
 	int					len_tab;
 	int					fd_in;
 	int					fd_out;
@@ -64,6 +69,9 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+
+int ex_st_f(int status, int mode);
+void	handle_fd(t_minishell *mini);
 
 int						is_builtin_cmd(t_minishell *m, t_env *envir);
 int						is_builtin(t_minishell *m);
@@ -102,7 +110,7 @@ int						ft_is_equal(char *s);
 int						is_eq_exist(char *s);
 int						check_arg_ex(t_minishell *m, int i, int j);
 int						err_check(t_minishell *m);
-void					rmv_SGL_quotes_cmd(t_minishell *mini, char *str);
+void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 void					check_arg(t_minishell *mini, t_env *env);
 int						is_expanded(t_minishell *mini, char *s);
 t_env					*env_node_v(t_env **envi, char *value);
@@ -145,7 +153,7 @@ t_env					*copy_list(t_env *head);
 void					print_export(t_env **head);
 char					*big_work(t_env *envir, char *s, int i, int j);
 char					*without_quotes(char *s, int flag);
-void					rmv_SGL_quotes_cmd(t_minishell *mini, char *str);
+void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int						cmd_length(t_minishell *m);
 void					clear_envir(t_env *head);
 void					signal_handler_one(int sig_v);

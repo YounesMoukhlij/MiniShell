@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:27:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:13:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 	ft_putendl_fd(s, 0x2);
 	if (o)
 		ft_putendl_fd(0, 0x2);
-	exit_status = 0x1;
+	ex_st_f(0x1, 0x1);
 	if (m)
 	{
 		if (m->size > 1)

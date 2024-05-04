@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:26:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:18:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,15 @@ int	first_check(char *s)
 	return (0x0);
 }
 
+int ex_st_f(int status, int mode)
+{
+	static int a;
+
+	if (mode == 1)
+		a = status;
+	return (a);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int			p;
@@ -120,7 +129,6 @@ int	main(int ac, char **av, char **env)
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	exit_status = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
 	sig_func();
 	while (1999)

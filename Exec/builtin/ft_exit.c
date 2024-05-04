@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:42:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:34:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@ void	exit_1(char *s)
 {
 	if (is_digit(s) || is_negative(s))
 	{
-		if (ft_atoi(s) > 0x0)
+		if (ft_atoi(s) > 0x0 && ft_atoi(s) < 255)
 		{
-			exit_status = ft_atoi(s);
+			ex_st_f(ft_atoi(s), 0x1);
 			exit(ft_atoi(s));
+		}
+		else if (ft_atoi(s) < 0x0 )
+		{
+			ex_st_f(255, 0x1);
+			exit(255);
 		}
 		else
 		{
-			exit_status = 126;
-			exit(156);
+			ex_st_f(ft_atoi(s) % 255, 0x1);
+			exit(ft_atoi(s) % 255);
 		}
 	}
 	else if (!is_digit(s))
 	{
 		error_exit(s, " numeric argument required");
-		exit_status = 255;
+		ex_st_f(255, 0x1);
 		exit(255);
 	}
 }
@@ -45,13 +50,13 @@ void	exit_2(char *s, char *r)
 	else if (!is_digit(s) && is_digit(r))
 	{
 		error_exit(s, " numeric argument required");
-		exit_status = 255;
+		ex_st_f(255, 0x1);
 		exit(255);
 	}
 	else
 	{
 		error_exit(NULL, " too many arguments");
-		exit_status = 0x1;
+		ex_st_f(0x1, 0x1);
 		exit (0x1);
 	}
 }
@@ -62,7 +67,7 @@ int	ft_exit(t_minishell *mini)
 		puts("exit");
 	if (cmd_length(mini) == 1)
 	{
-		exit_status = 0x0;
+		ex_st_f(0x0, 0x1);
 		exit(0x0);
 	}
 	else if (cmd_length(mini) == 0x2)

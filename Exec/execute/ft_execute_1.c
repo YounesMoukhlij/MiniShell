@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:18:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:09:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**execv_env(t_env *envir)
 	{
 		string = ft_strjoin_space_executor(tmp->key, tmp->value, '=');
 		if (tmp->next)
-		 	str[i++] = strdup(string);
+		 	str[i++] = ft_strdup(string);
 		free (string);
 		tmp = tmp->next;
 	}

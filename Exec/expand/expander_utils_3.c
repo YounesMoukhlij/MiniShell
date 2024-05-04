@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander_utils_3.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/04 17:14:55 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -23,7 +33,7 @@ int	is_expanded(t_minishell *mini, char *s)
 	return (0x1);
 }
 
-void	rmv_SGL_quotes_cmd(t_minishell *mini, char *str)
+void	rmv_sgl_quotes_cmd(t_minishell *mini, char *str)
 {
 	int		i;
 	int		j;
