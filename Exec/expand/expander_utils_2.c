@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:05:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:06:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*ft_exit_status(char *s)
 				break ;
 			if (s[i] == '?')
 			{
-				puts("111111");
 				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)));
 				if (ft_strlen(r))
 					i += 1;

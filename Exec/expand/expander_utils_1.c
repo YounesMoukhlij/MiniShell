@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:02:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:08:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ char	*add_t(char *p, char *o)
 
 	i = 0x0;
 	j = 0x0;
-	printf("addt ----->    p=%s. && o=%s.\n", p, o);
 	if (ft_strlen(p) > 0x0 && o)
 	{
-		puts("1212");
 		len = 0x0;
 		while (p[len])
 			len++;
@@ -75,8 +73,7 @@ char	*add_t(char *p, char *o)
 	}
 	else if (ft_strlen(p) == 0x0 && o)
 	{
-		puts("1212ssssss");
-		while (o[i] && p[j])
+		while (o[i])
 		{
 			p[j] = o[i];
 			i++;

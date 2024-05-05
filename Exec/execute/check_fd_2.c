@@ -6,17 +6,22 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:36:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:26:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+int	glb_sig = 0;
+
 void	sig_n(int sig_v)
 {
 	if (sig_v == SIGINT)
-		printf("Herer aaaaa\n");
+		glb_sig = 1;
 }
+
+
+
 
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
@@ -31,10 +36,13 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
+	// signal(SIGQUIT, sig_function());
 	while (1999)
 	{
+		signal(SIGINT, SIG_DFL);
+		rl_catch_signals = 0;
 		s = readline("heredoc> ");
-		if (!s || !strcmp_f(s, p, 0x0, 0x0))
+		if (!s || !strcmp_f(s, p, 0x0, 0x0) || glb_sig == 1)
 			break ;
 		if (flag == 0x0)
 			s = big_work(env, s, 0x0, 0x1);

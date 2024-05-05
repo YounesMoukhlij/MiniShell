@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:26:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:03:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	if (check_fd(m, envir))
 		return (0x1);
     expander(&m, envir);
-	handle_fd(m);
+	// handle_fd(m);
 	m->export = full_fill_print(&envir);
 	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (ft_cd(m, envir));
