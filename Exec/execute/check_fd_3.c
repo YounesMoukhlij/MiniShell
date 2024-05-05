@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:36:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:07:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ultra_expand_file(t_env *envir, char *s, int i, int j)
 				break ;
 			}
 			res = grep_from_env(envir, grep_value(&s[i]));
-			p = add_t(p, res);
+			p = add_t(p, res, envir);
 			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
 				i += grep(&s[i]);
 			j = ft_strlen(p);

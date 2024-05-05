@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:34:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:43:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	exit_1(char *s)
 		}
 		else if (ft_atoi(s) < 0x0 )
 		{
-			ex_st_f(255, 0x1);
-			exit(255);
+			ex_st_f(156, 0x1);
+			exit(156);
 		}
 		else
 		{
-			ex_st_f(ft_atoi(s) % 255, 0x1);
-			exit(ft_atoi(s) % 255);
+			ex_st_f(ft_atoi(s) % 255 - 0x1, 0x1);
+			exit(ft_atoi(s) % 255 - 0x1);
 		}
 	}
 	else if (!is_digit(s))

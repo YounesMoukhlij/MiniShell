@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:41:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:37:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 			if (flag == 0x1)
 				ex_st_f(0x0, 0x1);
 			else if (flag != -1)
-				ex_st_f(0x0, 0x1);
+				ex_st_f(0x1, 0x1);
 			return ;
 		}
 	}

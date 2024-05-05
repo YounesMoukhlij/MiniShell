@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:08:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:11:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*grep_value(char *s)
 	char	*r;
 
 	len = 0x0;
+	if (!s)
+		return (NULL);
 	while (s[len])
 	{
 		if (!ft_isalnum(s[len]))
@@ -52,7 +54,7 @@ char	*grep_value(char *s)
 	return (r);
 }
 
-char	*add_t(char *p, char *o)
+char	*add_t(char *p, char *o, t_env *e)
 {
 	int	i;
 	int	j;
@@ -60,6 +62,8 @@ char	*add_t(char *p, char *o)
 
 	i = 0x0;
 	j = 0x0;
+	if (ft_strlen(o) >= get_env_max(e))
+		return (ft_putstr_fd("too much caracters\n", 0x2), p);
 	if (ft_strlen(p) > 0x0 && o)
 	{
 		len = 0x0;

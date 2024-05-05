@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 23:31:29 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:04:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:17:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*allocate_max(t_env *envir)
 			max = ft_strlen(head->value);
 		head = head->next;
 	}
-	r = ft_calloc(max + 10, 1);
+	r = ft_calloc(max * 20, 1);
 	return (r);
 }
 
@@ -72,4 +72,20 @@ int	lst_size(t_minishell **head)
 		i++;
 	}
 	return (i);
+}
+
+int	get_env_max(t_env *envir)
+{
+	t_env	*head;
+	int		max;
+
+	head = envir;
+	max = ft_strlen(head->value);
+	while (head)
+	{
+		if (max < ft_strlen(head->value))
+			max = ft_strlen(head->value);
+		head = head->next;
+	}
+	return (max * 20);	
 }

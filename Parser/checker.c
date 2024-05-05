@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/05 14:17:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:29:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	infile_check(char *str)
 	while (str[i])
 	{
 		ft_skep(str, &i);
-				if (!str[i])
-					break;
+		if (!str[i])
+			break;
 		if (str[i] == '<')
 		{
 			while (str[i] == '<' && str[i])
@@ -87,6 +87,9 @@ int	check_expected_token(char *str)
 	i = 0;
 	while (str[i])
 	{
+		ft_skep(str, &i);
+		if (!str[i])
+			break;
 		if (str[i] == '<' || str[i] == '>')
 		{
 			i++;

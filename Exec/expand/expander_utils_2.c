@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:06:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:10:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_existed(char *s)
 	return (0x0);
 }
 
-char	*ft_exit_status(char *s)
+char	*ft_exit_status(char *s, t_env *envir)
 {
 	int		i;
 	int		j;
@@ -50,7 +50,7 @@ char	*ft_exit_status(char *s)
 				break ;
 			if (s[i] == '?')
 			{
-				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)));
+				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)), envir);
 				if (ft_strlen(r))
 					i += 1;
 				j = ft_strlen(r);
@@ -89,7 +89,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 	p = allocate_max(envir);
 	if (!p)
 		return (NULL);
-	s = ft_exit_status(r);
+	s = ft_exit_status(r, envir);
 	while (s[i])
 	{
 		while (s[i] == '$' && dollar_position(s, i))
@@ -112,9 +112,9 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 				i++;
 				break ;
 			}
-			res = env_node(&envir, grep_value(&s[i]))->value;
-			p = add_t(p, res);
-			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
+			res = grep_from_env(envir, grep_value(&s[i]));
+			p = add_t(p, res, envir);
+			if (ft_strlen(p) || !ft_strlen(res))
 				i += grep(&s[i]);
 			j = ft_strlen(p);
 		}

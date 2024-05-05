@@ -6,12 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:02:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:13:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../minishell.h"
+
+int	my_check(t_minishell *mini)
+{
+	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
+		return (0x1);
+	if (!ft_strlen(mini->cmd[0x1]))
+		return (0x1);
+	return (0x0);
+}
 
 int	ft_export(t_minishell *mini, t_env *envir, int i)
 {
@@ -19,12 +27,10 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 	t_env	*lst;
 	char	**p;
 
-	// int			flag;
-	// print_cmd(mini);
 	if (!mini->cmd[0x0])
 		return (0x0);
 	head = &envir;
-	if (!mini->cmd[i] || (mini->cmd[i][0] == '$' && !mini->cmd[i + 1]))
+	if (my_check(mini))
 		print_export(&mini->export);
 	else
 	{
@@ -36,26 +42,26 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 			{
 				if (check_special_case(mini->cmd[i]))
 				{
-					// puts(">1");
+					puts(">1");
 					lst = lstnew_executor(ft_key(mini->cmd[i]),
 							special_case(mini->cmd[i], envir));
 				}
 				else if (no_equal(mini->cmd[i]))
 				{
-					// puts(">3");
+					puts(">3");
 					lst = lstnew_executor(mini->cmd[i], NULL);
 					add_back_executor(&mini->export, lst);
 				}
 				else if (if_equal(mini->cmd[i]))
 				{
-					// puts(">2");
+					puts(">2");
 					p = ft_split_export(mini->cmd[i]);
 					check_export(mini, p[0x0]);
-					lst = lstnew_executor(no_space(p[0x0]), no_space(p[0x1]));
+					lst = lstnew_executor(p[0x0], p[0x1]);
 				}
 				else if (no_value(mini->cmd[i]))
 				{
-					// puts(">4");
+					puts(">4");
 					lst = lstnew_executor(mini->cmd[i], "");
 				}
 				add_back_executor(head, lst);
@@ -65,7 +71,7 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 	}
 	if (mini->size > 1)
 		exit(0x0);
-	i = 0;
+	i = 0x0;
 	while (mini->cmd[i])
 	{
 		if (!(is_exportable_1(mini, mini->cmd[i], envir)

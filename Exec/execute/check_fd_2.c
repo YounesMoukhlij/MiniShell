@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:26:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:34:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ void	sig_n(int sig_v)
 	if (sig_v == SIGINT)
 		glb_sig = 1;
 }
-
-
-
 
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
@@ -94,6 +91,20 @@ char	*get_str(char *s)
 	return (&s[count]);
 }
 
+int	check_f(char *s)
+{
+	char	**r;
+	int		i;
+
+	i = 0x0;
+	r = ft_split_executor(s, ' ');
+	while (r[i])
+		i++;
+	if (i > 0x1)
+		return (0x1);
+	return (0x0);
+}
+
 int	check_files(t_minishell *m, t_env *env)
 {
 	int		i;
@@ -105,12 +116,15 @@ int	check_files(t_minishell *m, t_env *env)
 	while (++i < m->len_tab)
 	{
 		tmp = env_node(&env, get_str(m->files[i + 0x1]));
-		if (m->files[i + 0x1][0x0] == '$' && !tmp)
+		if ((check_f(tmp->value) && tmp) || (check_f(tmp->value) && !tmp))
 		{
-			ft_putstr_fd("Minishell: ", 0x2);
-			ft_putstr_fd(m->files[i + 0x1], 0x2);
-			ft_putendl_fd(": ambiguous redirect", 0x2);
-			return (0x1);
+			if (m->files[i + 0x1][0x0] == '$')
+			{
+				ft_putstr_fd("Minishell: ", 0x2);
+				ft_putstr_fd(m->files[i + 0x1], 0x2);
+				ft_putendl_fd(": ambiguous redirect", 0x2);
+				return (0x1);
+			}
 		}
 	}
 	return (0x0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:04:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:19:00 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	unset_node(char *s, t_env *envir)
 		{
 			pre->next = tmp->next;
 			pre = tmp->next;
-			free_node(tmp);
+			// free_node(tmp);
 			break ;
 		}
 		pre = tmp;

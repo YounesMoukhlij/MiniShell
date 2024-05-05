@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:26:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:07:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_minishell
 
 int ex_st_f(int status, int mode);
 void	handle_fd(t_minishell *mini);
+int	get_env_max(t_env *envir);
 
 int						is_builtin_cmd(t_minishell *m, t_env *envir);
 int						is_builtin(t_minishell *m);
@@ -194,7 +195,7 @@ t_env					*env_node(t_env **envi, char *keyy);
 char					*grep_from_env(t_env *envir, char *string);
 char					*ft_strjoin_executor(char *s1, char *s2);
 void					full_fill_path(t_minishell *mini, t_env *envir);
-char					*add_t(char *p, char *o);
+char					*add_t(char *p, char *o, t_env *e);
 void					ft_execute(t_minishell **head, t_env *envir, int flag);
 void					add_back_executor(t_env **head, t_env *node);
 void					add_front_executor(t_env **head, t_env *node);
