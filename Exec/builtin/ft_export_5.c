@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 18:32:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:50:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@ int	is_correct(char *s)
 	char	*r;
 
 	i = 0x0;
-	if (is_eq_exist(s) != 0x0)
+	if (is_eq_exist(s))
 	{
 		r = ft_substr_executor(s, 0x0, is_eq_exist(s));
 		while (r[i])
 		{
-			if (!ft_isalnum(s[i++]))
+			if (!ft_isalnum(s[i]))
 				return (export_error(NULL, 0x0, s, 0x0), 0x1);
+			i++;
 		}
 	}
 	else
 	{
 		while (s[i])
 		{
-			if (!ft_isalnum(s[i++]))
+			if (!ft_isalnum(s[i]))
 				return (export_error(NULL, 0x0, s, 0x0), 0x1);
+			i++;
 		}
 	}
 	return (0x0);
@@ -49,24 +51,42 @@ int	is_correct_1(char *s)
 		r = ft_substr_executor(s, 0x0, is_eq_exist(s));
 		while (r[i])
 		{
-			if (!ft_isalnum(s[i++]))
+			if (!ft_isalnum(s[i]))
 				return (0x1);
+			i++;
 		}
 	}
 	else
 	{
 		while (s[i])
 		{
-			if (!ft_isalnum(s[i++]))
+			if (!ft_isalnum(s[i]))
 				return (0x1);
+			i++;
 		}
 	}
 	return (0x0);
 }
 
+int	extra(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	if (!ft_is_equal(s))
+	{
+		while (s[i])
+		{
+			if (!ft_isalnum(s[i]) && s[i] != '_')
+				return (0x0);
+			i++;
+		}
+	}
+	return (0x1);
+}
 int	err_export(char *s)
 {
-	if (ft_is_equal(s) || is_correct(s))
+	if (ft_is_equal(s) || extra(s))
 		return (0x0);
 	return (0x1);
 }
@@ -74,7 +94,7 @@ int	err_export(char *s)
 int	err_export_1(char *s)
 {
 	(void)s;
-	if (ft_is_equal_1(s) || is_correct_1(s))
+	if (ft_is_equal_1(s))
 		return (0x0);
 	return (0x1);
 }

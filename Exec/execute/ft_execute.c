@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:37:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:56:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	old_stdin = dup((*head)->fd_in);
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
+		if ((*head)->fd_out != 0x1)
+			dup2((*head)->fd_out, 0x1);
+		if ((*head)->fd_in != 0x0)
+			dup2((*head)->fd_in, 0x1);
 		flag = is_builtin_cmd(*head, envir);
 		if (flag != -1)
 		{

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 14:03:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/05 20:11:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,30 @@ int	is_builtin(t_minishell *m)
 		return (0x0);
 }
 
+char	**get_cmd_splited(char **s, int len)
+{
+	char	**r;
+	int		i;
+
+	i = 0x0;
+	r = ft_split_executor(s[0x0], ' ');
+	while (r[i])
+		i++;
+	
+}
+
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 {
 	int		i;
 	char	*s;
 	char	**res;
+	int		e_s;
 
 	i = 0x0;
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
-		res = ft_split_executor(mini->cmd[0x0], ' ');
+		res = get_cmd_splited(mini->cmd, );
 	else
 		res = mini->cmd;
 	while (mini->path_d[i])
@@ -90,8 +103,8 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
-		ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
-		exit(ex_st_f(exve_err(mini->cmd[0x0]), 0x0));
+		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
+		exit(e_s);
 	}
 	return (0x1);
 }
