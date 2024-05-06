@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/05 14:13:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:25:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,20 +120,30 @@ int ex_st_f(int status, int mode)
 	return (a);
 }
 
+void	get_fd_back(t_fd *fd)
+{
+	dup2(fd->tmp_fdout, 0x1);
+	dup2(fd->tmp_fdin, 0x0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int			p;
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
+	t_fd		*fd;
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
 	envir = full_fill_env(env, 0x0, 0x0);
 	sig_func();
+	fd = NULL;
+	fd->tmp_fdout = dup(1);
+	fd->tmp_fdin = dup(0);
 	while (1999)
 	{
-		str = readline(display_prompt_msg());
+		str = readline("===> ");
 		if (!str || first_check(str))
 			break ;
 		if (is_empty(str))
@@ -149,7 +159,7 @@ int	main(int ac, char **av, char **env)
 		mini = parcing(str);
 		if (mini)
 			ft_execute(&mini, envir, 0x0);
-		free(str);
+		get_fd_back(fd);
 	}
 	return (0x0);
 }

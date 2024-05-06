@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/06 17:00:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:18:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ int	ft_open_others(t_minishell *mini)
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 0x1]), 0x1);
 		}
+		// if (i < mini->len_tab + 0x1)
+		// 	close (fd);
 	}
 	printf("before>>>%d\n", fd);
-	mini->fd_out = fd;
+	if (fd != 0x1)
+		mini->fd_out = fd;
 	return (0);
 }
 
@@ -72,12 +75,16 @@ int	expanded_content(char *s)
 
 int	ft_helper_heredoc(t_minishell *m, char *s)
 {
+	int	fd;
+
 	if (cmd_length(m) == 0x0)
 		return (0x0);
 	close(m->fd_in);
-	m->fd_in = open(s, O_RDWR, 0644);
-	if (m->fd_in == -0x1)
+	fd = open(s, O_RDWR, 0644);
+	if (fd == -0x1)
 		return (0x0);
+	else
+		m->fd_out = fd;
 	unlink(s);
 	return (m->fd_in);
 }

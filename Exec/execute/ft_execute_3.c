@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/06 17:01:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:11:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	is_builtin_cmd(t_minishell *m, t_env *envir)
 {
-	if (m->size > 0x1)
-		return (0x0);
 	full_fill_path(m, envir);
 	if (check_fd(m, envir))
 		return (0x1);
@@ -112,7 +110,10 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		{
 			flag = 0x1;
 			if (execve(s, res, execv_env(envir)) == -1)
+			{
+				flag = 0x0;
 				break ;
+			}
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 19:54:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:22:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define DBL '\"'
 # define NO 0
 # define YES 1
+
+typedef struct s_fd
+{
+	int	tmp_fdin;
+	int	tmp_fdout;
+}	t_fd;
 
 typedef struct s_env
 {
