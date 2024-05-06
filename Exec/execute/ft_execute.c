@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 19:56:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:03:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,21 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 
 void	handle_fd(t_minishell *mini)
 {
-	if (mini->fd_out != 0x1)
+	printf("fd_out == [%d]\n", mini->fd_out);
+	printf("fd_in == [%d]\n", mini->fd_in);
+	if ((mini)->fd_out != 0x1)
 	{
-		printf("%d\n", mini->fd_out);
-		if (dup2(mini->fd_out, 1)== -1)
-			write(2, "error\n", 6);
+		puts("eeee");
+		if (dup2((mini)->fd_out, 0x1) == -1)
+			return (ft_put_err("dup2", "Cant Work\n"));
 	}
-	// if (mini->fd_in != 0x0)
-	// {
-	// 	dup2(mini->fd_in, 0x0);
-	// 	// close(mini->fd_in);
-	// 	// if (dup2(mini->fd_in, 0x0) == -0x1)
-	// 	// 	return (ft_putstr_fd("dup failed", 0x2));
-	// }
+	if ((mini)->fd_in != 0x0)
+	{
+	close(0);
+		puts("4444");
+		if (dup2((mini)->fd_in, 0x0) == -1)
+			return (ft_put_err("dup2", "Cant Work\n"));
+	}
 }
 
 void	ft_execute(t_minishell **head, t_env *envir, int flag)
@@ -108,10 +110,7 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	old_stdin = dup((*head)->fd_in);
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
-		if ((*head)->fd_out != 0x1)
-			dup2((*head)->fd_out, 0x1);
-		if ((*head)->fd_in != 0x0)
-			dup2((*head)->fd_in, 0x1);
+		puts("12345");
 		flag = is_builtin_cmd(*head, envir);
 		if (flag != -1)
 		{

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 18:38:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:00:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ft_open_others(t_minishell *mini)
 				return (func_err(mini->files[i + 0x1]), 0x1);
 		}
 	}
+	printf("before>>>%d\n", fd);
 	mini->fd_out = fd;
 	return (0);
 }

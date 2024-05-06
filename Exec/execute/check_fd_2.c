@@ -6,18 +6,18 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 15:34:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:12:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	glb_sig = 0;
+int	glb_sig = 1;
 
 void	sig_n(int sig_v)
 {
 	if (sig_v == SIGINT)
-		glb_sig = 1;
+		glb_sig = 0;
 }
 
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
@@ -33,13 +33,14 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	if (expanded_content(delim))
 		flag = 0x1;
 	p = without_quotes(delim, 0x0);
-	// signal(SIGQUIT, sig_function());
+	// signal(SIGINT, SIG_DFL);
+	// signal(SIGQUIT, SIG_DFL);
+	// rl_catch_signals = 0;
 	while (1999)
 	{
-		signal(SIGINT, SIG_DFL);
-		rl_catch_signals = 0;
+		// signal(SIGINT, sig_n);
 		s = readline("heredoc> ");
-		if (!s || !strcmp_f(s, p, 0x0, 0x0) || glb_sig == 1)
+		if (!s || !strcmp_f(s, p, 0x0, 0x0) || !glb_sig)
 			break ;
 		if (flag == 0x0)
 			s = big_work(env, s, 0x0, 0x1);
@@ -97,6 +98,8 @@ int	check_f(char *s)
 	int		i;
 
 	i = 0x0;
+	if (!s)
+		return (0);
 	r = ft_split_executor(s, ' ');
 	while (r[i])
 		i++;
@@ -116,14 +119,17 @@ int	check_files(t_minishell *m, t_env *env)
 	while (++i < m->len_tab)
 	{
 		tmp = env_node(&env, get_str(m->files[i + 0x1]));
-		if ((check_f(tmp->value) && tmp) || (check_f(tmp->value) && !tmp))
+		if (tmp)
 		{
-			if (m->files[i + 0x1][0x0] == '$')
+			if (check_f(tmp->value))
 			{
-				ft_putstr_fd("Minishell: ", 0x2);
-				ft_putstr_fd(m->files[i + 0x1], 0x2);
-				ft_putendl_fd(": ambiguous redirect", 0x2);
-				return (0x1);
+				if (m->files[i + 0x1][0x0] == '$')
+				{
+					ft_putstr_fd("Minishell: ", 0x2);
+					ft_putstr_fd(m->files[i + 0x1], 0x2);
+					ft_putendl_fd(": ambiguous redirect", 0x2);
+					return (0x1);
+				}
 			}
 		}
 	}
