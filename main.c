@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/07 18:40:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:47:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int	main(int ac, char **av, char **env)
 	fd.tmp_fdin = dup(0);
 	while (1999)
 	{
-		str = readline("===> ");
+		str = readline(display_prompt_msg());
 		if (!str || first_check(str))
 			break ;
 		if (is_empty(str))
@@ -163,6 +163,7 @@ int	main(int ac, char **av, char **env)
 		if (mini)
 			ft_execute(&mini, envir, 0x0);
 		get_fd_back(fd);
+		free (str);
 	}
 	return (0x0);
 }
