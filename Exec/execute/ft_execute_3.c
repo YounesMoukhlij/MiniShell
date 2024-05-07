@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/06 20:11:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:32:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 			if (execve(s, res, execv_env(envir)) == -1)
 			{
 				flag = 0x0;
-				break ;
+				break;
 			}
 		}
 		i++;

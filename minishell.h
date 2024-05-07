@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/06 20:22:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:16:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_minishell
 	char				*path;
 	char				**path_d;
 	t_env				*export;
+	t_fd				fd;
 	struct s_minishell	*next;
 }						t_minishell;
 
@@ -113,7 +114,7 @@ void					check_arg(t_minishell *mini, t_env *env);
 int						is_expanded(t_minishell *mini, char *s);
 t_env					*env_node_v(t_env **envi, char *value);
 void					print_cmd(t_minishell *mini);
-void					sig_func(void);
+void					sig_func();
 int						lst_size(t_minishell **head);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);

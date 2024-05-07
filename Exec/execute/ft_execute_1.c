@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:09:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:32:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,16 @@ int	check_cmd(char *s)
 {
 	int	i;
 
-	i = 0;
+	i = 0x0;
 	if (!s)
 		return (0x0);
+	while (s[i])
+	{
+		if (!ft_isalnum(s[i]))
+			return (0x0);
+		i++;
+	}
+	i = 0x0;
 	while (s[i])
 	{
 		if (s[i] == ' ')
