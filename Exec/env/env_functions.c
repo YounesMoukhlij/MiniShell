@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 21:26:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:41:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	back_up(t_env **ennv, int i)
 			lst = lstnew_executor("_", "/usr/bin/env");
 		if (i == 0x3)
 			lst = lstnew_executor("PATH",
-					"/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
+					"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 		add_back_executor(ennv, lst);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 21:19:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:33:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,9 @@ int	ft_env(t_minishell *mini, t_env *envir)
 	{
 		if (tmp->value != NULL)
 		{
-			// if (strcmp_f(tmp->key, "SHLVL", 0x0, 0x0))
-			// {
-				ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
-				ft_putstr_fd("=", 0x1);
-				ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
-			// }
-			// else
-			// 	helper_env(tmp);
+			ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
+			ft_putstr_fd("=", 0x1);
+			ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
 		}
 		tmp = tmp->next;
 	}
