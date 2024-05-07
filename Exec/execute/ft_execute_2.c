@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:18:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:36:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,17 @@ int	exve_err(char *s)
 {
 	struct stat		buf;
 
-	if (stat(s, &buf) == 0)
+	if (stat(s, &buf) == 0 && strcmp_f(s, "..", 0x0, 0x0))
 	{
+		if (!strcmp_f(s, ".", 0x0, 0x0))
+			return (0x2);
 		if (buf.st_mode & S_IFDIR)
 			return (ft_put_err(s, ": Is a directory"), 126);
 		else if ((buf.st_mode & S_IXUSR) == 0)
 			return (ft_put_err(s, ": Permission denied"), 127);
 	}
+	else if (is_empty(s))
+		return (0x0);
 	else if (check_s(s))
 		return (ft_put_err(s, ": No such file or directory"), 127);
 	return (ft_put_err(s, ": Command not found"), 127);

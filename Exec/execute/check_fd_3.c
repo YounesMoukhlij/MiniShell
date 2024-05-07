@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 18:07:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:47:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_file_expanded(char *s)
 	return (0x0);
 }
 
-void	rmv_SGL_quotes_file(t_minishell *mini, char *str, int index)
+void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
 {
 	int		i;
 	int		j;
@@ -152,7 +152,7 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 		else
 		{
 			(*mini)->files[i] = files_without_quotes(s[i], 0x0, 0x0, 0x0);
-			rmv_SGL_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
+			rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/07 15:16:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:40:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,26 @@ void	show(void)
 }
 
 void	ft_puterror(int p)
-{
-	if (p == 0)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'",
-						2);
-	if (p == 1)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'",
-						2);
-	if (p == 3 || p == 5)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'",
-						2);
-	if (p == 6)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'",
-						2);
-	if (p == 7)
-		ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '",
-						2);
+{	
+	if (p != -1)
+	{
+		if (p == 0)
+			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'",
+							2);
+		if (p == 1)
+			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'",
+							2);
+		if (p == 3 || p == 5)
+			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'",
+							2);
+		if (p == 6)
+			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'",
+							2);
+		if (p == 7)
+			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '",
+							2);
+		ex_st_f(258, 0x1);
+	}
 }
 
 int	is_empty(char *s)

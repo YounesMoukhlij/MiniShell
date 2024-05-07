@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 13:50:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:28:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	func_err(char *s)
 {
 	struct stat	buf;
 
+	puts("ana Hna f FILES\n");
+	if (!strcmp_f(s, "..", 0x0, 0x0) || !strcmp_f(s, ".", 0x0, 0x0))
+		return ;
 	if (stat(s, &buf) == 0)
 	{
 		if (buf.st_mode & S_IFDIR)

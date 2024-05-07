@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/24 15:29:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:41:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	errq(int op)
 	if (!op)
 	{
 		ft_putendl_fd("bash: syntax error near `'\"", 2);
+		ex_st_f(258, 0x1);
 		return (0x1);
 	}
 	return(0x0);

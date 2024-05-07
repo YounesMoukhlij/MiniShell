@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 17:55:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:32:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	before_err(char *s)
 	if (stat(s, &buf) == 0)
 	{
 		if (buf.st_mode & S_IFDIR)
-			return (ft_put_err(s, ": Is a directory"), 126);
+			return (126);
 		else if ((buf.st_mode & S_IXUSR) == 0)
-			return (ft_put_err(s, ": Permission denied"), 127);
+			return (127);
 	}
 	else if (check_s(s))
-		return (ft_put_err(s, ": No such file or directory"), 127);
+		return (127);
 	else if (!strcmp_f(s, "", 0x0, 0x0))
-		return (ft_put_err(s, ": Command not found"), 0x0);
+		return (0x0);
 	return (0x0);
 }
 

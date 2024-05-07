@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 15:25:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:39:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	printf(">>>%d<<<\n", mini->fd_in);
 	if (mini->fd_in != 0)
 	{
-		puts("abchecha");
 		dup2(mini->fd_in, 0);
 		close(mini->fd_in);
 	}
@@ -51,17 +49,17 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	}
 	else
 	{
-		if (waitpid(-1, &return_exve, 0x0) == -1)
-			return ;
-		return_exve >>= 0x8;
-		if (return_exve != 0x0)
-			ex_st_f(return_exve, 0x1);
+		while(waitpid(pid, &return_exve, 0) != -1);
+		if (WIFSIGNALED(return_exve))
+			ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
 		else
-			ex_st_f(0x0, 0x1);
+			ex_st_f(WEXITSTATUS(return_exve), 0x1);
+		close(t_pipe[1]);
 		if (mini->fd_in != 0)
 			dup2(t_pipe[0], mini->fd_in);
 		else
 			dup2(t_pipe[0], 0);
+		close(t_pipe[0]);
 		if (f == 0)
 		{
 			dup2(old_stdin, 0);
@@ -77,8 +75,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 			else
 			{
 				close(t_pipe[1]);
-				printf("%s\n", mini->cmd[0x0]);
-				printf(">%d<", mini->fd_in);
 				if (mini->fd_in != 0)
 					dup2(t_pipe[0], mini->fd_in);
 				else
@@ -91,7 +87,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 
 void	handle_fd(t_minishell *mini)
 {
-	// puts("111111111111111111111");
 	if ((mini)->fd_out != 0x1)
 	{
 		if (dup2((mini)->fd_out, 0x1) == -1)
@@ -130,5 +125,4 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	}
 	if (tmp)
 		big_execution(tmp, envir, 0x0, old_stdin);
-	while (wait(0) != -1);
 }

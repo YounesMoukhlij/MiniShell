@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 15:16:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:05:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
-
+int						is_empty(char *s);
 int						ex_st_f(int status, int mode);
 void					handle_fd(t_minishell *mini);
 int						get_env_max(t_env *envir);
@@ -76,7 +76,7 @@ int						is_builtin_cmd(t_minishell *m, t_env *envir);
 int						is_builtin(t_minishell *m);
 int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag);
 int						is_file_expanded(char *s);
-void					rmv_SGL_quotes_file(t_minishell *mini, char *str,
+void					rmv_sgl_quotes_file(t_minishell *mini, char *str,
 							int index);
 char					*files_without_quotes(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
