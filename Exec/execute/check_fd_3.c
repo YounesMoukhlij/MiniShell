@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 15:47:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:21:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ char	*ultra_expand_file(t_env *envir, char *s, int i, int j)
 	char	*p;
 	char	*res;
 
-	i = 0x0;
 	p = ft_calloc(100, 0x1);
-	if (!p)
-		return (NULL);
 	while (s[i])
 	{
 		while (s[i] == '$')
@@ -128,30 +125,28 @@ char	*files_without_quotes(char *s, int flag, int i, int j)
 
 int	expand_files(t_minishell **mini, t_env *envir, int i)
 {
-	char	**s;
 	t_env	*tmp;
 
-	s = (*mini)->files;
-	if (!s)
+	if (!(*mini)->files)
 		return (0x1);
-	if (check_files(*mini, envir))
+	if (check_files(*mini, envir, -0x1))
 		return (0x0);
-	while (s[i])
+	while ((*mini)->files[i])
 	{
-		if (is_file_expanded(s[i]))
+		if (is_file_expanded((*mini)->files[i]))
 		{
-			s[i] = without_quotes(s[i], 0x0);
-			if (already_here(envir, s[i]))
+			(*mini)->files[i] = without_quotes((*mini)->files[i], 0x0);
+			if (already_here(envir, (*mini)->files[i]))
 				return (0x1);
-			tmp = env_node(&envir, get_str(s[i]));
+			tmp = env_node(&envir, get_str((*mini)->files[i]));
 			if (tmp)
-				(*mini)->files[i] = ultra_expand_file(envir, s[i], 0x0, 0x0);
+				(*mini)->files[i] = ultra_expand_file(envir, (*mini)->files[i], 0x0, 0x0);
 			else
-				(*mini)->files[i] = get_str(s[i]);
+				(*mini)->files[i] = get_str((*mini)->files[i]);
 		}
 		else
 		{
-			(*mini)->files[i] = files_without_quotes(s[i], 0x0, 0x0, 0x0);
+			(*mini)->files[i] = files_without_quotes((*mini)->files[i], 0x0, 0x0, 0x0);
 			rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
 		}
 		i++;

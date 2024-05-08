@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:20:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:32:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	back_up(t_env **ennv, int i)
 			lst = lstnew_executor("_", "/usr/bin/env");
 		if (i == 0x3)
 			lst = lstnew_executor("PATH",
-					"/Users/youmoukh/.brew/bin:/Users/youmoukh/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands");
+					"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 		add_back_executor(ennv, lst);
 	}
 }
@@ -75,16 +75,21 @@ t_env	*full_fill_env(char **env, int i, int j)
 	head = NULL;
 	if (!*env)
 		back_up(&head, 0x0);
-	while (env[i])
+	else
 	{
-		j = 0x0;
-		while (env[i][j] != '=')
-			j++;
-		s1 = ft_substr_executor(env[i], 0x0, j);
-		s2 = ft_substr_executor(env[i], j + 0x1, ft_strlen(env[i]));
-		lst_env = lstnew_executor(s1, s2);
-		add_back_executor(&head, lst_env);
-		i++;
+		while (env[i])
+		{
+			j = 0x0;
+			while (env[i][j] != '=')
+				j++;
+			s1 = ft_substr_executor(env[i], 0x0, j);
+			s2 = ft_substr_executor(env[i], j + 0x1, ft_strlen(env[i]));
+			if (!strcmp_f(s1, "SHLVL", 0x0, 0x0))
+				s2 = ft_strdup(ft_itoa(ft_atoi(s2) + 1));
+			lst_env = lstnew_executor(s1, s2);
+			add_back_executor(&head, lst_env);
+			i++;
+		}
 	}
 	return (head);
 }

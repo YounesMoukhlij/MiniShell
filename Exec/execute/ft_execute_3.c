@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 18:34:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:36:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (ft_unset(m, envir));
 	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(m));
+		return (ft_echo(m, 0x1 , 0x0));
 	else
 		return (-1);
 }
