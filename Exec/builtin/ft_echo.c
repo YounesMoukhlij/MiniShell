@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:03:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:40:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,16 @@ int	check(char *s, int f, int flag_0)
 	return (0x0);
 }
 
-int	ft_echo(t_minishell *mini)
+int	ft_echo(t_minishell *mini, int i, int f)
 {
-	int	i;
-	int	f;
-
-	i = 0x1;
-	f = 0x0;
 	if (!mini->cmd[0x0])
 		return (0x0);
 	if (mini->cmd[0x0] && !mini->cmd[0x1])
+	{
+		if (mini->size > 1)
+			return (ft_putstr_fd_executor("\n", 0x1, 0x0), exit(0x0), 0x1);
 		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
+	}
 	f = big_check(mini);
 	if (f != 0x0)
 		i = f;

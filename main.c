@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/07 18:47:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:48:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,12 @@ void	get_fd_back(t_fd fd)
 	dup2(fd.tmp_fdin, 0x0);
 }
 
+void	clear_all(t_minishell *m, t_env *env)
+{
+	ft_cleanshell(&m);
+	clear_envir(env);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int			p;
@@ -148,7 +154,10 @@ int	main(int ac, char **av, char **env)
 	{
 		str = readline(display_prompt_msg());
 		if (!str || first_check(str))
+		{
+			free (str);
 			break ;
+		}
 		if (is_empty(str))
 			continue ;
 		p = ft_checker(str);
@@ -165,5 +174,6 @@ int	main(int ac, char **av, char **env)
 		get_fd_back(fd);
 		free (str);
 	}
+	clear_all(mini, envir);
 	return (0x0);
 }

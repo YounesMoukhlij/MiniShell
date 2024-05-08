@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 14:12:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:37:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int						ft_export(t_minishell *mini, t_env *envir, int i);
 int						ft_exit(t_minishell *mini);
 int						ft_unset(t_minishell *mini, t_env *envir);
 int						ft_cd(t_minishell *mini, t_env *envir);
-int						ft_echo(t_minishell *mini);
+int						ft_echo(t_minishell *mini, int i, int f);
 int						is_cmd(t_minishell *mini, t_env *envir);
 int						ft_env(t_minishell *mini, t_env *envir);
 int						ft_pwd(t_minishell *mini, t_env **head);
