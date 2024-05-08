@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 14:13:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:21:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 
 	if (!(*mini)->files)
 		return (0x1);
-	puts("am here");
 	if (check_files(*mini, envir, -0x1))
 		return (0x0);
 	while ((*mini)->files[i])
