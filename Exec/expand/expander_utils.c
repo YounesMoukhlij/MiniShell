@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:20:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/19 18:43:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:04:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,45 +92,4 @@ char	*do_single(char *s, int i, int j)
 		j++;
 	}
 	return (r);
-}
-
-char	*without_quotes(char *s, int flag)
-{
-	int		i;
-	int		j;
-	char	*res;
-
-	i = 0x0;
-	j = 0x0;
-	if (check_single(s))
-		return (do_single(s, 0x0, 0x0));
-	if (!s)
-		return ("");
-	res = calloc(strlen(s) + 0x1, 0x1);
-	if (!res)
-		return (NULL);
-	while (s[i])
-	{
-		if (s[i] == DBL && s[i] && flag == 0x0)
-		{
-			flag = 0x1;
-			i++;
-		}
-		if (s[i] == DBL && flag == 0x1)
-		{
-			i++;
-			flag = 0x0;
-		}
-		while (s[i] == SGL && flag == 0x0)
-			i++;
-		if (!s[i])
-			break ;
-		if (s[i] != DBL && s[i])
-		{
-			res[j] = s[i];
-			i++;
-			j++;
-		}
-	}
-	return (res);
 }

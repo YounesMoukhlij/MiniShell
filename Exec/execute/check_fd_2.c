@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 16:32:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:15:11 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,26 +109,28 @@ int	check_f(char *s)
 	return (0x0);
 }
 
-int	check_files(t_minishell *m, t_env *env)
+int	check_files(t_minishell *m, t_env *env, int i)
 {
-	int		i;
 	t_env	*tmp;
 
-	i = -0x1;
 	if (!m->files)
 		return (0x0);
 	while (++i < m->len_tab)
 	{
+			puts("3333333");
 		tmp = env_node(&env, get_str(m->files[i + 0x1]));
 		if (tmp)
 		{
+			puts("1213");
 			if (check_f(tmp->value))
 			{
+				puts("133333333333333");
 				if (m->files[i + 0x1][0x0] == '$')
 				{
 					ft_putstr_fd("Minishell: ", 0x2);
 					ft_putstr_fd(m->files[i + 0x1], 0x2);
 					ft_putendl_fd(": ambiguous redirect", 0x2);
+					ex_st_f(0x1, 0x1);
 					return (0x1);
 				}
 			}

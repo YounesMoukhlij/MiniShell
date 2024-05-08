@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 20:56:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:12:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+int	check_single(char *s);
+char	*do_single(char *s, int i, int j);
 int						is_empty(char *s);
 int						ex_st_f(int status, int mode);
 void					handle_fd(t_minishell *mini);
@@ -85,7 +87,7 @@ int						ft_open_others(t_minishell *mini);
 int						heredoc_check(t_minishell *mini, t_env *env,
 							char *delim, int flag);
 char					*hidden_name(void);
-int						check_files(t_minishell *m, t_env *env);
+int						check_files(t_minishell *m, t_env *env, int i);
 int						expanded_content(char *s);
 char					*get_str(char *s);
 int						ft_helper_heredoc(t_minishell *m, char *s);
