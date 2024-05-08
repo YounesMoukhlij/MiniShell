@@ -18,7 +18,7 @@ void	show(void)
 }
 
 void	ft_puterror(int p)
-{	
+{
 	if (p != -1)
 	{
 		if (p == 0)
@@ -169,16 +169,16 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(str);
-		int i = 0;
-		while (i < mini->len_tab)
-		{
-			printf("[%s]\n",  mini->files[i + 1]);
-			i++;
-		}
-		// if (mini)
-		// 	ft_execute(&mini, envir, 0x0);
-		// get_fd_back(fd);
-		// free (str);
+		// int i = 0;
+		// while (i < mini->len_tab)
+		// {
+		// 	printf("[%s]\n",  mini->files[i + 1]);
+		// 	i++;
+		// }
+		if (mini)
+			ft_execute(&mini, envir, 0x0);
+		get_fd_back(fd);
+		free (str);
 	}
 	return (0x0);
 }

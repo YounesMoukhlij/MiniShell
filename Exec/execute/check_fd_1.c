@@ -31,6 +31,7 @@ void	func_err(char *s)
 			return (ft_put_err(s, ": Permission denied"));
 		}
 	}
+	ex_st_f(0x1, 0x1);
 	return (ex_st_f(0x1, 0x1), ft_put_err(s, ": No such file or directory"));
 }
 

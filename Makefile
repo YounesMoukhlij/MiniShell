@@ -85,9 +85,9 @@ READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
 CC = cc
 
-all : ${NAME} clean
+all : ${NAME}
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) minishell.h
 	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
 	@echo "\033[31mLinking ...\033[0m"
 	@echo "\033[33m<.>DONE<.>\033[0m"
