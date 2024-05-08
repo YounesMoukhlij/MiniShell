@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 20:50:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 21:59:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	func_err(char *s)
 			return (ft_put_err(s, ": Permission denied"));
 		}
 	}
-	return (ft_put_err(s, ": No such file or directory"));
+	return (ex_st_f(0x1, 0x1), ft_put_err(s, ": No such file or directory"));
 }
 
 int	ft_open_others(t_minishell *mini)

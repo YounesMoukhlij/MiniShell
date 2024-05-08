@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 17:36:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:00:40 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 		return (is_bin_cmd(mini, envir, 0x0));
 }
 
+int	check_err(char *s)
+{
+	if ((s[0] == '.' && s[1] == '/') || s[ft_strlen(s) - 1] == '/' || s[0] == '/')
+		return (0x1);
+	return (0x0);
+}
+
 int	exve_err(char *s)
 {
 	struct stat		buf;
@@ -57,10 +64,10 @@ int	exve_err(char *s)
 	{
 		if (!strcmp_f(s, ".", 0x0, 0x0))
 			return (0x2);
-		if (buf.st_mode & S_IFDIR)
+		if ((buf.st_mode & S_IFDIR) && check_err(s))
 			return (ft_put_err(s, ": Is a directory"), 126);
 		else if ((buf.st_mode & S_IXUSR) == 0)
-			return (ft_put_err(s, ": Permission denied"), 127);
+			return (ft_put_err(s, ": Permission denied"), 126);
 	}
 	else if (is_empty(s))
 		return (0x0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 14:21:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:07:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,14 @@ char	*files_without_quotes(char *s, int flag, int i, int j)
 int	expand_files(t_minishell **mini, t_env *envir, int i)
 {
 	t_env	*tmp;
+	int		flag;
 
 	if (!(*mini)->files)
 		return (0x1);
-	if (check_files(*mini, envir, -0x1))
-		return (0x0);
+	flag = check_files(*mini, envir, -0x1);
+	// printf("%d", flag);
+	if (flag == -0x1)
+		return (-0x1);
 	while ((*mini)->files[i])
 	{
 		if (is_file_expanded((*mini)->files[i]))

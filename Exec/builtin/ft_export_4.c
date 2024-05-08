@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:10 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 19:50:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:14:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	before_check(char *s)
 	{
 		if (s[i] == '=')
 			break ;
-		if (!ft_isalnum(s[i]) && s[i] != '_')
-			return (0x1);
 		i++;
 	}
 	return (0x0);

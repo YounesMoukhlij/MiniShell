@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 19:50:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:17:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,32 +68,15 @@ int	is_correct_1(char *s)
 	return (0x0);
 }
 
-int	extra(char *s)
-{
-	int	i;
-
-	i = 0x0;
-	if (!ft_is_equal(s))
-	{
-		while (s[i])
-		{
-			if (!ft_isalnum(s[i]) && s[i] != '_')
-				return (0x0);
-			i++;
-		}
-	}
-	return (0x1);
-}
 int	err_export(char *s)
 {
-	if (ft_is_equal(s) || extra(s))
+	if (ft_is_equal(s))
 		return (0x0);
 	return (0x1);
 }
 
 int	err_export_1(char *s)
 {
-	(void)s;
 	if (ft_is_equal_1(s))
 		return (0x0);
 	return (0x1);
