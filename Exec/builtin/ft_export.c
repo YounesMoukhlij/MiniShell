@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 19:37:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:17:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 				 && err_export(mini->cmd[i]) && 
 				!already_exist(mini->cmd[i], envir) && ft_strlen(mini->cmd[i]))
 			{
+				// puts("YOUNES");
 				if (check_special_case(mini->cmd[i]))
 				{
 					// puts(">1");

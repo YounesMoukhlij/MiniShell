@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/08 17:48:38 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/08 22:14:52 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,9 @@ READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
 CC = cc
 
-all : ${NAME} clean
+all : ${NAME}
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) minishell.h
 	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
 	@echo "\033[31mLinking ...\033[0m"
 	@echo "\033[33m<.>DONE<.>\033[0m"

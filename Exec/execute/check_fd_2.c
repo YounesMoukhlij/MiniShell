@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 14:20:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:20:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,17 @@ int	check_files(t_minishell *m, t_env *env, int i)
 				if (m->files[i + 0x1][0x0] == '$')
 				{
 					helper_files(m->files[i + 0x1]);
-					return (0x1);
+					return (-0x1);
 				}
 			}
 		}
 		else if (!tmp)
 		{
-			helper_files(m->files[i + 0x1]);
-			return (0x1);
+			if (m->files[i + 0x1][0x0] == '$')
+			{
+				helper_files(m->files[i + 0x1]);
+				return (-0x1);
+			}
 		}
 	}
 	return (0x0);

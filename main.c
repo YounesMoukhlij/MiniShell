@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/08 17:49:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:25:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	show(void)
 }
 
 void	ft_puterror(int p)
-{	
+{
 	if (p != -1)
 	{
 		if (p == 0)
@@ -169,6 +169,12 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(str);
+		// int i = 0;
+		// while (i < mini->len_tab)
+		// {
+		// 	printf("[%s]\n",  mini->files[i + 1]);
+		// 	i++;
+		// }
 		if (mini)
 			ft_execute(&mini, envir, 0x0);
 		get_fd_back(fd);
