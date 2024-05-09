@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/08 22:25:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:25:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,11 +169,13 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(str);
-		// int i = 0;
-		// while (i < mini->len_tab)
+		// int i = 1;
+		// while (mini->files[i])
 		// {
-		// 	printf("[%s]\n",  mini->files[i + 1]);
+		// 	printf("[%s]\n",  mini->files[i]);
 		// 	i++;
+		// 	// printf("[%s]\n",  mini->files[i + 2]);
+		// 	// printf("[%s]\n",  mini->files[i + 3]);
 		// }
 		if (mini)
 			ft_execute(&mini, envir, 0x0);
