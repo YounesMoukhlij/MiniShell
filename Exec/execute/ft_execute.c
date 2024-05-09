@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 20:13:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:06:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,36 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
 	printf("[%d]\n", mini->fd_in);
 	pid = fork();
-	if (mini->fd_in != 0)
-	{
-		dup2(mini->fd_in, 0);
-		close(mini->fd_in);
-	}
 	puts("11");
 	if (pid == 0)
 	{
+		// if (mini->fd_in != 0)
+		// {
+			if (dup2(mini->fd_in, 0) == -1)
+				exit(1);
+			// close(mini->fd_in);
+		// }
 		if (f == 1)
 		{
-			close (t_pipe[0]);
 			if (mini->fd_out != 1)
 			{
-				dup2(mini->fd_out, 1);
+				if (dup2(mini->fd_out, 1) == -1)
+					exit(1);
 				close (mini->fd_out);
 			}
 			else
-				dup2(t_pipe[1], 1);
+			{
+				close (t_pipe[0]);
+				if (dup2(t_pipe[1], 1) == -1)
+					exit(1);
+				close (t_pipe[1]);
+			}
 		}
 		else
-			dup2(mini->fd_out, 1);
+		{
+			dup2(mini->fd_out, 0);
+			
+		}
 		is_cmd(mini, envir);
 	}
 	else

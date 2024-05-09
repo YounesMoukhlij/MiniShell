@@ -1,0 +1,15 @@
+1
+12
+2
+Exec
+Makefile
+Parser
+TESTER
+a
+b
+error before execution
+main.c
+main.o
+minishell
+minishell.h
+test_files
