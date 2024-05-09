@@ -63,7 +63,6 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 			fd = heredoc_check(mini, env, mini->files[i + 0x1], 0x0);
 		if (mini->tab[i] == 0x3)
 		{
-			// printf("[]%s[]\n", mini->files[i + 1]);
 			fd = open(mini->files[i + 0x1], O_RDONLY);
 			if (fd == -0x1)
 			{

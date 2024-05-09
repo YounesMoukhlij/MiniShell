@@ -34,6 +34,28 @@ int	file_first_check(t_minishell *m)
 	return (0x0);
 }
 
+int	advanced(t_minishell *mini)
+{
+	int	i;
+	int	fd;
+
+	i = -0x1;
+	fd = 0x0;
+	if (!strcmp_f(mini->cmd[0x0], "echo", 0x0, 0x0) && mini->cmd[0x1])
+	{
+		while (++i < mini->len_tab + 0x1)
+		{
+			if (mini->tab[i] == 0x3)
+			{
+				fd = open(mini->files[i + 0x1], O_RDONLY);
+				if (fd == -0x1)
+					return (0x1);
+			}
+		}
+	}
+	return (0x0);
+}
+
 int	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
@@ -48,6 +70,8 @@ int	check_fd(t_minishell *mini, t_env *env)
 	// 	expand_files(&mini, env, 0x0);
 	// else
 	// 	return (0x1);
+	if (advanced(mini))
+		return (0x0);
 	if (file_first_check(mini))
 		return (0x1);
 	if (ft_fd_files(mini, env))
