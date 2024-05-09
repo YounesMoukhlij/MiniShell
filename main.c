@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 14:32:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:47:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	main(int ac, char **av, char **env)
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
-	t_fd		fd;
+	t_fd		fd;	
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
@@ -153,7 +153,7 @@ int	main(int ac, char **av, char **env)
 	while (1999)
 	{
 		str = readline(display_prompt_msg());
-		if (!str || first_check(str))
+		if (!str)
 		{
 			free (str);
 			break ;

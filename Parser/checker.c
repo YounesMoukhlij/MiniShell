@@ -6,19 +6,14 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/05 14:29:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:22:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	red_check(char *str)
+int	red_check(char *str, int i, int t)
 {
-	int	i;
-	int	t;
-
-	t = 0;
-	i = 0;
 	while (str[i])
 	{
 		ft_skep(str, &i);
@@ -48,13 +43,8 @@ int	red_check(char *str)
 	return (0);
 }
 
-int	infile_check(char *str)
+int	infile_check(char *str, int i, int t)
 {
-	int	i;
-	int	t;
-
-	t = 0;
-	i = 0;
 	while (str[i])
 	{
 		ft_skep(str, &i);
@@ -126,9 +116,9 @@ int	ft_checker(char *str)
 	}
 	if (pip_check(str))
 		return (0);
-	if (red_check(str))
-		return (red_check(str));
-	if (infile_check(str))
+	if (red_check(str, 0x0, 0x0))
+		return (red_check(str, 0x0, 0x0));
+	if (infile_check(str, 0x0, 0x0))
 		return (3);
 	if (check_expected_token(str))
 		return (7);

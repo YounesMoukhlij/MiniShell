@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 15:55:01 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/24 15:22:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:36:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_get_len(char *s1, int i, size_t *len_word, int fg)
 		if (s1[i] == '\'' || s1[i] == '\"')
 		{
 			if (s1[i] == '\"' )
-				ft_parq(s1, &i, 'q');
+				ft_parq_err(s1, &i, 'q');
 			else if (s1[i] == '\'')
-				ft_parq(s1, &i, 's');
+				ft_parq_err(s1, &i, 's');
 			(*len_word) += i;
 		}
 		else if (!get_des(s1[i], fg))

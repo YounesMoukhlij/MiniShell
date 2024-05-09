@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/24 15:16:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:33:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	ft_set_tk(char *str)
 				ft_parq(str, &i, 's');
 			else if (str[i] == '\"')
 				ft_parq(str, &i, 'q');
-			if (!str[i])
-				break ;
 		}
+		if (!str[i])
+			break ;
 		if (str[i] == '<')
 			case__1(str[i], &i, &len);
 		else if (str[i] == '>')
@@ -61,7 +61,7 @@ int	ft_set_tk(char *str)
 	return (len);
 }
 
-int	ft_parq(char *str, int *i, char f)
+int	ft_parq_err(char *str, int *i, char f)
 {
 	int	op;
 
@@ -82,6 +82,35 @@ int	ft_parq(char *str, int *i, char f)
 		{
 			if (str[*i] == '\'')
 				op = 1;
+			*i += 1;
+		}
+	}
+	return (op);
+}
+int	ft_parq(char *str, int *i, char f)
+{
+	int	op;
+
+	op = 0;
+	
+	*i += 1;
+	if (f == 'q')
+	{
+		while ((str[*i]) && op == 0)
+		{
+			if (str[*i] == '\"')
+				return (op);
+				// op = 1;
+			*i += 1;
+		}
+	}
+	else if (f == 's')
+	{
+		while ((str[*i]) && op == 0)
+		{
+			if (str[*i] == '\'')
+				return (op);
+				// op = 1;
 			*i += 1;
 		}
 	}

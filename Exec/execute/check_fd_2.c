@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 22:20:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:27:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 
 	i = -0x1;
 	fd = 0x0;
-	while (++i < mini->len_tab + 0x1)
+	while (++i < mini->len_tab)
 	{
 		if (mini->tab[i] == 0x4)
 			fd = heredoc_check(mini, env, mini->files[i + 0x1], 0x0);
@@ -66,8 +66,8 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 			fd = open(mini->files[i + 0x1], O_RDONLY);
 			if (fd == -0x1)
 			{
-				func_err(mini->files[i + 0x1]);
 				ex_st_f(0x1, 0x1);
+				func_err(mini->files[i + 0x1]);
 				return (0x1);
 			}
 		}
@@ -125,23 +125,23 @@ int	check_files(t_minishell *m, t_env *env, int i)
 		return (0x0);
 	while (++i < m->len_tab)
 	{
-		tmp = env_node(&env, get_str(m->files[i + 0x1]));
+		tmp = env_node(&env, get_str(m->files[i + 1]));
 		if (tmp)
 		{
 			if (check_f(tmp->value))
 			{
-				if (m->files[i + 0x1][0x0] == '$')
+				if (m->files[i + 1][0x0] == '$')
 				{
-					helper_files(m->files[i + 0x1]);
+					helper_files(m->files[i + 1]);
 					return (-0x1);
 				}
 			}
 		}
 		else if (!tmp)
 		{
-			if (m->files[i + 0x1][0x0] == '$')
+			if (m->files[i + 1][0x0] == '$')
 			{
-				helper_files(m->files[i + 0x1]);
+				helper_files(m->files[i + 1]);
 				return (-0x1);
 			}
 		}

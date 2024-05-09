@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 21:59:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:14:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	func_err(char *s)
 		}
 	}
 	ex_st_f(0x1, 0x1);
-	return (ex_st_f(0x1, 0x1), ft_put_err(s, ": No such file or directory"));
+	return (ft_put_err(s, ": No such file or directory"));
 }
 
 int	ft_open_others(t_minishell *mini)
@@ -42,13 +42,13 @@ int	ft_open_others(t_minishell *mini)
 
 	i = -0x1;
 	fd = 0x1;
-	while (++i < mini->len_tab + 0x1)
+	while (i++ < mini->len_tab)
 	{
 		if (mini->tab[i] == 0x1 || mini->tab[i] == 0x2)
 		{
-			fd = open(mini->files[i + 0x1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+			fd = open(mini->files[i + 1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 			if (fd == -0x1)
-				return (func_err(mini->files[i + 0x1]), 0x1);
+				return (func_err(mini->files[i + 1]), 0x1);
 		}
 	}
 	if (fd != 0x1)
