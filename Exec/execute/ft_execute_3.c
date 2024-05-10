@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 18:09:56 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:33:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,12 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
-		free (s);
-		ft_free_strings(res);
-		ft_free_strings(r);
+		// free (s);
+		// ft_free_strings(res);
+		// ft_free_strings(r);
 		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
 		exit(e_s);
 	}
-	free (s);
+	// free (s);
 	return (0x1);
 }

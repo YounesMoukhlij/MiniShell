@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 18:30:44 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:36:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 	}
 	r = without_quotes((*mini)->cmd[0x0], 0x0);
 	rmv_sgl_quotes_cmd((*mini), r);
-	free (str);
-	free (res);
-	free (r);
 }
 
 int	before_err(char *s)

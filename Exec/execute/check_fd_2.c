@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_fd_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 11:24:15 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:06:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,26 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	char	*hdd_f;
 
 	hdd_f = hidden_name();
-	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0644);
+	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR, 0777);
 	if (mini->fd_in == -0x1)
 		return (-0x1);
 	if (expanded_content(delim))
+	{
+		puts("123");
 		flag = 0x1;
+	}
 	p = without_quotes(delim, 0x0);
-	// signal(SIGINT, SIG_DFL);
-	// signal(SIGQUIT, SIG_DFL);
-	// rl_catch_signals = 0;
+	signal(SIGINT, sig_n);
 	while (1999)
 	{
-		// signal(SIGINT, sig_n);
 		s = readline("heredoc> ");
 		if (!s || !strcmp_f(s, p, 0x0, 0x0) || !glb_sig)
 			break ;
 		if (flag == 0x0)
+		{	
+			puts("444");
 			s = big_work(env, s, 0x0, 0x1);
+		}
 		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
 		free(s);
 	}
@@ -120,30 +123,24 @@ void	helper_files(char *s)
 int	check_files(t_minishell *m, t_env *env, int i)
 {
 	t_env	*tmp;
-
+	
 	if (!m->files)
 		return (0x0);
 	while (++i < m->len_tab)
 	{
-		tmp = env_node(&env, get_str(m->files[i + 1]));
+		tmp = env_node(&env,  get_str(m->files[i + 1]));
 		if (tmp)
 		{
 			if (check_f(tmp->value))
 			{
 				if (m->files[i + 1][0x0] == '$')
-				{
-					helper_files(m->files[i + 1]);
-					return (-0x1);
-				}
+					return (helper_files(m->files[i + 1]), -0x1);
 			}
 		}
 		else if (!tmp)
 		{
 			if (m->files[i + 1][0x0] == '$')
-			{
-				helper_files(m->files[i + 1]);
-				return (-0x1);
-			}
+					return (helper_files(m->files[i + 1]), -0x1);
 		}
 	}
 	return (0x0);

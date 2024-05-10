@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_build_linker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 18:18:41 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:57:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->fd_out = 1;
 	lst->size = 0;
 	free(s);
-	ft_cleantach(str);
+	// ft_cleantach(str);
 	--lst->afcmd_t;
 	lst->next = 0;
 	return (lst);
@@ -86,20 +86,17 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d
 	int			i;
 	int			*arr;
 	char		**pt;
-	int j = -1;
+	int			j;
 	head = 0;
 	i = 0;
+		j = -1;
 	while (str[i])
 	{
 		lens = ft_set_tk(str[i]);
-		// printf("len »%d",lens);
 		arr = ft_arr_tk(str[i], lens);
-		// while (++j < lens)
-		// 	if (arr[j] < 0 || arr[j] > 4)
-		// 		arr[j] = 3;
-		j = -1;
-		// while (++j < lens)
-		// 	printf("%d",arr[j]);
+		while (++j < lens)
+			if (arr[j] <= 0 || arr[j] > 4)
+				arr[j] = 3;
 		pt = ft_splits(str[i], 1);
 		if (i < lens)
 			cmd = lst_cmd(pt[0], str[i], arr, lens);
@@ -107,8 +104,8 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d
 			cmd = lst_cmd(pt[0], str[i], arr, lens);
 		add_back(&head, cmd);
 		i++;
-		ft_cleantach(pt);
 	}
+	// ft_cleantach(pt);
 	add_size(head, d);
 	return (head);
 }
