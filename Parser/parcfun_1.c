@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/24 13:27:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:36:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	fun(char *str, int *i)
 			if (!op)
 			{
 				if (str[*i] == '\"' )
-					op = ft_parq(str, i, 'q');
+					op = ft_parq_err(str, i, 'q');
 				else if (str[*i] == '\'')
-					op = ft_parq(str, i, 's');
+					op = ft_parq_err(str, i, 's');
 				if (!str[*i])
 					break;
 			}

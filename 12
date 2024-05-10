@@ -1,15 +1,15 @@
-   
--n
+1
+12
+2
 Exec
 Makefile
 Parser
 TESTER
+a
+b
 error before execution
 main.c
 main.o
 minishell
 minishell.h
-sadad
 test_files
-tools.o
-youn

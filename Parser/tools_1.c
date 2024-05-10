@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/07 18:41:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:40:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 			if (!(*op))
 			{
 				if (s1[i] == '\"' )
-					*op = ft_parq(s1, &i, 'q');
+					*op = ft_parq_err(s1, &i, 'q');
 				else if (s1[i] == '\'')
-					*op = ft_parq(s1, &i, 's');
+					*op = ft_parq_err(s1, &i, 's');
 			}
 			*len_word += i;
 			if (errq(*op))
@@ -107,8 +107,8 @@ void	ft_skep(char *str, int *i)
 	if (str[*i] == '\'' || str[*i] == '\"')
 	{
 		if (str[*i] == '\'')
-			ft_parq(str, i, 's');
+			ft_parq_err(str, i, 's');
 		else if (str[*i] == '\"')
-			ft_parq(str, i, 'q');
+			ft_parq_err(str, i, 'q');
 	}
 }

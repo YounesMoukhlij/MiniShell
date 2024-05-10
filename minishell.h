@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 17:37:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:37:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ typedef struct s_minishell
 	t_fd				fd;
 	struct s_minishell	*next;
 }						t_minishell;
+
+int	ft_parq_err(char *str, int *i, char f);
+void	fun(char *str, int *i);
+
+
+
+
 
 int	check_single(char *s);
 char	*do_single(char *s, int i, int j);
