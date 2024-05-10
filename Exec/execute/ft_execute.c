@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 21:34:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:30:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		if (check == 0x1)
 		{
 			ex_st_f(0x0, 0x1);
-			exit (0x0);
+			exit (0x1);
 		}
 		if (mini->fd_in != 0)
 		{
@@ -61,7 +61,9 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		}
 		else
 		{
-			dup2(mini->fd_out, 1);
+			if (dup2(mini->fd_out, 1) == -1)
+				exit(1);
+			
 		}
 		is_cmd(mini, envir);
 	}
