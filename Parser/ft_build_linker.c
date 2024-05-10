@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_build_linker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 18:09:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:39:47 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,20 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d
 	int			i;
 	int			*arr;
 	char		**pt;
-
+	int j = -1;
 	head = 0;
 	i = 0;
 	while (str[i])
 	{
 		lens = ft_set_tk(str[i]);
+		printf("len »%d",lens);
 		arr = ft_arr_tk(str[i], lens);
+		while (++j < lens)
+			if (arr[j] < 0 || arr[j] > 4)
+				arr[j] = 3;
+		j = -1;
+		while (++j < lens)
+			printf("%d",arr[j]);
 		pt = ft_splits(str[i], 1);
 		if (i < lens)
 			cmd = lst_cmd(pt[0], str[i], arr, lens);

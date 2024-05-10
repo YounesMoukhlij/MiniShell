@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_fd_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 20:34:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:24:15 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 	{
 		if (mini->tab[i] == 0x4)
 			fd = heredoc_check(mini, env, mini->files[i + 0x1], 0x0);
-		if (mini->tab[i] == 0x3)
+		if (mini->tab[i] == 0x3 || mini->tab[i] < 0)
 		{
 			fd = open(mini->files[i + 0x1], O_RDONLY);
 			if (fd == -0x1)
