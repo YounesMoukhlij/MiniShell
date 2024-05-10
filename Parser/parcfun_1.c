@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcfun_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:36:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:18:14 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	*ft_arr_tk(char *str, int len)
 	while (str[i] && j < len)
 	{
 		ft_skep (str, &i);
-		if (str[i] == '|')
-			arr[j++] = 0;
-		else if (str[i] == '<')
+		if (str[i] == '<')
 			case_one (arr, str[i + 1], &i, &j);
 		else if (str[i] == '>')
 			case_two (arr, str[i + 1], &i, &j);

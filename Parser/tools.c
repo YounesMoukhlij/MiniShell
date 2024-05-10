@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 18:33:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:12:08 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <stdio.h>
 
-static void	case__1(char c, int *i, int *len)
+static void	case__11(char c,int *i ,int *len)
 {
 	if (c == '<')
 	{
@@ -22,14 +23,28 @@ static void	case__1(char c, int *i, int *len)
 	else
 		*len += 1;
 }
-
-static void	case__2(char c, int *i, int *len)
+static void	case__22(char c,int *i ,int *len)
 {
 	if (c == '>')
 	{
 		*len += 1;
 		*i += 1;
 	}
+	else
+		*len += 1;
+}
+static void	case__1(char c, int *len)
+{
+	if (c == '<')
+		*len += 1;
+	else
+		*len += 1;
+}
+
+static void	case__2(char c, int *len)
+{
+	if (c == '>')
+		*len += 1;
 	else
 		*len += 1;
 }
@@ -50,12 +65,19 @@ int	ft_set_tk(char *str)
 			else if (str[i] == '\"')
 				ft_parq(str, &i, 'q');
 		}
+
 		if (!str[i])
 			break ;
-		if (str[i] == '<')
-			case__1(str[i], &i, &len);
+		if (str[i] == '<' && str[i + 1] =='<')
+			case__11(str[i],&i ,&len);
+		else if (str[i] == '<')
+			case__2(str[i], &len);
+		else if (str[i] == '>' && str[i + 1] =='>')
+			case__22(str[i],&i ,&len);
+		else if (str[i] == '<')
+			case__1(str[i], &len);
 		else if (str[i] == '>')
-			case__2(str[i], &i, &len);
+			case__2(str[i],  &len);
 		i++;
 	}
 	return (len);
@@ -92,15 +114,13 @@ int	ft_parq(char *str, int *i, char f)
 	int	op;
 
 	op = 0;
-	
 	*i += 1;
 	if (f == 'q')
 	{
 		while ((str[*i]) && op == 0)
 		{
 			if (str[*i] == '\"')
-				return (op);
-				// op = 1;
+				break;
 			*i += 1;
 		}
 	}
@@ -109,8 +129,7 @@ int	ft_parq(char *str, int *i, char f)
 		while ((str[*i]) && op == 0)
 		{
 			if (str[*i] == '\'')
-				return (op);
-				// op = 1;
+				break;
 			*i += 1;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 18:10:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:49:29 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ char	*ft_exit_status(char *s, t_env *envir)
 		i++;
 		j++;
 	}
+	// if (f)
+	// 	free (f);
+	// printf("add ->f [%p]\n", &f);
+	// printf("add ->r [%p]\n", &r);
 	return (r);
 }
 
@@ -85,7 +89,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 	char	*p;
 	char	*s;
 	char	*res;
-
+	char *f;
 	p = allocate_max(envir);
 	if (!p)
 		return (NULL);
@@ -112,7 +116,8 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 				i++;
 				break ;
 			}
-			res = grep_from_env(envir, grep_value(&s[i]));
+			f = grep_value(&s[i]);
+			res = grep_from_env(envir,  f);
 			p = add_t(p, res, envir);
 			if (ft_strlen(p) || !ft_strlen(res))
 				i += grep(&s[i]);
@@ -124,7 +129,11 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 		i++;
 		j++;
 	}
-	return (p);
+	// 	printf("add ->res [%p]\n", &f);
+	// printf("add ->f [%p]\n", &res);
+	free (f);
+	// free (s);
+	return ( p);
 }
 
 int	no_dollar(char *s)

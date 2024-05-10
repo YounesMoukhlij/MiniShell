@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
+#    By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/09 16:31:16 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/10 16:27:51 by ynassibi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ SRC = main.c \
 	  Parser/help_func/ft_isprint.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror #-g -fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include

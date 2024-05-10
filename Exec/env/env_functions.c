@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 18:26:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:22:18 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 	t_env	*head;
 	char	*s1;
 	char	*s2;
-	char	*tmp;
+	// char	*tmp;
 
 	head = NULL;
 	if (!*env)
@@ -85,13 +85,14 @@ t_env	*full_fill_env(char **env, int i, int j)
 				j++;
 			s1 = ft_substr_executor(env[i], 0x0, j);
 			s2 = ft_substr_executor(env[i], j + 0x1, ft_strlen(env[i]));
-			if (!strcmp_f(s1, "SHLVL", 0x0, 0x0))
-			{
-				tmp = ft_itoa(ft_atoi(s2) + 1);
-				s2 = ft_strdup(tmp);
-				free (tmp);
-			}
+			// if (!strcmp_f(s1, "SHLVL", 0x0, 0x0))
+			// {
+			// 	tmp = ft_itoa(ft_atoi(s2) + 1);
+			// 	s2 = ft_strdup(tmp);
+			// 	free (tmp);
+			// }
 			lst_env = lstnew_executor(s1, s2);
+			// free(s2);
 			add_back_executor(&head, lst_env);
 			i++;
 		}
@@ -101,9 +102,12 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 void	full_fill_path(t_minishell *mini, t_env *envir)
 {
-	mini->path = malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1);
+	char	*r;
+
+	r = ft_get_path(envir);
+	mini->path = malloc(sizeof(char) * ft_strlen(r) + 0x1);
 	if (!mini->path)
-		return (free(mini->path));
-	mini->path = ft_get_path(envir);
-	mini->path_d = ft_split_executor(ft_get_path(envir), ':');
+		return ;
+	mini->path = r;
+	mini->path_d = ft_split_executor(r, ':');
 }

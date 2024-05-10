@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_after_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:25:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/18 11:42:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:50:07 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_word(char **strs, int len)
 		ii++;
 	}
 	word[i] = 0;
-	// ft_cleantach(strs);
+	ft_cleantach(strs);
 	return (word);
 }
 

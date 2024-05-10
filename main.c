@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 18:47:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:27:06 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
 
 void	show(void)
 {
@@ -63,7 +64,7 @@ char	*display_prompt_msg(void)
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
+	str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
 	return (str);
 }
 
@@ -142,24 +143,31 @@ int	main(int ac, char **av, char **env)
 	char		*str;
 	t_minishell	*mini;
 	t_env		*envir;
-	t_fd		fd;	
-
+	(void) *env;
+	t_fd		fd;
+	char *str_tmp;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	envir = full_fill_env(env, 0x0, 0x0);
 	sig_func();
 	fd.tmp_fdout = dup(1);
 	fd.tmp_fdin = dup(0);
+	envir = full_fill_env(env, 0x0, 0x0);
 	while (1999)
 	{
-		str = readline(display_prompt_msg());
-		if (!str)
+		str_tmp = display_prompt_msg();
+		str = readline(str_tmp);
+		free(str_tmp);
+
+		if (!str || first_check(str))
 		{
 			free (str);
-			break ;
+			return (1);
 		}
 		if (is_empty(str))
+		{
+			free(str);
 			continue ;
+		}
 		p = ft_checker(str);
 		add_history(str);
 		ft_puterror(p);
@@ -168,11 +176,20 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			continue ;
 		}
-		mini = parcing(str);
+		 mini = parcing(str);
+		// int i = 0;
+		// while (i < mini->len_tab)
+		// {
+		// 	printf("[%s]\n",  mini->files[i + 1]);
+		// 	i++;
+		// }
+
 		if (mini)
 			ft_execute(&mini, envir, 0x0);
 		get_fd_back(fd);
 		free (str);
+		ft_cleanshell(&mini);
+      //  clear_envir(envir);
 	}
 	return (0x0);
 }

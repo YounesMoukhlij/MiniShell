@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 18:11:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:43:48 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*grep_value(char *s)
 		i++;
 	}
 	r[len] = '\0';
-	return (r);
+	return (free (s), r);
 }
 
 char	*add_t(char *p, char *o, t_env *e)

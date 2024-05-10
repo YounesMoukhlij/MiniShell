@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:04:52 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/07 23:35:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:02:42 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	clear_envir(t_env *head)
 		free(tmp);
 		tmp = current;
 	}
+	head = NULL;
 }
 
 t_env	*full_fill_print(t_env **env)
