@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 18:32:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:30:44 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	expand_cmd(t_minishell **mini, t_env *envir)
 {
-	int		i;
+	int	i;
 	char	*str;
+	char	*res;
+	char	*r;
 
 	i = 0x0;
 	while ((*mini)->cmd[i])
@@ -23,11 +25,16 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		if (is_expanded(*mini, (*mini)->cmd[i]))
 		{
 			str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
-			(*mini)->cmd[i] = without_quotes(str, 0x0);
+			res = without_quotes(str, 0x0);
+			(*mini)->cmd[i] = res;
 		}
 		i++;
 	}
-	rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
+	r = without_quotes((*mini)->cmd[0x0], 0x0);
+	rmv_sgl_quotes_cmd((*mini), r);
+	free (str);
+	free (res);
+	free (r);
 }
 
 int	before_err(char *s)

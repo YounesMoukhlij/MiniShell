@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 19:29:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:09:56 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	full_fill_path(m, envir);
 	if (check_fd(m, envir))
 		return (-0x1);
-	m->export = full_fill_print(&envir);
     expander(&m, envir);
 	handle_fd(m);
 	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
@@ -91,9 +90,11 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	int		i;
 	char	*s;
 	char	**res;
+	char	**r;
 	int		e_s;
 
 	i = 0x0;
+	r = execv_env(envir);
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
@@ -109,7 +110,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		if (access(s, X_OK) == 0x0)
 		{
 			flag = 0x1;
-			if (execve(s, res, execv_env(envir)) == -1)
+			if (execve(s, res, r) == -1)
 			{
 				flag = 0x0;
 				break;
@@ -119,8 +120,12 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
+		free (s);
+		ft_free_strings(res);
+		ft_free_strings(r);
 		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
 		exit(e_s);
 	}
+	free (s);
 	return (0x1);
 }

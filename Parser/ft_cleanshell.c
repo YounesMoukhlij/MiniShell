@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cleanshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 17:19:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/08 17:45:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:19:05 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	ft_cleanshell(t_minishell **node)
 		ft_cleantach(current->cmdt);
 		ft_cleantach(current->afcmd_t);
 		ft_cleantach(current->files);
-		// ft_cleantach(current->cmd);
+		ft_cleantach(current->cmd);
+		// printf("[%p]\n",current->path_d);
+		// printf("path_[%p]",current->path);
+		ft_cleantach(current->path_d);
+		// free (current->path);
 		free(current->tab);
 		current->len_tab = 0;
 		free(current);

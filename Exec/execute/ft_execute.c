@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 21:06:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:24:36 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,32 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	int	t_pipe[2];
 	int	pid;
 	int	return_exve;
+	int	check;
 
+	check = 0x0;
 	full_fill_path(mini, envir);
 	if (check_fd(mini, envir))
-		return ;
+		check = 0x1;
 	expander(&mini, envir);
-	mini->export = full_fill_print(&envir);
 	if (pipe(t_pipe) == -1)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	printf("[%d]\n", mini->fd_in);
+	// printf("[%d]\n", mini->fd_in);
 	pid = fork();
-	puts("11");
 	if (pid == 0)
 	{
-		// if (mini->fd_in != 0)
-		// {
+		if (check == 0x1)
+		{
+			ex_st_f(0x0, 0x1);
+			exit (0x0);
+		}
+		if (mini->fd_in != 0)
+		{
 			if (dup2(mini->fd_in, 0) == -1)
 				exit(1);
-			// close(mini->fd_in);
-		// }
+			close(mini->fd_in);
+		}
 		if (f == 1)
 		{
 			if (mini->fd_out != 1)
@@ -54,11 +59,11 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 				close (t_pipe[1]);
 			}
 		}
-		else
-		{
-			dup2(mini->fd_out, 0);
-			
-		}
+		// ache katkhawer here !!
+		// else
+		// {
+		// 	dup2(mini->fd_out, 0);
+		// }
 		is_cmd(mini, envir);
 	}
 	else
@@ -77,7 +82,7 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		if (f == 0)
 		{
 			dup2(old_stdin, 0x0);
-			// close(old_stdin);
+			close(old_stdin);
 		}
 		else
 		{
@@ -111,6 +116,7 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 
 	tmp = *head;
 	old_stdin = dup(0);
+	// mini->export = full_fill_print(&envir);
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);

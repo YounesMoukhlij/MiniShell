@@ -6,7 +6,7 @@
 /*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 12:21:17 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:12:08 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	ft_set_tk(char *str)
 	i = 0;
 	while (str[i])
 	{
-		printf("[%c]\n",str[i]);
 		if (str[i] == '\'' || str[i] == '\"')
 		{
 			if (str[i] == '\'')

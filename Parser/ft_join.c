@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_join.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 14:31:26 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/18 11:43:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:52:54 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_collection(char **str, char *st)
 		i++;
 	}
 	st[ii] = 0;
-	// ft_cleantach(str);
+	 ft_cleantach(str);
 	return (st);
 }
 
