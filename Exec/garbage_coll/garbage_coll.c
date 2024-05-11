@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:27:59 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 20:48:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:52:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void free_2d_array(void **arr, int rows)
     free(arr);
 }
 
-void free_list(t_delete **head, int size)
+void free_list(t_delete **head)
 {
     t_delete *current = *head;
     t_delete *next;
