@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 14:31:26 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 20:43:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:39:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_collection(char **str, char *st)
 		i++;
 	}
 	st[ii] = 0;
-	//  ft_cleantach(str);
+	// ft_cleantach(str);
 	return (st);
 }
 

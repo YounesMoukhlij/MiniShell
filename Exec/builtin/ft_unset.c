@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/05 18:19:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:28:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	unset_node(char *s, t_env *envir)
 // 		printf("bad pattern: ");
 // 	if (option == 0x2)
 // 		printf("not valid in this context: ");
-// 	printf("%s\n", s);
-// 	exit(1);
+// 	ft_putstr_fd_executor(s, 0x2, 0x1);
+// 	ex_st_f(0x1, 0x1);
 // }
 
 int	check_unset(char *s, t_env *envir)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 21:33:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:17:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 			s = res[0x0];
 		if (access(s, X_OK) == 0x0)
 		{
-			flag = 0x1;
 			if (execve(s, res, r) == -1)
 			{
 				flag = 0x0;
@@ -120,12 +119,8 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
-		// free (s);
-		// ft_free_strings(res);
-		// ft_free_strings(r);
 		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
 		exit(e_s);
 	}
-	// free (s);
 	return (0x1);
 }

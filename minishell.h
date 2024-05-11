@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 18:00:30 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:43:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 # define DBL '\"'
 # define NO 0
 # define YES 1
+
+int glb_sig;
+
+typedef struct s_delete
+{
+	void			*ptr;
+	struct s_delete	*next;
+}	t_delete;
 
 typedef struct s_fd
 {
@@ -51,6 +59,8 @@ typedef struct s_export
 
 typedef struct s_minishell
 {
+	int					check_err;
+	char				*promt;
 	char				**cmd;
 	int					size;
 	char				**cmdt;
@@ -73,8 +83,7 @@ void	fun(char *str, int *i);
 
 
 
-
-
+char	*ft_exit_status(char *s, t_env *envir);
 int	check_single(char *s);
 char	*do_single(char *s, int i, int j);
 int						is_empty(char *s);

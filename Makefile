@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/10 21:15:03 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/11 18:33:06 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ SRC = main.c \
 	  Parser/ft_concat.c \
 	  Parser/ft_cutdata.c\
 	  Parser/pip_checker.c \
-	  Exec/builtin/ft_cd.c \
 	  Parser/ft_after_cmd.c\
+	  Exec/builtin/ft_cd.c \
 	  Exec/expand/expander.c \
 	  Exec/execute/check_fd.c \
 	  Exec/execute/check_fd_1.c \
@@ -87,8 +87,8 @@ CC = cc
 
 all : ${NAME}
 
-$(NAME): $(OBJ) minishell.h
-	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L}  -o ${NAME} -lreadline
+$(NAME): $(OBJ) minishell.h Makefile
+	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L} -o ${NAME} -lreadline
 	@echo "\033[31mLinking ...\033[0m"
 	@echo "\033[33m<.>DONE<.>\033[0m"
 

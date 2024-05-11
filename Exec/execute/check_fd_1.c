@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 22:09:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 13:32:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	expanded_content(char *s)
 	printf("[%s]\n", s);
 	printf("[%c] && [%c]\n", s[0x0], s[ft_strlen(s) - 1]);
 	if ((s[0x0] == SGL && s[ft_strlen(s) - 1] == SGL) || (s[0x0] == DBL && s[ft_strlen(s) - 1] == DBL))
+	{
+		puts("not expanded");
 		return (0x1);
+	}
 	return (0x0);
 }
 
@@ -92,7 +95,7 @@ int	ft_helper_heredoc(t_minishell *m, char *s)
 	if (fd == -0x1)
 		return (0x0);
 	else
-		m->fd_out = fd;
+		m->fd_in = fd;
 	unlink(s);
 	return (m->fd_in);
 }

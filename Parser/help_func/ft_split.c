@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:17:33 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:40:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	number_of_word(char *str, char c)
 	}
 	return (wc);
 }
-//yassine@nassibi@1337
 
 static char	*hook(char *s1, int *id, char c)
 {
@@ -67,6 +66,7 @@ static char	*hook(char *s1, int *id, char c)
 	while (s1[*id] && s1[*id] != c)
 		word[i++] = s1[(*id)++];
 	word[i] = '\0';
+	// ft_cleantach(s1);
 	return (word);
 }
 

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 21:54:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:40:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ char	*ft_exit_status(char *s, t_env *envir)
 		i++;
 		j++;
 	}
-	// if (f)
-	// 	free (f);
-	// printf("add ->f [%p]\n", &f);
-	// printf("add ->r [%p]\n", &r);
 	return (r);
 }
 
@@ -128,10 +124,6 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 		i++;
 		j++;
 	}
-	// 	printf("add ->res [%p]\n", &f);
-	// printf("add ->f [%p]\n", &res);
-	// free (f);
-	// free (s);
 	return ( p);
 }
 

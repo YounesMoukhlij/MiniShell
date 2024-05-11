@@ -6,17 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 21:23:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:23:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-
-void	show(void)
-{
-	system("leaks minishell");
-}
 
 void	ft_puterror(int p)
 {
@@ -137,38 +131,40 @@ void	clear_all(t_minishell *m, t_env *env)
 	clear_envir(env);
 }
 
+
 int	main(int ac, char **av, char **env)
 {
-	int			p;
 	char		*str;
+	char		*tmp;
 	t_minishell	*mini;
 	t_env		*envir;
-	(void) *env;
 	t_fd		fd;
-	char *str_tmp;
+
+	int p;
+	
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	sig_func();
+	glb_sig = 0;
+	envir = full_fill_env(env, 0x0, 0x0);
 	fd.tmp_fdout = dup(1);
 	fd.tmp_fdin = dup(0);
-	envir = full_fill_env(env, 0x0, 0x0);
+	sig_func();
 	while (1999)
 	{
-		str_tmp = display_prompt_msg();
-		str = readline(str_tmp);
-		free(str_tmp);
-
+		tmp = display_prompt_msg();
+		str = readline(tmp);
+		free(tmp);
 		if (!str || first_check(str))
 		{
 			free (str);
-			return (1);
+			break ;
 		}
 		if (is_empty(str))
 		{
 			free(str);
 			continue ;
 		}
-		p = ft_checker(str);
+		p= ft_checker(str);
 		add_history(str);
 		ft_puterror(p);
 		if (p != -1)
@@ -176,19 +172,15 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			continue ;
 		}
-		 mini = parcing(str);
-		// int i = -1;
-		// while (++i < mini->len_tab)
-		// {
-		// 	printf("[%s]\n",  mini->files[i + 1]);
-		// }
-
+		mini = parcing(str);
 		if (mini)
+		{
+			glb_sig = 1;
 			ft_execute(&mini, envir, 0x0);
+			glb_sig = 0;
+		}
 		get_fd_back(fd);
-		// free (str);
-		// ft_cleanshell(&mini);
-      //  clear_envir(envir);
+		free (str);
 	}
 	return (0x0);
 }

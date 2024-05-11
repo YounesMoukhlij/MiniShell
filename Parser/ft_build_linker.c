@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 20:57:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:41:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	add_back(t_minishell **head, t_minishell *node)
 	node->next = NULL;
 }
 
-
 void	add_size(t_minishell *m, int full_size)
 {
 	t_minishell	*tmp;
@@ -104,8 +103,8 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d
 			cmd = lst_cmd(pt[0], str[i], arr, lens);
 		add_back(&head, cmd);
 		i++;
+		// ft_cleantach(pt);
 	}
-	// ft_cleantach(pt);
 	add_size(head, d);
 	return (head);
 }
