@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:22:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:27:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,21 @@ int	check_yns(char *i)
 	return (0x0);
 }
 
+int	check_1(char *s)
+{
+	if (s[ft_strlen(s) - 1] == '>'
+		|| s[ft_strlen(s) - 1] == '<')
+		return (0x1);
+	return (0x0);
+}
+
 int	ft_checker(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (check_1(str))
+		return (7);
 	if (str[i] == '>' || str[i] == '<')
 	{
 		if (ft_strlen(str) <= 2)

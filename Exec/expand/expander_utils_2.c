@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 18:49:29 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:54:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 	char	*p;
 	char	*s;
 	char	*res;
-	char *f;
+
 	p = allocate_max(envir);
 	if (!p)
 		return (NULL);
@@ -116,8 +116,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 				i++;
 				break ;
 			}
-			f = grep_value(&s[i]);
-			res = grep_from_env(envir,  f);
+			res = grep_from_env(envir,  grep_value(&s[i]));
 			p = add_t(p, res, envir);
 			if (ft_strlen(p) || !ft_strlen(res))
 				i += grep(&s[i]);
@@ -131,7 +130,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 	}
 	// 	printf("add ->res [%p]\n", &f);
 	// printf("add ->f [%p]\n", &res);
-	free (f);
+	// free (f);
 	// free (s);
 	return ( p);
 }

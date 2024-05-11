@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 15:14:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:09:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@ int	ft_open_others(t_minishell *mini)
 
 	i = -0x1;
 	fd = 0x1;
-	while (i++ < mini->len_tab)
+	while (++i < mini->len_tab)
 	{
-		if (mini->tab[i] == 0x1 || mini->tab[i] == 0x2)
+		if (mini->tab[i] == 0x1)
 		{
-			fd = open(mini->files[i + 1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+			fd = open(mini->files[i + 1], O_CREAT | O_RDWR , 0664);
+			if (fd == -0x1)
+				return (func_err(mini->files[i + 1]), 0x1);
+		}
+		else if (mini->tab[i] == 0x2)
+		{
+			fd = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
 		}
@@ -68,7 +74,9 @@ char	*hidden_name(void)
 
 int	expanded_content(char *s)
 {
-	if ((s[0x0] == SGL && s[0x2] == SGL) || (s[0x0] == DBL && s[0x2] == DBL))
+	printf("[%s]\n", s);
+	printf("[%c] && [%c]\n", s[0x0], s[ft_strlen(s) - 1]);
+	if ((s[0x0] == SGL && s[ft_strlen(s) - 1] == SGL) || (s[0x0] == DBL && s[ft_strlen(s) - 1] == DBL))
 		return (0x1);
 	return (0x0);
 }

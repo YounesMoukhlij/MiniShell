@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 15:12:08 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:21:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ft_set_tk(char *str)
 			else if (str[i] == '\"')
 				ft_parq(str, &i, 'q');
 		}
-
 		if (!str[i])
 			break ;
 		if (str[i] == '<' && str[i + 1] =='<')
@@ -109,6 +108,7 @@ int	ft_parq_err(char *str, int *i, char f)
 	}
 	return (op);
 }
+
 int	ft_parq(char *str, int *i, char f)
 {
 	int	op;

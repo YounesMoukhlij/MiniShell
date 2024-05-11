@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 16:25:24 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:32:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,35 @@ int	advanced(t_minishell *m)
 	return (0x0);
 }
 
+int	check_here(t_minishell *m)
+{
+	int	i;
+
+	i = -0x1;
+	while (++i < m->len_tab)
+	{
+		if (m->tab[i] == 0x4)
+			return (0x0);
+	}
+	return (0x1);
+}
+
 int	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
+	int	l;
 
 	flag = 0x1;
+	l = 0;
 	if (!mini->files[0x1])
 		return (0x0);
-	if (!check_files(mini, env, -0x1))
+	if (!check_files(mini, env, -0x1) && check_here(mini))
 		expand_files(&mini, env, 0x0);
-	else
+	else if (!check_here(mini))
+		l = 1;
+	else if (!check_files(mini, env, -0x1) && l == 0)
 		return (0x1);
+		
 	// if (advanced(mini))
 	// 	return (0x1);
 	// if (file_first_check(mini))
