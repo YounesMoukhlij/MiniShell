@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:46:30 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:00:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	j = 0;
 	len = (ft_strlen(s1) - 1);
 	tracker = fish_str(set, tracker, &len, j);
-	str = malloc(sizeof(char) * (len + 2));
+	str = ft_malloc(sizeof(char) * (len + 2));
 	if (!str)
 		return (0);
 	str[len + 1] = 0;

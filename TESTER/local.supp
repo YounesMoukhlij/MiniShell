@@ -10,7 +10,7 @@
    <Readline/AddHistory>
    Memcheck:Leak
    match-leak-kinds: reachable
-   fun:malloc
+   fun:ft_malloc
    ...
    fun:add_history
    ...

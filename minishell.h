@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 19:52:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:01:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_export
 typedef struct s_minishell
 {
 	int					check_err;
+	int					pid_fork;
 	char				*promt;
 	char				**cmd;
 	int					size;
@@ -77,6 +78,9 @@ typedef struct s_minishell
 	t_fd				fd;
 	struct s_minishell	*next;
 }						t_minishell;
+
+
+void    *ft_malloc(size_t size, int mode);
 
 int	ft_parq_err(char *str, int *i, char f);
 void	fun(char *str, int *i);
@@ -173,7 +177,7 @@ char					*without_quotes(char *s, int flag);
 void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int						cmd_length(t_minishell *m);
 void					clear_envir(t_env *head);
-void					signal_handler_one(int sig_v);
+void					signal_handler(int sig_v);
 void					ft_put_err(char *input, char *message);
 int						check_s(char *s);
 int						env_check(t_env **eenv, char *s);
@@ -247,7 +251,7 @@ int						ft_parq(char *str, int *i, char f);
 void					hudler_o(char *s1, int i, int *op, size_t *len_word);
 char					*hudler_t(char *s1, char *word, int *id);
 void					ft_skep(char *str, int *i);
-char					**handle_of_malloc(char **tab);
+char					**handle_of_ft_malloc(char **tab);
 int						get_des(char c, int fg);
 t_minishell				*get_link_cmd(char **str, t_minishell *head,
 							t_minishell *cmd, int d);

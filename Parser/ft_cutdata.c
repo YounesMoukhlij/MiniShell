@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:47:24 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:13:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_get_word(char *s)
 		s++;
 	i = 0;
 	len = get_first_word(s);
-	word = malloc(sizeof(char) * (len + 1));
+	word = ft_malloc(sizeof(char) * (len + 1), 0x1);
 	if (!word)
 		return (NULL);
 	while (i < len)
@@ -68,14 +68,14 @@ char	**ft_files(char **s)
 	if (!s)
 		return (NULL);
 	wc = ft_strldd(s);
-	arr = malloc(sizeof(char *) * (wc + 1));
+	arr = ft_malloc(sizeof(char *) * (wc + 1), 0x1);
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
 		arr[i] = ft_get_word(s[id++]);
 		if (!arr[i])
-			return (handle_of_malloc(arr));
+			return (handle_of_ft_malloc(arr));
 		i++;
 	}
 	arr[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:28:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:07:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_split_export(char *s)
 	len = 0x0;
 	if (s == NULL)
 		return (NULL);
-	r = malloc(sizeof(char *) * 0x3);
+	r = ft_malloc(sizeof(char *) * 0x3, 0x1);
 	if (!r)
 		return (0);
 	len = get_len(s, 0x0);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:31:12 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:00:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (0);
 	len_s = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * (len_s + 1));
+	str = (char *)ft_malloc(sizeof(char) * (len_s + 1));
 	if (!str)
 		return (0);
 	i = 0;

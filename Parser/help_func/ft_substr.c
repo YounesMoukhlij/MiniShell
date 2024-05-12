@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 09:32:34 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/05 23:26:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:26:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (len > (ft_strlen(s) - start))
 		len = (ft_strlen(s) - start);
 	tracker = &s[start];
-	str = (char *) malloc(sizeof(char) * (len + 1));
+	str = (char *) ft_malloc(sizeof(char) * (len + 1), 0x1);
 	if (!str)
 		return (0);
 	i = -1;

@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:21:56 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:11:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**handle_of_malloc(char **tab)
+char	**handle_of_ft_malloc(char **tab)
 {
 	unsigned int	i;
 
@@ -37,7 +37,7 @@ static char	*hook(char *s1, int *id)
 		(*id)++;
 	i = *id;
 	hudler_o(s1, i, &op, &len_word);
-	word = malloc(sizeof(char) * (len_word + 2));
+	word = ft_malloc(sizeof(char) * (len_word + 2), 0x1);
 	if (!word)
 		return (NULL);
 	return (hudler_t(s1, word, id));
@@ -55,14 +55,14 @@ char	**ft_spliter(char *s)
 	if (!s)
 		return (NULL);
 	wc = number_of_word(s);
-	arr = malloc(sizeof(char *) * (wc + 1));
+	arr = ft_malloc(sizeof(char *) * (wc + 1), 0x1);
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
 		arr[i] = hook(s, &id);
 		if (!arr[i])
-			return (handle_of_malloc(arr));
+			return (handle_of_ft_malloc(arr));
 		i++;
 	}
 	arr[i] = 0;

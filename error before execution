@@ -33,8 +33,8 @@ READ of size 1 at 0x60200001b91e thread T0
 
 0x60200001b91e is located 0 bytes to the right of 14-byte region [0x60200001b910,0x60200001b91e)
 allocated by thread T0 here:
-    #0 0x10b82217d in wrap_malloc+0x9d (libclang_rt.asan_osx_dynamic.dylib:x86_64h+0x4917d)
-    #1 0x10b7bac34 in xmalloc+0x8 (libreadline.8.dylib:x86_64+0x25c34)
+    #0 0x10b82217d in wrap_ft_malloc+0x9d (libclang_rt.asan_osx_dynamic.dylib:x86_64h+0x4917d)
+    #1 0x10b7bac34 in xft_malloc+0x8 (libreadline.8.dylib:x86_64+0x25c34)
     #2 0x10b797f7a in readline_internal_teardown+0xfa (libreadline.8.dylib:x86_64+0x2f7a)
     #3 0x10b797a98 in readline+0x5b (libreadline.8.dylib:x86_64+0x2a98)
     #4 0x10b759a0b in main+0x24b (minishell:x86_64+0x100002a0b)

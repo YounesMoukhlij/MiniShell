@@ -6,11 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:41:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:27:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	init_helper(t_minishell *lst)
+{
+	lst->fd_in = 0;
+	lst->fd_out = 1;
+	lst->size = 0;
+	lst->pid_fork = -1;
+	lst->check_err = 0;
+}
 
 t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 {
@@ -18,7 +27,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	char		*s;
 	char		**str;
 
-	lst = malloc(sizeof(t_minishell));
+	lst = ft_malloc(sizeof(t_minishell), 0x1);
 	if (!lst)
 		return (NULL);
 	str = ft_splits(file, 1);
@@ -29,11 +38,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->len_tab = len;
 	s = ft_join(ft_concat(lst->cmdt, ++lst->afcmd_t));
 	lst->cmd = ft_splits(s, 0);
-	lst->fd_in = 0;
-	lst->fd_out = 1;
-	lst->size = 0;
-	free(s);
-	// ft_cleantach(str);
+	init_helper(lst);
 	--lst->afcmd_t;
 	lst->next = 0;
 	return (lst);
@@ -103,7 +108,6 @@ t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d
 			cmd = lst_cmd(pt[0], str[i], arr, lens);
 		add_back(&head, cmd);
 		i++;
-		// ft_cleantach(pt);
 	}
 	add_size(head, d);
 	return (head);

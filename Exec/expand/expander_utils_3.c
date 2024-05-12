@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 14:04:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:31:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*without_quotes(char *s, int flag)
 		return (do_single(s, 0x0, 0x0));
 	if (!s)
 		return ("");
-	res = calloc(strlen(s) + 0x1, 0x1);
+	res = ft_calloc(strlen(s) + 0x1, 0x1);
 	if (!res)
 		return (NULL);
 	while (s[i])

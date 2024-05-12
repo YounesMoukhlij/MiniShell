@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 15:55:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:33:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,35 @@ void	back_up(t_env **ennv, int i)
 	}
 }
 
+char	*ft_substr_env(char *s, int start, int len)
+{
+	char	*r;
+	int		i;
+	int		l;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (!len || start >= ft_strlen(s))
+		return (ft_strdup(""));
+	l = ft_strlen(s) - start;
+	if (l > len)
+		l = len;
+	r = malloc(sizeof(char) * (l + 1));
+	if (!r)
+		return (NULL);
+	while (s[start] && l)
+	{
+		r[i] = s[start];
+		start++;
+		i++;
+		l--;
+	}
+	r[i] = '\0';
+	return (r);
+}
+
+
 t_env	*full_fill_env(char **env, int i, int j)
 {
 	t_env	*lst_env;
@@ -83,8 +112,8 @@ t_env	*full_fill_env(char **env, int i, int j)
 			j = 0x0;
 			while (env[i][j] != '=')
 				j++;
-			s1 = ft_substr_executor(env[i], 0x0, j);
-			s2 = ft_substr_executor(env[i], j + 0x1, ft_strlen(env[i]));
+			s1 = ft_substr_env(env[i], 0x0, j);
+			s2 = ft_substr_env(env[i], j + 0x1, ft_strlen(env[i]));
 			// if (!strcmp_f(s1, "SHLVL", 0x0, 0x0))
 			// {
 			// 	tmp = ft_itoa(ft_atoi(s2) + 1);
@@ -102,12 +131,10 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 void	full_fill_path(t_minishell *mini, t_env *envir)
 {
-	char	*r;
-
-	r = ft_get_path(envir);
-	mini->path = malloc(sizeof(char) * ft_strlen(r) + 0x1);
+	mini->path = ft_malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1, 0x1);
+	// mini->path = ft_malloc(sizeof(char) * ft_strlen(r) + 0x1);
 	if (!mini->path)
 		return ;
-	mini->path = r;
-	mini->path_d = ft_split_executor(r, ':');
+	mini->path = ft_get_path(envir);
+	mini->path_d = ft_split_executor(ft_get_path(envir), ':');
 }

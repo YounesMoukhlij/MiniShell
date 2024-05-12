@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:37:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/23 11:53:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:54:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_env	*lstnew_executor(char *key, char *value)
 {
 	t_env	*lst;
 
+	// lst = ft_malloc(sizeof(t_env));
 	lst = malloc(sizeof(t_env));
 	if (!lst)
 		return (NULL);

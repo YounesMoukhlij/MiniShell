@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:49:47 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 17:48:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:20:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ char	*ft_substr_executor(char *s, int start, int len)
 	if (!s)
 		return (NULL);
 	if (!len || start >= ft_strlen(s))
-		return (strdup(""));
+		return (ft_strdup(""));
 	l = ft_strlen(s) - start;
 	if (l > len)
 		l = len;
-	r = (char *)malloc(sizeof(char) * (l + 1));
+	r = (char *)ft_malloc(sizeof(char) * (l + 1), 0x1);
 	if (!r)
 		return (NULL);
 	while (s[start] && l)

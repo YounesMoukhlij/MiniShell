@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 14:32:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:15:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**execv_env(t_env *envir)
 
 	i = 0;
 	tmp = envir;
-	str = malloc(sizeof(char *) * lst_size_executor(&tmp) + 1);
+	str = ft_malloc(sizeof(char *) * lst_size_executor(&tmp) + 1, 0x1);
 	if (!str)
 		return (NULL);
 	while (tmp)

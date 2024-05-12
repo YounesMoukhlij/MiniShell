@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:23:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:30:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	print_cmd(t_minishell *mini)
 
 void	sig_func()
 {
-	signal(SIGINT, signal_handler_one);
-	signal(SIGQUIT, signal_handler_one);
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, signal_handler);
 	rl_catch_signals = 0;
 }
 
@@ -131,7 +131,6 @@ void	clear_all(t_minishell *m, t_env *env)
 	clear_envir(env);
 }
 
-
 int	main(int ac, char **av, char **env)
 {
 	char		*str;
@@ -153,9 +152,9 @@ int	main(int ac, char **av, char **env)
 	{
 		tmp = display_prompt_msg();
 		str = readline(tmp);
-		free(tmp);
 		if (!str || first_check(str))
 		{
+			ft_malloc(0, 0);
 			free (str);
 			break ;
 		}
@@ -164,7 +163,7 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			continue ;
 		}
-		p= ft_checker(str);
+		p = ft_checker(str);
 		add_history(str);
 		ft_puterror(p);
 		if (p != -1)
@@ -180,7 +179,8 @@ int	main(int ac, char **av, char **env)
 			glb_sig = 0;
 		}
 		get_fd_back(fd);
-		free (str);
+		ft_malloc(0, 0);
 	}
+	clear_envir(envir);
 	return (0x0);
 }

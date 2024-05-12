@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 19:25:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:26:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,11 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 			return (open(ttyname(2), O_RDWR), 0x1);
 		if (!s || !strcmp_f(s, delim, 0x0, 0x0))
 		{
-			free (s); break ;
+			break ;
 		}
 		if (flag == 0x0 && no_dollar(s))
 			s = expand_heredoc(env, s, 0x0, 0x0);
 		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
-		free(s);
 	}
 	return (ft_helper_heredoc(mini, hdd_f));
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 18:23:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:07:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	expand_cmd(t_minishell **mini, t_env *envir)
 {
-	int	i;
+	int		i;
 	char	*str;
-	char	*res;
-	char	*r;
 	
 	i = 0x0;
 	while ((*mini)->cmd[i])
@@ -25,13 +23,11 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		if (is_expanded(*mini, (*mini)->cmd[i]))
 		{
 			str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
-			res = without_quotes(str, 0x0);
-			(*mini)->cmd[i] = res;
+			(*mini)->cmd[i] = without_quotes(str, 0x0);
 		}
 		i++;
 	}
-	r = without_quotes((*mini)->cmd[0x0], 0x0);
-	rmv_sgl_quotes_cmd((*mini), r);
+	rmv_sgl_quotes_cmd((*mini), without_quotes((*mini)->cmd[0x0], 0x0));
 }
 
 int	before_err(char *s)

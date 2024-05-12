@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/11 14:53:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:11:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char	*hooks(char *s1, int *id, int fg)
 		(*id)++;
 	i = *id;
 	ft_get_len(s1, i, &len_word, fg);
-	word = malloc(sizeof(char) * (len_word + 1));
+	word = ft_malloc(sizeof(char) * (len_word + 1), 0x1);
 	if (!word)
 		return (NULL);
 	return (hudler_ts(s1, word, id, fg));
@@ -101,14 +101,14 @@ char	**ft_splits(char *s, char fg)
 	if (!s)
 		return (NULL);
 	wc = number_of_words(s, fg);
-	arr = malloc(sizeof(char *) * (wc + 1));
+	arr = ft_malloc(sizeof(char *) * (wc + 1), 0x1);
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
 		arr[i] = hooks(s, &id, fg);
 		if (!arr[i])
-			return (handle_of_malloc(arr));
+			return (handle_of_ft_malloc(arr));
 		i++;
 	}
 	arr[i] = 0;
