@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:53:54 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:02:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:53:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ static int	ft_strlen_word(char *s, char c)
 	while (s[len] && s[len] != c)
 		len++;
 	return (len);
-}
-
-char	**ft_free(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-	return (NULL);
 }
 
 static int	count_words(char *s, char c)
@@ -92,7 +78,7 @@ char	**ft_split_executor(char *s, char c)
 		{
 			r[i] = ft_create(s, c);
 			if (!r[i])
-				return (ft_free(r));
+				return (NULL);
 			i++;
 		}
 		while (*s && *s != c)

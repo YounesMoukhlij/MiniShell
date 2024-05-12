@@ -39,3 +39,10 @@ allocated by thread T0 here:
     #3 0x10b797a98 in readline+0x5b (libreadline.8.dylib:x86_64+0x2a98)
     #4 0x10b759a0b in main+0x24b (minishell:x86_64+0x100002a0b)
     #5 0x7fff692ddcc8 in start+0x0 (libdyld.dylib:x86_64+0x1acc8)
+
+
+
+
+ERRORORRRRR
+cat << l | cat << p
+cat << $""

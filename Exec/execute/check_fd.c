@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 12:36:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:27:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	check_fd(t_minishell *mini, t_env *env)
 	// 	return (0x1);
 	// if (file_first_check(mini))
 	// 	return (0x1);
+	mini->fd_in = 0;
 	if (ft_fd_files(mini, env))
 		flag = 0x0;
 	if (ft_open_others(mini))

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:17:33 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 14:04:24 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:54:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*hook(char *s1, int *id, char c)
 		len_word++;
 		i++;
 	}
-	word = ft_malloc(sizeof(char) * (len_word + 1));
+	word = ft_malloc(sizeof(char) * (len_word + 1), 0x1);
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -89,7 +89,7 @@ char	**ft_split(char const *s, char c)
 	{
 		arr[i] = hook(s, &id, c);
 		if (!arr[i])
-			return (handle_of_ft_malloc(arr));
+			return (NULL);
 		i++;
 	}
 	arr[i] = 0;

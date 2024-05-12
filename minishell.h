@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:32:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:49:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef struct s_env
 	char				*value;
 	struct s_env		*next;
 }						t_env;
+
+typedef struct s_tmp
+{
+	int			lens;
+	int			*arr;
+	char		**pt;
+}	t_tmp;
 
 typedef struct s_export
 {

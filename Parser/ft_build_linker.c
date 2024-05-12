@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 15:27:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:59:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,24 @@ void	add_size(t_minishell *m, int full_size)
 
 t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d)
 {
-	int			lens;
-	int			i;
-	int			*arr;
-	char		**pt;
-	int			j;
-	head = 0;
+	t_tmp	tmp;
+	int		i;
+	int		j;
+	
 	i = 0;
-		j = -1;
+	j = 0;
 	while (str[i])
 	{
-		lens = ft_set_tk(str[i]);
-		arr = ft_arr_tk(str[i], lens);
-		while (++j < lens)
-			if (arr[j] <= 0 || arr[j] > 4)
-				arr[j] = 3;
-		pt = ft_splits(str[i], 1);
-		if (i < lens)
-			cmd = lst_cmd(pt[0], str[i], arr, lens);
+		tmp.lens = ft_set_tk(str[i]);
+		tmp.arr = ft_arr_tk(str[i], tmp.lens);
+		while (++j < tmp.lens)
+			if (tmp.arr[j] <= 0 || tmp.arr[j] > 4)
+				tmp.arr[j] = 3;
+		tmp.pt = ft_splits(str[i], 1);
+		if (i < tmp.lens)
+			cmd = lst_cmd(tmp.pt[0], str[i], tmp.arr, tmp.lens);
 		else
-			cmd = lst_cmd(pt[0], str[i], arr, lens);
+			cmd = lst_cmd(tmp.pt[0], str[i], tmp.arr, tmp.lens);
 		add_back(&head, cmd);
 		i++;
 	}

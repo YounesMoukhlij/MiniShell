@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:53:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:56:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,10 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		return ;
 		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
 		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
-	// printf("[%d]\n", mini->fd_in);
 	mini->pid_fork = fork();
 	if (mini->pid_fork == 0)
 	{
+		printf("in exec [%d]\n", mini->fd_in);
 		if (mini->check_err == 0x1)
 		{
 			ex_st_f(0x0, 0x1);
@@ -140,7 +140,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		{
 			if (dup2(mini->fd_out, 1) == -1)
 				exit(1);
-			
 		}
 		is_cmd(mini, envir);
 	}
@@ -160,14 +159,14 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		if (f == 0)
 		{
 			dup2(old_stdin, 0x0);
-			close(old_stdin);
+			// close(old_stdin);
 		}
 		else
 		{
 			if (mini->fd_in != 0)
 			{
 				dup2(mini->fd_in, 0);
-				close(mini->fd_in);
+				// close(mini->fd_in);
 			}
 		}
 	}
@@ -209,9 +208,13 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	}
 	while (tmp->next)
 	{
+		puts("HERE");
 		big_execution(tmp, envir, 0x1, old_stdin);
 		tmp = tmp->next;
 	}
 	if (tmp)
+	{
+		puts("here");
 		big_execution(tmp, envir, 0x0, old_stdin);
+	}
 }

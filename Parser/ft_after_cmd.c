@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 13:25:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 15:11:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:55:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*get_word(char **strs, int len)
 		ii++;
 	}
 	word[i] = 0;
-	ft_cleantach(strs);
 	return (word);
 }
 
@@ -95,7 +94,7 @@ char	**ft_after_cmd(char **s)
 	{
 		arr[i] = ft_aftercmd(s[id++]);
 		if (!arr[i])
-			return (handle_of_ft_malloc(arr));
+			return (NULL);
 		i++;
 	}
 	arr[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 18:17:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:18:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	is_correct_1(char *s)
 
 int	err_export(char *s)
 {
-	if (ft_is_equal(s))
+	if (ft_is_equal(s) || is_correct(s))
 		return (0x0);
 	return (0x1);
 }

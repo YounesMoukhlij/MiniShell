@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 15:37:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:07:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ char	*files_without_quotes(char *s, int flag, int i, int j)
 	char	*res;
 
 	if (!s)
-		return ("");
-	res = calloc(strlen(s) + 0x1, 0x1);
+		return (ft_strdup(""));
+	res = ft_calloc(strlen(s) + 0x1, 0x1);
 	if (!res)
 		return (NULL);
 	if (s[i] == DBL && s[ft_strlen(s) - 1] == DBL)

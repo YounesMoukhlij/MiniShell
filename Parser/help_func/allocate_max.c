@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 23:31:29 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/11 13:46:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:49:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,6 @@ void	ft_free_env(t_env **env)
 		current = temp;
 	}
 	*env = NULL;
-}
-
-void	ft_free_strings(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-	s = NULL;
 }
 
 int	lst_size(t_minishell **head)

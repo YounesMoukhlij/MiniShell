@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:18:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:35:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*grep_from_env(t_env *envir, char *string)
 			return (tmp->value);
 		tmp = tmp->next;
 	}
-	return ("");
+	return (ft_strdup(""));
 }
 
 char	*ft_get_path(t_env *envir)
@@ -64,7 +64,7 @@ void	back_up(t_env **ennv, int i)
 					"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 		add_back_executor(ennv, lst);
 	}
-	free (pwd);
+	// free (pwd);
 }
 
 char	*ft_substr_env(char *s, int start, int len)
