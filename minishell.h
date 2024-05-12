@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 14:01:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:32:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ int						*ft_arr_tk(char *str, int len);
 int						ft_set_tk(char *str);
 char					**ft_spliter(char *s);
 int						ft_parq(char *str, int *i, char f);
-void					hudler_o(char *s1, int i, int *op, size_t *len_word);
+int						hudler_o(char *s1, int i, int *op, size_t *len_word);
 char					*hudler_t(char *s1, char *word, int *id);
 void					ft_skep(char *str, int *i);
 char					**handle_of_ft_malloc(char **tab);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:21:56 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 14:11:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:34:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**ft_spliter(char *s)
 	{
 		arr[i] = hook(s, &id);
 		if (!arr[i])
-			return (handle_of_ft_malloc(arr));
+			return (NULL);
 		i++;
 	}
 	arr[i] = 0;

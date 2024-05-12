@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 15:33:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:18:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	back_up(t_env **ennv, int i)
 	char	*buff;
 
 	buff = NULL;
+	pwd = NULL;
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
@@ -63,6 +64,7 @@ void	back_up(t_env **ennv, int i)
 					"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 		add_back_executor(ennv, lst);
 	}
+	free (pwd);
 }
 
 char	*ft_substr_env(char *s, int start, int len)
@@ -132,7 +134,6 @@ t_env	*full_fill_env(char **env, int i, int j)
 void	full_fill_path(t_minishell *mini, t_env *envir)
 {
 	mini->path = ft_malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1, 0x1);
-	// mini->path = ft_malloc(sizeof(char) * ft_strlen(r) + 0x1);
 	if (!mini->path)
 		return ;
 	mini->path = ft_get_path(envir);

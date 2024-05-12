@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 21:27:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:52:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,23 @@ int	check_expected_token(char *str)
 	return (0);
 }
 
+int	check_2(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	while (s[i])
+	{
+		ft_skep(s, &i);
+		if (!s[i])
+			break;
+		if (s[i] == '<' && s[i + 1] == '>' && s[i + 1])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	check_yns(char *i)
 {
 	if (i[0x0] == SGL && i[ft_strlen(i) - 1] == SGL)
@@ -117,17 +134,18 @@ int	ft_checker(char *str)
 	int	i;
 
 	i = 0;
-	if (check_1(str))
-		return (7);
 	if (str[i] == '>' || str[i] == '<')
 	{
 		if (ft_strlen(str) <= 2)
 			return (6);
 	}
+	if (check_1(str))
+		return (7);
+	
 	if (pip_check(str))
 		return (0);
-	if (red_check(str, 0x0, 0x0))
-		return (red_check(str, 0x0, 0x0));
+	if (red_check(str, 0x0, 0x0)  || check_2(str))
+		return (5);
 	if (infile_check(str, 0x0, 0x0))
 		return (3);
 	if (check_expected_token(str))

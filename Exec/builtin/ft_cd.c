@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:41:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:56:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 	char	*buff;
 
 	buff = NULL;
+	new_pwd = NULL;
 	if (f == 0x1)
 	{
 		tmp = env_node(&e, "PWD");
@@ -35,6 +36,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 				tmp->value = ft_strdup(new_pwd);
 		}
 	}
+	free (new_pwd);
 }
 
 int	cd_1(t_env *envir)
