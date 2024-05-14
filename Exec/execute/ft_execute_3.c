@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 17:42:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:35:00 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 
 int	is_builtin(t_minishell *m)
 {
+	if (!m->cmd || !m->cmd[0x1] || !m->cmd[0x0])
+		return (0x0);
 	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (0x1);
 	else if (!strcmp_f(m->cmd[0], "env", 0, 0) || !strcmp_f(m->cmd[0], "ENV", 0, 0))

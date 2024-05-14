@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:59:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:03:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 		s = readline("heredoc> ");
 		if (!ttyname(0))
 			return (open(ttyname(2), O_RDWR), -0x1);
-		if (!s || !strcmp_f(s, delim, 0x0, 0x0))
+		if (!s || !strcmp_f(s, delim, 0x0, 0x0)) 
 		{
 			free (s);
 			break ;
@@ -226,16 +226,16 @@ int	check_files(t_minishell *m, t_env *env, int i)
 			if (check_f(tmp->value))
 			{
 				if (m->files[i + 1][0x0] == '$')
-					return (helper_files(m->files[i + 1]), -0x1);
+					return (helper_files(m->files[i + 1]), 0x0);
 			}
 		}
 		else if (!tmp)
 		{
 			if (m->files[i + 1][0x0] == '$')
-					return (helper_files(m->files[i + 1]), -0x1);
+					return (helper_files(m->files[i + 1]), 0x0);
 		}
 	}
-	return (0x0);
+	return (0x1);
 }
 
 int	already_here(t_env *env, char *s)

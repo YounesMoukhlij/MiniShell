@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 14:11:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:36:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,14 @@ char	**ft_splits(char *s, char fg)
 	if (!s)
 		return (NULL);
 	wc = number_of_words(s, fg);
-	arr = ft_malloc(sizeof(char *) * (wc + 1), 0x1);
+	arr = malloc(sizeof(char *) * (wc + 1));
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
 		arr[i] = hooks(s, &id, fg);
 		if (!arr[i])
-			return (handle_of_ft_malloc(arr));
+			return (NULL);
 		i++;
 	}
 	arr[i] = 0;

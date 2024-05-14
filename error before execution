@@ -46,3 +46,27 @@ allocated by thread T0 here:
 ERRORORRRRR
 cat << l | cat << p
 cat << $""
+
+-----
+export a c= | 2 times
+export +=
+export $a+=$a | a = "ls     -la"
+
+export a="''"
+echo $a
+'' | ""
+
+Without HOME cd sigv
+
+echo $"$"$
+
+<< $
+$
+
+export ==
+
+exit
+exit aaa aaa
+
+unset ""
+export ""
