@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 11:55:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:00:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	ft_exit(t_minishell *mini)
 		puts("exit");
 	if (cmd_length(mini) == 1)
 	{
+		puts("1");
 		ex_st_f(0x0, 0x1);
 		exit(0x0);
 	}
