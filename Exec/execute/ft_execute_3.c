@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 13:05:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:42:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_builtin(t_minishell *m)
 		return (0x1);
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (0x1);
-	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
+	else if ((!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0)) || (!strcmp_f(m->cmd[1], "echo", 0, 0) || !strcmp_f(m->cmd[1], "ECHO", 0, 0)))
 		return (0x1);
 	else
 		return (0x0);

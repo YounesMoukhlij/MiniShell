@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 17:28:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:39:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,12 +146,6 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	}
 	else
 	{
-		// while(wait(&return_exve) != -1);
-		// if (WIFSIGNALED(return_exve))
-		// 	ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
-		// else
-		// 	ex_st_f(WEXITSTATUS(return_exve), 0x1);
-
 		close(t_pipe[1]);
 		if (mini->fd_in != 0)
 			dup2(t_pipe[0], mini->fd_in);
