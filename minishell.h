@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 18:49:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:53:13 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ typedef struct s_export
 typedef struct s_minishell
 {
 	int					check_err;
+	int					parsing_err;
 	int					pid_fork;
-	char				*promt;
 	char				**cmd;
 	int					size;
 	char				**cmdt;
@@ -86,13 +86,21 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
-
+char	*ft_strjoin_executor_1(char *s1, char *s2);
+int	ft_strlen(char *str);
+char	*ft_calloc_1(int num, int size);
+void	get_fd_back(t_fd fd);
+void	signal_handler_child(int sig);
+char	*ft_strdup_1(char *s1);
+int	is_correct(char *s);
 void    *ft_malloc(size_t size, int mode);
 
 int	ft_parq_err(char *str, int *i, char f);
 void	fun(char *str, int *i);
 
+int	ft_isalnum_1(int c);
 
+void	ft_put_err(char *input, char *message);
 
 char	*ft_exit_status(char *s, t_env *envir);
 int	check_single(char *s);
@@ -284,7 +292,6 @@ void					show_me(t_minishell *cmp);
 int						ft_tolower(int c);
 int						ft_toupper(int c);
 int						ft_atoi(char *str);
-int						ft_isalnum(int c);
 int						ft_isalpha(int c);
 int						ft_isascii(int c);
 int						ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:02:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:05:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	else if (!strcmp_f(m->cmd[0], "export", 0, 0))
 		return (ft_export(m, envir, 0x1));
 	else if (!strcmp_f(m->cmd[0], "exit", 0, 0))
-		return (ft_exit(m), 1);
+		return (ft_exit(m));
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (ft_unset(m, envir));
 	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
@@ -95,6 +95,8 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	i = 0x0;
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
+	if (!ft_strlen(mini->cmd[0x0]))
+		return (exit(0x0), 0x0);
 	if (check_cmd(mini->cmd[0x0]))
 		res = get_cmd_splited(mini->cmd, cmd_length(mini), 0x0, 0x1);
 	else

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 19:52:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:45:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,9 @@ char	*hidden_name(void)
 {
 	static int	i;
 	char		*s1;
-	// s1 = ft_strdup("d");
-	// while(access(s1 , F_OK))
-	// {
-	// 	puts("13");
-		s1 = ft_strjoin_executor(".", ft_itoa(i));
-		i++;
-	// }	
+	
+	s1 = ft_strjoin_executor("/tmp/tmp_file_", ft_itoa(i));
+	i++;	
 	return (s1);
 }
 
@@ -85,16 +81,12 @@ int	expanded_content(char *s)
 
 int	ft_helper_heredoc(t_minishell *m, char *s)
 {
-	int	fd;
-
 	if (cmd_length(m) == 0x0)
 		return (0x0);
 	close(m->fd_in);
-	fd = open(s, O_RDWR, 0644);
-	if (fd == -0x1)
-		return (0x0);
-	else
-		m->fd_in = fd;
-	// unlink(s);
+	m->fd_in = open(s, O_RDWR | O_APPEND , 0777);
+	if (m->fd_in == -0x1)
+		return (-0x1);
+	unlink(s);
 	return (m->fd_in);
 }

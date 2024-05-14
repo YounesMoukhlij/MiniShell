@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 18:21:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:33:00 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 	{
 		tmp = env_node(&e, "PWD");
 		if (tmp)
-			tmp->value = ft_strdup(path);
+			tmp->value = ft_strdup_1(path);
 	}
 	else
 	{
@@ -33,7 +33,7 @@ void	change_dir_1(t_env *e, char *path, int f)
 		{
 			tmp = env_node(&e, "OLDPWD");
 			if (tmp)
-				tmp->value = ft_strdup(new_pwd);
+				tmp->value = ft_strdup_1(new_pwd);
 		}
 	}
 	free (new_pwd);
@@ -49,7 +49,7 @@ int	cd_1(t_env *envir)
 	change_dir(envir, 0x1);
 	i = chdir(tmp->value);
 	if (i == -1)
-		return (print_error(tmp->value, 0x1), 0x0);
+		return (ft_put_err(tmp->value, "No such file or directory"), 0x0);
 	change_dir(envir, 0x0);
 	return (0x1);
 }
@@ -71,13 +71,20 @@ int	cd_2(t_env *envir)
 
 int	cd_3(t_minishell *mini, t_env *envir)
 {
-	int	i;
+	int		i;
+	char	*r;
 
 	i = 0x0;
+	r = 0x0;
+	(void) envir;
 	change_dir(envir, 0x1);
-	i = chdir(mini->cmd[1]);
+	if (mini->cmd[0x1][0x0] == '~')
+		r = ft_strjoin_executor(ft_strdup("/Users/youmoukh/"), &mini->cmd[0x1][0x2]);
+	else 
+		r = mini->cmd[0x1];
+	i = chdir(r);
 	if (i == -1)
-		return (print_error(mini->cmd[1], 1), 0x0);
+		return (ft_put_err(r, " : No such file or directory"), 0x0);
 	change_dir(envir, 0x0);
 	return (0x1);
 }

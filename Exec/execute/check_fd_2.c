@@ -6,20 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 19:54:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:59:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// void	sig_n(int sig_v)
-// {
-// 	if (sig_v == SIGINT)
-// 	{
-// 		glb_sig = 0;
-// 		close(0);
-// 	}
-// }
+void	sig_n(int sig_v)
+{
+	if (sig_v == SIGINT)
+	{
+		close (0);
+		ex_st_f(0x1, 0x1);
+	}
+}
 
 char	*herdoc_helper(char *s, t_env *envir)
 {
@@ -119,41 +119,29 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	char	*s;
 	char	*hdd_f;
 
-	printf("before in %d\n", mini->fd_in);
 	hdd_f = hidden_name();
-	// printf("hddf %s\n", hdd_f);
 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR | O_APPEND,  0777);
 	if (mini->fd_in == -0x1)
 		return (-0x1);
 	if (expanded_content(delim))
 		flag = 0x1;
 	delim = without_quotes(delim, 0x0);
-	printf("after in %d\n", mini->fd_in);
+	signal(SIGINT, sig_n);
 	while (1999)
 	{
-		// puts("1");
-		// signal(SIGINT, sig_n);
-		// puts("2");
 		s = readline("heredoc> ");
-		printf("readline [%s]\n", s);
-		if (glb_sig == 0)
-			return (open(ttyname(2), O_RDWR), 0x1);
-		// puts("3");
+		if (!ttyname(0))
+			return (open(ttyname(2), O_RDWR), -0x1);
 		if (!s || !strcmp_f(s, delim, 0x0, 0x0))
 		{
-		// printf(">>>%s<<<\n", delim);
-			// printf(">> %d \n", glb_sig);
 			free (s);
-			// puts("4");
 			break ;
 		}
-		// puts("5");
 		if (flag == 0x0 && no_dollar(s))
 			s = expand_heredoc(env, s, 0x0, 0x0);
 		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
 		if (flag == 0x1)
 			free (s);
-		// puts("7");
 	}
 	return (ft_helper_heredoc(mini, hdd_f));
 }
@@ -163,12 +151,11 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 	int	i;
 	int	fd;
 
+	(void) env;
 	i = -0x1;
 	fd = 0x0;
 	while (++i < mini->len_tab)
 	{
-		if (mini->tab[i] == 0x4)
-			fd = heredoc_check(mini, env, mini->files[i + 0x1], 0x0);
 		if (mini->tab[i] == 0x3 || mini->tab[i] < 0)
 		{
 			fd = open(mini->files[i + 0x1], O_RDONLY);

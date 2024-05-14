@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:40:33 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 18:47:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:44:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,3 @@ void	ft_swap_nodes(t_env *tmp)
 	}
 }
 
-t_env	*copy_list(t_env *head)
-{
-	t_env	*tmp;
-	t_env	*newnode;
-	t_env	*copy;
-
-	tmp = head;
-	copy = NULL;
-	if (head == NULL)
-		return (NULL);
-	while (tmp != NULL)
-	{
-		newnode = lstnew_executor(tmp->key, tmp->value);
-		add_back_executor(&copy, newnode);
-		tmp = tmp->next;
-	}
-	return (copy);
-}
-
-t_env	*sortlist(t_env **head)
-{
-	t_env	*sorted_list;
-	t_env	*tmp;
-	int		i;
-
-	sorted_list = copy_list(*head);
-	i = lst_size_executor(&sorted_list);
-	tmp = sorted_list;
-	while (i > 0)
-	{
-		tmp = sorted_list;
-		while (tmp->next != NULL)
-		{
-			ft_swap_nodes(tmp);
-			tmp = tmp->next;
-		}
-		i--;
-	}
-	return (sorted_list);
-}

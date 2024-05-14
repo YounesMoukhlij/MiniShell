@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 16:52:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:03:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	red_check(char *str, int i, int t)
 				i++;
 				t++;
 			}
-			if (!str[i])
+			if (!str[i] )
 				break;
 			if (t >= 3)
 				return (1);
@@ -87,6 +87,8 @@ int	check_expected_token(char *str)
 				i++;
 			while ((str[i] == 9 || str[i] == 32) && str[i])
 				i++;
+			if (str[i] == '|')
+				return (-1);
 			if (str[i] == '<' || str[i] == '>' || !str[i])
 				return (7);
 		}
@@ -149,6 +151,10 @@ int	ft_checker(char *str)
 	if (infile_check(str, 0x0, 0x0))
 		return (3);
 	if (check_expected_token(str))
+	{
+		if (check_expected_token(str) == -1)
+			return (0);
 		return (7);
+	}
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 18:12:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:19:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,20 @@ char	**ft_split_export(char *s)
 	char	**r;
 
 	len = 0x0;
+	r = 0x0;
 	if (s == NULL)
 		return (NULL);
-	r = ft_malloc(sizeof(char *) * 0x3, 0x1);
+	r = malloc(sizeof(char *) * 0x3);
 	if (!r)
 		return (0);
 	len = get_len(s, 0x0);
 	ii = len + 0x1;
-	r[0x0] = ft_malloc(len + 0x1 + 1, 0x1);
+	r[0x0] = malloc(len + 0x1);
 	if (!r[0x0])
 		return (0x0);
 	r[0x0] = copy_1(r[0x0], s);
 	len = get_len(&s[len], 0x1);
-	r[0x1] = ft_malloc(len + 0x1 + 0x1, 0x1);
+	r[0x1] = malloc(len + 0x1);
 	if (!r[0x1])
 		return (0x0);
 	r[0x1] = copy_2(r[0x1], &s[ii]);

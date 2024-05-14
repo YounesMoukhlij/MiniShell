@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit_1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/13 11:39:31 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/13 14:53:26 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
 void	ft_put_err(char *input, char *message)
 {
 	ft_putstr_fd("minishell: ", 0x2);
-	if (input != NULL)
+	if (input)
 		ft_putstr_fd(input, 0x2);
 	ft_putendl_fd(message, 0x2);
 }

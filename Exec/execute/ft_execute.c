@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 19:56:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:11:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,21 @@
 void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {
 	int	t_pipe[2];
-	int	return_exve;
+	int return_exve;
 
+	(void) return_exve;
 	full_fill_path(mini, envir);
 	if (check_fd(mini, envir))
 		mini->check_err = 0x1;
 	expander(&mini, envir);
 	if (pipe(t_pipe) == -1)
 		return ;
-		// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
-		// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
+	// childs_pipes(t_pipe[0], t_pipe[1], mini, f);
+	// parent_pipes(t_pipe[0], t_pipe[1], mini, f);
 	mini->pid_fork = fork();
-	if (mini->pid_fork == 0)
+	if (!mini->pid_fork)
 	{
-		printf("in exec [%d]\n", mini->fd_in);
+		signal(SIGQUIT, signal_handler_child);
 		if (mini->check_err == 0x1)
 		{
 			ex_st_f(0x0, 0x1);
@@ -145,11 +146,12 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	}
 	else
 	{
-		while(waitpid(mini->pid_fork, &return_exve, 0) != -1);
-		if (WIFSIGNALED(return_exve))
-			ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
-		else
-			ex_st_f(WEXITSTATUS(return_exve), 0x1);
+		// while(wait(&return_exve) != -1);
+		// if (WIFSIGNALED(return_exve))
+		// 	ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
+		// else
+		// 	ex_st_f(WEXITSTATUS(return_exve), 0x1);
+
 		close(t_pipe[1]);
 		if (mini->fd_in != 0)
 			dup2(t_pipe[0], mini->fd_in);
@@ -159,14 +161,14 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 		if (f == 0)
 		{
 			dup2(old_stdin, 0x0);
-			// close(old_stdin);
+			close(old_stdin);
 		}
 		else
 		{
 			if (mini->fd_in != 0)
 			{
 				dup2(mini->fd_in, 0);
-				// close(mini->fd_in);
+				close(mini->fd_in);
 			}
 		}
 	}
@@ -190,10 +192,11 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 {
 	t_minishell	*tmp;
 	int			old_stdin;
+	int			return_exve;
 
+	(void) return_exve;
 	tmp = *head;
 	old_stdin = dup(0);
-	// (*head)->export = full_fill_print(&envir);
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);
@@ -205,16 +208,19 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 				ex_st_f(0x1, 0x1);
 			return ;
 		}
+		else
+			return ;
 	}
 	while (tmp->next)
 	{
-		puts("HERE");
 		big_execution(tmp, envir, 0x1, old_stdin);
 		tmp = tmp->next;
 	}
 	if (tmp)
-	{
-		puts("here");
 		big_execution(tmp, envir, 0x0, old_stdin);
-	}
+	while(wait(&return_exve) != -1);
+	if (WIFSIGNALED(return_exve))
+		ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
+	else
+		ex_st_f(WEXITSTATUS(return_exve), 0x1);
 }

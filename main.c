@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 18:01:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:52:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,6 @@ t_minishell	*last_node(t_minishell *lst)
 	return (tmp);
 }
 
-int	first_check(char *s)
-{
-	int	i;
-
-	i = 0x0;
-	if (ft_strlen(s) > 1)
-	{
-		while (s[i])
-		{
-			if (!ft_isascii(s[i]) || !ft_isprint(s[i]))
-				return (0x1);
-			i++;
-		}
-	}
-	return (0x0);
-}
-
 int ex_st_f(int status, int mode)
 {
 	static int a;
@@ -125,19 +108,41 @@ void	get_fd_back(t_fd fd)
 	dup2(fd.tmp_fdin, 0x0);
 }
 
+int	heredock(t_minishell *mini, t_env *env, int i)
+{
+	t_minishell	*tmp;
+	int			fd;
+
+	tmp = mini;
+	while (tmp)
+	{
+		i = -0x1;
+		while (++i < tmp->len_tab)
+		{
+			if (tmp->tab[i] == 0x4)
+			{
+				fd = heredoc_check(tmp, env, tmp->files[i + 0x1], 0x0);
+				if (fd == -0x1)
+					return (0x1);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (0x0);
+}
+
 int	main(int ac, char **av, char **env)
 {
-	char		*str;
+	int 		p;
+	t_fd		fd;
 	char		*tmp;
 	t_minishell	*mini;
+	char		*promt;
 	t_env		*envir;
-	t_fd		fd;
 
-	int p;
-	
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	glb_sig = 0;
+	glb_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
 	fd.tmp_fdout = dup(1);
 	fd.tmp_fdin = dup(0);
@@ -145,27 +150,29 @@ int	main(int ac, char **av, char **env)
 	while (1999)
 	{
 		tmp = display_prompt_msg();
-		str = readline(tmp);
-		if (!str || first_check(str))
+		promt = readline(tmp);
+		if (!promt )
 		{
 			ft_malloc(0, 0);
-			free (str);
+			free (promt);
 			break ;
 		}
-		if (is_empty(str))
+		if (is_empty(promt))
 		{
-			free(str);
+			free(promt);
 			continue ;
 		}
-		p = ft_checker(str);
-		add_history(str);
+		p = ft_checker(promt);
+		add_history(promt);
 		ft_puterror(p);
 		if (p != -1)
 		{
-			free(str);
+			free(promt);
 			continue ;
 		}
-		mini = parcing(str);
+		mini = parcing(promt);
+		if (heredock(mini, envir, -0x1))
+			continue;
 		if (mini)
 		{
 			glb_sig = 1;
@@ -174,13 +181,13 @@ int	main(int ac, char **av, char **env)
 		}
 		else
 		{
-			free (str);
+			free (promt);
 			ft_cleanshell(&mini);
 			continue ;
 		}
 		get_fd_back(fd);
 		ft_malloc(0, 0);
-		free (str);
+		free (promt);
 	}
 	clear_envir(envir);
 	return (0x0);
