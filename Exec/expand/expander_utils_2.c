@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 15:58:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:31:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,13 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 				i++;
 				c++;
 			}
+			if ((s[i] == DBL || s[i] == SGL ))
+			{
+				if (ft_isalpha(s[i + 1]))
+						break;
+				else if (s[i + 1] == DBL || s[i + 1] == SGL)
+					break;
+			}
 			if (c % 2 == 0x0)
 				break ;
 			if (c == 0x1 && s[i - 0x1] == '$' && !ft_isalnum(s[i]))
@@ -124,7 +131,7 @@ char	*big_work(t_env *envir, char *r, int i, int j)
 		i++;
 		j++;
 	}
-	return ( p);
+	return (p);
 }
 
 int	no_dollar(char *s)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:11:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:28:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	}
 	if (tmp)
 		big_execution(tmp, envir, 0x0, old_stdin);
-	while(wait(&return_exve) != -1);
+	while(wait(&return_exve) > 0);
 	if (WIFSIGNALED(return_exve))
 		ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
 	else
