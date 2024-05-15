@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 18:22:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:00:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,28 @@ int	is_num(char *s)
 	return (0x0);
 }
 
+int	err(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	while (s[i])
+	{
+		if (!ft_isalnum(s[i]) && s[i] != '_')
+			i++;
+		else
+			return (0x0);
+	}
+	return (ex_st_f(0x1, 0x1), 0x1);
+}
+
 int	is_exportable(t_minishell *m, char *s, t_env *envir)
 {
 	int	i;
 
 	i = 0x0;
+	if (err(s))
+		return (export_error(m, 0x0, s, 0x0), 0x0);
 	if (ft_isdigit(s[0x0]))
 		return (export_error(m, 0x0, s, 0x0), 0x0);
 	while (s[i])
@@ -56,6 +73,8 @@ int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
 
 	i = 0x0;
 	(void) m;
+	if (!s)
+		return (0x0);
 	if (ft_isdigit(s[0x0]))
 		return (0x0);
 	while (s[i])
@@ -78,24 +97,33 @@ int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
 int	already_exist(char *s, t_env *envir)
 {
 	t_env	*head;
+	char	*r;
 	int		i;
 
 	i = 0x0;
 	head = envir;
+	printf("s === [%s]\n", s);
 	while (s[i] && s[i] != '=')
 		i++;
 	if (s[i] == '=' && s[i - 1] == '+')
 		return (0x0);
+	r = ft_substr_executor(s, 0x0, i);
+	printf("finall == [%s]\n", r);
 	while (head)
 	{
-		if (!strcmp_f(head->key, ft_substr_executor(s, 0x0, i), 0x0, 0x0))
+		printf("head - > key[%s]\n", head->key);
+		if (!strcmp_f(head->key, r, 0x0, 0x0))
 		{
-			head->value = &s[++i];
-			return (0x1);
+			if (head->value)
+			{
+				puts("33");
+				head->value = &s[++i];
+			}
+			return (0x0);
 		}
 		head = head->next;
 	}
-	return (0x0);
+	return (0x1);
 }
 
 char	*special_case(char *s, t_env *envir)

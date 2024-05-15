@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 18:16:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:56:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 	(void) o;
 	ft_putstr_fd("export: ", 0x2);
 	if (option == 0x0)
-		ft_put_err(s, " : not an identifier");
+		ft_put_err(s, " : not a valid identifier");
 	if (option == 0x1)
 		ft_put_err(s, ": bad pattern");
 	if (option == 0x2)
