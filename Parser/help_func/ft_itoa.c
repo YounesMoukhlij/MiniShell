@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:08:46 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 14:17:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:12:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_itoa(int nb)
 	i = len(n);
 	if (nb == 0)
 		return (zero(str));
-	str = (char *)ft_malloc(i + 1, 1);
+	str = (char *)ft_malloc(i + 1, 0x1);
 	if (!str)
 		return (0);
 	str[i--] = '\0';

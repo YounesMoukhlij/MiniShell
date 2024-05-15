@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 19:56:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:39:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	is_exportable(t_minishell *m, char *s, t_env *envir)
 			return (0x1);
 		i++;
 	}
-	if (!strcmp_f(grep_from_env(envir, s), ft_strdup("(null)"), 0x0, 0x0))
+	if (!strcmp_f(grep_from_env(envir, s), ft_strdup_1("(null)"), 0x0, 0x0))
 		return (0x0);
 	return (0x1);
 }
@@ -134,9 +134,9 @@ char	*special_case(char *s, t_env *envir)
 	{
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
-			str = ft_substr_executor(s, 0x0, i);
+			str = ft_substr_executor_1(s, 0x0, i);
 			you = ft_strjoin_executor_1(grep_from_env(envir, str), &s[i + 2]);
-			unset_node(str, envir);
+			// unset_node(str, envir);
 			break ;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/15 20:14:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:29:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ t_minishell	*last_node(t_minishell *lst)
 
 int ex_st_f(int status, int mode)
 {
-	static int a;
+	static int saved;
 
 	if (mode == 1)
-		a = status;
-	return (a);
+		saved = status;
+	return (saved);
 }
 
 void	get_fd_back(t_fd fd)
@@ -147,15 +147,15 @@ int	main(int ac, char **av, char **env)
 		return (0x1);
 	glb_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
-	fd.tmp_fdout = dup(1);
-	fd.tmp_fdin = dup(0);
-	sig_func();
+	fd.tmp_fdout = dup(0x1);
+	fd.tmp_fdin = dup(0x0);
 	while (1999)
 	{
+		sig_func();
 		promt = readline("minishell -> ");
-		if (!promt )
+		if (!promt || !isatty(0x0))
 		{
-			ft_malloc(0, 0);
+			ft_malloc(0x0, 0x0);
 			free (promt);
 			break ;
 		}
@@ -172,14 +172,14 @@ int	main(int ac, char **av, char **env)
 			free(promt);
 			continue ;
 		}
+		mini = parcing(promt);
 		if (heredock(mini, envir, -0x1))
 			continue;
-		mini = parcing(promt);
 		if (mini)
 		{
 			glb_sig = 1;
 			ft_execute(&mini, envir, 0x0);
-			glb_sig = 0;
+			glb_sig = 0x0;
 		}
 		else
 		{
@@ -188,7 +188,7 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		get_fd_back(fd);
-		ft_malloc(0, 0);
+		ft_malloc(0x0, 0x0);
 		free (promt);
 	}
 	clear_envir(envir);

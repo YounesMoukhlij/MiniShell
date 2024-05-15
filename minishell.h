@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 18:51:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:38:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_minishell
 
 int	check_f(char *s);
 int	check_first(char *s);
+char	*ft_substr_executor_1(char *s, int start, int len);
 char	*ft_strjoin_executor_1(char *s1, char *s2);
 int	ft_strlen(char *str);
 char	*ft_calloc_1(int num, int size);
