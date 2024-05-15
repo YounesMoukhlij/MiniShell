@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 20:38:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:39:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	signal_handler_child(int sig);
 char	*ft_strdup_1(char *s1);
 int	is_correct(char *s);
 void    *ft_malloc(size_t size, int mode);
-
+char	*ft_itoa_1(int nb);
 int	ft_parq_err(char *str, int *i, char f);
 void	fun(char *str, int *i);
 t_env	*env_node_value(t_env **envi, char *value);

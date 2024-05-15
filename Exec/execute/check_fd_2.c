@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 21:22:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:00:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*herdoc_helper(char *s, t_env *envir)
 	char	*r;
 	int		c;
 
-	r = ft_calloc_1(200, 1);
+	r = ft_calloc(200, 1);
 	i = 0x0;
 	j = 0x0;
 	while (s[i])
@@ -45,7 +45,7 @@ char	*herdoc_helper(char *s, t_env *envir)
 				break ;
 			if (s[i] == '?')
 			{
-				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)), envir);
+				r = add_t(r, ft_itoa_1(ex_st_f(0x0, 0x0)), envir);
 				if (ft_strlen(r))
 					i += 1;
 				j = ft_strlen(r);
@@ -97,6 +97,34 @@ char	*allocate_max_1(t_env *envir)
 	return (r);
 }
 
+char	*grep_value_1(char *s)
+{
+	int		len;
+	int		i;
+	char	*r;
+
+	len = 0x0;
+	if (!s)
+		return (NULL);
+	while (s[len])
+	{
+		if (!ft_isalnum(s[len]))
+			break ;
+		len++;
+	}
+	r = malloc(len + 0x1);
+	if (!r)
+		return (NULL);
+	i = 0x0;
+	while (i < len)
+	{
+		r[i] = s[i];
+		i++;
+	}
+	r[len] = '\0';
+	return (r);
+}
+
 char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 {
 	int		c;
@@ -107,8 +135,7 @@ char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 	p = allocate_max_1(envir);
 	if (!p)
 		return (NULL);
-		s= r;
-	// s = herdoc_helper(r, envir);
+	s = herdoc_helper(r, envir);
 	while (s[i])
 	{
 		while (s[i] == '$')

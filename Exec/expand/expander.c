@@ -6,18 +6,38 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 18:50:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:19:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+int	check_quotes(char *s)
+{
+	int i;
+
+	i = 0x0;
+	if (!s)
+		return (0x0);
+	while (s[i])
+	{
+		if (ft_strlen(s) > 1)
+		{
+			if ((s[i] == SGL && s[i + 1] == SGL) || (s[i] == DBL && s[i + 1] == DBL))
+				return (0x1);
+		}
+		i++;
+	}
+	return (0x0);
+}
 void	expand_cmd(t_minishell **mini, t_env *envir)
 {
 	int		i;
 	char	*str;
 	
 	i = 0x0;
+	if (check_quotes((*mini)->cmd[0x0]))
+		return ;
 	while ((*mini)->cmd[i])
 	{
 		if (is_expanded(*mini, (*mini)->cmd[i]))
@@ -85,3 +105,4 @@ void	expander(t_minishell **mini, t_env *envir)
 	if (flag != 0x0)
 		ex_st_f(flag, 0x1);
 }
+	
