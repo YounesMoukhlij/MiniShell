@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:04:52 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 14:59:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:28:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@ void	clear_envir(t_env *head)
 
 void	print_export_helper(t_env *tmp)
 {
-	int	sum;
-
-	sum = 0x1;
-	if (!strcmp_f(tmp->key, "SHLVL", 0x0, 0x0))
-	{
-		sum = ft_atoi(tmp->value) + 1;
-		ft_putstr_fd("=\"", 0x1);
-		ft_putstr_fd_executor(ft_itoa(sum), 0x1, 0x0);
-		ft_putchar_fd('"', 0x1);
-		return ;
-	}
 	ft_putstr_fd("=\"", 0x1);
 	ft_putstr_fd(tmp->value, 0x1);
 	ft_putchar_fd('"', 0x1);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 12:54:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:42:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		if (is_expanded(*mini, (*mini)->cmd[i]))
 		{
 			str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
-			(*mini)->cmd[i] = without_quotes(str, 0x0);
+			(*mini)->cmd[i] = ft_strdup_1(without_quotes(str, 0x0));
 		}
 		i++;
 	}

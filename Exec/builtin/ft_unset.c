@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 14:33:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:09:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,54 +52,33 @@ void	unset_error(t_minishell *m, int option, char *s, char *o)
 	if (option == 0x2)
 		ft_put_err(s, " : not valid in this context");
 	ex_st_f(0x1, 0x1);
-	// if (m)
-	// {
-		if (m->size > 1)
-			exit(0x1);
-	// }
-}
-// void	unset_error(int option, char *s)
-// {
-// 	printf("unset: ");
-// 	if (option == 0x0)
-// 		printf("%s: invalid parameter name");
-// 	if (option == 0x1)
-// 		printf("bad pattern: ");
-// 	if (option == 0x2)
-// 		printf("not valid in this context: ");
-// 	ft_putstr_fd_executor(s, 0x2, 0x1);
-// 	ex_st_f(0x1, 0x1);
-// }
-
-int	err_unset(char *s)
-{
-	if (ft_is_equal(s) || is_correct(s))
-		return (0x0);
-	return (0x1);
+	if (m->size > 1)
+		exit(0x1);
 }
 
-int	check_unset(char *s, t_env *envir)
+int	check_unset(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	int		i;
+	char	*t;
+	
+	i = 0x0;
+	t = ft_substr_executor(s, 0x0, is_eq_exist(s));
+	while (t[i])
 	{
-		if (s[i] == '=' && ft_isalnum(s[i + 1]))
-		{
-			printf("unset: %s : invalid parameter name", s);
-			return (1);
-		}
-		if (s[i] == '=')
-		{
-			i += 2;
-			printf("unset: %s : not a valid identifier",
-				grep_from_env(envir, &s[i]));
-			return (1);
-		}
+		if (!ft_isalpha(t[0]))
+			return (0x1);
+		if (!ft_isalnum(t[i]) && t[i] != '_')
+			return (0x1);
 		i++;
 	}
-	return (0);
+	return (0x0);
+}
+
+int	err_unset(t_minishell *m, char *s)
+{
+	if (check_unset(s))
+		return (unset_error(m, 0, s, 0x0), 0x0);
+	return (0x1);
 }
 
 int	is_unsetable(t_minishell *m, t_env *envir, char *s)
@@ -134,9 +113,13 @@ int	ft_unset(t_minishell *mini, t_env *envir)
 	if (!mini->cmd[0x0])
 		return (0x0);
 	while (mini->cmd[i])
-	{
-		if (err_unset(mini->cmd[i]) && is_unsetable(mini, envir, mini->cmd[i]))
+	{	
+		if (check_first(mini->cmd[i]))
+			unset_error(mini, 0, mini->cmd[i], 0x0);
+		else
 			unset_node(mini->cmd[i], envir);
+			
+		// if (err_unset(mini, mini->cmd[i]))
 		i++;
 	}
 	if (mini->size > 1)
