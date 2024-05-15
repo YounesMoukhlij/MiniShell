@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/15 12:13:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:09:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,20 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-char	*display_prompt_msg()
-{
-	char	*cwd;
-	char	*str;
-	char	buff[4096 + 1];
+// char	*display_prompt_msg()
+// {
+// 	char	*cwd;
+// 	char	*str;
+// 	char	buff[4096 + 1];
 
-	cwd = getcwd(buff, 4096);
-	if (cwd)
-		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
-	else
-		str = s;
-	return (str);
-}
+	
+// 	cwd = getcwd(buff, 4096);
+// 	if (cwd)
+// 		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
+// 	// else
+// 	// 	str = ft_strdup("minishell -> ");
+// 	return (str);
+// }
 
 void	print_cmd(t_minishell *mini)
 {
@@ -138,8 +139,8 @@ int	main(int ac, char **av, char **env)
 {
 	int 		p;
 	t_fd		fd;
-	char		*tmp;
-	char		*old_pwd;
+	// char		*tmp;
+	// char		*old_pwd;
 	t_minishell	*mini;
 	char		*promt;
 	t_env		*envir;
@@ -155,8 +156,8 @@ int	main(int ac, char **av, char **env)
 	// old_pwd = getcwd(buffer, sizeof(200));
 	while (1999)
 	{
-		tmp = display_prompt_msg();
-		promt = readline(promt);
+		// tmp = display_prompt_msg();
+		promt = readline("mini -> ");
 		if (!promt )
 		{
 			ft_malloc(0, 0);

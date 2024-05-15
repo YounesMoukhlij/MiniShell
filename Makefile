@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/13 18:20:49 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/15 14:03:10 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = main.c \
 	  Exec/execute/check_fd_1.c \
 	  Exec/execute/check_fd_2.c \
 	  Exec/execute/check_fd_3.c \
+	  Exec/execute/check_fd_4.c \
 	  Exec/builtin/ft_unset.c \
 	  Exec/builtin/ft_echo.c \
 	  Exec/builtin/ft_cd_1.c \

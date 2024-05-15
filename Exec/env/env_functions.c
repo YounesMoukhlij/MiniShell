@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 12:00:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:52:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	back_up(t_env **ennv, int i)
 	while (i++ < 0x4)
 	{
 		if (i == 0x0)
-			lst = lstnew_executor(ft_strdup_1("PWD"), ft_strdup_1(pwd));
+			lst = lstnew_executor(ft_strdup_1("PWD"), ft_strdup_1(pwd), 0);
 		if (i == 0x1)
-			lst = lstnew_executor(ft_strdup_1("SHLVL"), ft_strdup_1("1"));
+			lst = lstnew_executor(ft_strdup_1("SHLVL"), ft_strdup_1("1"), 0);
 		if (i == 0x2)
-			lst = lstnew_executor(ft_strdup_1("_"), ft_strdup_1("/usr/bin/env"));
+			lst = lstnew_executor(ft_strdup_1("_"), ft_strdup_1("/usr/bin/env"), 0);
 		if (i == 0x3)
 			lst = lstnew_executor(ft_strdup_1("PATH"),
-					ft_strdup_1("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
+					ft_strdup_1("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 0);
 		add_back_executor(ennv, lst);
 	}
 	free (pwd);
@@ -122,7 +122,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 			// 	s2 = ft_strdup(tmp);
 			// 	free (tmp);
 			// }
-			lst_env = lstnew_executor(s1, s2);
+			lst_env = lstnew_executor(s1, s2, 0);
 			// free(s2);
 			add_back_executor(&head, lst_env);
 			i++;

@@ -52,11 +52,16 @@ export a c= | 2 times
 export +=
 export $a+=$a | a = "ls     -la"
 
+===========
 export a="''"
 echo $a
+====DONE===
+
 '' | ""
 
+===========
 Without HOME cd sigv
+====DONE===
 
 echo $"$"$
 

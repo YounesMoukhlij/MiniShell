@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:37:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/12 16:06:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:51:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_env	*lstnew_executor(char *key, char *value)
+t_env	*lstnew_executor(char *key, char *value, int f)
 {
 	t_env	*lst;
 
@@ -21,6 +21,7 @@ t_env	*lstnew_executor(char *key, char *value)
 		return (NULL);
 	lst->key = key;
 	lst->value = value;
+	lst->flag = f;
 	lst->next = NULL;
 	return (lst);
 }

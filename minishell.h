@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:53:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:01:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_env
 {
 	char				*key;
 	char				*value;
+	int					flag;
 	struct s_env		*next;
 }						t_env;
 
@@ -97,10 +98,11 @@ void    *ft_malloc(size_t size, int mode);
 
 int	ft_parq_err(char *str, int *i, char f);
 void	fun(char *str, int *i);
-
+t_env	*env_node_value(t_env **envi, char *value);
 int	ft_isalnum_1(int c);
 
 void	ft_put_err(char *input, char *message);
+void	print_func(t_env *env, char *s);
 
 char	*ft_exit_status(char *s, t_env *envir);
 int	check_single(char *s);
@@ -222,7 +224,7 @@ int						ft_export(t_minishell *mini, t_env *envir, int i);
 int						ft_exit(t_minishell *mini);
 int						ft_unset(t_minishell *mini, t_env *envir);
 int						ft_cd(t_minishell *mini, t_env *envir);
-int						ft_echo(t_minishell *mini, int i, int f);
+int						ft_echo(t_minishell *mini, t_env *env, int i, int f);
 int						is_cmd(t_minishell *mini, t_env *envir);
 int						ft_env(t_minishell *mini, t_env *envir);
 int						ft_pwd(t_minishell *mini, t_env **head);
@@ -236,7 +238,7 @@ void					add_back_executor(t_env **head, t_env *node);
 void					add_front_executor(t_env **head, t_env *node);
 t_env					*last_node_executor(t_env *lst);
 int						lst_size_executor(t_env **head);
-t_env					*lstnew_executor(char *key, char *value);
+t_env					*lstnew_executor(char *key, char *value, int f);
 int						check_fd(t_minishell *mini, t_env *envir);
 char					**ft_split_executor(char *s, char c);
 t_env					*full_fill_env(char **env, int i, int j);

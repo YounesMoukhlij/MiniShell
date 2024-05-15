@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 19:02:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:01:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 		return (ft_unset(mini, envir));
 	else if (!strcmp_f(mini->cmd[0], "echo", 0, 0)
 		|| !strcmp_f(mini->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(mini, 0x1, 0x0));
+		return (ft_echo(mini, envir, 0x1, 0x0));
 	else
 		return (is_bin_cmd(mini, envir, 0x0));
 }

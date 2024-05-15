@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 11:46:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:29:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	my_check(t_minishell *mini)
 {
-	if (!ft_strlen(mini->cmd[0x1]))
-		return (0x0);
 	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
 		return (0x1);
+	if (!ft_strlen(mini->cmd[0x1]))
+		return (0x0);
 	return (0x0);
 }
 
@@ -26,7 +26,9 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 	t_env	**head;
 	t_env	*lst;
 	char	**p;
+	int		flag;
 
+	flag = 0;
 	if (!mini->cmd[0x0])
 		return (0x0);
 	head = &envir;
@@ -42,20 +44,22 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 			{
 				if (check_special_case(mini->cmd[i]))
 					lst = lstnew_executor(ft_key(mini->cmd[i]),
-							special_case(mini->cmd[i], envir));
+							special_case(mini->cmd[i], envir), 0);
 				else if (no_equal(mini->cmd[i]))
 				{
-					lst = lstnew_executor(mini->cmd[i], NULL);
+					lst = lstnew_executor(mini->cmd[i], NULL, 0);
 					add_back_executor(head, lst);
 				}
 				else if (if_equal(mini->cmd[i]))
 				{
 					p = ft_split_export(mini->cmd[i]);
 					check_export(mini, p[0x0]);
-					lst = lstnew_executor(p[0x0], p[0x1]);
+					if (p[0x1][0] == SGL && p[0x1][ft_strlen(p[0x1]) - 1] == SGL)
+						flag = 1;
+					lst = lstnew_executor(p[0x0], p[0x1], 1);
 				}
 				else if (no_value(mini->cmd[i]))
-					lst = lstnew_executor(mini->cmd[i], ft_strdup(""));
+					lst = lstnew_executor(mini->cmd[i], ft_strdup(""), 0);
 				add_back_executor(head, lst);
 			}
 			i++;
