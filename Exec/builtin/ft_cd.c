@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 16:33:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:54:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,16 @@ int	cd_1(t_env *envir)
 
 	i = 0x0;
 	tmp = env_node(&envir, "HOME");
-	change_dir(envir, 0x1);
-	i = chdir(tmp->value);
-	if (i == -1)
-		return (ft_put_err(tmp->value, "No such file or directory"), 0x0);
-	change_dir(envir, 0x0);
+	if (tmp)
+	{
+		change_dir(envir, 0x1);
+		i = chdir(tmp->value);
+		if (i == -1)
+			return (ft_put_err(tmp->value, "No such file or directory"), 0x0);
+		change_dir(envir, 0x0);
+	}
+	else
+		return (ft_put_err(NULL, "HOME not set"), 0x0);
 	return (0x1);
 }
 

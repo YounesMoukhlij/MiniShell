@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 19:00:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:42:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	exit_1(char *s)
 		}
 		else
 		{
-			ex_st_f(ft_atoi(s) % 255 - 0x1, 0x1);
-			exit(ft_atoi(s) % 255 - 0x1);
+			ex_st_f(ft_atoi(s), 0x1);
+			exit(ft_atoi(s));
 		}
 	}
 	else if (!is_digit(s))
@@ -45,7 +45,7 @@ void	exit_2(char *s, char *r)
 	if (is_digit(s) && is_digit(r))
 	{
 		error_exit(NULL, " too many arguments");
-		exit (0x1);
+		ex_st_f(0x1, 0x1);
 	}
 	else if (!is_digit(s) && is_digit(r))
 	{
@@ -58,6 +58,12 @@ void	exit_2(char *s, char *r)
 		error_exit(NULL, " too many arguments");
 		ex_st_f(0x1, 0x1);
 	}
+	else if (!is_digit(s) && !is_digit(r))
+	{
+		error_exit(NULL, " too many arguments");
+		ex_st_f(255, 0x1);
+		exit(255);
+	}
 }
 
 int	ft_exit(t_minishell *mini)
@@ -66,13 +72,15 @@ int	ft_exit(t_minishell *mini)
 		puts("exit");
 	if (cmd_length(mini) == 1)
 	{
-		puts("1");
 		ex_st_f(0x0, 0x1);
 		exit(0x0);
 	}
 	else if (cmd_length(mini) == 0x2)
 		exit_1(mini->cmd[0x1]);
 	else if (cmd_length(mini) == 0x3)
+	{
+		puts("here");
 		exit_2(mini->cmd[0x1], mini->cmd[0x2]);
+	}
 	return (-1);
 }

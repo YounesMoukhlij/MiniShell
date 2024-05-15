@@ -60,13 +60,25 @@ Without HOME cd sigv
 
 echo $"$"$
 
+===========
 << $
 $
+====DONE===
 
+===========
 export ==
+====DONE===
 
+===========
 exit
 exit aaa aaa
+====DONE===
 
+
+
+
+
+
+APRES
 unset ""
 export ""

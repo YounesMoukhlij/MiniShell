@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/14 15:52:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:13:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-char	*display_prompt_msg(void)
+char	*display_prompt_msg()
 {
 	char	*cwd;
 	char	*str;
 	char	buff[4096 + 1];
 
 	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
+	if (cwd)
+		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
+	else
+		str = s;
 	return (str);
 }
 
@@ -136,9 +139,11 @@ int	main(int ac, char **av, char **env)
 	int 		p;
 	t_fd		fd;
 	char		*tmp;
+	char		*old_pwd;
 	t_minishell	*mini;
 	char		*promt;
 	t_env		*envir;
+	// char		*buffer = 0;
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
@@ -147,10 +152,11 @@ int	main(int ac, char **av, char **env)
 	fd.tmp_fdout = dup(1);
 	fd.tmp_fdin = dup(0);
 	sig_func();
+	// old_pwd = getcwd(buffer, sizeof(200));
 	while (1999)
 	{
 		tmp = display_prompt_msg();
-		promt = readline(tmp);
+		promt = readline(promt);
 		if (!promt )
 		{
 			ft_malloc(0, 0);

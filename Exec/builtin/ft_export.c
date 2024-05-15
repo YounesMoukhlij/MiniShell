@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 14:28:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:46:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	my_check(t_minishell *mini)
 {
-	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
-		return (0x1);
 	if (!ft_strlen(mini->cmd[0x1]))
+		return (0x0);
+	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
 		return (0x1);
 	return (0x0);
 }

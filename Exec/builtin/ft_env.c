@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/07 21:33:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:03:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 void	print_helper(t_env *tmp)
 {
-	int	sum;
-
-	sum = 0x1;
-	if (!strcmp_f(tmp->key, "SHLVL", 0x0, 0x0))
-	{
-		sum = ft_atoi(tmp->value) + 1;
-		ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
-		ft_putstr_fd("=", 0x1);
-		ft_putstr_fd_executor(ft_itoa(sum), 0x1, 0x1);
-		return ;
-	}
 	ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
 	ft_putstr_fd("=", 0x1);
 	ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
@@ -35,31 +24,17 @@ int	print_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
-	if (lst_size_executor(&tmp) == 3)
+	if (lst_size_executor(&tmp) == 4)
 	{
 		while (tmp)
 		{
-			if (strcmp_f("PATH", tmp->key, 0x0, 0x0))
+			if (strcmp_f("PATH", tmp->key, 0x0, 0x0) != 0x0)
 				print_helper(tmp);
 			tmp = tmp->next;
 		}
 		return (0x1);
 	}
 	return (0x0);
-}
-
-void	helper_env(t_env *tmp)
-{
-	int			sum;
-	
-	sum = 0x0;
-	if (!strcmp_f(tmp->key, "SHLVL", 0x0, 0x0))
-	{
-		sum = ft_atoi(tmp->value) + 1;
-		ft_putstr_fd_executor(tmp->key, 0x1, 0x0);
-		ft_putstr_fd("=", 0x1);
-		ft_putstr_fd_executor(ft_itoa(sum), 0x1, 0x1);
-	}
 }
 
 int	ft_env(t_minishell *mini, t_env *envir)
