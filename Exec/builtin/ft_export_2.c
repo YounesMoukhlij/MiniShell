@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 19:00:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:56:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,21 +102,17 @@ int	already_exist(char *s, t_env *envir)
 
 	i = 0x0;
 	head = envir;
-	printf("s === [%s]\n", s);
 	while (s[i] && s[i] != '=')
 		i++;
 	if (s[i] == '=' && s[i - 1] == '+')
 		return (0x0);
 	r = ft_substr_executor(s, 0x0, i);
-	printf("finall == [%s]\n", r);
 	while (head)
 	{
-		printf("head - > key[%s]\n", head->key);
 		if (!strcmp_f(head->key, r, 0x0, 0x0))
 		{
 			if (head->value)
 			{
-				puts("33");
 				head->value = &s[++i];
 			}
 			return (0x0);

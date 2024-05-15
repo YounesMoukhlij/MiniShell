@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/15 18:45:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:14:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,9 +172,9 @@ int	main(int ac, char **av, char **env)
 			free(promt);
 			continue ;
 		}
-		mini = parcing(promt);
 		if (heredock(mini, envir, -0x1))
 			continue;
+		mini = parcing(promt);
 		if (mini)
 		{
 			glb_sig = 1;
