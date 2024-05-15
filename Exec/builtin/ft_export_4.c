@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:10 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 11:51:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:11:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	before_check(char *s)
 	}
 	return (0x0);
 }
+
 
 int	ft_is_equal(char *s)
 {

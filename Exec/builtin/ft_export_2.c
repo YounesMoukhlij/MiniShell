@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/13 18:22:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:18:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,28 @@ int	is_num(char *s)
 	return (0x0);
 }
 
+int	err(char *s)
+{
+	int	i;
+
+	i = 0x0;
+	while (s[i])
+	{
+		if (!ft_isalnum(s[i]) && s[i] != '_')
+			i++;
+		else
+			return (0x0);
+	}
+	return (ex_st_f(0x1, 0x1), 0x1);
+}
+
 int	is_exportable(t_minishell *m, char *s, t_env *envir)
 {
 	int	i;
 
 	i = 0x0;
+	if (err(s))
+		return (export_error(m, 0x0, s, 0x0), 0x0);
 	if (ft_isdigit(s[0x0]))
 		return (export_error(m, 0x0, s, 0x0), 0x0);
 	while (s[i])
