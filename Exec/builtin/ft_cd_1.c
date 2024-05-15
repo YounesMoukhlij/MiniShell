@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/12 14:07:44 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/14 19:16:32 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -14,7 +24,7 @@ int	cmd_length(t_minishell *m)
 	int	i;
 
 	i = 0;
-	if (!(m->cmd[i]))
+	if (!ft_strlen(m->cmd[0]) || !m->cmd || !m->cmd[0])
 		return (0);
 	while (m->cmd[i])
 		i++;
@@ -33,7 +43,7 @@ int	error_case(t_minishell *mini, char *s)
 			return (0x0);
 	}
 	if (cmd_length(mini) > 2)
-		return (ft_put_err("cd:", " too many arguments"), 0x1);
+		return (0x1);
 	if (s)
 	{
 		while (s[i])
@@ -65,12 +75,13 @@ void	change_dir(t_env *envi, int flag)
 	char	*buff;
 
 	buff = NULL;
+	new_pwd = NULL;
 	if (flag == 0x1)
 	{
 		tmp = env_node(&envi, "PWD");
 		tmp_1 = env_node(&envi, "OLDPWD");
 		if (tmp_1)
-			tmp_1->value = ft_strdup(tmp->value);
+			tmp_1->value = ft_strdup_1(tmp->value);
 	}
 	else
 	{
@@ -79,7 +90,8 @@ void	change_dir(t_env *envi, int flag)
 		{
 			tmp = env_node(&envi, "PWD");
 			if (tmp)
-				tmp->value = ft_strdup(new_pwd);
+				tmp->value = ft_strdup_1(new_pwd);
 		}
 	}
+	free (new_pwd);
 }

@@ -1,21 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit_1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/13 11:39:31 by youmoukh          #+#    #+#             */
+/*   Updated: 2024/05/15 11:31:50 by youmoukh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
 void	ft_put_err(char *input, char *message)
 {
 	ft_putstr_fd("minishell: ", 0x2);
-	if (input != NULL)
+	if (input)
 		ft_putstr_fd(input, 0x2);
 	ft_putendl_fd(message, 0x2);
-}
-
-void	ft_close(t_minishell *mini, t_env *head, int i)
-{
-	(void) head;
-	(void) mini;
-	if (i == 1)
-		ft_putstr_fd("exit\n", 2);
-	exit(0);
 }
 
 void	error_exit(char *input, char *msg)

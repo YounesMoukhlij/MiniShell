@@ -6,22 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:44:01 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:04:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include <stdio.h>
 
-size_t	ft_strlen(char const *str)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (*str)
-	{
-		str++;
+	if (!str)
+		return (0);
+	while (str[i])
 		i++;
-	}
 	return (i);
 }

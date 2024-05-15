@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:17:33 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:54:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static char	**handle_of_malloc(char **tab)
+static char	**handle_of_ft_malloc(char **tab)
 {
 	unsigned int	i;
 
@@ -43,7 +43,6 @@ static int	number_of_word(char *str, char c)
 	}
 	return (wc);
 }
-//yassine@nassibi@1337
 
 static char	*hook(char *s1, int *id, char c)
 {
@@ -60,13 +59,14 @@ static char	*hook(char *s1, int *id, char c)
 		len_word++;
 		i++;
 	}
-	word = malloc(sizeof(char) * (len_word + 1));
+	word = ft_malloc(sizeof(char) * (len_word + 1), 0x1);
 	if (!word)
 		return (NULL);
 	i = 0;
 	while (s1[*id] && s1[*id] != c)
 		word[i++] = s1[(*id)++];
 	word[i] = '\0';
+	// ft_cleantach(s1);
 	return (word);
 }
 
@@ -82,14 +82,14 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	wc = number_of_word(s, c);
-	arr = malloc(sizeof(char *) * (wc + 1));
+	arr = ft_malloc(sizeof(char *) * (wc + 1), 0x1);
 	if (!arr)
 		return (NULL);
 	while (i < wc)
 	{
 		arr[i] = hook(s, &id, c);
 		if (!arr[i])
-			return (handle_of_malloc(arr));
+			return (NULL);
 		i++;
 	}
 	arr[i] = 0;

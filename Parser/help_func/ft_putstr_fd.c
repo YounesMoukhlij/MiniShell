@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 14:58:02 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:51:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	int	i;
+
+	i = 0x0;
 	if (!s || fd < 0)
 		return ;
-	while (*s)
-		ft_putchar_fd(*(s++), fd);
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

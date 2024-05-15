@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 22:03:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:16:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*grep_value(char *s)
 			break ;
 		len++;
 	}
-	r = malloc(len + 0x1);
+	r = ft_malloc(len + 0x1, 0x1);
 	if (!r)
 		return (NULL);
 	i = 0x0;

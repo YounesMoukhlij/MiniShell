@@ -6,23 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:38:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 14:08:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:26:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
 
 void	ft_putstr_fd_executor(char *s, int fd, int flag_newline)
 {
@@ -79,6 +67,7 @@ char	*copy_1(char *r, char *s)
 		r[i] = s[i];
 		i++;
 	}
+	r[i] = '\0';
 	return (r);
 }
 
@@ -92,5 +81,6 @@ char	*copy_2(char *r, char *s)
 		r[i] = s[i];
 		i++;
 	}
+	r[i] = '\0';
 	return (r);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcfun_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 11:18:14 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:11:57 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	*ft_arr_tk(char *str, int len)
 	int	i;
 	int	j;
 
-	arr = malloc((len + 1) * sizeof(int));
+	arr = ft_malloc((len + 1) * sizeof(int), 0x1);
 	i = 0;
 	j = 0;
 	while (str[i] && j < len)

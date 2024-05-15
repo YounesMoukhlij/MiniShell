@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 15:28:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:22:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_exportable(t_minishell *m, char *s, t_env *envir)
 			return (0x1);
 		i++;
 	}
-	if (!strcmp_f(grep_from_env(envir, s), "(null)", 0x0, 0x0))
+	if (!strcmp_f(grep_from_env(envir, s), ft_strdup("(null)"), 0x0, 0x0))
 		return (0x0);
 	return (0x1);
 }
@@ -55,7 +55,7 @@ int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
 	int	i;
 
 	i = 0x0;
-	(void)m;
+	(void) m;
 	if (ft_isdigit(s[0x0]))
 		return (0x0);
 	while (s[i])
@@ -70,7 +70,7 @@ int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
 			return (0x1);
 		i++;
 	}
-	if (!strcmp_f(grep_from_env(envir, s), "(null)", 0x0, 0x0))
+	if (!strcmp_f(grep_from_env(envir, s), ft_strdup_1("(null)"), 0x0, 0x0))
 		return (0x0);
 	return (0x1);
 }
@@ -105,13 +105,13 @@ char	*special_case(char *s, t_env *envir)
 	char	*you;
 
 	i = 0x0;
-	you = NULL;
+	you = 0x0;
 	while (s[i])
 	{
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
 			str = ft_substr_executor(s, 0x0, i);
-			you = ft_strjoin_executor(grep_from_env(envir, str), &s[i + 2]);
+			you = ft_strjoin_executor_1(grep_from_env(envir, str), &s[i + 2]);
 			unset_node(str, envir);
 			break ;
 		}

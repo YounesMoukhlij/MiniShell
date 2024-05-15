@@ -6,12 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:17:36 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 21:21:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:07:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdio.h>
 
 static void	case__11(char c,int *i ,int *len)
 {

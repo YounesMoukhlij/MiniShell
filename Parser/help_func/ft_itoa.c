@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:08:46 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:17:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	len(long nb)
 
 static char	*zero(char *str)
 {
-	str = malloc(sizeof(char) * 2);
+	str = ft_malloc(sizeof(char) * 2, 0x1);
 	if (!str)
 		return (0);
 	str[0] = '0';
@@ -51,7 +51,7 @@ char	*ft_itoa(int nb)
 	i = len(n);
 	if (nb == 0)
 		return (zero(str));
-	str = (char *)malloc(i + 1);
+	str = (char *)ft_malloc(i + 1, 1);
 	if (!str)
 		return (0);
 	str[i--] = '\0';

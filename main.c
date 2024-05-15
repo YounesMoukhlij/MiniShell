@@ -6,17 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 21:23:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:09:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-
-void	show(void)
-{
-	system("leaks minishell");
-}
 
 void	ft_puterror(int p)
 {
@@ -57,16 +51,20 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-char	*display_prompt_msg(void)
-{
-	char	*cwd;
-	char	*str;
-	char	buff[4096 + 1];
+// char	*display_prompt_msg()
+// {
+// 	char	*cwd;
+// 	char	*str;
+// 	char	buff[4096 + 1];
 
-	cwd = getcwd(buff, 4096);
-	str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
-	return (str);
-}
+	
+// 	cwd = getcwd(buff, 4096);
+// 	if (cwd)
+// 		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
+// 	// else
+// 	// 	str = ft_strdup("minishell -> ");
+// 	return (str);
+// }
 
 void	print_cmd(t_minishell *mini)
 {
@@ -82,8 +80,8 @@ void	print_cmd(t_minishell *mini)
 
 void	sig_func()
 {
-	signal(SIGINT, signal_handler_one);
-	signal(SIGQUIT, signal_handler_one);
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, signal_handler);
 	rl_catch_signals = 0;
 }
 
@@ -97,23 +95,6 @@ t_minishell	*last_node(t_minishell *lst)
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
-}
-
-int	first_check(char *s)
-{
-	int	i;
-
-	i = 0x0;
-	if (ft_strlen(s) > 1)
-	{
-		while (s[i])
-		{
-			if (!ft_isascii(s[i]) || !ft_isprint(s[i]))
-				return (0x1);
-			i++;
-		}
-	}
-	return (0x0);
 }
 
 int ex_st_f(int status, int mode)
@@ -131,64 +112,90 @@ void	get_fd_back(t_fd fd)
 	dup2(fd.tmp_fdin, 0x0);
 }
 
-void	clear_all(t_minishell *m, t_env *env)
+int	heredock(t_minishell *mini, t_env *env, int i)
 {
-	ft_cleanshell(&m);
-	clear_envir(env);
+	t_minishell	*tmp;
+	int			fd;
+
+	tmp = mini;
+	while (tmp)
+	{
+		i = -0x1;
+		while (++i < tmp->len_tab)
+		{
+			if (tmp->tab[i] == 0x4)
+			{
+				fd = heredoc_check(tmp, env, tmp->files[i + 0x1], 0x0);
+				if (fd == -0x1)
+					return (0x1);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (0x0);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	int			p;
-	char		*str;
-	t_minishell	*mini;
-	t_env		*envir;
-	(void) *env;
+	int 		p;
 	t_fd		fd;
-	char *str_tmp;
+	// char		*tmp;
+	// char		*old_pwd;
+	t_minishell	*mini;
+	char		*promt;
+	t_env		*envir;
+	// char		*buffer = 0;
+
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	sig_func();
+	glb_sig = 0x0;
+	envir = full_fill_env(env, 0x0, 0x0);
 	fd.tmp_fdout = dup(1);
 	fd.tmp_fdin = dup(0);
-	envir = full_fill_env(env, 0x0, 0x0);
+	sig_func();
+	// old_pwd = getcwd(buffer, sizeof(200));
 	while (1999)
 	{
-		str_tmp = display_prompt_msg();
-		str = readline(str_tmp);
-		free(str_tmp);
-
-		if (!str || first_check(str))
+		// tmp = display_prompt_msg();
+		promt = readline("mini -> ");
+		if (!promt )
 		{
-			free (str);
-			return (1);
+			ft_malloc(0, 0);
+			free (promt);
+			break ;
 		}
-		if (is_empty(str))
+		if (is_empty(promt))
 		{
-			free(str);
+			free(promt);
 			continue ;
 		}
-		p = ft_checker(str);
-		add_history(str);
+		p = ft_checker(promt);
+		add_history(promt);
 		ft_puterror(p);
 		if (p != -1)
 		{
-			free(str);
+			free(promt);
 			continue ;
 		}
-		 mini = parcing(str);
-		// int i = -1;
-		// while (++i < mini->len_tab)
-		// {
-		// 	printf("[%s]\n",  mini->files[i + 1]);
-		// }
-
+		mini = parcing(promt);
+		if (heredock(mini, envir, -0x1))
+			continue;
 		if (mini)
+		{
+			glb_sig = 1;
 			ft_execute(&mini, envir, 0x0);
+			glb_sig = 0;
+		}
+		else
+		{
+			free (promt);
+			ft_cleanshell(&mini);
+			continue ;
+		}
 		get_fd_back(fd);
-		// free (str);
-		// ft_cleanshell(&mini);
-      //  clear_envir(envir);
+		ft_malloc(0, 0);
+		free (promt);
 	}
+	clear_envir(envir);
 	return (0x0);
 }

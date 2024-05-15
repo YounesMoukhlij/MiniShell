@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/09 14:38:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:01:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 		return (ft_unset(mini, envir));
 	else if (!strcmp_f(mini->cmd[0], "echo", 0, 0)
 		|| !strcmp_f(mini->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(mini, 0x1, 0x0));
+		return (ft_echo(mini, envir, 0x1, 0x0));
 	else
 		return (is_bin_cmd(mini, envir, 0x0));
 }
@@ -69,8 +69,8 @@ int	exve_err(char *s)
 		else if ((buf.st_mode & S_IXUSR) == 0)
 			return (ft_put_err(s, ": Permission denied"), 126);
 	}
-	// else if (is_empty(s))
-	// 	return (0x0);
+	// else if (is_empty(s) || !ft_strlen(s))
+	// 	return (ft_put_err(s, ": No such file or directory"), 127);
 	else if (check_s(s))
 		return (ft_put_err(s, ": No such file or directory"), 127);
 	return (ft_put_err(s, ": Command not found"), 127);

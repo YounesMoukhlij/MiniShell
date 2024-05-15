@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:44:45 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/03/31 16:24:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:00:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	str = (char *)ft_malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!str)
 		return (0);
 	i = -1;

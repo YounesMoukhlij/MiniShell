@@ -6,11 +6,20 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/10 20:57:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:48:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	init_helper(t_minishell *lst)
+{
+	lst->fd_in = 0;
+	lst->fd_out = 1;
+	lst->size = 0;
+	lst->pid_fork = -1;
+	lst->check_err = 0;
+}
 
 t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 {
@@ -18,7 +27,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	char		*s;
 	char		**str;
 
-	lst = malloc(sizeof(t_minishell));
+	lst = ft_malloc(sizeof(t_minishell), 0x1);
 	if (!lst)
 		return (NULL);
 	str = ft_splits(file, 1);
@@ -29,11 +38,7 @@ t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)
 	lst->len_tab = len;
 	s = ft_join(ft_concat(lst->cmdt, ++lst->afcmd_t));
 	lst->cmd = ft_splits(s, 0);
-	lst->fd_in = 0;
-	lst->fd_out = 1;
-	lst->size = 0;
-	free(s);
-	// ft_cleantach(str);
+	init_helper(lst);
 	--lst->afcmd_t;
 	lst->next = 0;
 	return (lst);
@@ -67,7 +72,6 @@ void	add_back(t_minishell **head, t_minishell *node)
 	node->next = NULL;
 }
 
-
 void	add_size(t_minishell *m, int full_size)
 {
 	t_minishell	*tmp;
@@ -82,30 +86,27 @@ void	add_size(t_minishell *m, int full_size)
 
 t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d)
 {
-	int			lens;
-	int			i;
-	int			*arr;
-	char		**pt;
-	int			j;
-	head = 0;
+	t_tmp	tmp;
+	int		i;
+	int		j;
+	
 	i = 0;
-		j = -1;
+	j = 0;
 	while (str[i])
 	{
-		lens = ft_set_tk(str[i]);
-		arr = ft_arr_tk(str[i], lens);
-		while (++j < lens)
-			if (arr[j] <= 0 || arr[j] > 4)
-				arr[j] = 3;
-		pt = ft_splits(str[i], 1);
-		if (i < lens)
-			cmd = lst_cmd(pt[0], str[i], arr, lens);
+		tmp.lens = ft_set_tk(str[i]);
+		tmp.arr = ft_arr_tk(str[i], tmp.lens);
+		while (++j < tmp.lens)
+			if (tmp.arr[j] <= 0 || tmp.arr[j] > 4)
+				tmp.arr[j] = 3;
+		tmp.pt = ft_splits(str[i], 1);
+		if (i < tmp.lens)
+			cmd = lst_cmd(tmp.pt[0], str[i], tmp.arr, tmp.lens);
 		else
-			cmd = lst_cmd(pt[0], str[i], arr, lens);
+			cmd = lst_cmd(tmp.pt[0], str[i], tmp.arr, tmp.lens);
 		add_back(&head, cmd);
 		i++;
 	}
-	// ft_cleantach(pt);
 	add_size(head, d);
 	return (head);
 }

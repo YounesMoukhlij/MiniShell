@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/04 17:13:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:16:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ int	check_special_case(char *s)
 	return (0x0);
 }
 
+char	*test(char *s, int start, int len)
+{
+	char	*r;
+	int		i;
+	int		l;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (!len || start >= ft_strlen(s))
+		return ("");
+	l = ft_strlen(s) - start;
+	if (l > len)
+		l = len;
+	r = (char *)malloc(sizeof(char) * (l + 1));
+	if (!r)
+		return (NULL);
+	while (s[start] && l)
+	{
+		r[i] = s[start];
+		start++;
+		i++;
+		l--;
+	}
+	r[i] = '\0';
+	return (r);
+}
+
 char	*ft_key(char *s)
 {
 	int		i;
@@ -36,7 +64,7 @@ char	*ft_key(char *s)
 	{
 		if (s[i] == '+' || s[i] == '=')
 		{
-			str = ft_substr_executor(s, 0x0, i);
+			str = test(s, 0x0, i);
 			return (str);
 		}
 		i++;
@@ -59,16 +87,14 @@ int	no_equal(char *s)
 
 void	export_error(t_minishell *m, int option, char *s, char *o)
 {
+	(void) o;
 	ft_putstr_fd("export: ", 0x2);
 	if (option == 0x0)
-		ft_putstr_fd("not an identifier: ", 0x2);
+		ft_put_err(s, " : not an identifier");
 	if (option == 0x1)
-		ft_putstr_fd("bad pattern: ", 0x2);
+		ft_put_err(s, ": bad pattern");
 	if (option == 0x2)
-		ft_putstr_fd("not valid in this context: ", 0x2);
-	ft_putendl_fd(s, 0x2);
-	if (o)
-		ft_putendl_fd(0, 0x2);
+		ft_put_err(s, " : not valid in this context");
 	ex_st_f(0x1, 0x1);
 	if (m)
 	{

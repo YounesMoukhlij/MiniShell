@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:50:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/04/25 18:04:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:16:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_pwd(t_minishell *mini, t_env **head)
 		ft_putstr_fd_executor(pwd, 0x1, 0x1);
 	else
 	{
-		input = grep_from_env(*head, "PWD");
+		input = grep_from_env(*head, "OLDPWD");
 		if (input)
 			ft_putstr_fd_executor(input, 0x1, 0x1);
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/10 21:33:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:01:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	else if (!strcmp_f(m->cmd[0], "export", 0, 0))
 		return (ft_export(m, envir, 0x1));
 	else if (!strcmp_f(m->cmd[0], "exit", 0, 0))
-		return (ft_exit(m), 1);
+		return (ft_exit(m));
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (ft_unset(m, envir));
 	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
-		return (ft_echo(m, 0x1 , 0x0));
+		return (ft_echo(m, envir, 0x1 , 0x0));
 	else
 		return (-1);
 }
 
 int	is_builtin(t_minishell *m)
 {
+	if (!ft_strlen(m->cmd[0]))
+		return (0x0);
 	if (!strcmp_f(m->cmd[0], "cd", 0, 0))
 		return (0x1);
 	else if (!strcmp_f(m->cmd[0], "env", 0, 0) || !strcmp_f(m->cmd[0], "ENV", 0, 0))
@@ -51,7 +53,7 @@ int	is_builtin(t_minishell *m)
 		return (0x1);
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (0x1);
-	else if (!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
+	else if ((!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0)) || (!strcmp_f(m->cmd[1], "echo", 0, 0) || !strcmp_f(m->cmd[1], "ECHO", 0, 0)))
 		return (0x1);
 	else
 		return (0x0);
@@ -67,10 +69,9 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 	r = ft_split_executor(s[0x0], ' ');
 	while (r[l_n])
 		l_n++;
-	res = malloc(sizeof(char *) * (l_n + len + 1));
+	res = ft_malloc(sizeof(char *) * (l_n + len + 1), 0x1);
 	if (!res)
 		return (NULL);
-	res[l_n + len] = NULL;
 	while (j < l_n)
 	{
 		res[j] = ft_strdup(r[j]);
@@ -82,6 +83,7 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 		p++;
 		j++;
 	}
+	res[j] = 0;
 	return (res);
 }
 
@@ -90,27 +92,28 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	int		i;
 	char	*s;
 	char	**res;
-	char	**r;
 	int		e_s;
 
 	i = 0x0;
-	r = execv_env(envir);
+	if (!ft_strlen(mini->cmd[0x0]))
+		return (exit(0x0), 0x0);
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
-	if (check_cmd(mini->cmd[0x0]))
+	// if (ft_strlen(mini->cmd[0x0]) == 1)
+	// 	return (exit(0x0), 0x0);
+	if (!check_cmd(mini->cmd[0x0]))
 		res = get_cmd_splited(mini->cmd, cmd_length(mini), 0x0, 0x1);
 	else
 		res = mini->cmd;
 	while (mini->path_d[i])
 	{
-		if (!(res[0x0][0x0] == '.' ||  res[0x0][0x0] == '/'))
+		if (ft_strlen(res[0x0]) > 0 && !(res[0x0][0x0] == '.' ||  res[0x0][0x0] == '/'))
 			s = ft_strjoin_space_executor(mini->path_d[i], res[0x0], '/');
 		else
 			s = res[0x0];
 		if (access(s, X_OK) == 0x0)
 		{
-			flag = 0x1;
-			if (execve(s, res, r) == -1)
+			if (execve(s, res, execv_env(envir)) == 0)
 			{
 				flag = 0x0;
 				break;
@@ -120,12 +123,8 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 	}
 	if (flag == 0x0)
 	{
-		// free (s);
-		// ft_free_strings(res);
-		// ft_free_strings(r);
 		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
 		exit(e_s);
 	}
-	// free (s);
 	return (0x1);
 }

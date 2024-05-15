@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:40:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:33:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	errq(int op)
 	return(0x0);
 }
 
-void	hudler_o(char *s1, int i, int *op, size_t *len_word)
+int	hudler_o(char *s1, int i, int *op, size_t *len_word)
 {
 	while (s1[i])
 	{
@@ -38,7 +38,7 @@ void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 			}
 			*len_word += i;
 			if (errq(*op))
-				return ;
+				return (0);
 			*op = 0;
 		}
 		else if (!ft_vtk(s1[i]))
@@ -47,10 +47,14 @@ void	hudler_o(char *s1, int i, int *op, size_t *len_word)
 			i++;
 		}
 		else
-			return ;
+			return (0);
 	}
+	return (1);
 }
 
+	
+
+	
 void	hun_par(char *s1, int *id, int *i, char *word)
 {
 	int	op;

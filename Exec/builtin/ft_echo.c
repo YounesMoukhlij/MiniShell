@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/08 17:40:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:10:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,36 @@ int	check(char *s, int f, int flag_0)
 	return (0x0);
 }
 
-int	ft_echo(t_minishell *mini, int i, int f)
+void	print_func(t_env *env, char *s)
+{
+	int		i;
+	int		j;
+	t_env	*tmp;
+	char	*t;
+	
+	i = 0x0;
+	j = 0x1;
+	t = malloc(ft_strlen(s) + 3);
+	t[0] = SGL;
+	t[ft_strlen(s) + 1] = SGL;
+	t[ft_strlen(s) + 2] = '\0';
+	while (s[i])
+	{
+		t[j] = s[i];
+		j++;
+		i++;
+	}
+	tmp = env_node_value(&env, t);
+	if (tmp)
+	{
+		if (tmp->flag == 1)
+			ft_putstr_fd_executor(t, 0x1, 0x0);
+	}
+	else
+		ft_putstr_fd_executor(s, 0x1, 0x0);
+}
+
+int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 {
 	if (!mini->cmd[0x0])
 		return (0x0);
@@ -87,7 +116,8 @@ int	ft_echo(t_minishell *mini, int i, int f)
 	while (mini->cmd[i])
 	{
 		if (!check(mini->cmd[i], i, f))
-			ft_putstr_fd_executor(mini->cmd[i], 0x1, 0x0);
+			print_func(env, mini->cmd[i]);
+			// ft_putstr_fd_executor(mini->cmd[i], 0x1, 0x0);
 		if (mini->cmd[i + 0x1] != NULL)
 			write(0x1, " ", 0x1);
 		if (!(mini->cmd[i + 0x1]) && (f <= 0x1) && !check(mini->cmd[i], i, f))
