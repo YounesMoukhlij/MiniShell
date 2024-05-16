@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:38:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 18:40:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:10:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	strcmp_f(char *s1, char *s2, int flag, int i)
 {
 	if (!s1 || !s2)
 		return (-1);
-	if (!ft_strlen(s1) || !ft_strlen(s2))
-		return (-1);
+	// if (!ft_strlen(s1) || !ft_strlen(s2))
+	// 	return (-1);
 	if (flag == 0)
 	{
 		if (ft_strlen(s1) != ft_strlen(s2))

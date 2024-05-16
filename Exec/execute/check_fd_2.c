@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 18:48:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:00:26 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*herdoc_helper(char *s, t_env *envir)
 				break ;
 			if (s[i] == '?')
 			{
-				r = add_t(r, ft_itoa(ex_st_f(0x0, 0x0)), envir);
+				r = add_t(r, ft_itoa_1(ex_st_f(0x0, 0x0)), envir);
 				if (ft_strlen(r))
 					i += 1;
 				j = ft_strlen(r);
@@ -65,6 +65,66 @@ char	*herdoc_helper(char *s, t_env *envir)
 	return (r);
 }
 
+char	*grep_from_env_1(t_env *envir, char *string)
+{
+	t_env	*tmp;
+
+	tmp = envir;
+	while (tmp)
+	{
+		if (!strcmp_f(tmp->key, string, 0x0, 0x0))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (ft_strdup(""));
+}
+
+char	*allocate_max_1(t_env *envir)
+{
+	t_env	*head;
+	int		max;
+	char	*r;
+
+	head = envir;
+	max = ft_strlen(head->value);
+	while (head)
+	{
+		if (max < ft_strlen(head->value))
+			max = ft_strlen(head->value);
+		head = head->next;
+	}
+	r = ft_calloc_1(max * 30, 1);
+	return (r);
+}
+
+char	*grep_value_1(char *s)
+{
+	int		len;
+	int		i;
+	char	*r;
+
+	len = 0x0;
+	if (!s)
+		return (NULL);
+	while (s[len])
+	{
+		if (!ft_isalnum(s[len]))
+			break ;
+		len++;
+	}
+	r = malloc(len + 0x1);
+	if (!r)
+		return (NULL);
+	i = 0x0;
+	while (i < len)
+	{
+		r[i] = s[i];
+		i++;
+	}
+	r[len] = '\0';
+	return (r);
+}
+
 char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 {
 	int		c;
@@ -72,7 +132,7 @@ char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 	char	*s;
 	char	*res;
 
-	p = allocate_max(envir);
+	p = allocate_max_1(envir);
 	if (!p)
 		return (NULL);
 	s = herdoc_helper(r, envir);
@@ -98,7 +158,7 @@ char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 				i++;
 				break ;
 			}
-			res = grep_from_env(envir,  grep_value(&s[i]));
+			res = grep_from_env_1(envir,  grep_value(&s[i]));
 			if (res)
 				p = add_t(p, res, envir);
 			if (ft_strlen(p) || !ft_strlen(res))
@@ -114,34 +174,46 @@ char	*expand_heredoc(t_env *envir, char *r, int i, int j)
 	return (p);
 }
 
+void	help_1(char **delim, int *flag)
+{
+	if (expanded_content(*delim))
+		*flag = 0x1;
+	*delim = without_quotes(*delim, 0x0);
+	if (!strcmp_f(*delim, "$", 0x0, 0x0))
+		(*delim)++;
+}
+
 int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 {
 	char	*s;
+	char	*str;
 	char	*hdd_f;
 
 	hdd_f = hidden_name();
-	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR | O_APPEND,  0777);
+	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR | O_APPEND, 0777);
 	if (mini->fd_in == -0x1)
 		return (-0x1);
-	if (expanded_content(delim))
-		flag = 0x1;
-	delim = without_quotes(delim, 0x0);
+	help_1(&delim, &flag);
 	signal(SIGINT, sig_n);
 	while (1999)
 	{
 		s = readline("heredoc> ");
 		if (!ttyname(0))
 			return (open(ttyname(2), O_RDWR), -0x1);
-		if (!s || !strcmp_f(s, delim, 0x0, 0x0)) 
+		if (!s || !strcmp_f(s, delim, 0x0, 0x0))
 		{
 			free (s);
 			break ;
 		}
 		if (flag == 0x0 && no_dollar(s))
-			s = expand_heredoc(env, s, 0x0, 0x0);
-		ft_putstr_fd_executor(s, mini->fd_in, 0x1);
-		if (flag == 0x1)
-			free (s);
+		{
+			str = expand_heredoc(env, s, 0x0, 0x0);
+			ft_putstr_fd_executor(str, mini->fd_in, 0x1);
+			free (str);
+		}
+		else
+			ft_putstr_fd_executor(s, mini->fd_in, 0x1);
+		free (s);
 	}
 	return (ft_helper_heredoc(mini, hdd_f));
 }
