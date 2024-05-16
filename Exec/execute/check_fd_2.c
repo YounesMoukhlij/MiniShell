@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 22:00:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:45:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ char	*grep_from_env_1(t_env *envir, char *string)
 	while (tmp)
 	{
 		if (!strcmp_f(tmp->key, string, 0x0, 0x0))
+		{
+			if (!tmp->value)
+				return (ft_strdup_1(""));
 			return (tmp->value);
+		}
 		tmp = tmp->next;
 	}
-	return (ft_strdup(""));
+	return (ft_strdup_1(""));
 }
 
 char	*allocate_max_1(t_env *envir)

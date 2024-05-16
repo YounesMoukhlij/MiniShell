@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 22:09:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:04:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,11 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	int return_exve;
 
 	(void) return_exve;
+	if (!mini->cmd)
+		return ;
 	full_fill_path(mini, envir);
+	// printf("->>[%s]<<-\n", mini->cmd[1]);
+	// printf("->>[%s]<<-\n", mini->files[1]);
 	if (check_fd(mini, envir))
 		mini->check_err = 0x1;
 	expander(&mini, envir);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 12:52:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:53:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,17 @@ char	*ft_get_path(t_env *envir)
 	return (NULL);
 }
 
-void	back_up(t_env **ennv, int i)
+void	back_up(t_env **ennv, int i, char *pwd)
 {
 	t_env	*lst;
-	char	*pwd;
 	char	*buff;
 
 	buff = NULL;
-	pwd = NULL;
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
-	while (i++ < 0x4)
+	// printf("[%s]\n", pwd);
+	while (++i <= 0x4)
 	{
 		if (i == 0x0)
 			lst = lstnew_executor(ft_strdup_1("PWD"), ft_strdup_1(pwd), 0);
@@ -61,8 +60,12 @@ void	back_up(t_env **ennv, int i)
 			lst = lstnew_executor(ft_strdup_1("_"), ft_strdup_1("/usr/bin/env"), 0);
 		if (i == 0x3)
 			lst = lstnew_executor(ft_strdup_1("PATH"),
-					ft_strdup_1("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 0);
+				ft_strdup_1("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 0);
+		if (i == 0x4)
+			lst = lstnew_executor(ft_strdup_1("TERM"), 
+				ft_strdup_1("xterm-256color"), 0);
 		add_back_executor(ennv, lst);
+		printf("[%d]\n", i);
 	}
 	free (pwd);
 }
@@ -106,7 +109,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 	head = NULL;
 	if (!*env)
-		back_up(&head, 0x0);
+		back_up(&head, -0x1, 0x0);
 	else
 	{
 		while (env[i])

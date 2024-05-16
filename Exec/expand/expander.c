@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 13:53:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:18:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,73 @@ int	check_quotes(char *s)
 	}
 	return (0x0);
 }
+
+int	get_double_arr_len(char **s)
+{
+	int	i;
+
+	i = 0x0;
+	if (!s)
+		return (-1);
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	check_execute(char *s)
+{
+	int		i;
+	char	**r;
+
+	i = 0x0;
+	if (!s)
+		return (0x0);
+	if ((s[0] == SGL && s[ft_strlen(s) - 1] == SGL) || (s[0] == DBL && s[ft_strlen(s) - 1] == DBL))
+	{
+		r = ft_split_executor(s, ' ');
+		if (get_double_arr_len(r) > 1)
+			return (0x1);
+	}
+	return (0x0);
+}
+
+int	check_dollar(t_env *env, char *s)
+{
+	int		i;
+	char	**r;
+	char	*str;
+	char	*o;
+
+	i = 0x0;
+	if (!s)
+		return (0x0);
+	if ((s[0] == SGL && s[ft_strlen(s) - 1] == SGL) || (s[0] == DBL && s[ft_strlen(s) - 1] == DBL))
+	{
+		while (s[i])
+		{
+			if (s[i] == '$')
+			{
+				o = without_quotes(s, 0x0);
+				str = grep_from_env_1(env, &s[1]);
+				r = ft_split_executor(str, ' ');
+				if (get_double_arr_len(r) > 1)
+					return (0x1);
+			}
+			i++;
+		}
+	}
+	return (0x0);
+}
+
 void	expand_cmd(t_minishell **mini, t_env *envir)
 {
 	int		i;
 	char	*str;
 	
 	i = 0x0;
-	if (check_quotes((*mini)->cmd[0x0]))
+	if (!(*mini)->cmd)
+		return ;
+	if (check_quotes((*mini)->cmd[0x0]) || check_execute((*mini)->cmd[0x0]) || check_dollar(envir, (*mini)->cmd[0x0]))
 		return ;
 	while ((*mini)->cmd[i])
 	{
@@ -71,7 +131,7 @@ void	check_cmd_one(t_minishell *mini, t_env *env)
 	char	**res;
 
 	i = 0x0;
-	if (!mini->cmd[0x0])
+	if (!mini->cmd)
 		return ;
 	res = mini->cmd;
 	if (!strcmp_f(res[0x0], "$", 0x0, 0x0) || !strcmp_f(res[0x0], "$?", 0x0,
@@ -94,7 +154,7 @@ void	expander(t_minishell **mini, t_env *envir)
 {
 	int	flag;
 
-	if (!envir)
+	if (!envir || !(*mini)->cmd)
 		return ;
 	check_cmd_one(*mini, envir);
 	expand_cmd(mini, envir);

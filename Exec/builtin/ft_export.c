@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 13:57:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:36:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_export(t_minishell *mini, t_env *envir, int i)
 						check_export(mini, p[0x0]);
 						if (p[0x1][0] == SGL && p[0x1][ft_strlen(p[0x1]) - 1] == SGL)
 							flag = 1;
-						lst = lstnew_executor(p[0x0], p[0x1], 1);
+						lst = lstnew_executor(p[0x0], p[0x1], flag);
 					}
 					else if (no_value(mini->cmd[i]))
 					{

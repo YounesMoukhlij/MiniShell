@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 21:39:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:42:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_minishell
 }						t_minishell;
 
 int	check_f(char *s);
+char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
 char	*ft_substr_executor_1(char *s, int start, int len);
 char	*ft_strjoin_executor_1(char *s1, char *s2);

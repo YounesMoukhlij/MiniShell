@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 20:39:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:24:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,22 @@ int	already_exist(char *s, t_env *envir)
 	t_env	*head;
 	char	*r;
 	int		i;
+	int		flag;
 
 	i = 0x0;
+	flag = 0;
 	head = envir;
 	while (s[i] && s[i] != '=')
 		i++;
 	if (s[i] == '=' && s[i - 1] == '+')
-		return (0x0);
-	r = ft_substr_executor(s, 0x0, i);
+		return (0x1);
+	if (s[i] == '=')
+		flag = 1;
+	if (flag == 1)
+		r = ft_substr_executor(s, 0x0, i + 1);
+	else
+		r = ft_substr_executor(s, 0x0, i);
+	printf("[%s]\n", r);
 	while (head)
 	{
 		if (!strcmp_f(head->key, r, 0x0, 0x0))
@@ -114,11 +122,11 @@ int	already_exist(char *s, t_env *envir)
 			if (head->value)
 			{
 				head->value = &s[++i];
+				return (0x0);
 			}
-			return (0x0);
 		}
 		head = head->next;
-	}
+}
 	return (0x1);
 }
 
@@ -135,8 +143,8 @@ char	*special_case(char *s, t_env *envir)
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
 			str = ft_substr_executor_1(s, 0x0, i);
-			you = ft_strjoin_executor_1(grep_from_env(envir, str), &s[i + 2]);
-			// unset_node(str, envir);
+			you = ft_strjoin_executor_1(grep_from_env_1(envir, str), &s[i + 2]);
+			unset_node(str, envir);
 			break ;
 		}
 		i++;

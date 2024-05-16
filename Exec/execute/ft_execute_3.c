@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 22:07:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:50:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		return (exit(0x1), 0x0);
 	// if (ft_strlen(mini->cmd[0x0]) == 1)
 	// 	return (exit(0x0), 0x0);
+	printf("\n------> [%s]\n", mini->cmd[0]);
 	if (!check_cmd(mini->cmd[0x0]))
 		res = get_cmd_splited(mini->cmd, cmd_length(mini), 0x0, 0x1);
 	else

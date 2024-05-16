@@ -47,8 +47,9 @@ ERRORORRRRR
 cat << l | cat << p
 cat << $""
 
+"ls -la"
+
 ===========
------
 export a c= | 2 times
 export +=
 export $a+=$a | a = "ls     -la"
