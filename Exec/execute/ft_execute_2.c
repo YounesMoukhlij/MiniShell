@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 17:45:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:38:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 		|| !strcmp_f(mini->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(mini ,&envir));
 	else if (!strcmp_f(mini->cmd[0], "export", 0, 0))
-		return (ft_export(mini, envir, 0x1));
+		return (ft_export(mini, envir, 0x1, 0x0));
 	else if (!strcmp_f(mini->cmd[0], "exit", 0, 0))
 		return (ft_exit(mini), 1);
 	else if (!strcmp_f(mini->cmd[0], "unset", 0, 0))
@@ -65,7 +65,7 @@ int	exve_err(char *s)
 		if (!strcmp_f(s, ".", 0x0, 0x0))
 			return (0x2);
 		if ((buf.st_mode & S_IFDIR) && check_err(s))
-			return (ft_put_err(s, ": Is a directory"), 126);
+			return (ft_put_err(s, ": is a directory"), 126);
 		else if ((buf.st_mode & S_IXUSR) == 0)
 			return (ft_put_err(s, ": Permission denied"), 126);
 	}

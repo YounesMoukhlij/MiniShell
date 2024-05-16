@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:45:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:38:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	func_err(char *s)
 		if (buf.st_mode & S_IFDIR)
 		{
 			ex_st_f(126, 0x1);
-			return (ft_put_err(s, ": Is a directory"));
+			return (ft_put_err(s, ": is a directory"));
 		}
 		else if ((buf.st_mode & S_IXUSR) == 0)
 		{

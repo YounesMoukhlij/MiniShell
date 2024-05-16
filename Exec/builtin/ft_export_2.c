@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 18:24:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:20:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,11 @@ int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
 	return (0x1);
 }
 
-int	already_exist(char *s, t_env *envir)
+int	already_exist(char *s, t_env *envir, int i, int flag)
 {
 	t_env	*head;
 	char	*r;
-	int		i;
-	int		flag;
 
-	i = 0x0;
-	flag = 0;
 	head = envir;
 	while (s[i] && s[i] != '=')
 		i++;
@@ -114,7 +110,6 @@ int	already_exist(char *s, t_env *envir)
 		r = ft_substr_executor(s, 0x0, i + 1);
 	else
 		r = ft_substr_executor(s, 0x0, i);
-	printf("[%s]\n", r);
 	while (head)
 	{
 		if (!strcmp_f(head->key, r, 0x0, 0x0))
@@ -126,7 +121,7 @@ int	already_exist(char *s, t_env *envir)
 			}
 		}
 		head = head->next;
-}
+	}
 	return (0x1);
 }
 

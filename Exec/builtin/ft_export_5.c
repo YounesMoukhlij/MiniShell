@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 18:26:24 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:38:01 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	err_export(char *s)
 {
 	if (!s)
 		return (0x0);
-	if (!ft_strlen(s))
+	if (ft_strlen(s) == 0)
 		return (export_error(NULL, 0x0, s, 0x0), 0x0);
 	if (check_first(s))
 		return (export_error(NULL, 0x0, s, 0x0), 0x0);
@@ -54,7 +54,7 @@ int	err_export_1(char *s)
 {
 	if (!s)
 		return (0x0);
-	if (!ft_strlen(s))
+	if (ft_strlen(s) == 0)
 		return (0x0);
 	if (check_first(s))
 		return (0x0);

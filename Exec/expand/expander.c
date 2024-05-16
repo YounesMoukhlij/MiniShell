@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 18:18:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:19:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 	i = 0x0;
 	if (!(*mini)->cmd)
 		return ;
-	if (check_quotes((*mini)->cmd[0x0]) || check_execute((*mini)->cmd[0x0]) || check_dollar(envir, (*mini)->cmd[0x0]))
+	if (check_quotes((*mini)->cmd[0x0])
+		|| check_execute((*mini)->cmd[0x0])
+		|| check_dollar(envir, (*mini)->cmd[0x0]))
 		return ;
 	while ((*mini)->cmd[i])
 	{
