@@ -88,3 +88,17 @@ exit aaa aaa
 APRES
 unset ""
 export ""
+
+
+
+Erorr top
+    ctrl  + \ =>  minishell promt lose
+herdoc  << ""
+
+ }
+-> 145          if (mini->cmd[0x0][0x0] == '$' && !env_node(&env, &mini->cmd[0x0][0x1]))
+   146          {
+   147                  while (mini->cmd[i])
+   148                  {
+exit " 1"
+DONE

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 17:58:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:22:12 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_1(char *s)
 {
-	if (is_digit(s) || is_negative(s))
+	if (is_digit(s) || is_negative(s) || ft_atoi(s))
 	{
 		if (ft_atoi(s) > 0x0 && ft_atoi(s) < 255)
 		{
