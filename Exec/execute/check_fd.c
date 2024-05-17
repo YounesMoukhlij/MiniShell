@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 17:46:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:47:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_files_1(t_minishell *m, t_env *env, int i)
 		else if (!tmp)
 		{
 			if (m->files[i + 1][0x0] == '$')
-					return (0x0);
+				return (0x0);
 		}
 	}
 	return (0x1);
@@ -54,21 +54,25 @@ int	check_files_1(t_minishell *m, t_env *env, int i)
 int	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
-	int	l;
+	// int	l;
 
 	flag = 0x1;
-	l = 0;
+	// l = 0;
 	if (!mini->files[0x1])
 		return (0x0);
-	if (check_here(mini) == 0)
-		l = 1;
-	if (l == 0)
-	{
-		if (check_files(mini, env, -0x1))
+	// if (check_here(mini) == 0)
+	// 	l = 1;
+	// if (l == 0)
+	// {
+	// 	printf("2");
+	// 	if (check_files(mini, env, -0x1))
+	// 	{
+	// 		printf("3333");
 			expand_files(&mini, env, 0x0);
-		if (!check_files_1(mini, env, -0x1))
-			return (0x1);
-	}
+	// 	}
+	// 	if (!check_files_1(mini, env, -0x1))
+	// 		return (0x1);
+	// }
 	if (ft_fd_files(mini, env))
 		flag = 0x0;
 	if (ft_open_others(mini))

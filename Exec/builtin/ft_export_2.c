@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 21:20:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:01:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,57 +41,15 @@ int	err(char *s)
 	return (ex_st_f(0x1, 0x1), 0x1);
 }
 
-int	is_exportable(t_minishell *m, char *s, t_env *envir)
+char	*extra(char *s, int i, int flag)
 {
-	int	i;
+	char	*r;
 
-	i = 0x0;
-	if (err(s))
-		return (export_error(m, 0x0, s, 0x0), 0x0);
-	if (ft_isdigit(s[0x0]))
-		return (export_error(m, 0x0, s, 0x0), 0x0);
-	while (s[i])
-	{
-		if (s[0x0] && s[0x1] == ' ')
-			return (0x1);
-		if (s[i] == '+' && s[i + 1] == '=')
-			return (0x1);
-		if (s[i] == '=' && s[i + 0x1] == ' ' && is_num(&s[i + 0x2]))
-			return (0x0);
-		if (s[i] == '=')
-			return (0x1);
-		i++;
-	}
-	if (!strcmp_f(grep_from_env(envir, s), ft_strdup_1("(null)"), 0x0, 0x0))
-		return (0x0);
-	return (0x1);
-}
-
-int	is_exportable_1(t_minishell *m, char *s, t_env *envir)
-{
-	int	i;
-
-	i = 0x0;
-	(void) m;
-	if (!s)
-		return (0x0);
-	if (ft_isdigit(s[0x0]))
-		return (0x0);
-	while (s[i])
-	{
-		if (s[0x0] && s[0x1] == ' ')
-			return (0x1);
-		if (s[i] == '+' && s[i + 1] == '=')
-			return (0x1);
-		if (s[i] == '=' && s[i + 0x1] == ' ' && is_num(&s[i + 0x2]))
-			return (0x0);
-		if (s[i] == '=')
-			return (0x1);
-		i++;
-	}
-	if (!strcmp_f(grep_from_env(envir, s), ft_strdup_1("(null)"), 0x0, 0x0))
-		return (0x0);
-	return (0x1);
+	if (flag == 1)
+		r = ft_substr_executor(s, 0x0, i + 1);
+	else
+		r = ft_substr_executor(s, 0x0, i);
+	return (r);
 }
 
 int	already_exist(char *s, t_env *envir, int i, int flag)
@@ -106,10 +64,7 @@ int	already_exist(char *s, t_env *envir, int i, int flag)
 		return (0x1);
 	if (s[i] == '=')
 		flag = 1;
-	if (flag == 1)
-		r = ft_substr_executor(s, 0x0, i + 1);
-	else
-		r = ft_substr_executor(s, 0x0, i);
+	r = extra(s, i, flag);
 	while (head)
 	{
 		if (!strcmp_f(head->key, r, 0x0, 0x0))

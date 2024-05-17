@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:40:33 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 14:44:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:52:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	ft_swap_nodes(t_env *tmp)
 		tmp->value = str;
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 11:54:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:34:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,15 @@ int	cd_3(t_minishell *mini, t_env *envir)
 {
 	int		i;
 	char	*r;
+	char	*str;
 
 	i = 0x0;
 	r = 0x0;
-	(void) envir;
+	str = ft_strdup("/Users/youmoukh/");
 	change_dir(envir, 0x1);
 	if (mini->cmd[0x1][0x0] == '~')
-		r = ft_strjoin_executor(ft_strdup("/Users/youmoukh/"), &mini->cmd[0x1][0x2]);
-	else 
+		r = ft_strjoin_executor(str, &mini->cmd[0x1][0x2]);
+	else
 		r = mini->cmd[0x1];
 	i = chdir(r);
 	if (i == -1)

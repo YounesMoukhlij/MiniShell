@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:04:52 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 17:28:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:52:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	clear_envir(t_env *head)
 		free(tmp->key);
 		free(tmp->value);
 		current = tmp->next;
-		// free(tmp);
+		free(tmp);
 		tmp = current;
 	}
 	head = NULL;

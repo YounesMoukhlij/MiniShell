@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 16:33:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:05:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*hudler_t(char *s1, char *word, int *id)
 
 void	ft_skep(char *str, int *i)
 {
-	if (str[*i] == '\'' || str[*i] == '\"')
+	while (str[*i] == '\'' || str[*i] == '\"')
 	{
 		if (str[*i] == '\'')
 			ft_parq_err(str, i, 's');

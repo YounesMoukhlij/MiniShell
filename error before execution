@@ -81,10 +81,13 @@ exit aaa aaa
 ====DONE===
 
 
-
-
-
-
+==============
 APRES
 unset ""
 export ""
+=====DONE=====
+
+ls > '           ' << l 
+
+export a="-nn HELLO"
+unset $OLDPWD

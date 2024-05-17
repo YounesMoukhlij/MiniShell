@@ -6,11 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 14:11:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:59:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+
 
 static void	case_one(int *arr, char c, int *i, int *j)
 {
@@ -72,7 +74,7 @@ void	fun(char *str, int *i)
 	op = 0;
 	while (!ft_vtk(str[*i]) && str[*i])
 	{
-		if (str[*i] == '\"' || str[*i] == '\'')
+		while (str[*i] == '\"' || str[*i] == '\'')
 		{
 			if (!op)
 			{

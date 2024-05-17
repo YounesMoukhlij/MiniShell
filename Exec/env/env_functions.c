@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 14:53:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:32:29 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	back_up(t_env **ennv, int i, char *pwd)
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
-	// printf("[%s]\n", pwd);
 	while (++i <= 0x4)
 	{
 		if (i == 0x0)
@@ -105,7 +104,6 @@ t_env	*full_fill_env(char **env, int i, int j)
 	t_env	*head;
 	char	*s1;
 	char	*s2;
-	// char	*tmp;
 
 	head = NULL;
 	if (!*env)
@@ -119,14 +117,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 				j++;
 			s1 = ft_substr_env(env[i], 0x0, j);
 			s2 = ft_substr_env(env[i], j + 0x1, ft_strlen(env[i]));
-			// if (!strcmp_f(s1, "SHLVL", 0x0, 0x0))
-			// {
-			// 	tmp = ft_itoa(ft_atoi(s2) + 1);
-			// 	s2 = ft_strdup(tmp);
-			// 	free (tmp);
-			// }
 			lst_env = lstnew_executor(s1, s2, 0);
-			// free(s2);
 			add_back_executor(&head, lst_env);
 			i++;
 		}

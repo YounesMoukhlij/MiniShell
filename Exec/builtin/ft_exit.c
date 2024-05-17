@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 17:58:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:58:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	exit_1(char *s)
 {
-	if (is_digit(s) || is_negative(s))
+	if (is_digit(s) || ft_atoi(s))
 	{
 		if (ft_atoi(s) > 0x0 && ft_atoi(s) < 255)
 		{
 			ex_st_f(ft_atoi(s), 0x1);
 			exit(ft_atoi(s));
 		}
-		else if (ft_atoi(s) < 0x0 )
+		else if (ft_atoi(s) < 0x0)
 		{
 			ex_st_f(156, 0x1);
 			exit(156);
@@ -34,7 +34,7 @@ void	exit_1(char *s)
 	}
 	else if (!is_digit(s))
 	{
-		error_exit(NULL , " numeric argument required");
+		error_exit(NULL, " numeric argument required");
 		ex_st_f(255, 0x1);
 		exit(255);
 	}

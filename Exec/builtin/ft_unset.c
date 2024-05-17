@@ -6,18 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 16:09:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:02:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-void	free_node(t_env *node)
-{
-	free(node->key);
-	free(node->value);
-	free(node);
-}
 
 void	unset_node(char *s, t_env *envir)
 {
@@ -33,7 +26,8 @@ void	unset_node(char *s, t_env *envir)
 		{
 			pre->next = tmp->next;
 			pre = tmp->next;
-			// free_node(tmp);
+			free(tmp->key);
+			free(tmp->value);
 			break ;
 		}
 		pre = tmp;
@@ -60,7 +54,7 @@ int	check_unset(char *s)
 {
 	int		i;
 	char	*t;
-	
+
 	i = 0x0;
 	t = ft_substr_executor(s, 0x0, is_eq_exist(s));
 	while (t[i])
@@ -81,30 +75,6 @@ int	err_unset(t_minishell *m, char *s)
 	return (0x1);
 }
 
-int	is_unsetable(t_minishell *m, t_env *envir, char *s)
-{
-	int	i;
-
-	i = 0x0;
-	if (ft_isdigit(s[0x0]))
-		return (export_error(m, 0x0, s, 0x0), 0x0);
-	while (s[i])
-	{
-		if (s[0x0] && s[0x1] == ' ')
-			return (0x1);
-		if (s[i] == '+' && s[i + 1] == '=')
-			return (0x1);
-		if (s[i] == '=' && s[i + 0x1] == ' ' && is_num(&s[i + 0x2]))
-			return (0x0);
-		if (s[i] == '=')
-			return (0x1);
-		i++;
-	}
-	if (!strcmp_f(grep_from_env(envir, s), ft_strdup("(null)"), 0x0, 0x0))
-		return (0x0);
-	return (0x1);
-}
-
 int	ft_unset(t_minishell *mini, t_env *envir)
 {
 	int	i;
@@ -113,13 +83,11 @@ int	ft_unset(t_minishell *mini, t_env *envir)
 	if (!mini->cmd[0x0])
 		return (0x0);
 	while (mini->cmd[i])
-	{	
+	{
 		if (check_first(mini->cmd[i]))
 			unset_error(mini, 0, mini->cmd[i], 0x0);
 		else
 			unset_node(mini->cmd[i], envir);
-			
-		// if (err_unset(mini, mini->cmd[i]))
 		i++;
 	}
 	if (mini->size > 1)

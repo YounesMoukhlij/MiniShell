@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:10 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 16:04:26 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:01:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	check_arg_ex(t_minishell *m, int i, int j)
 
 int	err_check(t_minishell *m)
 {
-	if (m->cmd[0x1] &&
-		!strcmp_f("=", m->cmd[0x2], 0x0, 0x0) && m->cmd[0x3])
+	if (m->cmd[0x1]
+		&& !strcmp_f("=", m->cmd[0x2], 0x0, 0x0) && m->cmd[0x3])
 		return (export_error(m, 0x0, m->cmd[0x1], m->cmd[0x3]), 0x1);
 	return (0x0);
 }

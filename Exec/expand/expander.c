@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 21:19:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:15:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_dollar(t_env *env, char *s)
 			if (s[i] == '$')
 			{
 				o = without_quotes(s, 0x0);
-				str = grep_from_env_1(env, &s[1]);
+				str = grep_from_env_1(env, &o[1]);
 				r = ft_split_executor(str, ' ');
 				if (get_double_arr_len(r) > 1)
 					return (0x1);
@@ -156,7 +156,7 @@ void	expander(t_minishell **mini, t_env *envir)
 {
 	int	flag;
 
-	if (!envir || !(*mini)->cmd)
+	if (!envir || !(*mini)->cmd || !(*mini)->cmd[0])
 		return ;
 	check_cmd_one(*mini, envir);
 	expand_cmd(mini, envir);

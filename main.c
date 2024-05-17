@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/16 21:35:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:52:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int	main(int ac, char **av, char **env)
 	t_minishell	*mini;
 	char		*promt;
 	t_env		*envir;
+	struct termios	old;
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
@@ -173,11 +174,20 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(promt);
-		// int i = 0;
-		// while (mini->cmd[i])
+		tcgetattr(STDOUT_FILENO, &old);
+		// t_minishell *ymp  = mini;
+		// while (ymp)
 		// {
-		// 	printf("[%s]\n", mini->cmd[i]);
-		// 	i++;
+		// 	int i = 0;
+
+		// 	while (mini->cmd[i])
+		// 	{
+		// 		printf("[%s]\n", mini->cmd[i]);
+		// 		i++;
+		// 	}
+		// 	ymp = ymp->next;
+		// }
+		// int i = 0;
 		// }
 		if (heredock(mini, envir, -0x1))
 			continue;
@@ -196,6 +206,7 @@ int	main(int ac, char **av, char **env)
 		get_fd_back(fd);
 		ft_malloc(0x0, 0x0);
 		free (promt);
+		tcsetattr(STDOUT_FILENO, 0x0, &old);
 	}
 	clear_envir(envir);
 	return (0x0);

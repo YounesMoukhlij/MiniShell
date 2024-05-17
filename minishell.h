@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 21:21:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:40:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include <termios.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <unistd.h>
@@ -58,13 +59,6 @@ typedef struct s_tmp
 	char		**pt;
 }	t_tmp;
 
-typedef struct s_export
-{
-	char				*key;
-	char				*value;
-	struct s_export		*next;
-}						t_export;
-
 typedef struct s_minishell
 {
 	int					check_err;
@@ -79,10 +73,8 @@ typedef struct s_minishell
 	int					len_tab;
 	int					fd_in;
 	int					fd_out;
-	int					forked;
 	char				*path;
 	char				**path_d;
-	t_env				*export;
 	t_fd				fd;
 	struct s_minishell	*next;
 }						t_minishell;
@@ -107,6 +99,7 @@ int	ft_isalnum_1(int c);
 
 void	ft_put_err(char *input, char *message);
 void	print_func(t_env *env, char *s);
+int	get_double_arr_len(char **s);
 
 char	*ft_exit_status(char *s, t_env *envir);
 int	check_single(char *s);

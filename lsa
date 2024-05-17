@@ -1,0 +1,15 @@
+ 
+$t
+Exec
+Makefile
+Parser
+TESTER
+a.out
+error before execution
+flc.c
+ls -la
+lsa
+main.c
+main.o
+minishell
+minishell.h
