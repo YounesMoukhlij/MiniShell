@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 22:07:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:18:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_builtin_cmd(t_minishell *m, t_env *envir)
 	else if (!strcmp_f(m->cmd[0], "pwd", 0, 0) || !strcmp_f(m->cmd[0], "PWD", 0, 0 ))
 		return (ft_pwd(m, &envir));
 	else if (!strcmp_f(m->cmd[0], "export", 0, 0))
-		return (ft_export(m, envir, 0x1));
+		return (ft_export(m, envir, 0x1, 0x0));
 	else if (!strcmp_f(m->cmd[0], "exit", 0, 0))
 		return (ft_exit(m));
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/15 22:15:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:35:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,12 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(promt);
+		// int i = 0;
+		// while (mini->cmd[i])
+		// {
+		// 	printf("[%s]\n", mini->cmd[i]);
+		// 	i++;
+		// }
 		if (heredock(mini, envir, -0x1))
 			continue;
 		if (mini)

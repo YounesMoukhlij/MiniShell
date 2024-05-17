@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 21:39:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:21:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_minishell
 }						t_minishell;
 
 int	check_f(char *s);
+char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
 char	*ft_substr_executor_1(char *s, int start, int len);
 char	*ft_strjoin_executor_1(char *s1, char *s2);
@@ -185,7 +186,7 @@ char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						already_exist(char *s, t_env *envir);
+int						already_exist(char *s, t_env *envir, int i, int flag);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);
@@ -223,7 +224,7 @@ char					*ft_calloc(int num, int size);
 char					*ft_substr_executor(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);
-int						ft_export(t_minishell *mini, t_env *envir, int i);
+int						ft_export(t_minishell *mini, t_env *envir, int i, int flag);
 int						ft_exit(t_minishell *mini);
 int						ft_unset(t_minishell *mini, t_env *envir);
 int						ft_cd(t_minishell *mini, t_env *envir);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 17:38:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:22:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	print_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
-	if (lst_size_executor(&tmp) == 4)
+	if (lst_size_executor(&tmp) < 6)
 	{
 		while (tmp)
 		{
-			if (strcmp_f("PATH", tmp->key, 0x0, 0x0) != 0x0)
+			if (strcmp_f("PATH", tmp->key, 0x0, 0x0) && strcmp_f("TERM", tmp->key, 0x0, 0x0))
 				print_helper(tmp);
 			tmp = tmp->next;
 		}
@@ -48,6 +48,7 @@ int	ft_env(t_minishell *mini, t_env *envir)
 		return (0x1);
 	while (tmp)
 	{
+		// if (ft_strlen(tmp->value))
 		if (tmp->value != NULL)
 		{
 			ft_putstr_fd_executor(tmp->key, 0x1, 0x0);

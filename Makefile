@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/15 22:20:50 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/16 21:35:33 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ SRC = main.c \
 	  Exec/garbage_coll/garbage_coll.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g  #-fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include

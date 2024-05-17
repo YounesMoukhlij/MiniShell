@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/14 19:12:40 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:35:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,19 @@ static char	*hooks(char *s1, int *id, int fg)
 	return (hudler_ts(s1, word, id, fg));
 }
 
+void	fix_arr(char **s)
+{
+	int	i;
+
+	i = 0x0;
+	while (s[i])
+	{
+		if (!ft_strlen(s[i]))
+			s[i] = 0x0;
+		i++;
+	}
+}
+
 char	**ft_splits(char *s, char fg)
 {
 	char	**arr;
@@ -112,5 +125,6 @@ char	**ft_splits(char *s, char fg)
 		i++;
 	}
 	arr[i] = 0;
+	fix_arr(arr);
 	return (arr);
 }
