@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 17:40:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:05:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	ft_isalnum_1(int c);
 void	ft_put_err(char *input, char *message);
 void	print_func(t_env *env, char *s);
 int	get_double_arr_len(char **s);
+void	close_fd(t_minishell *mini, int *fd, int flag, int pos);
 
 char	*ft_exit_status(char *s, t_env *envir);
 int	check_single(char *s);

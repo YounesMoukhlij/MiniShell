@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 21:38:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:05:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ void	func_err(char *s)
 	return (ft_put_err(s, ": No such file or directory"));
 }
 
+void	close_fd(t_minishell *mini, int *fd, int flag, int pos)
+{
+	while (++pos < mini->len_tab)
+	{
+		if (mini->tab[pos] == flag)
+		{
+			close (*fd);
+			return ;
+		}
+	}
+	return ;
+}
+
 int	ft_open_others(t_minishell *mini)
 {
 	int	i;
@@ -49,12 +62,14 @@ int	ft_open_others(t_minishell *mini)
 			fd = open(mini->files[i + 1], O_CREAT | O_RDWR , 0664);
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
+			close_fd(mini, &fd, 0x1, i);
 		}
 		else if (mini->tab[i] == 0x2)
 		{
 			fd = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
+			close_fd(mini, &fd, 0x2, i);
 		}
 	}
 	if (fd != 0x1)

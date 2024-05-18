@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 19:42:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:04:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 				func_err(mini->files[i + 0x1]);
 				return (0x1);
 			}
+			close_fd(mini, &fd, 0x3, i);
 		}
 	}
 	if (fd != 0x0)
