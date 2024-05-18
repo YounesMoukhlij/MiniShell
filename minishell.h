@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 13:59:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:24:19 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						already_exist(char *s, t_env *envir, int i, int flag);
+int						is_exist(char *s, t_env *envir, int i, int flag);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);
@@ -327,5 +327,9 @@ void					ft_putchar_fd(char c, int fd);
 void					ft_putstr_fd(char *s, int fd);
 void					ft_putendl_fd(char *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
+int	my_check(t_minishell *mini);
+char	*grep_value_export(t_env *envir, char *string);
+int	c_d(t_env *env, char *s);
+char	*ft_substr_env(char *s, int start, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:00:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:20:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,4 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 		if (m->size > 1)
 			exit(0x1);
 	}
-}
-
-int	mini_checks(char *s, int i)
-{
-	while (s[i])
-	{
-		if (s[i++] == '=')
-			return (0x0);
-	}
-	return (0x1);
 }

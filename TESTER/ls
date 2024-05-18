@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:53:13 by youmoukh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ls                                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#              #
+#    Updated: 2024/05/18 14:15:22 by youmoukh         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -180,7 +180,7 @@ char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						already_exist(char *s, t_env *envir);
+int						is_exist(char *s, t_env *envir);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);

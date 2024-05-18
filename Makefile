@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/18 14:01:10 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/18 14:18:19 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC = main.c \
 	  Exec/builtin/ft_export_3.c \
 	  Exec/builtin/ft_export_4.c \
 	  Exec/builtin/ft_export_5.c \
+	  Exec/builtin/ft_export_6.c \
 	  Exec/env/env_functions.c \
 	  Exec/builtin/ft_exit_1.c \
 	  Exec/execute/ft_execute.c \

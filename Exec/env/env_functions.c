@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 12:32:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:25:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ char	*ft_get_path(t_env *envir)
 	return (NULL);
 }
 
-void	back_up(t_env **ennv, int i, char *pwd)
+void	back_up(t_env **ennv, int i, char *pwd, char *buff)
 {
 	t_env	*lst;
-	char	*buff;
+	char	*p;
 
-	buff = NULL;
+	p = "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.";
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
@@ -56,47 +56,17 @@ void	back_up(t_env **ennv, int i, char *pwd)
 		if (i == 0x1)
 			lst = lstnew_executor(ft_strdup_1("SHLVL"), ft_strdup_1("1"), 0);
 		if (i == 0x2)
-			lst = lstnew_executor(ft_strdup_1("_"), ft_strdup_1("/usr/bin/env"), 0);
+			lst = lstnew_executor(ft_strdup_1("_"),
+					ft_strdup_1("/usr/bin/env"), 0);
 		if (i == 0x3)
-			lst = lstnew_executor(ft_strdup_1("PATH"),
-				ft_strdup_1("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 0);
+			lst = lstnew_executor(ft_strdup_1("PATH"), ft_strdup_1(p), 0);
 		if (i == 0x4)
-			lst = lstnew_executor(ft_strdup_1("TERM"), 
-				ft_strdup_1("xterm-256color"), 0);
+			lst = lstnew_executor(ft_strdup_1("TERM"),
+					ft_strdup_1("xterm-256color"), 0);
 		add_back_executor(ennv, lst);
-		printf("[%d]\n", i);
 	}
 	free (pwd);
 }
-
-char	*ft_substr_env(char *s, int start, int len)
-{
-	char	*r;
-	int		i;
-	int		l;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (!len || start >= ft_strlen(s))
-		return (ft_strdup_1(""));
-	l = ft_strlen(s) - start;
-	if (l > len)
-		l = len;
-	r = malloc(sizeof(char) * (l + 1));
-	if (!r)
-		return (NULL);
-	while (s[start] && l)
-	{
-		r[i] = s[start];
-		start++;
-		i++;
-		l--;
-	}
-	r[i] = '\0';
-	return (r);
-}
-
 
 t_env	*full_fill_env(char **env, int i, int j)
 {
@@ -107,7 +77,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 	head = NULL;
 	if (!*env)
-		back_up(&head, -0x1, 0x0);
+		back_up(&head, -0x1, 0x0, 0x0);
 	else
 	{
 		while (env[i])
@@ -127,7 +97,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 
 void	full_fill_path(t_minishell *mini, t_env *envir)
 {
-	mini->path = ft_malloc(sizeof(char) * ft_strlen(ft_get_path(envir)) + 0x1, 0x1);
+	mini->path = ft_malloc(ft_strlen(ft_get_path(envir)) + 0x1, 0x1);
 	if (!mini->path)
 		return ;
 	mini->path = ft_get_path(envir);
