@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 20:34:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:00:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ char	*test(char *s, int start, int len)
 	if (!s)
 		return (NULL);
 	if (!len || start >= ft_strlen(s))
-		return (ft_strdup_1(""));
+		return (ft_strdup(""));
 	l = ft_strlen(s) - start;
 	if (l > len)
 		l = len;
-	r = (char *)malloc(sizeof(char) * (l + 1));
+	r = (char *)ft_malloc(sizeof(char) * (l + 1), 0x1);
 	if (!r)
 		return (NULL);
 	while (s[start] && l)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 13:02:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:16:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_first(char *s)
 
 	j = is_eq_exist(s);
 	if (j != 0)
-		t = ft_substr_executor_1(s, 0x0, is_eq_exist(s) + 1);
+		t = ft_substr_executor(s, 0x0, is_eq_exist(s) + 1);
 	else
 		t = s;
 	i = 0x0;

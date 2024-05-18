@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 11:39:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:53:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,7 @@
 void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {
 	int	t_pipe[2];
-	int return_exve;
 
-	(void) return_exve;
 	if (!envir || !(mini)->cmd || !(mini)->cmd[0])
 		return ;
 	full_fill_path(mini, envir);
@@ -186,11 +184,17 @@ void	handle_fd(t_minishell *mini)
 	}
 }
 
+void	ft_helper_1(int flag)
+{
+	if (flag == 0x1)
+		ex_st_f(0x0, 0x1);
+	else if (flag != -1)
+		ex_st_f(0x1, 0x1);	
+}
 void	ft_execute(t_minishell **head, t_env *envir, int flag)
 {
 	t_minishell	*tmp;
 	int			old_stdin;
-	int			return_exve;
 
 	tmp = *head;
 	old_stdin = dup(0);
@@ -198,13 +202,7 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	{
 		flag = is_builtin_cmd(*head, envir);
 		if (flag != -1)
-		{
-			if (flag == 0x1)
-				ex_st_f(0x0, 0x1);
-			else if (flag != -1)
-				ex_st_f(0x1, 0x1);
-			return ;
-		}
+			return (ft_helper_1(flag));
 		else
 			return ;
 	}
@@ -215,9 +213,9 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	}
 	if (tmp)
 		big_execution(tmp, envir, 0x0, old_stdin);
-	while(wait(&return_exve) > 0);
-	if (WIFSIGNALED(return_exve))
-		ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
+	while(wait(&((*head)->return_exve)) > 0);
+	if (WIFSIGNALED((*head)->return_exve))
+		ex_st_f(WTERMSIG((*head)->return_exve) + 128, 0x1);
 	else
-		ex_st_f(WEXITSTATUS(return_exve), 0x1);
+		ex_st_f(WEXITSTATUS((*head)->return_exve), 0x1);
 }

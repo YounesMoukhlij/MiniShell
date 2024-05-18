@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/14 13:48:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:53:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_helper(t_minishell *lst)
 	lst->size = 0;
 	lst->pid_fork = -1;
 	lst->check_err = 0;
+	lst->return_exve = 0;
 }
 
 t_minishell	*lst_cmd(char *cmd, char *file, int *arr, int len)

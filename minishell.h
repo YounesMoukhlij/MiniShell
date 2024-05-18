@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 17:40:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:59:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_minishell
 	int					check_err;
 	int					parsing_err;
 	int					pid_fork;
+	int					return_exve;
 	char				**cmd;
 	int					size;
 	char				**cmdt;
@@ -80,6 +81,10 @@ typedef struct s_minishell
 }						t_minishell;
 
 int	check_f(char *s);
+int	check_n(char *s);
+int	check(char *s, int f, int flag_0);
+void	print_func(t_env *env, char *s);
+void	close_fd(t_minishell *mini, int *fd, int flag, int pos);
 char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
 char	*ft_substr_executor_1(char *s, int start, int len);
@@ -125,7 +130,7 @@ int						check_files(t_minishell *m, t_env *env, int i);
 int						expanded_content(char *s);
 char					*get_str(char *s);
 int						ft_helper_heredoc(t_minishell *m, char *s);
-int						ft_fd_files(t_minishell *mini, t_env *env);
+int						ft_fd_files(t_minishell *mini);
 void					func_err(char *s);
 int						already_here(t_env *env, char *s);
 int						no_dollar(char *s);
@@ -155,7 +160,7 @@ int						lst_size(t_minishell **head);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);
 int						check_cmd(char *s);
-void					change_dir(t_env *envi, int flag);
+void					change_dir(t_env *envi, int flag, char *b, char *p);
 int						error_case(t_minishell *mini, char *s);
 void					print_error(char *s, int i);
 int						is_negative(char *s);

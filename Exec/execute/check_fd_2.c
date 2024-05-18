@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:08:07 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 19:42:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:37:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,12 +224,11 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	return (ft_helper_heredoc(mini, hdd_f));
 }
 
-int	ft_fd_files(t_minishell *mini, t_env *env)
+int	ft_fd_files(t_minishell *mini)
 {
 	int	i;
 	int	fd;
 
-	(void) env;
 	i = -0x1;
 	fd = 0x0;
 	while (++i < mini->len_tab)
@@ -240,9 +239,9 @@ int	ft_fd_files(t_minishell *mini, t_env *env)
 			if (fd == -0x1)
 			{
 				ex_st_f(0x1, 0x1);
-				func_err(mini->files[i + 0x1]);
-				return (0x1);
+				return (func_err(mini->files[i + 0x1]), 0x1);
 			}
+			close_fd(mini, &fd, 0x3, i);
 		}
 	}
 	if (fd != 0x0)

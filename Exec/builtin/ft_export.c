@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/16 21:23:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:10:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 					if (check_special_case(mini->cmd[i]))
 						lst = lstnew_executor(ft_key(mini->cmd[i]),
 								special_case(mini->cmd[i], env), 0);
-					else if (no_equal(mini->cmd[i]))
+					 if (no_equal(mini->cmd[i]))
 						lst = lstnew_executor(ft_strdup_1(mini->cmd[i]), NULL, 0);
 					else if (if_equal(mini->cmd[i]))
 					{
