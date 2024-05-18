@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:24:19 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:57:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	print_func(t_env *env, char *s);
 void	close_fd(t_minishell *mini, int *fd, int flag, int pos);
 char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
-char	*ft_substr_executor_1(char *s, int start, int len);
+char	*ft_substr_env(char *s, int start, int len);
 char	*ft_strjoin_executor_1(char *s1, char *s2);
 int	ft_strlen(char *str);
 char	*ft_calloc_1(int num, int size);
@@ -219,7 +219,8 @@ int						ft_isalnum(int c);
 void					expander(t_minishell **mini, t_env *envir);
 char					*allocate_max(t_env *envir);
 char					*ft_calloc(int num, int size);
-char					*ft_substr_executor(char *s, int start, int len);
+char					*ft_substr_env(char *s, int start, int len);
+char	*ft_substr_executor(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);
 int						ft_export(t_minishell *mini, t_env *envir, int i, int flag);

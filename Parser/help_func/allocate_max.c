@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 23:31:29 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 21:01:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:39:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ int	get_env_max(t_env *envir)
 			max = ft_strlen(head->value);
 		head = head->next;
 	}
-	return (max * 30);	
+	return (max * 30);
 }

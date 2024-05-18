@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 13:02:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:41:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_unset(char *s)
 	char	*t;
 
 	i = 0x0;
-	t = ft_substr_executor(s, 0x0, is_eq_exist(s));
+	t = ft_substr_env(s, 0x0, is_eq_exist(s));
 	while (t[i])
 	{
 		if (!ft_isalpha(t[0]))

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/18 12:41:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:50:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,9 @@ int	main(int ac, char **av, char **env)
 		}
 		get_fd_back(fd);
 		// check_if_fd_open(mini);
+		tcsetattr(STDOUT_FILENO, 0x0, &old);
 		ft_malloc(0x0, 0x0);
 		free (promt);
-		tcsetattr(STDOUT_FILENO, 0x0, &old);
 	}
 	clear_envir(envir);
 	return (0x0);

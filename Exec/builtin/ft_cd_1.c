@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:07:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:03:06 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:44:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	change_dir(t_env *envi, int flag, char *b, char *p)
 				tmp->value = p;
 		}
 	}
-	free (p);
+	// free (p);
 }

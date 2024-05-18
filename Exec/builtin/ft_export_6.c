@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:16:10 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:20:08 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:41:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	c_d(t_env *env, char *s)
 	len = 0x0;
 	while (s[len] && s[len] != '=')
 		len++;
-	r = ft_substr_executor(s, 0x0, len);
+	r = ft_substr_env(s, 0x0, len);
 	tmp = env_node(&env, r);
 	if (tmp)
 	{

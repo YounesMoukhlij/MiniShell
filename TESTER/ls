@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/18 14:15:22 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/18 14:41:32 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -215,7 +215,7 @@ int						ft_isalnum(int c);
 void					expander(t_minishell **mini, t_env *envir);
 char					*allocate_max(t_env *envir);
 char					*ft_calloc(int num, int size);
-char					*ft_substr_executor(char *s, int start, int len);
+char					*ft_substr_env(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);
 int						ft_export(t_minishell *mini, t_env *envir, int i);

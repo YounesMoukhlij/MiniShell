@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 12:52:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:55:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	no_value(char *s)
 	{
 		if (s[i++] == '=')
 		{
-			str = ft_substr_executor_1(s, i + 1, ft_strlen(s));
+			str = ft_substr_executor(s, i + 1, ft_strlen(s));
 			while (str[j])
 			{
 				if (ft_isdigit(str[j++]) && flag == 0x0)
