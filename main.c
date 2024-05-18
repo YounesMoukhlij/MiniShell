@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/18 14:50:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:52:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,27 +128,11 @@ int	heredock(t_minishell *mini, t_env *env, int i)
 				fd = heredoc_check(tmp, env, tmp->files[i + 0x1], 0x0);
 				if (fd == -0x1)
 					return (0x1);
-				close_fd(mini, &fd, 0x4, i);
-				
 			}
 		}
 		tmp = tmp->next;
 	}
 	return (0x0);
-}
-
-void	check_if_fd_open(t_minishell *mini)
-{
-	if (mini->fd_in != 0)
-	{
-		close (mini->fd_in);
-		mini->fd_in = 0;
-	}
-	if (mini->fd_out != 1)
-	{
-		close (mini->fd_out);
-		mini->fd_out = 1;
-	}
 }
 
 int	main(int ac, char **av, char **env)
@@ -191,6 +175,20 @@ int	main(int ac, char **av, char **env)
 		}
 		mini = parcing(promt);
 		tcgetattr(STDOUT_FILENO, &old);
+		// t_minishell *ymp  = mini;
+		// while (ymp)
+		// {
+		// 	int i = 0;
+
+		// 	while (mini->cmd[i])
+		// 	{
+		// 		printf("[%s]\n", mini->cmd[i]);
+		// 		i++;
+		// 	}
+		// 	ymp = ymp->next;
+		// }
+		// int i = 0;
+		// }
 		if (heredock(mini, envir, -0x1))
 			continue;
 		if (mini)
@@ -206,10 +204,9 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		get_fd_back(fd);
-		// check_if_fd_open(mini);
-		tcsetattr(STDOUT_FILENO, 0x0, &old);
 		ft_malloc(0x0, 0x0);
 		free (promt);
+		tcsetattr(STDOUT_FILENO, 0x0, &old);
 	}
 	clear_envir(envir);
 	return (0x0);

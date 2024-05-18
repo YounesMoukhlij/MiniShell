@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:29:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:16:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ char	*add_t(char *p, char *o, t_env *e)
 		return (ft_putstr_fd("too much caracters\n", 0x2), p);
 	if (ft_strlen(p) > 0x0 && o)
 	{
-		len = ft_strlen(p);
+		len = 0x0;
+		while (p[len])
+			len++;
 		while (o[i])
 		{
 			p[len + i] = o[i];
@@ -76,7 +78,11 @@ char	*add_t(char *p, char *o, t_env *e)
 	else if (ft_strlen(p) == 0x0 && o)
 	{
 		while (o[i])
-			p[j++] = o[i++];
+		{
+			p[j] = o[i];
+			i++;
+			j++;
+		}
 	}
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:37:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:37:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,34 +73,14 @@ void	check_arg(t_minishell *mini, t_env *env)
 	}
 }
 
-char	*help_without_quotes(char *s, char *res, int flag)
+char	*without_quotes(char *s, int flag)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*res;
 
 	i = 0x0;
 	j = 0x0;
-	while (s[i])
-	{
-		if (s[i] == DBL && s[i] && flag == 0x0)
-			flag = 0x1 && i++;
-		if (s[i] == DBL && flag == 0x1)
-			flag = 0x0 && i++;
-		while (s[i] == SGL && flag == 0x0)
-			i++;
-		if (!s[i])
-			break ;
-		if (s[i] != DBL && s[i])
-			res[j++] = s[i++];
-	}
-	res[j] = '\0';
-	return (res);
-}
-
-char	*without_quotes(char *s, int flag)
-{
-	char	*res;
-
 	if (check_single(s))
 		return (do_single(s, 0x0, 0x0));
 	if (!s)
@@ -108,5 +88,29 @@ char	*without_quotes(char *s, int flag)
 	res = ft_malloc(ft_strlen(s) + 0x1, 0x1);
 	if (!res)
 		return (NULL);
-	return (help_without_quotes(s, res, flag));
+	while (s[i])
+	{
+		if (s[i] == DBL && s[i] && flag == 0x0)
+		{
+			flag = 0x1;
+			i++;
+		}
+		if (s[i] == DBL && flag == 0x1)
+		{
+			i++;
+			flag = 0x0;
+		}
+		while (s[i] == SGL && flag == 0x0)
+			i++;
+		if (!s[i])
+			break ;
+		if (s[i] != DBL && s[i])
+		{
+			res[j] = s[i];
+			i++;
+			j++;
+		}
+	}
+	res[j] = '\0';
+	return (res);
 }

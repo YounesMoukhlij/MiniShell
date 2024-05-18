@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:57:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:40:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_minishell
 	int					check_err;
 	int					parsing_err;
 	int					pid_fork;
-	int					return_exve;
 	char				**cmd;
 	int					size;
 	char				**cmdt;
@@ -81,13 +80,9 @@ typedef struct s_minishell
 }						t_minishell;
 
 int	check_f(char *s);
-int	check_n(char *s);
-int	check(char *s, int f, int flag_0);
-void	print_func(t_env *env, char *s);
-void	close_fd(t_minishell *mini, int *fd, int flag, int pos);
 char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
-char	*ft_substr_env(char *s, int start, int len);
+char	*ft_substr_executor_1(char *s, int start, int len);
 char	*ft_strjoin_executor_1(char *s1, char *s2);
 int	ft_strlen(char *str);
 char	*ft_calloc_1(int num, int size);
@@ -130,7 +125,7 @@ int						check_files(t_minishell *m, t_env *env, int i);
 int						expanded_content(char *s);
 char					*get_str(char *s);
 int						ft_helper_heredoc(t_minishell *m, char *s);
-int						ft_fd_files(t_minishell *mini);
+int						ft_fd_files(t_minishell *mini, t_env *env);
 void					func_err(char *s);
 int						already_here(t_env *env, char *s);
 int						no_dollar(char *s);
@@ -160,7 +155,7 @@ int						lst_size(t_minishell **head);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);
 int						check_cmd(char *s);
-void					change_dir(t_env *envi, int flag, char *b, char *p);
+void					change_dir(t_env *envi, int flag);
 int						error_case(t_minishell *mini, char *s);
 void					print_error(char *s, int i);
 int						is_negative(char *s);
@@ -184,7 +179,7 @@ char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						is_exist(char *s, t_env *envir, int i, int flag);
+int						already_exist(char *s, t_env *envir, int i, int flag);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);
@@ -219,8 +214,7 @@ int						ft_isalnum(int c);
 void					expander(t_minishell **mini, t_env *envir);
 char					*allocate_max(t_env *envir);
 char					*ft_calloc(int num, int size);
-char					*ft_substr_env(char *s, int start, int len);
-char	*ft_substr_executor(char *s, int start, int len);
+char					*ft_substr_executor(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);
 int						ft_export(t_minishell *mini, t_env *envir, int i, int flag);
@@ -328,9 +322,5 @@ void					ft_putchar_fd(char c, int fd);
 void					ft_putstr_fd(char *s, int fd);
 void					ft_putendl_fd(char *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
-int	my_check(t_minishell *mini);
-char	*grep_value_export(t_env *envir, char *string);
-int	c_d(t_env *env, char *s);
-char	*ft_substr_env(char *s, int start, int len);
 
 #endif

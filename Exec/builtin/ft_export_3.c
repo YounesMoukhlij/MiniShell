@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 14:20:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:34:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ char	*test(char *s, int start, int len)
 	if (!s)
 		return (NULL);
 	if (!len || start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdup_1(""));
 	l = ft_strlen(s) - start;
 	if (l > len)
 		l = len;
-	r = (char *)ft_malloc(sizeof(char) * (l + 1), 0x1);
+	r = (char *)malloc(sizeof(char) * (l + 1));
 	if (!r)
 		return (NULL);
 	while (s[start] && l)
@@ -101,4 +101,14 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 		if (m->size > 1)
 			exit(0x1);
 	}
+}
+
+int	mini_checks(char *s, int i)
+{
+	while (s[i])
+	{
+		if (s[i++] == '=')
+			return (0x0);
+	}
+	return (0x1);
 }
