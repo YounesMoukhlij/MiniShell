@@ -6,25 +6,12 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 17:41:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:10:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// int	ft_check(char **r)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (r[i])
-// 	{
-// 		if (!strcmp_f(r[i], "-n", 0x0, 0x0))
-// 			return (i);
-// 		i++;
-// 	}
-// 	return (-1);
-// }
 int	ft_check(t_minishell *mini)
 {
 	int	i;
@@ -39,32 +26,6 @@ int	ft_check(t_minishell *mini)
 	return (-1);
 }
 
-// int	big_check(char **r)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	a;
-
-// 	i = 1;
-// 	j = 1;
-// 	a = ft_check(r);
-// 	if (a != -1)
-// 		i = a;
-// 	if (!ft_strlen(r[i]))
-// 		return (0x0);
-// 	while (r[i])
-// 	{
-// 		j = 1;
-// 		while (r[i][j] || ft_strlen(r[i]) == 1)
-// 		{
-// 			if (!(r[i][0] == '-' && r[i][j] == 'n'))
-// 				return (i);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (0x1);
-// }
 int	big_check(t_minishell *mini)
 {
 	int	i;
@@ -97,7 +58,6 @@ int	check(char *s, int f, int flag_0)
 	int	j;
 
 	j = 0x0;
-	// printf("-->[%s]\n", s);
 	if (f != flag_0)
 		return (0x0);
 	if (!strcmp_f(s, "-n", 0x0, 0x0))
@@ -177,11 +137,7 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 		j++;
 	}
 	while (j < l_n + len)
-	{
-		res[j] = ft_strdup(s[p]);
-		p++;
-		j++;
-	}
+		res[j++] = ft_strdup(s[p++]);
 	res[j] = 0;
 	return (res);
 }

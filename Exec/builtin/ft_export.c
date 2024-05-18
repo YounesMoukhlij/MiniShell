@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 15:07:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:11:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,24 @@ t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 	return (lst);
 }
 
+int	error_onapaghat(t_minishell *mini)
+{
+	int	i;
+
+	i = 0x1;
+	while (mini->cmd[i])
+	{
+		if (!err_export_1(mini->cmd[i]))
+			return (0x1);
+		i++;
+	}
+	return (0x0);
+}
+
 int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 {
 	t_env	**head;
 
-	if (!mini->cmd[0x0])
-		return (0x0);
 	head = &env;
 	if (my_check(mini))
 		print_export(&env);
@@ -104,14 +116,11 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 			i++;
 		}
 	}
-	if (mini->size > 1)
-		exit(0x0);
-	i = 0x1;
-	while (mini->cmd[i])
+	if (error_onapaghat(mini))
 	{
-		if (!err_export_1(mini->cmd[i]))
-			return (0x0);
-		i++;
+		if (mini->size > 1)
+			exit(0x0);
+		return (0x0);
 	}
 	return (0x1);
 }
