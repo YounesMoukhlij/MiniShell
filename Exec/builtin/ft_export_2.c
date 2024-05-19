@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 13:01:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 12:48:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*extra(char *s, int i, int flag)
 	return (r);
 }
 
-int	already_exist(char *s, t_env *envir, int i, int flag)
+int	is_exist(char *s, t_env *envir, int i, int flag)
 {
 	t_env	*head;
 	char	*r;

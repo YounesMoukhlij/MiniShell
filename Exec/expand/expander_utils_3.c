@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 18:37:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:15:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,10 @@ void	check_arg(t_minishell *mini, t_env *env)
 	}
 }
 
-char	*without_quotes(char *s, int flag)
+char	*without_quotes(char *s, int flag, int i, int j)
 {
-	int		i;
-	int		j;
 	char	*res;
 
-	i = 0x0;
-	j = 0x0;
 	if (check_single(s))
 		return (do_single(s, 0x0, 0x0));
 	if (!s)
@@ -91,25 +87,15 @@ char	*without_quotes(char *s, int flag)
 	while (s[i])
 	{
 		if (s[i] == DBL && s[i] && flag == 0x0)
-		{
-			flag = 0x1;
-			i++;
-		}
+			(1) && (flag = 0x1, i++);
 		if (s[i] == DBL && flag == 0x1)
-		{
-			i++;
-			flag = 0x0;
-		}
+			(1) && (i++, flag = 0x0);
 		while (s[i] == SGL && flag == 0x0)
 			i++;
 		if (!s[i])
 			break ;
 		if (s[i] != DBL && s[i])
-		{
-			res[j] = s[i];
-			i++;
-			j++;
-		}
+			res[j++] = s[i++];
 	}
 	res[j] = '\0';
 	return (res);

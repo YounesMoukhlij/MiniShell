@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/17 15:52:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:49:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int ex_st_f(int status, int mode)
 
 void	get_fd_back(t_fd fd)
 {
-	dup2(fd.tmp_fdout, 0x1);
-	dup2(fd.tmp_fdin, 0x0);
+	dup2(fd.fdout, 0x1);
+	dup2(fd.fdin, 0x0);
 }
 
 int	heredock(t_minishell *mini, t_env *env, int i)
@@ -135,9 +135,24 @@ int	heredock(t_minishell *mini, t_env *env, int i)
 	return (0x0);
 }
 
+int	syntax(char *promt)
+{
+	int	i;
+
+	i = ft_checker(promt);
+	add_history(promt);
+	ft_puterror(i);
+	return (i);
+}
+
+int	init(t_env **envir, char **env)
+{
+	g_sig = 0x0;
+	*envir = full_fill_env(env, 0x0, 0x0);
+	return (0);
+}
 int	main(int ac, char **av, char **env)
 {
-	int 		p;
 	t_fd		fd;
 	t_minishell	*mini;
 	char		*promt;
@@ -146,56 +161,31 @@ int	main(int ac, char **av, char **env)
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	glb_sig = 0x0;
-	envir = full_fill_env(env, 0x0, 0x0);
-	fd.tmp_fdout = dup(0x1);
-	fd.tmp_fdin = dup(0x0);
+	(1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
 	while (1999)
 	{
 		sig_func();
 		promt = readline("minishell -> ");
-		if (!promt )
+		if (!promt)
 		{
 			ft_malloc(0x0, 0x0);
 			free (promt);
 			break ;
 		}
-		if (is_empty(promt))
-		{
-			free(promt);
-			continue ;
-		}
-		p = ft_checker(promt);
-		add_history(promt);
-		ft_puterror(p);
-		if (p != -1)
+		if (is_empty(promt) == 1 || syntax(promt) != -0x1)
 		{
 			free(promt);
 			continue ;
 		}
 		mini = parcing(promt);
 		tcgetattr(STDOUT_FILENO, &old);
-		// t_minishell *ymp  = mini;
-		// while (ymp)
-		// {
-		// 	int i = 0;
-
-		// 	while (mini->cmd[i])
-		// 	{
-		// 		printf("[%s]\n", mini->cmd[i]);
-		// 		i++;
-		// 	}
-		// 	ymp = ymp->next;
-		// }
-		// int i = 0;
-		// }
 		if (heredock(mini, envir, -0x1))
 			continue;
 		if (mini)
 		{
-			glb_sig = 1;
+			g_sig = 1;
 			ft_execute(&mini, envir, 0x0);
-			glb_sig = 0x0;
+			g_sig = 0x0;
 		}
 		else
 		{

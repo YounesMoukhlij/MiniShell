@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/18 15:00:45 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/19 18:42:44 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,18 @@ SRC = main.c \
 	  Parser/ft_after_cmd.c\
 	  Exec/builtin/ft_cd.c \
 	  Exec/expand/expander.c \
+	  Exec/expand/expander_1.c \
 	  Exec/execute/check_fd.c \
 	  Exec/execute/check_fd_1.c \
 	  Exec/execute/check_fd_2.c \
 	  Exec/execute/check_fd_3.c \
 	  Exec/execute/check_fd_4.c \
+	  Exec/execute/check_fd_5.c \
+	  Exec/execute/check_fd_6.c \
+	  Exec/execute/check_fd_7.c \
 	  Exec/builtin/ft_unset.c \
 	  Exec/builtin/ft_echo.c \
+	  Exec/builtin/ft_echo_1.c \
 	  Exec/builtin/ft_cd_1.c \
 	  Exec/builtin/ft_pwd.c \
 	  Exec/builtin/ft_env.c \
@@ -45,6 +50,7 @@ SRC = main.c \
 	  Exec/builtin/ft_export_4.c \
 	  Exec/builtin/ft_export_5.c \
 	  Exec/env/env_functions.c \
+	  Exec/env/env_functions_1.c \
 	  Exec/builtin/ft_exit_1.c \
 	  Exec/execute/ft_execute.c \
 	  Exec/execute/ft_execute_1.c \

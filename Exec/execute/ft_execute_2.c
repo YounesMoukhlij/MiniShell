@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 15:05:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:40:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int	exve_err(char *s)
 	// 	return (ft_put_err(s, ": No such file or directory"), 127);
 	else if (check_s(s))
 		return (ft_put_err(s, ": No such file or directory"), 127);
-	return (ft_put_err(s, ": Command not found"), 127);
+	return (ft_put_err(s, ": command not found"), 127);
 }

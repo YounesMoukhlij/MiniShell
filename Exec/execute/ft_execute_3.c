@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 14:53:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:07:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	is_builtin(t_minishell *m)
 		return (0x1);
 	else if (!strcmp_f(m->cmd[0], "unset", 0, 0))
 		return (0x1);
-	else if ((!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0)) || (!strcmp_f(m->cmd[1], "echo", 0, 0) || !strcmp_f(m->cmd[1], "ECHO", 0, 0)))
+	else if ((!strcmp_f(m->cmd[0], "echo", 0, 0) || !strcmp_f(m->cmd[0], "ECHO", 0, 0))
+		|| (!strcmp_f(m->cmd[1], "echo", 0, 0) || !strcmp_f(m->cmd[1], "ECHO", 0, 0)))
 		return (0x1);
 	else
 		return (0x0);
@@ -99,7 +100,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		return (exit(0x0), 0x0);
 	if (env_check(&envir, mini->cmd[0x0]))
 		return (exit(0x1), 0x0);
-	// if (ft_strlen(mini->cmd[0x0]) == 1)
+	// if (ft_nstrlen(mii->cmd[0x0]) == 1)
 	// 	return (exit(0x0), 0x0);
 	if (!check_cmd(mini->cmd[0x0]))
 		res = get_cmd_splited(mini->cmd, cmd_length(mini), 0x0, 0x1);

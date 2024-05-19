@@ -6,36 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 15:11:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:23:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	my_check(t_minishell *mini)
-{
-	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
-		return (0x1);
-	if (!ft_strlen(mini->cmd[0x1]))
-		return (0x0);
-	return (0x0);
-}
-
-char	*grep_value_export(t_env *envir, char *string)
-{
-	t_env	*tmp;
-
-	tmp = envir;
-	while (tmp)
-	{
-		if (!strcmp_f(tmp->value, string, 0x0, 0x0))
-		{
-			return (tmp->key);
-		}
-		tmp = tmp->next;
-	}
-	return (ft_strdup_1(""));
-}
 
 int	c_d(t_env *env, char *s)
 {
@@ -91,7 +66,10 @@ int	error_onapaghat(t_minishell *mini)
 	while (mini->cmd[i])
 	{
 		if (!err_export_1(mini->cmd[i]))
+		{
+			ex_st_f(0x1, 0x1);
 			return (0x1);
+		}
 		i++;
 	}
 	return (0x0);
@@ -110,17 +88,14 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 		{
 			if (err_export(mini->cmd[i]))
 			{
-				if (already_exist(mini->cmd[i], env, 0x0, 0x0) && c_d(env, mini->cmd[i]))
-						add_back_executor(head, huge_export(mini, flag, env, i));
+				if (is_exist(mini->cmd[i], env, 0, 0) && c_d(env, mini->cmd[i]))
+					add_back_executor(head, huge_export(mini, flag, env, i));
 			}
 			i++;
 		}
 	}
-	if (error_onapaghat(mini))
-	{
-		if (mini->size > 1)
-			exit(0x0);
-		return (0x0);
-	}
-	return (0x1);
+	error_onapaghat(mini);
+	if (mini->size > 1)
+		exit(0x0);
+	return (-0x1);
 }

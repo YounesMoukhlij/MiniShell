@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 15:05:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:45:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 # define NO 0
 # define YES 1
 
-int glb_sig;
+int	g_sig;
+
 
 typedef struct s_delete
 {
@@ -40,9 +41,10 @@ typedef struct s_delete
 
 typedef struct s_fd
 {
-	int	tmp_fdin;
-	int	tmp_fdout;
+	int	fdin;
+	int	fdout;
 }	t_fd;
+
 
 typedef struct s_env
 {
@@ -51,6 +53,37 @@ typedef struct s_env
 	int					flag;
 	struct s_env		*next;
 }						t_env;
+
+typedef struct s_heredoc_context
+{
+    t_env  *envir;
+    char   *s;
+    char   *p;
+    int    i;
+    int    j;
+} t_heredoc_context;
+
+typedef struct s_doc
+{
+    char   *s;
+    char   *str;
+    char   *hdd_f;
+} t_doc;
+
+typedef struct s_vars {
+    char *s;
+    char *r;
+    t_env *envir;
+    int i;
+    int j;
+} t_vars;
+
+typedef struct s_big_work
+{
+	char		*s;
+	int			c;
+	char		*res;
+}	t_big_work;
 
 typedef struct s_tmp
 {
@@ -79,7 +112,34 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+int	check_files_1(t_minishell *m, t_env *env, int i);
+
+int	is_file_expanded(char *s);
+void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index);
+char	*ultra_expand_file(t_env *envir, char *s, int i, int j);
+
+char *handle_question_mark(t_vars *vars);
+
+int process_dollar_signs(t_vars *vars);
+
+char *process_string(t_vars *vars);
+void	help_1(char **delim, int *flag);
+int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag);
+int	already_here(t_env *env, char *s);
+
+char *herdoc_helper(char *s, t_env *envir, int i, int j);
+char	*grep_value_1(char *s);
+char	*expand_heredoc(t_env *envir, char *r, int i, int j);
+char	*files_without_quotes(char *s, int flag, int i, int j);
+
 int	check_f(char *s);
+void	func_err(char *s);
+int	check(char *s, int f, int flag_0);
+int	check_quotes(char *s);
+int	check_execute(char *s);
+int	big_check(t_minishell *mini);
+int	get_double_arr_len(char **s);
+int	check_dollar(t_env *env, char *s);
 char	*grep_from_env_1(t_env *envir, char *string);
 int	check_first(char *s);
 char	*ft_substr_executor_1(char *s, int start, int len);
@@ -101,8 +161,10 @@ void	ft_put_err(char *input, char *message);
 void	print_func(t_env *env, char *s);
 int	get_double_arr_len(char **s);
 void	close_fd(t_minishell *mini, int *fd, int flag, int pos);
+void	sig_n(int sig_v);
+char	*allocate_max_1(t_env *envir);
 
-char	*ft_exit_status(char *s, t_env *envir);
+char	*ft_exit_status(char *s, t_env *envir, int i, int j);
 int	check_single(char *s);
 char	*do_single(char *s, int i, int j);
 int						is_empty(char *s);
@@ -176,11 +238,13 @@ int						mini_checks(char *s, int i);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);
 int						no_equal(char *s);
+int	my_check(t_minishell *mini);
+void	back_up(t_env **ennv, int i, char *pwd, char *buff);
 char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						already_exist(char *s, t_env *envir, int i, int flag);
+int						is_exist(char *s, t_env *envir, int i, int flag);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);
@@ -188,7 +252,6 @@ t_env					*full_fill_print(t_env **env);
 t_env					*copy_list(t_env *head);
 void					print_export(t_env **head);
 char					*big_work(t_env *envir, char *s, int i, int j);
-char					*without_quotes(char *s, int flag);
 void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int						cmd_length(t_minishell *m);
 void					clear_envir(t_env *head);
@@ -206,7 +269,7 @@ void					ft_free_env(t_env **env);
 void					ft_free_strings(char **s);
 char					*copy_1(char *r, char *s);
 char					*copy_2(char *r, char *s);
-char					*without_quotes(char *s, int flag);
+char					*without_quotes(char *s, int flag, int i, int j);
 void					ft_expand(t_minishell **head, t_env **env);
 int						case_1(char *s, int pos);
 int						case_2(char *s, int pos);

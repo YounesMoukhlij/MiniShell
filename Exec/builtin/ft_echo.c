@@ -6,70 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/18 15:10:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:29:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	ft_check(t_minishell *mini)
-{
-	int	i;
-
-	i = 1;
-	while (mini->cmd[i])
-	{
-		if (!strcmp_f(mini->cmd[i], "-n", 0x0, 0x0))
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int	big_check(t_minishell *mini)
-{
-	int	i;
-	int	j;
-	int	a;
-
-	i = 1;
-	j = 1;
-	a = ft_check(mini);
-	if (a != -1)
-		i = a;
-	if (!ft_strlen(mini->cmd[i]))
-		return (0x0);
-	while (mini->cmd[i])
-	{
-		j = 1;
-		while (mini->cmd[i][j] || ft_strlen(mini->cmd[i]) == 1)
-		{
-			if (!(mini->cmd[i][0] == '-' && mini->cmd[i][j] == 'n'))
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (0x1);
-}
-
-int	check(char *s, int f, int flag_0)
-{
-	int	j;
-
-	j = 0x0;
-	if (f != flag_0)
-		return (0x0);
-	if (!strcmp_f(s, "-n", 0x0, 0x0))
-		return (0x1);
-	while (s[j])
-	{
-		if (!(s[0] == '-' && s[j] == 'n'))
-			return (j);
-		j++;
-	}
-	return (0x0);
-}
 
 void	print_func(t_env *env, char *s)
 {
@@ -95,7 +36,6 @@ void	print_func(t_env *env, char *s)
 	else
 		ft_putstr_fd_executor(s, 0x1, 0x0);
 }
-
 
 int	check_n(char *s)
 {
@@ -144,8 +84,6 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 
 int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 {
-	if (!mini->cmd[0x0])
-		return (0x0);
 	if (mini->cmd[0x0] && !mini->cmd[0x1])
 	{
 		if (mini->size > 1)

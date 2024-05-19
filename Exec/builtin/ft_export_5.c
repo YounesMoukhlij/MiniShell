@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 13:02:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/19 12:45:47 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,29 @@ int	err_export_1(char *s)
 	if (check_first(s))
 		return (0x0);
 	return (0x1);
+}
+
+int	my_check(t_minishell *mini)
+{
+	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
+		return (0x1);
+	if (!ft_strlen(mini->cmd[0x1]))
+		return (0x0);
+	return (0x0);
+}
+
+char	*grep_value_export(t_env *envir, char *string)
+{
+	t_env	*tmp;
+
+	tmp = envir;
+	while (tmp)
+	{
+		if (!strcmp_f(tmp->value, string, 0x0, 0x0))
+		{
+			return (tmp->key);
+		}
+		tmp = tmp->next;
+	}
+	return (ft_strdup_1(""));
 }
