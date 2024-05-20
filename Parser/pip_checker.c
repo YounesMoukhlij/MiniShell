@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pip_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:53:06 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:01:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:45:01 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	pip_check_close(char *str)
 	i = 0;
 	while (str[i])
 	{
+		ft_skep(str, &i);
 		if (str[i] == '|')
 		{
 			i++;
@@ -30,12 +31,15 @@ int	pip_check_close(char *str)
 				return (1);
 		}
 		i++;
+		if (i > ft_strlen(str))
+			break;
 	}
 	return (0);
 }
 
 int	pip_loading(char *str, int *i, int *t)
 {
+	ft_skep(str, i);
 	if (str[*i] == '|')
 	{
 		while (str[*i] == '|')
@@ -64,6 +68,9 @@ int	pip_check(char *str)
 	i = 0;
 	if (str[i] == '|')
 		return (1);
+	ft_skep(str, &i);
+		if (i > ft_strlen(str))
+			return (0);
 	if (pip_check_close(str))
 		return (1);
 	while (str[i])

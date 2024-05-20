@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_q.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:21:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 18:21:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:30:51 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ static int check_qap(char *str, int *i)
         && !str[*i + 2]))
     {
         (*i)--;
-        while((str[*i] == '\'' || str[*i] == '\"') && str[*i])
+        while(*i < ft_strlen(str) && *i > 0)
         {
             (*i)--;
-            c++;
-            if(*i < 0)
-                break ;
+            if ((str[*i] == '\'' || str[*i] == '\"') )
+                c++;
         }
     }
     return (c);
@@ -50,7 +49,7 @@ int    ft_check_q(char *str)
         return (1);
     if (str[i - 1] == '\'' || str[i - 1] == '\"')
         c = check_qap(str, &i);
-    if (((c) && !(c % 2)))
+    if ((((c))&& !(c % 2)))
             return (0);
     return (1);
 }
