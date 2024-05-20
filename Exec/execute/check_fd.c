@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:53:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 18:11:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:11:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,20 @@ int	check_files_1(t_minishell *m, t_env *env, int i)
 int	check_fd(t_minishell *mini, t_env *env)
 {
 	int	flag;
+	int	i;
 
+	i = -0x1;
 	flag = 0x1;
 	if (!mini->files[0x1])
 		return (0x0);
-	if (!check_files(mini, env, -0x1))
-		return (0x1);
+	while (++i < mini->len_tab)
+	{
+		if (!(mini->tab[i] == 0x4))
+		{
+			if (!check_files(mini, env, -0x1))
+				return (0x1);
+		}
+	}
 	expand_files(&mini, env, 0x0);
 	if (ft_fd_files(mini, env))
 		flag = 0x0;

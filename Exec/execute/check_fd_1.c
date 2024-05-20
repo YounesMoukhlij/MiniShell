@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 15:36:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:51:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	ft_open_others(t_minishell *mini)
 			fd = open(mini->files[i + 1], O_CREAT | O_RDWR, 0664);
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
-			// close_fd(mini, &fd, 0x1, i);
+			close_fd(mini, &fd, 0x1, i);
 		}
 		else if (mini->tab[i] == 0x2)
 		{
 			fd = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
 			if (fd == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
-			// close_fd(mini, &fd, 0x2, i);
+			close_fd(mini, &fd, 0x2, i);
 		}
 	}
 	if (fd != 0x1)
@@ -69,4 +69,15 @@ int	ft_helper_heredoc(t_minishell *m, char *s)
 		return (-0x1);
 	unlink(s);
 	return (m->fd_in);
+}
+
+int	func(char *p, char *res, int *i, char *s)
+{
+	int	j;
+
+	j = 0x0;
+	if (ft_strlen(p) || !ft_strlen(res))
+		*i += grep(&s[*i]);
+	j = ft_strlen(p);
+	return (j);
 }

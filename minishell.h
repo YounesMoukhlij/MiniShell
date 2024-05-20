@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 18:45:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:55:39 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 
 int	g_sig;
 
-
 typedef struct s_delete
 {
 	void			*ptr;
@@ -45,6 +44,12 @@ typedef struct s_fd
 	int	fdout;
 }	t_fd;
 
+typedef struct s_herdoc
+{
+	char	*s;
+	char	*str;
+	char	*hdd_f;
+}	t_herdoc;
 
 typedef struct s_env
 {
@@ -77,6 +82,14 @@ typedef struct s_vars {
     int i;
     int j;
 } t_vars;
+
+typedef struct s_expand
+{
+	char	*s;
+	char	*res;
+	char	*p;
+	int		c;
+}	t_expand;
 
 typedef struct s_big_work
 {
@@ -113,6 +126,7 @@ typedef struct s_minishell
 }						t_minishell;
 
 int	check_files_1(t_minishell *m, t_env *env, int i);
+int	func(char *p, char *res, int *i, char *s);
 
 int	is_file_expanded(char *s);
 void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index);
@@ -130,7 +144,7 @@ int	already_here(t_env *env, char *s);
 char *herdoc_helper(char *s, t_env *envir, int i, int j);
 char	*grep_value_1(char *s);
 char	*expand_heredoc(t_env *envir, char *r, int i, int j);
-char	*files_without_quotes(char *s, int flag, int i, int j);
+char	*files_no_qts(char *s, int flag, int i, int j);
 
 int	check_f(char *s);
 void	func_err(char *s);
@@ -173,11 +187,10 @@ void					handle_fd(t_minishell *mini);
 int						get_env_max(t_env *envir);
 int						is_builtin_cmd(t_minishell *m, t_env *envir);
 int						is_builtin(t_minishell *m);
-int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag);
 int						is_file_expanded(char *s);
 void					rmv_sgl_quotes_file(t_minishell *mini, char *str,
 							int index);
-char					*files_without_quotes(char *s, int flag, int i, int j);
+char					*files_no_qts(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
 int						expand_files(t_minishell **mini, t_env *envir, int i);
 int						ft_open_others(t_minishell *mini);
@@ -232,13 +245,63 @@ char					**execv_env(t_env *envir);
 int						ex_err(char *s);
 int						is_cmd(t_minishell *mini, t_env *envir);
 int						exve_err(char *s);
-int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag);
+int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag, int i);
 int						lst_size(t_minishell **head);
 int						mini_checks(char *s, int i);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);
 int						no_equal(char *s);
 int	my_check(t_minishell *mini);
+
+void	i_b_n(char *s, t_env *envir);
+
+void	i_b_n_1(int f, char *s);
+
+void	i_b_n_2(t_minishell *m, char ***res);
+
+
+int	ft_fd_files(t_minishell *mini, t_env *env);
+
+
+
+void	help_1(char **delim, int *flag);
+
+void	help_her(char *s, t_env *env, int *fd);
+
+
+int	heredoc_1(char *s, char *delim);
+
+int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag);
+void h_pp(t_minishell *mini, int t_pipe[2], int f, int old_stdin);
+
+void check_env(t_minishell *mini, t_env *envir);
+int setup_pipes(int t_pipe[2]);
+
+
+void h_cp(t_minishell *mini, t_env *envir, int t_pipe[2], int f);
+void handle_child_output(t_minishell *mini, int t_pipe[2]);
+
+char	**get_cmd_splited(char **s, int len, int j, int p);
+
+
+
+int	uef_1(char *s, int *i);
+
+int	uef_2(char *s, int *i);
+int	uef_3(char *p, char *res, int *i, char *s);
+
+char	*u_e_f(t_env *envir, char *s, int i, int j);
+
+
+void	e_x_2(char **r, int *i, int *j, t_env *env);
+
+int	e_x_1(char *s, int *i, int *c);
+
+int	b_g_1(char *s, int *i, int *c);
+void	b_g_3(char **res, t_env *envir, char *s, char **p);
+
+void	b_g(char *s, int *i, int *c);
+
 void	back_up(t_env **ennv, int i, char *pwd, char *buff);
 char					*ft_key(char *s);
 int						is_num(char *s);
@@ -269,7 +332,7 @@ void					ft_free_env(t_env **env);
 void					ft_free_strings(char **s);
 char					*copy_1(char *r, char *s);
 char					*copy_2(char *r, char *s);
-char					*without_quotes(char *s, int flag, int i, int j);
+char					*no_qts(char *s, int flag, int i, int j);
 void					ft_expand(t_minishell **head, t_env **env);
 int						case_1(char *s, int pos);
 int						case_2(char *s, int pos);

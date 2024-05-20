@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 15:53:13 by youmoukh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ls                                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#              #
+#    Updated: 2024/05/20 13:54:28 by youmoukh         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -115,7 +115,7 @@ int						is_bin_cmd(t_minishell *mini, t_env *envir, int flag);
 int						is_file_expanded(char *s);
 void					rmv_sgl_quotes_file(t_minishell *mini, char *str,
 							int index);
-char					*files_without_quotes(char *s, int flag, int i, int j);
+char					*files_no_qts(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
 int						expand_files(t_minishell **mini, t_env *envir, int i);
 int						ft_open_others(t_minishell *mini);
@@ -188,7 +188,7 @@ t_env					*full_fill_print(t_env **env);
 t_env					*copy_list(t_env *head);
 void					print_export(t_env **head);
 char					*big_work(t_env *envir, char *s, int i, int j);
-char					*without_quotes(char *s, int flag);
+char					*no_qts(char *s, int flag);
 void					rmv_sgl_quotes_cmd(t_minishell *mini, char *str);
 int						cmd_length(t_minishell *m);
 void					clear_envir(t_env *head);
@@ -206,7 +206,7 @@ void					ft_free_env(t_env **env);
 void					ft_free_strings(char **s);
 char					*copy_1(char *r, char *s);
 char					*copy_2(char *r, char *s);
-char					*without_quotes(char *s, int flag);
+char					*no_qts(char *s, int flag);
 void					ft_expand(t_minishell **head, t_env **env);
 int						case_1(char *s, int pos);
 int						case_2(char *s, int pos);

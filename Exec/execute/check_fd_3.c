@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 17:35:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:43:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_file_expanded(char *s)
 	return (0x0);
 }
 
-void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
+void	r_s_q_f(t_minishell *mini, char *str, int index)
 {
 	int		i;
 	int		j;
@@ -60,44 +60,7 @@ void	rmv_sgl_quotes_file(t_minishell *mini, char *str, int index)
 	mini->files[index] = s;
 }
 
-char	*ultra_expand_file(t_env *envir, char *s, int i, int j)
-{
-	char	*p;
-	char	*res;
-
-	p = ft_calloc(100, 0x1);
-	if (!p)
-		return (0x0);
-	while (s[i])
-	{
-		while (s[i] == '$')
-		{
-			while (s[i] == '$')
-				i++;
-			if (!ft_isalnum(s[i]))
-			{
-				i--;
-				break ;
-			}
-			if (!ft_isalpha(s[i]))
-			{
-				i++;
-				break ;
-			}
-			res = grep_from_env(envir, grep_value(&s[i]));
-			p = add_t(p, res, envir);
-			if (ft_strlen(p) || !strcmp_f(res, "", 0x0, 0x0))
-				i += grep(&s[i]);
-			j = ft_strlen(p);
-		}
-		if (!s[i] || i > ft_strlen(s))
-			break ;
-		p[j++] = s[i++];
-	}
-	return (p);
-}
-
-char	*files_without_quotes(char *s, int flag, int i, int j)
+char	*f_w_q(char *s, int flag, int i, int j)
 {
 	char	*res;
 
@@ -131,19 +94,19 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 	{
 		if (is_file_expanded((*mini)->files[i]))
 		{
-			(*mini)->files[i] = without_quotes((*mini)->files[i], 0x0, 0x0, 0x0);
+			(*mini)->files[i] = no_qts((*mini)->files[i], 0x0, 0x0, 0x0);
 			if (already_here(envir, (*mini)->files[i]))
 				return (0x1);
 			tmp = env_node(&envir, get_str((*mini)->files[i]));
 			if (tmp)
-				(*mini)->files[i] = ultra_expand_file(envir, (*mini)->files[i], 0x0, 0x0);
+				(*mini)->files[i] = u_e_f(envir, (*mini)->files[i], 0x0, 0x0);
 			else
 				(*mini)->files[i] = get_str((*mini)->files[i]);
 		}
 		else
 		{
-			(*mini)->files[i] = files_without_quotes((*mini)->files[i], 0x0, 0x0, 0x0);
-			rmv_sgl_quotes_file((*mini), (*mini)->files[i + 0x1], i + 0x1);
+			(*mini)->files[i] = f_w_q((*mini)->files[i], 0x0, 0x0, 0x0);
+			r_s_q_f((*mini), (*mini)->files[i + 0x1], i + 0x1);
 		}
 		i++;
 	}

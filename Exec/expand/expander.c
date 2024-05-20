@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 15:47:48 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:54:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	expand_cmd(t_minishell **mini, t_env *envir)
 		if (is_expanded(*mini, (*mini)->cmd[i]))
 		{
 			str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
-			(*mini)->cmd[i] = without_quotes(str, 0x0, 0x0, 0x0);
+			(*mini)->cmd[i] = no_qts(str, 0x0, 0x0, 0x0);
 		}
 		i++;
 	}
 	rmv_sgl_quotes_cmd((*mini),
-		without_quotes((*mini)->cmd[0x0], 0x0, 0x0, 0x0));
+		no_qts((*mini)->cmd[0x0], 0x0, 0x0, 0x0));
 }
 
 int	before_err(char *s)

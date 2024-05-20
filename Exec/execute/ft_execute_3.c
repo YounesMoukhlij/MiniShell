@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 17:07:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:51:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,13 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 	return (res);
 }
 
-int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
+int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag, int i)
 {
-	int		i;
 	char	*s;
 	char	**res;
-	int		e_s;
 
-	i = 0x0;
-	if (!ft_strlen(mini->cmd[0x0]))
-		return (exit(0x0), 0x0);
-	if (env_check(&envir, mini->cmd[0x0]))
-		return (exit(0x1), 0x0);
-	// if (ft_nstrlen(mii->cmd[0x0]) == 1)
-	// 	return (exit(0x0), 0x0);
-	if (!check_cmd(mini->cmd[0x0]))
-		res = get_cmd_splited(mini->cmd, cmd_length(mini), 0x0, 0x1);
-	else
-		res = mini->cmd;
+	i_b_n(mini->cmd[0], envir);
+	i_b_n_2(mini, &res);
 	while (mini->path_d[i])
 	{
 		if (ft_strlen(res[0x0]) > 0 && !(res[0x0][0x0] == '.' ||  res[0x0][0x0] == '/'))
@@ -122,10 +111,6 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag)
 		}
 		i++;
 	}
-	if (flag == 0x0)
-	{
-		e_s = ex_st_f(exve_err(mini->cmd[0x0]), 0x1);
-		exit(e_s);
-	}
+	i_b_n_1(flag, mini->cmd[0x0]);
 	return (0x1);
 }

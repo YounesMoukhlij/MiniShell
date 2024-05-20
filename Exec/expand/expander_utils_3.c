@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 17:15:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:40:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	check_arg(t_minishell *mini, t_env *env)
 	}
 }
 
-char	*without_quotes(char *s, int flag, int i, int j)
+char	*no_qts(char *s, int flag, int i, int j)
 {
 	char	*res;
 
@@ -99,4 +99,13 @@ char	*without_quotes(char *s, int flag, int i, int j)
 	}
 	res[j] = '\0';
 	return (res);
+}
+
+void	b_g(char *s, int *i, int *c)
+{
+	while (s[*i] == '$')
+	{
+		(*i)++;
+		(*c)++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/19 18:49:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:21:35 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,10 @@ int	syntax(char *promt)
 	return (i);
 }
 
-int	init(t_env **envir, char **env)
-{
-	g_sig = 0x0;
-	*envir = full_fill_env(env, 0x0, 0x0);
-	return (0);
-}
+// int	init(t_env **envir, char **env)
+// {
+// 	return (0);
+// }
 int	main(int ac, char **av, char **env)
 {
 	t_fd		fd;
@@ -158,10 +156,14 @@ int	main(int ac, char **av, char **env)
 	char		*promt;
 	t_env		*envir;
 	struct termios	old;
+	(void) old;
 
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
-	(1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
+	g_sig = 0x0;
+	envir = full_fill_env(env, 0x0, 0x0);
+	fd.fdout = dup(0x1); fd.fdin = dup(0x0);
+	// (1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
 	while (1999)
 	{
 		sig_func();
@@ -178,6 +180,13 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		mini = parcing(promt);
+		// t_minishell *i = mini;
+		// while (i)
+		// {
+		// 	printf("1\n");
+		// 	printf("%s\n", i->cmd[1]);
+		// 	i = i->next;
+		// }
 		tcgetattr(STDOUT_FILENO, &old);
 		if (heredock(mini, envir, -0x1))
 			continue;

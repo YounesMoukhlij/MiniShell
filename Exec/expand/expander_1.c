@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 12:56:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 14:50:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:54:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	check_dollar(t_env *env, char *s)
 		{
 			if (s[i] == '$')
 			{
-				o = without_quotes(s, 0x0, 0x0, 0x0);
+				o = no_qts(s, 0x0, 0x0, 0x0);
 				str = grep_from_env_1(env, &o[1]);
 				r = ft_split_executor(str, ' ');
 				if (get_double_arr_len(r) > 1)

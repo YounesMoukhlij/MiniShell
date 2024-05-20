@@ -37,6 +37,32 @@ char	*herdoc_helper(char *s, t_env *envir, int i, int j)
 	return (r);
 }
 
+// int heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
+// {
+// 	char *hdd_f;
+	
+// 	hdd_f = hidden_name();
+// 	mini->fd_in = open(hdd_f, O_CREAT | O_RDWR | O_APPEND, 0777);
+// 	if (mini->fd_in == -1)
+// 		return -1;
+// 	help_1(&delim, &flag);
+// 	signal(SIGINT, sig_n);
+// 	while (1)
+// 	{
+// 		char *s = readline("heredoc> ");
+// 		if (!ttyname(0))
+// 			return open(ttyname(2), O_RDWR);
+// 		if (!s || !strcmp_f(s, delim, 0, 0))
+// 			break;
+// 		if (flag == 0 && no_dollar(s))
+// 			ft_putstr_fd_executor(expand_heredoc(env, s, 0, 0), mini->fd_in, 1);
+// 		else
+// 			ft_putstr_fd_executor(s, mini->fd_in, 1);
+// 		free(s);
+// 	}
+// 	return ft_helper_heredoc(mini, hdd_f);
+// }
+
 // void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 // {
 // 	int	t_pipe[2];
