@@ -24,7 +24,7 @@ void	help_1(char **delim, int *flag)
 void	help_her(char *s, t_env *env, int *fd)
 {
 	char	*str;
-	
+
 	str = expand_heredoc(env, s, 0x0, 0x0);
 	ft_putstr_fd_executor(s, *fd, 0x1);
 	free (str);

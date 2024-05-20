@@ -55,12 +55,12 @@ void	helper_files(char *s)
 int	check_files(t_minishell *m, t_env *env, int i)
 {
 	t_env	*tmp;
-	
+
 	if (!m->files)
 		return (0x0);
 	while (++i < m->len_tab)
 	{
-		tmp = env_node(&env,  get_str(m->files[i + 1]));
+		tmp = env_node(&env, get_str(m->files[i + 1]));
 		if (tmp)
 		{
 			if (check_f(tmp->value))
@@ -72,7 +72,7 @@ int	check_files(t_minishell *m, t_env *env, int i)
 		else if (!tmp)
 		{
 			if (m->files[i + 1][0x0] == '$')
-					return (helper_files(m->files[i + 1]), 0x0);
+				return (helper_files(m->files[i + 1]), 0x0);
 		}
 	}
 	return (0x1);

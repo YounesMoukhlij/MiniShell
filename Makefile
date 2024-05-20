@@ -94,6 +94,7 @@ SRC = main.c \
 	  Parser/help_func/ft_isascii.c \
 	  Parser/help_func/ft_isprint.c \
 	  Exec/garbage_coll/garbage_coll.c \
+	  Exec/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
 CFLAG = -Wall -Wextra -Werror -g -fsanitize=address

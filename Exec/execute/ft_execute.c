@@ -12,28 +12,25 @@
 
 #include "../../minishell.h"
 
-void big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
+void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {
-    int t_pipe[2];
+	int	t_pipe[2];
 
-    check_env(mini, envir);
-    if (!envir || !(mini)->cmd || !(mini)->cmd[0])
-        return;
-
-    if (!setup_pipes(t_pipe))
-        return;
-
-    signal(SIGQUIT, signal_handler_child);
-    mini->pid_fork = fork();
-
-    if (!mini->pid_fork)
-    {
-        h_cp(mini, envir, t_pipe, f);
-    }
-    else
-    {
-        h_pp(mini, t_pipe, f, old_stdin);
-    }
+	check_env(mini, envir);
+	if (!envir || !(mini)->cmd || !(mini)->cmd[0])
+		return ;
+	if (!setup_pipes(t_pipe))
+		return ;
+	signal(SIGQUIT, signal_handler_child);
+	mini->pid_fork = fork();
+	if (!mini->pid_fork)
+	{
+		h_cp(mini, envir, t_pipe, f);
+	}
+	else
+	{
+		h_pp(mini, t_pipe, f, old_stdin);
+	}
 }
 
 void	handle_fd(t_minishell *mini)
@@ -52,7 +49,8 @@ void	handle_fd(t_minishell *mini)
 
 void	status(int *return_exve)
 {
-	while(wait(return_exve) > 0);
+	while (wait(return_exve) > 0)
+		;
 	if (WIFSIGNALED(*return_exve))
 		ex_st_f(WTERMSIG(*return_exve) + 128, 0x1);
 	else
@@ -73,6 +71,7 @@ int	return_cmd(int f)
 		return (0x1);
 	return (0x0);
 }
+
 void	ft_execute(t_minishell **head, t_env *envir, int flag)
 {
 	t_minishell	*tmp;
@@ -95,5 +94,5 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	if (tmp)
 		big_execution(tmp, envir, 0x0, old_stdin);
 	status(&return_exve);
-    close (old_stdin);
+	close(old_stdin);
 }

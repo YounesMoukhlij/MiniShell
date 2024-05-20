@@ -12,8 +12,6 @@
 
 #include "../minishell.h"
 
-
-
 static void	case_one(int *arr, char c, int *i, int *j)
 {
 	if (c == '<')
@@ -55,11 +53,11 @@ int	*ft_arr_tk(char *str, int len)
 	j = 0;
 	while (str[i] && j < len)
 	{
-		ft_skep (str, &i);
+		ft_skep(str, &i);
 		if (str[i] == '<')
-			case_one (arr, str[i + 1], &i, &j);
+			case_one(arr, str[i + 1], &i, &j);
 		else if (str[i] == '>')
-			case_two (arr, str[i + 1], &i, &j);
+			case_two(arr, str[i + 1], &i, &j);
 		if (!str[i])
 			break ;
 		i++;
@@ -78,25 +76,25 @@ void	fun(char *str, int *i)
 		{
 			if (!op)
 			{
-				if (str[*i] == '\"' )
+				if (str[*i] == '\"')
 					op = ft_parq_err(str, i, 'q');
 				else if (str[*i] == '\'')
 					op = ft_parq_err(str, i, 's');
 				if (!str[*i])
-					break;
+					break ;
 			}
 			op = 0;
 		}
 		if (!str[*i])
-			break;
+			break ;
 		(*i)++;
 	}
 }
 
 int	number_of_word(char *str)
 {
-	int	i;
-	int	wc;
+	int i;
+	int wc;
 
 	i = 0;
 	wc = 0;
@@ -109,7 +107,7 @@ int	number_of_word(char *str)
 			wc++;
 			fun(str, &i);
 			if (!str[i])
-				break;
+				break ;
 		}
 	}
 	return (wc);

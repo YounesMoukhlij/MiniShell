@@ -39,7 +39,7 @@ int	b_g_1(char *s, int *i, int *c)
 int	b_g_2(char *p, char *res, char *s, int *i)
 {
 	int	j;
-	
+
 	if (ft_strlen(p) || !ft_strlen(res))
 		*i += grep(&s[*i]);
 	j = ft_strlen(p);

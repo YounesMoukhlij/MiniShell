@@ -51,13 +51,12 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-// char	*display_prompt_msg()
+// char	*display_prompt_msg(void)
 // {
 // 	char	*cwd;
 // 	char	*str;
 // 	char	buff[4096 + 1];
 
-	
 // 	cwd = getcwd(buff, 4096);
 // 	if (cwd)
 // 		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
@@ -78,7 +77,7 @@ void	print_cmd(t_minishell *mini)
 	}
 }
 
-void	sig_func()
+void	sig_func(void)
 {
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
@@ -97,9 +96,9 @@ t_minishell	*last_node(t_minishell *lst)
 	return (tmp);
 }
 
-int ex_st_f(int status, int mode)
+int	ex_st_f(int status, int mode)
 {
-	static int saved;
+	static int	saved;
 
 	if (mode == 1)
 		saved = status;
@@ -151,19 +150,20 @@ int	syntax(char *promt)
 // }
 int	main(int ac, char **av, char **env)
 {
-	t_fd		fd;
-	t_minishell	*mini;
-	char		*promt;
-	t_env		*envir;
+	t_fd			fd;
+	t_minishell		*mini;
+	char			*promt;
+	t_env			*envir;
 	struct termios	old;
-	(void) old;
 
+	(void)old;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
 	g_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
 	// (1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
-	fd.fdout = dup(0x1); fd.fdin = dup(0x0);
+	fd.fdout = dup(0x1);
+	fd.fdin = dup(0x0);
 	while (1999)
 	{
 		sig_func();
@@ -171,7 +171,7 @@ int	main(int ac, char **av, char **env)
 		if (!promt)
 		{
 			ft_malloc(0x0, 0x0);
-			free (promt);
+			free(promt);
 			break ;
 		}
 		if (is_empty(promt) == 1 || syntax(promt) != -0x1)
@@ -189,7 +189,7 @@ int	main(int ac, char **av, char **env)
 		// }
 		tcgetattr(STDOUT_FILENO, &old);
 		if (heredock(mini, envir, -0x1))
-			continue;
+			continue ;
 		if (mini)
 		{
 			g_sig = 1;
@@ -198,17 +198,17 @@ int	main(int ac, char **av, char **env)
 		}
 		else
 		{
-			free (promt);
+			free(promt);
 			ft_cleanshell(&mini);
 			continue ;
 		}
 		get_fd_back(fd);
 		ft_malloc(0x0, 0x0);
-		free (promt);
+		free(promt);
 		tcsetattr(STDOUT_FILENO, 0x0, &old);
 	}
-	close (fd.fdin);
-	close (fd.fdout);
+	close(fd.fdin);
+	close(fd.fdout);
 	clear_envir(envir);
 	return (0x0);
 }

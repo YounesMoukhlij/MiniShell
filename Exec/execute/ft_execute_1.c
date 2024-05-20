@@ -16,7 +16,7 @@ char	**execv_env(t_env *envir)
 {
 	char	**str;
 	char	*string;
-	t_env 	*tmp;
+	t_env	*tmp;
 	int		i;
 
 	i = 0;
@@ -28,7 +28,7 @@ char	**execv_env(t_env *envir)
 	{
 		string = ft_strjoin_space_executor(tmp->key, tmp->value, '=');
 		if (tmp->next)
-		 	str[i++] = ft_strdup(string);
+			str[i++] = ft_strdup(string);
 		tmp = tmp->next;
 	}
 	str[i] = 0;
@@ -87,7 +87,7 @@ t_env	*env_node_v(t_env **envi, char *value)
 
 int	ex_err(char *s)
 {
-	struct stat		buf;
+	struct stat	buf;
 
 	if (stat(s, &buf) == 0)
 	{

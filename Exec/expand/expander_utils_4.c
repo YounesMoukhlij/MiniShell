@@ -66,7 +66,7 @@ char	*ft_exit_status(char *s, t_env *envir, int i, int j)
 			else
 			{
 				i--;
-				break;
+				break ;
 			}
 		}
 		if (!s[i] || i > ft_strlen(s))
@@ -78,9 +78,7 @@ char	*ft_exit_status(char *s, t_env *envir, int i, int j)
 
 int	extra_check(char *s)
 {
-	if (((s[0] == '$')
-		&& (s[1] == DBL))
-		|| (s[1] == SGL))
+	if (((s[0] == '$') && (s[1] == DBL)) || (s[1] == SGL))
 		return (0x1);
 	return (0x0);
 }

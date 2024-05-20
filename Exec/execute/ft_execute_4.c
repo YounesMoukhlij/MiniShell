@@ -23,7 +23,7 @@ void	i_b_n(char *s, t_env *envir)
 void	i_b_n_1(int f, char *s)
 {
 	int	e_s;
-	
+
 	e_s = 0;
 	if (f == 0x0)
 	{

@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-static void	case__11(char c,int *i ,int *len)
+static void	case__11(char c, int *i, int *len)
 {
 	if (c == '<')
 	{
@@ -22,7 +22,7 @@ static void	case__11(char c,int *i ,int *len)
 	else
 		*len += 1;
 }
-static void	case__22(char c,int *i ,int *len)
+static void	case__22(char c, int *i, int *len)
 {
 	if (c == '>')
 	{
@@ -66,16 +66,16 @@ int	ft_set_tk(char *str)
 		}
 		if (!str[i])
 			break ;
-		if (str[i] == '<' && str[i + 1] =='<')
-			case__11(str[i],&i ,&len);
+		if (str[i] == '<' && str[i + 1] == '<')
+			case__11(str[i], &i, &len);
 		else if (str[i] == '<')
 			case__2(str[i], &len);
-		else if (str[i] == '>' && str[i + 1] =='>')
-			case__22(str[i],&i ,&len);
+		else if (str[i] == '>' && str[i + 1] == '>')
+			case__22(str[i], &i, &len);
 		else if (str[i] == '<')
 			case__1(str[i], &len);
 		else if (str[i] == '>')
-			case__2(str[i],  &len);
+			case__2(str[i], &len);
 		i++;
 	}
 	return (len);
@@ -110,7 +110,7 @@ int	ft_parq_err(char *str, int *i, char f)
 
 int	ft_parq(char *str, int *i, char f)
 {
-	int	op;
+	int op;
 
 	op = 0;
 	*i += 1;
@@ -119,7 +119,7 @@ int	ft_parq(char *str, int *i, char f)
 		while ((str[*i]) && op == 0)
 		{
 			if (str[*i] == '\"')
-				break;
+				break ;
 			*i += 1;
 		}
 	}
@@ -128,7 +128,7 @@ int	ft_parq(char *str, int *i, char f)
 		while ((str[*i]) && op == 0)
 		{
 			if (str[*i] == '\'')
-				break;
+				break ;
 			*i += 1;
 		}
 	}
