@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/20 17:54:27 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/20 18:23:44 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRC = main.c \
 	  Parser/ft_build_linker.c \
 	  Parser/ft_cleantach.c \
 	  Parser/ft_cleanshell.c \
+	  Parser/getstr_fpromt.c \
+	  Parser/ft_check_q.c \
 	  Parser/help_func/lst_functions.c \
 	  Exec/signals/signal_handler.c \
 	  Parser/help_func/allocate_max.c \

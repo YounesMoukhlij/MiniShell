@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/17 17:05:29 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:22:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,6 @@ int	check_1(char *s)
 
 int	ft_checker(char *str)
 {
-	int	i;
-
-	i = 0;
 	if (str[0] == '>' || str[0] == '<')
 	{
 		if (ft_strlen(str) <= 2)
@@ -146,6 +143,8 @@ int	ft_checker(char *str)
 	
 	if (pip_check(str))
 		return (0);
+	if (ft_check_q(str) == 0)
+		return (7);
 	if (red_check(str, 0x0, 0x0) || check_2(str))
 		return (5);
 	if (infile_check(str, 0x0, 0x0))

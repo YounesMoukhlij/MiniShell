@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/20 18:19:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:25:06 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int	main(int ac, char **av, char **env)
 			free(promt);
 			continue ;
 		}
-		mini = parcing(promt);
+		mini = parcing(getstr_fpromt(promt));
 		// t_minishell *i = mini;
 		// while (i)
 		// {
@@ -188,20 +188,20 @@ int	main(int ac, char **av, char **env)
 		// 	i = i->next;
 		// }
 		tcgetattr(STDOUT_FILENO, &old);
-		// if (heredock(mini, envir, -0x1))
-		// 	continue;
-		// if (mini)
-		// {
-		// 	g_sig = 1;
-		// 	ft_execute(&mini, envir, 0x0);
-		// 	g_sig = 0x0;
-		// }
-		// else
-		// {
-		// 	free (promt);
-		// 	ft_cleanshell(&mini);
-		// 	continue ;
-		// }
+		if (heredock(mini, envir, -0x1))
+			continue;
+		if (mini)
+		{
+			g_sig = 1;
+			ft_execute(&mini, envir, 0x0);
+			g_sig = 0x0;
+		}
+		else
+		{
+			free (promt);
+			ft_cleanshell(&mini);
+			continue ;
+		}
 		get_fd_back(fd);
 		ft_malloc(0x0, 0x0);
 		free (promt);

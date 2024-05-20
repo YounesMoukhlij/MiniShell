@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 17:55:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:23:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+
+char *getstr_fpromt (char *str);
+int    ft_check_q(char *str);
 int	check_files_1(t_minishell *m, t_env *env, int i);
 int	func(char *p, char *res, int *i, char *s);
 
