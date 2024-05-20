@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/20 14:21:35 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:19:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,8 @@ int	main(int ac, char **av, char **env)
 		return (0x1);
 	g_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
-	fd.fdout = dup(0x1); fd.fdin = dup(0x0);
 	// (1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
+	fd.fdout = dup(0x1); fd.fdin = dup(0x0);
 	while (1999)
 	{
 		sig_func();
@@ -188,25 +188,27 @@ int	main(int ac, char **av, char **env)
 		// 	i = i->next;
 		// }
 		tcgetattr(STDOUT_FILENO, &old);
-		if (heredock(mini, envir, -0x1))
-			continue;
-		if (mini)
-		{
-			g_sig = 1;
-			ft_execute(&mini, envir, 0x0);
-			g_sig = 0x0;
-		}
-		else
-		{
-			free (promt);
-			ft_cleanshell(&mini);
-			continue ;
-		}
+		// if (heredock(mini, envir, -0x1))
+		// 	continue;
+		// if (mini)
+		// {
+		// 	g_sig = 1;
+		// 	ft_execute(&mini, envir, 0x0);
+		// 	g_sig = 0x0;
+		// }
+		// else
+		// {
+		// 	free (promt);
+		// 	ft_cleanshell(&mini);
+		// 	continue ;
+		// }
 		get_fd_back(fd);
 		ft_malloc(0x0, 0x0);
 		free (promt);
 		tcsetattr(STDOUT_FILENO, 0x0, &old);
 	}
+	close (fd.fdin);
+	close (fd.fdout);
 	clear_envir(envir);
 	return (0x0);
 }

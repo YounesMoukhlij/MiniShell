@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 17:53:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:11:20 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	if (tmp)
 		big_execution(tmp, envir, 0x0, old_stdin);
 	status(&return_exve);
+    close (old_stdin);
 }
