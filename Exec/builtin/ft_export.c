@@ -14,12 +14,10 @@
 
 int	c_d(t_env *env, char *s)
 {
-	int		i;
 	int		len;
 	char	*r;
 	t_env	*tmp;
 
-	i = 0x0;
 	len = 0x0;
 	while (s[len] && s[len] != '=')
 		len++;

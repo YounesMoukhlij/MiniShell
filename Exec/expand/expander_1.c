@@ -42,10 +42,8 @@ int	get_double_arr_len(char **s)
 
 int	check_execute(char *s)
 {
-	int		i;
 	char	**r;
 
-	i = 0x0;
 	if (!s)
 		return (0x0);
 	if ((s[0] == SGL && s[ft_strlen(s) - 1] == SGL)
