@@ -6,7 +6,7 @@
 /*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:53:06 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:45:01 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:07:56 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	pip_check_close(char *str)
 		}
 		i++;
 		if (i > ft_strlen(str))
-			break;
+			break ;
 	}
 	return (0);
 }
@@ -69,15 +69,15 @@ int	pip_check(char *str)
 	if (str[i] == '|')
 		return (1);
 	ft_skep(str, &i);
-		if (i > ft_strlen(str))
-			return (0);
+	if (i > ft_strlen(str))
+		return (0);
 	if (pip_check_close(str))
 		return (1);
 	while (str[i])
 	{
 		ft_skep(str, &i);
 		if (!str[i])
-			break;
+			break ;
 		if (pip_loading(str, &i, &t))
 			return (1);
 	}

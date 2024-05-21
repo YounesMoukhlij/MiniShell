@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:17:33 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 17:54:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:12:37 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static char	*hook(char *s1, int *id, char c)
 	while (s1[*id] && s1[*id] != c)
 		word[i++] = s1[(*id)++];
 	word[i] = '\0';
-	// ft_cleantach(s1);
 	return (word);
 }
 

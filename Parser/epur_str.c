@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:39:04 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/17 14:09:13 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:14:17 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	get_des(char c, int fg)
-{
-	if (fg == 1)
-	{
-		if (c == '>' || c == '<')
-			return (1);
-	}
-	else
-		if (c == '\t' || c == ' ')
-			return (1);
-	return (0);
-}
 
 static int	number_of_words(char *str, int fg)
 {
@@ -45,31 +32,6 @@ static int	number_of_words(char *str, int fg)
 		}
 	}
 	return (wc);
-}
-
-char	*hudler_ts(char *s1, char *word, int *id, int fg)
-{
-	int	i;
-	int	op;
-
-	i = 0;
-	op = 0;
-	while (s1[*id] && (!get_des(s1[*id], fg)))
-	{
-		if (s1[*id] == '\'' || s1[*id] == '\"')
-		{
-			if (!op)
-			{
-				hund(s1, id, &i, word);
-				op = 0;
-			}
-		}
-		if (!s1[*id])
-			break ;
-		word[i++] = s1[(*id)++];
-	}
-	word[i] = '\0';
-	return (word);
 }
 
 static char	*hooks(char *s1, int *id, int fg)

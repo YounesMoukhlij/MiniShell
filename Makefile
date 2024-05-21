@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
+#    By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/20 18:23:44 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/21 15:21:29 by ynassibi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ SRC = main.c \
 	  Parser/tools.c \
 	  Parser/tools_1.c\
 	  Parser/parcing.c \
+	  Parser/parcing_add.c \
+	  Parser/parcing_add_2.c \
 	  Parser/tools_2.c\
 	  Parser/epur_str.c\
 	  Parser/ft_join.c \
@@ -25,6 +27,7 @@ SRC = main.c \
 	  Parser/ft_cutdata.c\
 	  Parser/pip_checker.c \
 	  Parser/ft_after_cmd.c\
+	  Parser/ft_case.c\
 	  Exec/builtin/ft_cd.c \
 	  Exec/expand/expander.c \
 	  Exec/expand/expander_1.c \

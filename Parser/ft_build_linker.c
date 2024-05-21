@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_build_linker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:16:53 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/14 13:48:56 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:25:46 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,40 +56,13 @@ t_minishell	*last_cmd(t_minishell *lst)
 	return (tmp);
 }
 
-void	lstaddfront(t_minishell **head, t_minishell *node)
-{
-	node->next = (*head);
-	(*head) = node;
-}
-
-void	add_back(t_minishell **head, t_minishell *node)
-{
-	if (!head || !node)
-		return ;
-	if (*head == NULL)
-		lstaddfront(head, node);
-	last_cmd(*head)->next = node;
-	node->next = NULL;
-}
-
-void	add_size(t_minishell *m, int full_size)
-{
-	t_minishell	*tmp;
-
-	tmp = m;
-	while (tmp)
-	{
-		tmp->size = full_size;
-		tmp = tmp->next;
-	}
-}
-
-t_minishell	*get_link_cmd(char **str, t_minishell *head, t_minishell *cmd, int d)
+t_minishell	*get_link_cmd(char **str, t_minishell *head, \
+	t_minishell *cmd, int d)
 {
 	t_tmp	tmp;
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	j = 0;
 	while (str[i])

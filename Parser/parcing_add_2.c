@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cleanshell.c                                    :+:      :+:    :+:   */
+/*   parcing_add_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 14:44:50 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/21 14:45:16 by ynassibi         ###   ########.fr       */
+/*   Created: 2024/05/21 14:22:36 by ynassibi          #+#    #+#             */
+/*   Updated: 2024/05/21 15:06:18 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_cleanshell(t_minishell **node)
+void	lstaddfront(t_minishell **head, t_minishell *node)
 {
-	t_minishell	*temp;
-	t_minishell	*current;
+	node->next = (*head);
+	(*head) = node;
+}
 
-	current = *node;
-	while (current)
+void	add_back(t_minishell **head, t_minishell *node)
+{
+	if (!head || !node)
+		return ;
+	if (*head == NULL)
+		lstaddfront(head, node);
+	last_cmd(*head)->next = node;
+	node->next = NULL;
+}
+
+void	add_size(t_minishell *m, int full_size)
+{
+	t_minishell	*tmp;
+
+	tmp = m;
+	while (tmp)
 	{
-		temp = current->next;
-		ft_cleantach(current->cmdt);
-		ft_cleantach(current->afcmd_t);
-		ft_cleantach(current->files);
-		ft_cleantach(current->cmd);
-		free (current->path);
-		free(current->tab);
-		current->len_tab = 0;
-		free(current);
-		current = temp;
+		tmp->size = full_size;
+		tmp = tmp->next;
 	}
-	*node = NULL;
 }

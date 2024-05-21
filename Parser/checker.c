@@ -6,42 +6,11 @@
 /*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:36:15 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:33:59 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:19:52 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	red_check(char *str, int i, int t)
-{
-	while (str[i])
-	{
-		ft_skep(str, &i);
-		if (!str[i])
-			break;
-		if (str[i] == '>')
-		{
-			while (str[i] == '>' && str[i])
-			{
-				if (str[i + 1] == '<')
-					return (5);
-				if (!str[i])
-					break;
-				i++;
-				t++;
-			}
-			if (!str[i] )
-				break;
-			if (t >= 3)
-				return (1);
-			t = 0;
-		}
-		if (!str[i])
-			break;
-		i++;
-	}
-	return (0);
-}
 
 int	infile_check(char *str, int i, int t)
 {
@@ -49,13 +18,13 @@ int	infile_check(char *str, int i, int t)
 	{
 		ft_skep(str, &i);
 		if (!str[i])
-			break;
+			break ;
 		if (str[i] == '<')
 		{
 			while (str[i] == '<' && str[i])
 			{
 				if (!str[i])
-					break;
+					break ;
 				i++;
 				t++;
 			}
@@ -64,7 +33,7 @@ int	infile_check(char *str, int i, int t)
 			t = 0;
 		}
 		if (!str[i])
-			break;
+			break ;
 		i++;
 	}
 	return (0);
@@ -79,7 +48,7 @@ int	check_expected_token(char *str)
 	{
 		ft_skep(str, &i);
 		if (!str[i])
-			break;
+			break ;
 		if (str[i] == '<' || str[i] == '>')
 		{
 			i++;
@@ -106,21 +75,12 @@ int	check_2(char *s)
 	{
 		ft_skep(s, &i);
 		if (!s[i])
-			break;
+			break ;
 		if (s[i] == '<' && s[i + 1] == '>' && s[i + 1])
 			return (1);
 		i++;
 	}
 	return (0);
-}
-
-int	check_yns(char *i)
-{
-	if (i[0x0] == SGL && i[ft_strlen(i) - 1] == SGL)
-		return (0x1);
-	if (i[0x0] == DBL && i[ft_strlen(i) - 1] == DBL)
-		return (0x1);
-	return (0x0);
 }
 
 int	check_1(char *s)
@@ -142,7 +102,7 @@ int	ft_checker(char *str)
 		return (7);
 	if (pip_check(str))
 		return (0);
-	if (red_check(str, 0x0, 0x0) || check_2(str))
+	if (red_check(str, -1, 0x0) || check_2(str))
 		return (5);
 	if (infile_check(str, 0x0, 0x0))
 		return (3);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:06:43 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/17 17:05:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:10:06 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	errq(int op)
 		ex_st_f(258, 0x1);
 		return (0x1);
 	}
-	return(0x0);
+	return (0x0);
 }
 
 int	hudler_o(char *s1, int i, int *op, size_t *len_word)
@@ -52,9 +52,6 @@ int	hudler_o(char *s1, int i, int *op, size_t *len_word)
 	return (1);
 }
 
-	
-
-	
 void	hun_par(char *s1, int *id, int *i, char *word)
 {
 	int	op;

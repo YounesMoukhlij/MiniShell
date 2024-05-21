@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:20:45 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/12 16:37:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:03:45 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	c_length(char **s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!*s || !s)
@@ -35,7 +35,6 @@ t_minishell	*parcing(char *str)
 	strs = ft_spliter(str);
 	if (!strs)
 		return (NULL);
-	cmp = get_link_cmd(strs, head , cmp, c_length(strs));
-	// ft_cleantach(strs);
+	cmp = get_link_cmd(strs, head, cmp, c_length(strs));
 	return (cmp);
 }

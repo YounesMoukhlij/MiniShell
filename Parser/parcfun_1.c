@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcfun_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:07:08 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/19 14:36:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:03:03 by ynassibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	fun(char *str, int *i)
 
 int	number_of_word(char *str)
 {
-	int i;
-	int wc;
+	int	i;
+	int	wc;
 
 	i = 0;
 	wc = 0;
