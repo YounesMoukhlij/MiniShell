@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:08:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:53:00 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	{
 		flag = is_builtin_cmd(*head, envir);
 		if (return_cmd(flag))
+		{
+			close(old_stdin);
 			return ;
+		}
 	}
 	while (tmp->next)
 	{

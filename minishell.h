@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:43:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:07:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ t_env					*env_node_value(t_env **envi, char *value);
 int						ft_isalnum_1(int c);
 
 void					ft_put_err(char *input, char *message);
-void					print_func(t_env *env, char *s);
+void					print_func(t_env *env, char *s, int i, int j);
 int						get_double_arr_len(char **s);
 void					close_fd(t_minishell *mini, int *fd, int flag, int pos);
 void					sig_n(int sig_v);
