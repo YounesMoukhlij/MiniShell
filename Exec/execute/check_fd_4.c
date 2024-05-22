@@ -14,11 +14,16 @@
 
 t_env	*env_node_value(t_env **envi, char *value)
 {
-	while ((*envi))
+	t_env	*tmp;
+
+	tmp = (*envi);
+	while (tmp)
 	{
-		if (!strcmp_f((*envi)->value, value, 0x0, 0x0))
-			return (*envi);
-		(*envi) = (*envi)->next;
+		if (!strcmp_f(tmp->value, value, 0x0, 0x0))
+		{
+			return (tmp);
+		}
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

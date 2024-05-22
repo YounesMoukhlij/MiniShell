@@ -40,6 +40,8 @@ int	is_empty(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0x1);
 	if (!s[i])
 		return (0x1);
 	while (s[i])
@@ -51,30 +53,25 @@ int	is_empty(char *s)
 	return (0x1);
 }
 
-// char	*display_prompt_msg(void)
-// {
-// 	char	*cwd;
-// 	char	*str;
-// 	char	buff[4096 + 1];
-
-// 	cwd = getcwd(buff, 4096);
-// 	if (cwd)
-// 		str = ft_strjoin_executor(cwd, " \033[42m$>\033[0m ");
-// 	// else
-// 	// 	str = ft_strdup("minishell -> ");
-// 	return (str);
-// }
-
-void	print_cmd(t_minishell *mini)
+char	*display_prompt_msg(t_env *env)
 {
-	int	k;
+	char	*cwd;
+	char	*str;
+	t_env	*tmp;
+	char	buff[4096 + 1];
 
-	k = 0;
-	while (mini->cmd[k])
+	cwd = getcwd(buff, 4096);
+	if (cwd)
+		str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
+	else
 	{
-		printf("cmd[%d]=[%s]\n", k, mini->cmd[k]);
-		k++;
+		tmp = env_node_value(&env, "OLDPWD");
+		if (tmp)
+			str = ft_strdup(tmp->value);
+		else
+			str = ft_strdup("-->");
 	}
+	return (str);
 }
 
 void	sig_func(void)
@@ -152,74 +149,124 @@ void	ft_close_fd(t_minishell *m)
 	while (tmp)
 	{
 		if (tmp->fd_in != 0)
-			close (tmp->fd_in);
+			close(tmp->fd_in);
 		if (tmp->fd_out != 1)
-			close (tmp->fd_out);
+			close(tmp->fd_out);
 		tmp = tmp->next;
 	}
 }
-int	main(int ac, char **av, char **env)
+void	ft_end(t_minishell *m, char *s, t_fd fd)
+{
+	get_fd_back(fd);
+	ft_close_fd(m);
+	close(fd.fdin);
+	close(fd.fdout);
+	free(s);
+	ft_malloc(0x0, 0x0);
+}
+
+void	clean_1(char *s)
+{
+	ft_malloc(0x0, 0x0);
+	free(s);
+}
+
+void	clean_2(char *s, t_minishell *mini)
+{
+	free(s);
+	ft_cleanshell(&mini);
+}
+
+int	check_promt(char *promt)
+{
+	if (!promt)
+	{
+		clean_1(promt);
+		return (0x0);
+	}
+	if (is_empty(promt) == 1 || syntax(promt) != -0x1)
+	{
+		free(promt);
+		return (0x1);
+	}
+	return (0x2);
+}
+
+int	ch_1(char *promt)
+{
+	if (!promt)
+	{
+		ft_malloc(0x0, 0x0);
+		free(promt);
+		return (0x1);
+	}
+	return (0x0);
+}
+
+int	ch_2(char *promt)
+{
+	if (is_empty(promt) == 1 || syntax(promt) != -0x1)
+	{
+		free(promt);
+		return (0x1);
+	}
+	return (0x0);
+}
+
+int	start_execution(t_minishell *mini, t_env *envir, char *promt)
+{
+	if (heredock(mini, envir, -0x1))
+		return (0x1);
+	if (mini)
+	{
+		g_sig = 1;
+		ft_execute(&mini, envir, 0x0);
+		g_sig = 0x0;
+	}
+	else
+	{
+		clean_2(promt, mini);
+		return (0x1);
+	}
+	return (0x0);
+}
+
+void	start_mini(t_minishell *mini, t_env *envir, char *promt)
 {
 	t_fd			fd;
-	t_minishell		*mini;
-	char			*promt;
-	t_env			*envir;
 	struct termios	old;
+	char			*tmp;
 
-	(void)old;
+	while (1999)
+	{
+		sig_func();
+		tmp = display_prompt_msg(envir);
+		promt = readline(tmp);
+		if (ch_1(promt))
+			break ;
+		if (ch_2(promt))
+			continue ;
+		mini = parcing(str_caller(promt));
+		tcgetattr(STDOUT_FILENO, &old);
+		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
+		tcsetattr(STDOUT_FILENO, 0x0, &old);
+		if (start_execution(mini, envir, promt))
+			continue ;
+		ft_end(mini, promt, fd);
+	}
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_minishell	*mini;
+	t_env		*envir;
+
+	mini = 0x0;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
 	g_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
-	// fd.fdout = dup(0x1);
-	// fd.fdin = dup(0x0);
-	while (1999)
-	{
-		sig_func();
-		promt = readline("minishell -> ");
-		if (!promt)
-		{
-			ft_malloc(0x0, 0x0);
-			free(promt);
-			break ;
-		}
-		if (is_empty(promt) == 1 || syntax(promt) != -0x1)
-		{
-			free(promt);
-			continue ;
-		}
-		mini = parcing(str_caller(promt));
-		// t_minishell *i = mini;
-		// while (i)
-		// {
-		// 	// printf("1\n");
-		// 	printf("%s\n", i->files[0]);
-		// 	i = i->next;
-		// }
-		tcgetattr(STDOUT_FILENO, &old);
-		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
-		if (heredock(mini, envir, -0x1))
-			continue ;
-		if (mini)
-		{
-			g_sig = 1;
-			ft_execute(&mini, envir, 0x0);
-			g_sig = 0x0;
-		}
-		else
-		{
-			free(promt);
-			ft_cleanshell(&mini);
-			continue ;
-		}
-		get_fd_back(fd);
-		tcsetattr(STDOUT_FILENO, 0x0, &old);
-		ft_close_fd(mini);
-		close(fd.fdin);
-		close(fd.fdout);
-		free(promt);
-		ft_malloc(0x0, 0x0);
-	}
+	start_mini(mini, envir, 0x0);
 	clear_envir(envir);
 	return (0x0);
 }

@@ -18,7 +18,6 @@ void	print_func(t_env *env, char *s, int i, int j)
 	t_env	*tmp_1;
 	char	*t;
 
-	// printf("-->[%s]\n", s);
 	t = ft_malloc(ft_strlen(s) + 3, 0x1);
 	t[0] = SGL;
 	t[ft_strlen(s) + 1] = SGL;
@@ -30,23 +29,12 @@ void	print_func(t_env *env, char *s, int i, int j)
 	if (tmp)
 	{
 		if (tmp->flag == 1)
-		{
-			// puts("eee");
 			ft_putstr_fd_executor(t, 0x1, 0x0);
-		}
 	}
-	else if (tmp_1)
-	{
-		printf("-->%s\n", tmp_1->key);
-		puts("1");
-	}
+	if (tmp_1 && tmp_1->flag == 0x5)
+		ft_putstr_fd_executor("", 0x1, 0x0);
 	else
-	{
-		// puts("YOU");
 		ft_putstr_fd_executor(s, 0x1, 0x0);
-	}
-
-	
 }
 
 int	check_n(char *s)

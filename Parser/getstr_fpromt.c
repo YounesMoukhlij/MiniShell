@@ -12,74 +12,74 @@
 
 #include "../minishell.h"
 
-static int    cas_1(char *str, char *ns, int *j, int *i)
+static int	cas_1(char *str, char *ns, int *j, int *i)
 {
-    int    op;
+	int	op;
 
-    op = 0;
-    while (str[*i] && op == 0)
-    {
-        ns[(*j)++] = str[(*i)++];
-        if (str[*i] == '\"')
-            op = 1;
-    }
-    ns[(*j)++] = str[(*i)++];
-    return (op);
+	op = 0;
+	while (str[*i] && op == 0)
+	{
+		ns[(*j)++] = str[(*i)++];
+		if (str[*i] == '\"')
+			op = 1;
+	}
+	ns[(*j)++] = str[(*i)++];
+	return (op);
 }
 
-static int    cas_2(char *str, char *ns, int *j, int *i)
+static int	cas_2(char *str, char *ns, int *j, int *i)
 {
-    int    op;
+	int	op;
 
-    op = 0;
-    while (str[*i] && op == 0)
-    {
-        ns[(*j)++] = str[(*i)++];
-        if (str[*i] == '\'')
-            op = 1;
-    }
-    ns[(*j)++] = str[(*i)++];
-    return (op);
+	op = 0;
+	while (str[*i] && op == 0)
+	{
+		ns[(*j)++] = str[(*i)++];
+		if (str[*i] == '\'')
+			op = 1;
+	}
+	ns[(*j)++] = str[(*i)++];
+	return (op);
 }
 
-static int    texter(char *str, char *ns, int i, int *j)
+static int	texter(char *str, char *ns, int i, int *j)
 {
-    if (str[i] == '|')
-        ns[(*j)++] = ' ';
-    return (0);
+	if (str[i] == '|')
+		ns[(*j)++] = ' ';
+	return (0);
 }
 
-char    *str_caller(char *str)
+char	*str_caller(char *str)
 {
-    char    *ns;
+	char	*ns;
 
-    ns = ft_calloc(ft_strlen(str) * 10, 1);
-    return (getstr_fpromt(str, ns, 0x0, 0x0));
+	ns = ft_calloc(ft_strlen(str) * 10, 1);
+	return (getstr_fpromt(str, ns, 0x0, 0x0));
 }
 
-char    *getstr_fpromt(char *str, char *ns, int i, int j)
+char	*getstr_fpromt(char *str, char *ns, int i, int j)
 {
-    int    op;
+	int	op;
 
-    op = 0;
-    while (i < ft_strlen(str))
-    {
-        if (str[i] == '\"')
-        {
-            op = cas_1(str, ns, &j, &i);
-            if (op == 1)
-                op = texter(str, ns, i, &j);
-        }
-        else if (str[i] == '\'')
-        {
-            op = cas_2(str, ns, &j, &i);
-            if (op == 1)
-                op = texter(str, ns, i, &j);
-        }
-        else if (str[i])
-            ns[j++] = str[i++];
-        else
-            (1) && (j++, i++);
-    }
-    return (ns);
+	op = 0;
+	while (i < ft_strlen(str))
+	{
+		if (str[i] == '\"')
+		{
+			op = cas_1(str, ns, &j, &i);
+			if (op == 1)
+				op = texter(str, ns, i, &j);
+		}
+		else if (str[i] == '\'')
+		{
+			op = cas_2(str, ns, &j, &i);
+			if (op == 1)
+				op = texter(str, ns, i, &j);
+		}
+		else if (str[i])
+			ns[j++] = str[i++];
+		else
+			(1) && (j++, i++);
+	}
+	return (ns);
 }

@@ -17,8 +17,8 @@ static int	check_qap(char *str, int *i)
 	int	c;
 
 	c = 0;
-	if (str[*i + 1] && ((str[*i + 1] == '\'' || str[*i + 1] == '\"') && !str[*i
-				+ 2]))
+	if (str[*i + 1] && ((str[*i + 1] == '\'' || str[*i + 1] == '\"')
+			&& !str[*i + 2]))
 	{
 		(*i)--;
 		while (*i < ft_strlen(str) && *i > 0)

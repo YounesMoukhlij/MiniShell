@@ -101,7 +101,7 @@ SRC = main.c \
 	  Exec/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include

@@ -15,7 +15,10 @@
 int	env_check(t_env **eenv, char *s)
 {
 	if (!eenv || check_path(eenv, s))
+	{
+		ex_st_f(127, 0x1);
 		return (0x1);
+	}
 	return (0x0);
 }
 

@@ -17,7 +17,7 @@ void	i_b_n(char *s, t_env *envir)
 	if (!ft_strlen(s))
 		exit(0x0);
 	if (env_check(&envir, s))
-		exit(0x1);
+		exit(ex_st_f(0x0, 0x0));
 }
 
 void	i_b_n_1(int f, char *s)

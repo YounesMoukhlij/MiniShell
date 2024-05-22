@@ -15,13 +15,13 @@
 
 # include <errno.h>
 # include <fcntl.h>
-# include <string.h>
-# include <unistd.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <termios.h>
+# include <string.h>
 # include <sys/stat.h>
+# include <termios.h>
+# include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -195,7 +195,7 @@ int						get_double_arr_len(char **s);
 void					close_fd(t_minishell *mini, int *fd, int flag, int pos);
 void					sig_n(int sig_v);
 char					*allocate_max_1(t_env *envir);
-void					tkdis(char *str,int *i, int *len);
+void					tkdis(char *str, int *i, int *len);
 char					*ft_exit_status(char *s, t_env *envir, int i, int j);
 int						check_single(char *s);
 char					*do_single(char *s, int i, int j);
@@ -211,7 +211,8 @@ void					rmv_sgl_quotes_file(t_minishell *mini, char *str,
 char					*files_no_qts(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
 int						expand_files(t_minishell **mini, t_env *envir, int i);
-int						ft_open_others(t_minishell *mini, int i, int f_in, int f_out);
+int						ft_open_others(t_minishell *mini, int i, int f_in,
+							int f_out);
 int						heredoc_check(t_minishell *mini, t_env *env,
 							char *delim, int flag);
 char					*hidden_name(void);

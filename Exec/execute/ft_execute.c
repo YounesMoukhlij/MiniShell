@@ -54,6 +54,8 @@ void	status(int *return_exve)
 		ex_st_f(WTERMSIG(*return_exve) + 128, 0x1);
 	else
 		ex_st_f(WEXITSTATUS(*return_exve), 0x1);
+	if (ex_st_f(0x0, 0x0) == 141)
+		ex_st_f(0x0, 0x1);
 }
 
 int	return_cmd(int f)
