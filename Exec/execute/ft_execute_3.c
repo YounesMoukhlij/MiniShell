@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 17:51:12 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:28:10 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,13 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 	}
 	res[j] = 0;
 	return (res);
+}
+
+int	check_before(char *s)
+{
+	if (ft_strlen(s) > 0 && (s[0x0] != '.' || s[0] != '/'))
+		return (0x0);
+	return (0x1);
 }
 
 int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag, int i)

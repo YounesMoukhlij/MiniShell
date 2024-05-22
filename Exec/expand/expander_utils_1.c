@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:56 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 12:57:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:58:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	grep(char *s)
 	i = 0x0;
 	while (s[i])
 	{
-		if (!ft_isalnum(s[i]))
+		if (!ft_isalnum(s[i]) && s[i] != '_')
 			break ;
 		i++;
 	}
@@ -37,7 +37,7 @@ char	*grep_value(char *s)
 		return (NULL);
 	while (s[len])
 	{
-		if (!ft_isalnum(s[len]))
+		if (!ft_isalnum_1(s[len]))
 			break ;
 		len++;
 	}
