@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:09:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:56:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_open_others(t_minishell *mini)
 	{
 		if (mini->tab[i] == 0x1)
 		{
-			fd_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0664);
+			fd_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
 			if (fd_out == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
 			close_fd(mini, &fd_out, 0x1, i);
