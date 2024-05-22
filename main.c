@@ -18,19 +18,19 @@ void	ft_puterror(int p)
 	{
 		if (p == 0)
 			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `|'",
-							2);
+				2);
 		if (p == 1)
 			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `>'",
-							2);
+				2);
 		if (p == 3 || p == 5)
 			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `<'",
-							2);
+				2);
 		if (p == 6)
 			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `newline'",
-							2);
+				2);
 		if (p == 7)
 			ft_putendl_fd("\033[31m$>\033[0m: syntax error near unexpected token `? '",
-							2);
+				2);
 		ex_st_f(258, 0x1);
 	}
 }
