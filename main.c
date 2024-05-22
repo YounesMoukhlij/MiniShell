@@ -60,6 +60,7 @@ char	*display_prompt_msg(t_env *env)
 	t_env	*tmp;
 	char	buff[4096 + 1];
 
+	str = 0x0;
 	cwd = getcwd(buff, 4096);
 	if (cwd)
 		str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
@@ -68,8 +69,6 @@ char	*display_prompt_msg(t_env *env)
 		tmp = env_node_value(&env, "OLDPWD");
 		if (tmp)
 			str = ft_strdup(tmp->value);
-		else
-			str = ft_strdup("-->");
 	}
 	return (str);
 }
