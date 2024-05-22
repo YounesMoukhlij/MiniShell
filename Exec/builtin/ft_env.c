@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/17 12:58:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:05:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	print_env(t_env *env)
 		while (tmp)
 		{
 			if (strcmp_f("PATH", tmp->key, 0x0, 0x0)
-				&& strcmp_f("TERM", tmp->key, 0x0, 0x0))
+				&& strcmp_f("TERM", tmp->key, 0x0, 0x0) && tmp->flag != 5)
 				print_helper(tmp);
 			tmp = tmp->next;
 		}

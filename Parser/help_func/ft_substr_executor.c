@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:49:47 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 20:36:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:58:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_substr_executor_1(char *s, int start, int len)
 	if (!s)
 		return (NULL);
 	if (!len || start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdup_1(""));
 	l = ft_strlen(s) - start;
 	if (l > len)
 		l = len;

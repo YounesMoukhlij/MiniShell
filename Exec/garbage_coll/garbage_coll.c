@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:27:59 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 13:23:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:54:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_list(t_delete **head)
 	while (current != NULL)
 	{
 		free(current->ptr);
+		current->ptr = 0x0;
 		next = current->next;
 		free(current);
 		current = next;

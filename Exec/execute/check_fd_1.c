@@ -6,49 +6,42 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 15:56:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:00:34 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_open_others(t_minishell *mini)
+int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 {
-	int	i;
-	int	fd_in;
-	int	fd_out;
-
-	i = -0x1;
-	fd_out = 0x1;
-	fd_in = 0x0;
 	while (++i < mini->len_tab)
 	{
 		if (mini->tab[i] == 0x1)
 		{
-			fd_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
-			if (fd_out == -0x1)
+			f_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
+			if (f_out == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &fd_out, 0x1, i);
+			close_fd(mini, &f_out, 0x1, i);
 		}
 		else if (mini->tab[i] == 0x2)
 		{
-			fd_out = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
-			if (fd_out == -0x1)
+			f_out = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
+			if (f_out == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &fd_out, 0x2, i);
+			close_fd(mini, &f_out, 0x2, i);
 		}
 		else if (mini->tab[i] == 0x3)
 		{
-			fd_in = open(mini->files[i + 1], O_RDONLY, 0664);
-			if (fd_in == -0x1)
+			f_in = open(mini->files[i + 1], O_RDONLY, 0664);
+			if (f_in == -0x1)
 				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &fd_in, 0x3, i);
+			close_fd(mini, &f_in, 0x3, i);
 		}
 	}
-	if (fd_out != 0x1)
-		mini->fd_out = fd_out;
-	if (fd_in != 0x0)
-		mini->fd_in = fd_in;
+	if (f_out != 0x1)
+		mini->fd_out = f_out;
+	if (f_in != 0x0)
+		mini->fd_in = f_in;
 	return (0);
 }
 

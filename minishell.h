@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 14:39:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:01:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ void					rmv_sgl_quotes_file(t_minishell *mini, char *str,
 char					*files_no_qts(char *s, int flag, int i, int j);
 char					*ultra_expand_file(t_env *envir, char *s, int i, int j);
 int						expand_files(t_minishell **mini, t_env *envir, int i);
-int						ft_open_others(t_minishell *mini);
+int						ft_open_others(t_minishell *mini, int i, int f_in, int f_out);
 int						heredoc_check(t_minishell *mini, t_env *env,
 							char *delim, int flag);
 char					*hidden_name(void);
