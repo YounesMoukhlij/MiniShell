@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:08 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/21 22:14:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:33:24 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int    cas_2(char *str, char *ns, int *j, int *i)
 
 static int    texter(char *str, char *ns, int i, int *j)
 {
-    if (str[i] != '\"' && str[i] != '\'')
+    if (str[i] == '|')
         ns[(*j)++] = ' ';
     return (0);
 }
@@ -79,8 +79,13 @@ char    *getstr_fpromt(char *str, char *ns)
             if (op == 1)
                 op = texter(str, ns, i, &j);
         }
-        else if (str[i]) {
-            ns[j++] = str[i++]; }
+        else if (str[i])
+            ns[j++] = str[i++];
+        else
+        {
+            j++;
+            i++;
+        }
     }
     return (ns);
 }

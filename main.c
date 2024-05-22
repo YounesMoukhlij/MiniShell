@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:06:31 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:34:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,20 @@ int	syntax(char *promt)
 	return (i);
 }
 
-// int	init(t_env **envir, char **env)
-// {
-// 	return (0);
-// }
+void	ft_close_fd(t_minishell *m)
+{
+	t_minishell	*tmp;
+
+	tmp = m;
+	while (tmp)
+	{
+		if (tmp->fd_in != 0)
+			close (tmp->fd_in);
+		if (tmp->fd_out != 1)
+			close (tmp->fd_out);
+		tmp = tmp->next;
+	}
+}
 int	main(int ac, char **av, char **env)
 {
 	t_fd			fd;
@@ -161,9 +171,8 @@ int	main(int ac, char **av, char **env)
 		return (0x1);
 	g_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
-	// (1) && (init(&envir, env), fd.fdout = dup(0x1), fd.fdin = dup(0x0));
-	fd.fdout = dup(0x1);
-	fd.fdin = dup(0x0);
+	// fd.fdout = dup(0x1);
+	// fd.fdin = dup(0x0);
 	while (1999)
 	{
 		sig_func();
@@ -179,7 +188,7 @@ int	main(int ac, char **av, char **env)
 			free(promt);
 			continue ;
 		}
-		mini = parcing(promt);
+		mini = parcing(str_caller(promt));
 		// t_minishell *i = mini;
 		// while (i)
 		// {
@@ -188,6 +197,7 @@ int	main(int ac, char **av, char **env)
 		// 	i = i->next;
 		// }
 		tcgetattr(STDOUT_FILENO, &old);
+		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
 		if (heredock(mini, envir, -0x1))
 			continue ;
 		if (mini)
@@ -203,12 +213,13 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		get_fd_back(fd);
-		ft_malloc(0x0, 0x0);
-		free(promt);
 		tcsetattr(STDOUT_FILENO, 0x0, &old);
+		ft_close_fd(mini);
+		close(fd.fdin);
+		close(fd.fdout);
+		free(promt);
+		ft_malloc(0x0, 0x0);
 	}
-	close(fd.fdin);
-	close(fd.fdout);
 	clear_envir(envir);
 	return (0x0);
 }
