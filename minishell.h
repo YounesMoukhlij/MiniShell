@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:23:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:39:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ char					*str_caller(char *str);
 int						get_des(char c, int fg);
 char					*hudler_ts(char *s1, char *word, int *id, int fg);
 int						red_check(char *str, int i, int t);
-char					*getstr_fpromt(char *str, char *ns);
+char					*getstr_fpromt(char *str, char *ns, int i, int j);
 int						ft_check_q(char *str);
 int						check_files_1(t_minishell *m, t_env *env, int i);
 int						func(char *p, char *res, int *i, char *s);

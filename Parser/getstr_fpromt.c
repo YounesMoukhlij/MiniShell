@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:23:08 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 14:33:24 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:38:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,14 @@ char    *str_caller(char *str)
     char    *ns;
 
     ns = ft_calloc(ft_strlen(str) * 10, 1);
-    return (getstr_fpromt(str, ns));
+    return (getstr_fpromt(str, ns, 0x0, 0x0));
 }
 
-char    *getstr_fpromt(char *str, char *ns)
+char    *getstr_fpromt(char *str, char *ns, int i, int j)
 {
-    int    i;
-    int    j;
     int    op;
 
-    i = 0;
-    j = 0;
+    op = 0;
     while (i < ft_strlen(str))
     {
         if (str[i] == '\"')
@@ -82,10 +79,7 @@ char    *getstr_fpromt(char *str, char *ns)
         else if (str[i])
             ns[j++] = str[i++];
         else
-        {
-            j++;
-            i++;
-        }
+            (1) && (j++, i++);
     }
     return (ns);
 }
