@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:14 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/21 22:28:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:07:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_first(char *s)
 	i = 0x0;
 	while (t[i])
 	{
-		if (!ft_isalpha(t[0]))
+		if (!ft_isalpha(t[0]) && t[0] != '_')
 			return (0x1);
 		if (!ft_isalnum(t[i]) && t[i] != '_' && t[i] != '=')
 		{

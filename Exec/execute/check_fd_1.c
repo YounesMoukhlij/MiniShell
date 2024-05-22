@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 16:00:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:43:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,13 @@ int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 		}
 		else if (mini->tab[i] == 0x2)
 		{
-			f_out = open(mini->files[i + 1], O_CREAT | O_RDWR | O_APPEND, 0664);
-			if (f_out == -0x1)
-				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &f_out, 0x2, i);
+			if (ft_open_2(mini, mini->files[i + 1], &f_out, &i))
+				return (0x1);
 		}
 		else if (mini->tab[i] == 0x3)
 		{
-			f_in = open(mini->files[i + 1], O_RDONLY, 0664);
-			if (f_in == -0x1)
-				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &f_in, 0x3, i);
+			if (ft_open_3(mini, mini->files[i + 1], &f_in, &i))
+				return (0x1);
 		}
 	}
 	if (f_out != 0x1)
@@ -43,16 +39,6 @@ int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 	if (f_in != 0x0)
 		mini->fd_in = f_in;
 	return (0);
-}
-
-char	*hidden_name(void)
-{
-	static int	i;
-	char		*s1;
-
-	s1 = ft_strjoin_executor("/tmp/tmp_file_", ft_itoa(i));
-	i++;
-	return (s1);
 }
 
 int	expanded_content(char *s)

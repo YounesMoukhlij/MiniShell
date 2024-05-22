@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 15:26:47 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:16:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	is_cmd(t_minishell *mini, t_env *envir)
 
 int	check_err(char *s)
 {
-	if ((s[0] == '.' && s[1] == '/') || s[ft_strlen(s) - 1] == '/' || s[0] == '/')
+	if ((s[0] == '.' && s[1] == '/')
+		|| s[ft_strlen(s) - 1] == '/' || s[0] == '/')
 		return (0x1);
 	return (0x0);
 }

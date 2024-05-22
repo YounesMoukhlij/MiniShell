@@ -6,20 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 14:57:04 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:23:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	ft_isalpha_1(int c)
-{
-	if ((c >= 65 && c <= 90) || c == '_')
-		return (1);
-	else if ((c >= 97 && c <= 122) || c == '_')
-		return (1);
-	return (0);
-}
 
 int	b_g_1(char *s, int *i, int *c)
 {

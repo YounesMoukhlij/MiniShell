@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 15:45:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:12:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	exit_1(char *s)
+void	help_ex_1(char *s)
 {
 	if (is_digit(s) && ft_strlen(s) >= 19)
 	{
@@ -20,6 +20,11 @@ void	exit_1(char *s)
 		ex_st_f(255, 0x1);
 		exit(255);
 	}
+}
+
+void	exit_1(char *s)
+{
+	help_ex_1(s);
 	if (is_digit(s) || ft_atoi(s))
 	{
 		if (ft_atoi(s) > 0x0 && ft_atoi(s) < 255)

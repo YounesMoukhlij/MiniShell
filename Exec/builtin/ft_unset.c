@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 17:09:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:14:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	unset_node(char *s, t_env *envir)
 	{
 		if (!strcmp_f(s, t->key, 0x0, 0x0) && t->flag == -0x1)
 			t->flag = 0x5;
-		else if (!strcmp_f(t->key, s, 0x0, 0x0) && t->flag != -0x1 && t->flag != 5)
+		else if (!strcmp_f(t->key, s, 0x0, 0x0)
+			&& t->flag != -0x1 && t->flag != 5)
 		{
 			pre->next = t->next;
 			pre = t->next;
@@ -51,31 +52,6 @@ void	unset_error(t_minishell *m, int option, char *s, char *o)
 	ex_st_f(0x1, 0x1);
 	if (m->size > 1)
 		exit(0x1);
-}
-
-int	check_unset(char *s)
-{
-	int		i;
-	char	*t;
-
-	i = 0x0;
-	t = ft_substr_executor(s, 0x0, is_eq_exist(s));
-	while (t[i])
-	{
-		if (!ft_isalpha(t[0]))
-			return (0x1);
-		if (!ft_isalnum(t[i]) && t[i] != '_')
-			return (0x1);
-		i++;
-	}
-	return (0x0);
-}
-
-int	err_unset(t_minishell *m, char *s)
-{
-	if (check_unset(s))
-		return (unset_error(m, 0, s, 0x0), 0x0);
-	return (0x1);
 }
 
 int	ft_unset(t_minishell *mini, t_env *envir)

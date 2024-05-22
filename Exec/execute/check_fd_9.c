@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:44:59 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:32:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:23:36 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,14 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 		free (tmp.s);
 	}
 	return (ft_helper_heredoc(mini, tmp.hdd_f));
+}
+
+char	*hidden_name(void)
+{
+	static int	i;
+	char		*s1;
+
+	s1 = ft_strjoin_executor("/tmp/tmp_file_", ft_itoa(i));
+	i++;
+	return (s1);
 }

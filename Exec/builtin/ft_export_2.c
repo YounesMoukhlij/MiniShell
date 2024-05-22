@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 17:17:52 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:12:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ char	*special_case(char *s, t_env *envir)
 		{
 			str = ft_substr_executor_1(s, 0x0, i);
 			res = ft_strjoin_executor_1(grep_from_env_1(envir, str), &s[i + 2]);
-			// while(1);
 			unset_node(str, envir);
 			free (str);
 			break ;

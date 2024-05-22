@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:32:30 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 17:31:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:14:33 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,19 @@ char	*grep_from_env_1(t_env *envir, char *string)
 
 char	*allocate_max_1(t_env *envir)
 {
-	// t_env	*head;
-	// int		max;
+	t_env	*head;
+	int		max;
 	char	*r;
 
-	(void) envir;
-	// head = envir;
-	// max = ft_strlen(head->value);
-	// while (head)
-	// {
-	// 	if (max < ft_strlen(head->value))
-	// 		max = ft_strlen(head->value);
-	// 	head = head->next;
-	// }
-	r = ft_calloc_1(300 * 30, 1);
+	head = envir;
+	max = ft_strlen(head->value);
+	while (head)
+	{
+		if (max < ft_strlen(head->value))
+			max = ft_strlen(head->value);
+		head = head->next;
+	}
+	r = ft_calloc_1(max * 30, 1);
 	return (r);
 }
 
