@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 19:11:59 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:12:30 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_func(t_env *env, char *s, int i, int j)
 	t_env	*tmp_1;
 	char	*t;
 
-	printf("-->[%s]\n", s);
+	// printf("-->[%s]\n", s);
 	t = ft_malloc(ft_strlen(s) + 3, 0x1);
 	t[0] = SGL;
 	t[ft_strlen(s) + 1] = SGL;
@@ -31,7 +31,7 @@ void	print_func(t_env *env, char *s, int i, int j)
 	{
 		if (tmp->flag == 1)
 		{
-			puts("eee");
+			// puts("eee");
 			ft_putstr_fd_executor(t, 0x1, 0x0);
 		}
 	}
