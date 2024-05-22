@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/21 22:26:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:51:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	cd_1(t_env *envir)
 	tmp = env_node(&envir, "HOME");
 	if (tmp)
 	{
-		change_dir(envir, 0x1);
+		change_dir(envir, 0x1, 0x0);
 		i = chdir(tmp->value);
 		if (i == -1)
 			return (ft_put_err(tmp->value, "No such file or directory"), 0x0);
-		change_dir(envir, 0x0);
+		change_dir(envir, 0x0, 0x0);
 	}
 	else
 		return (ft_put_err(NULL, "HOME not set"), 0x0);
@@ -83,7 +83,7 @@ int	cd_3(t_minishell *mini, t_env *envir)
 	i = 0x0;
 	r = 0x0;
 	str = ft_strdup("/Users/youmoukh/");
-	change_dir(envir, 0x1);
+	change_dir(envir, 0x1, 0x0);
 	if (mini->cmd[0x1][0x0] == '~')
 		r = ft_strjoin_executor(str, &mini->cmd[0x1][0x2]);
 	else
@@ -91,7 +91,7 @@ int	cd_3(t_minishell *mini, t_env *envir)
 	i = chdir(r);
 	if (i == -1)
 		return (ft_put_err(r, " : No such file or directory"), 0x0);
-	change_dir(envir, 0x0);
+	change_dir(envir, 0x0, 0x0);
 	return (0x1);
 }
 

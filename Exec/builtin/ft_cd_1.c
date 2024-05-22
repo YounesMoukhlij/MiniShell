@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:07:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/21 22:22:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:51:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,30 +67,29 @@ t_env	*env_node(t_env **envi, char *keyy)
 	return (NULL);
 }
 
-void	change_dir(t_env *envi, int flag)
+void	change_dir(t_env *envi, int flag, char	*buff)
 {
-	t_env	*tmp;
-	t_env	*tmp_1;
+	t_env	*t;
+	t_env	*t_1;
 	char	*new_pwd;
-	char	*buff;
 
-	buff = NULL;
 	new_pwd = NULL;
 	if (flag == 0x1)
 	{
-		tmp = env_node(&envi, "PWD");
-		tmp_1 = env_node(&envi, "OLDPWD");
-		if (tmp_1)
-			(1) && (free (tmp_1->value), tmp_1->value = ft_strdup_1(tmp->value));
+		t = env_node(&envi, "PWD");
+		t_1 = env_node(&envi, "OLDPWD");
+		if (t_1)
+			(1) && (free (t_1->value),
+				t_1->value = ft_strdup_1(t->value));
 	}
 	else
 	{
 		new_pwd = getcwd(buff, sizeof(new_pwd));
 		if (new_pwd)
 		{
-			tmp = env_node(&envi, "PWD");
-			if (tmp)
-				(1) && (free (tmp->value), tmp->value = ft_strdup_1(new_pwd));
+			t = env_node(&envi, "PWD");
+			if (t)
+				(1) && (free (t->value), t->value = ft_strdup_1(new_pwd));
 		}
 	}
 	free (new_pwd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ynassibi <ynassibi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/21 14:50:03 by ynassibi         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:47:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int	main(int ac, char **av, char **env)
 			free(promt);
 			continue ;
 		}
-		mini = parcing(str_caller(promt));
+		mini = parcing(promt);
 		// t_minishell *i = mini;
 		// while (i)
 		// {

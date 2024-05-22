@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/21 22:25:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:50:50 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,13 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
-
-t_minishell	*last_cmd(t_minishell *lst);
-void	add_size(t_minishell *m, int full_size);
-void	add_back(t_minishell **head, t_minishell *node);
-char	*str_caller(char *str);
-int	get_des(char c, int fg);
-char	*hudler_ts(char *s1, char *word, int *id, int fg);
-int	red_check(char *str, int i, int t);
+t_minishell				*last_cmd(t_minishell *lst);
+void					add_size(t_minishell *m, int full_size);
+void					add_back(t_minishell **head, t_minishell *node);
+char					*str_caller(char *str);
+int						get_des(char c, int fg);
+char					*hudler_ts(char *s1, char *word, int *id, int fg);
+int						red_check(char *str, int i, int t);
 char					*getstr_fpromt(char *str, char *ns);
 int						ft_check_q(char *str);
 int						check_files_1(t_minishell *m, t_env *env, int i);
@@ -192,7 +191,7 @@ int						get_double_arr_len(char **s);
 void					close_fd(t_minishell *mini, int *fd, int flag, int pos);
 void					sig_n(int sig_v);
 char					*allocate_max_1(t_env *envir);
-void	tkdis(char *str,int *i, int *len);
+void					tkdis(char *str,int *i, int *len);
 char					*ft_exit_status(char *s, t_env *envir, int i, int j);
 int						check_single(char *s);
 char					*do_single(char *s, int i, int j);
@@ -246,7 +245,7 @@ int						lst_size(t_minishell **head);
 void					export_error(t_minishell *m, int option, char *s,
 							char *o);
 int						check_cmd(char *s);
-void					change_dir(t_env *envi, int flag);
+void					change_dir(t_env *envi, int flag, char *buff);
 int						error_case(t_minishell *mini, char *s);
 void					print_error(char *s, int i);
 int						is_negative(char *s);
