@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 12:48:53 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:32:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,22 @@ char	*special_case(char *s, t_env *envir)
 {
 	int		i;
 	char	*str;
-	char	*you;
+	char	*res;
 
 	i = 0x0;
-	you = 0x0;
+	res = 0x0;
 	while (s[i])
 	{
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
 			str = ft_substr_executor_1(s, 0x0, i);
-			you = ft_strjoin_executor_1(grep_from_env_1(envir, str), &s[i + 2]);
+			res = ft_strjoin_executor_1(grep_from_env_1(envir, str), &s[i + 2]);
+			// while(1);
 			unset_node(str, envir);
+			free (str);
 			break ;
 		}
 		i++;
 	}
-	return (you);
+	return (res);
 }

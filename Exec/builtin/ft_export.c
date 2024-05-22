@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 17:23:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:03:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,34 @@ int	c_d(t_env *env, char *s)
 
 t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 {
-	char	**p;
+	char	*p;
+	char	*s;
 	t_env	*lst;
 
 	lst = 0x0;
+	(void) env;
 	if (check_special_case(m->cmd[i]))
+	{
+		puts("1");
 		lst = lstnew_executor(ft_key(m->cmd[i]),
 				special_case(m->cmd[i], env), 0);
+	}
 	else if (no_equal(m->cmd[i]))
-		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), NULL, 0);
+		{puts("2");
+		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), NULL, 0);}
 	else if (if_equal(m->cmd[i]))
 	{
-		p = ft_split_export(m->cmd[i]);
-		check_export(m, p[0x0]);
-		if (p[0x1][0] == SGL && p[0x1][ft_strlen(p[0x1]) - 1] == SGL)
+		puts("3");
+		s = ft_substr_executor_1(m->cmd[i], 0, is_eq_exist(m->cmd[i]));
+		p = ft_substr_executor_1(m->cmd[i], is_eq_exist(m->cmd[i]) + 1, ft_strlen(m->cmd[i]));
+		check_export(m, s);
+		if (p[0] == SGL && p[ft_strlen(p) - 1] == SGL)
 			flag = 1;
-		lst = lstnew_executor(p[0x0], p[0x1], flag);
+		lst = lstnew_executor(s, p, flag);
 	}
 	else if (no_value(m->cmd[i]))
-		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), ft_strdup_1(""), 0);
+		{puts("4");
+		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), ft_strdup_1(""), 0);}
 	return (lst);
 }
 
@@ -84,15 +93,15 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 	{
 		while (mini->cmd[i])
 		{
-			if (err_export(mini->cmd[i]))
-			{
-				if (is_exist(mini->cmd[i], env, 0, 0) && c_d(env, mini->cmd[i]))
+			// if (err_export(mini->cmd[i]))
+			// {
+				// if (is_exist(mini->cmd[i], env, 0, 0) && c_d(env, mini->cmd[i]))
 					add_back_executor(head, huge_export(mini, flag, env, i));
-			}
+			// }
 			i++;
 		}
 	}
-	error_onapaghat(mini);
+	// error_onapaghat(mini);
 	if (mini->size > 1)
 		exit(0x0);
 	return (-0x1);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:07:44 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 19:16:32 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/21 22:22:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	change_dir(t_env *envi, int flag)
 		tmp = env_node(&envi, "PWD");
 		tmp_1 = env_node(&envi, "OLDPWD");
 		if (tmp_1)
-			tmp_1->value = ft_strdup_1(tmp->value);
+			(1) && (free (tmp_1->value), tmp_1->value = ft_strdup_1(tmp->value));
 	}
 	else
 	{
@@ -90,7 +90,7 @@ void	change_dir(t_env *envi, int flag)
 		{
 			tmp = env_node(&envi, "PWD");
 			if (tmp)
-				tmp->value = ft_strdup_1(new_pwd);
+				(1) && (free (tmp->value), tmp->value = ft_strdup_1(new_pwd));
 		}
 	}
 	free (new_pwd);

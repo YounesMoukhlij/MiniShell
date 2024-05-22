@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 12:49:34 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:01:52 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,13 @@ char	*test(char *s, int start, int len)
 char	*ft_key(char *s)
 {
 	int		i;
-	char	*str;
 
 	i = 0x0;
 	while (s[i])
 	{
 		if (s[i] == '+' || s[i] == '=')
 		{
-			str = test(s, 0x0, i);
-			return (str);
+			return (ft_substr_executor_1(s, 0x0, i));
 		}
 		i++;
 	}
