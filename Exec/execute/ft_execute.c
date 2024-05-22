@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 18:11:20 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:08:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 
 	check_env(mini, envir);
 	if (!envir || !(mini)->cmd || !(mini)->cmd[0])
+	{
+		check_fd(mini, envir);
 		return ;
+	}
 	if (!setup_pipes(t_pipe))
 		return ;
 	signal(SIGQUIT, signal_handler_child);
 	mini->pid_fork = fork();
 	if (!mini->pid_fork)
-	{
 		h_cp(mini, envir, t_pipe, f);
-	}
 	else
-	{
 		h_pp(mini, t_pipe, f, old_stdin);
-	}
 }
 
 void	handle_fd(t_minishell *mini)

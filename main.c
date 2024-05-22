@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/22 13:03:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:06:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ int	main(int ac, char **av, char **env)
 		// t_minishell *i = mini;
 		// while (i)
 		// {
-		// 	printf("1\n");
-		// 	printf("%s\n", i->cmd[1]);
+		// 	// printf("1\n");
+		// 	printf("%s\n", i->files[0]);
 		// 	i = i->next;
 		// }
 		tcgetattr(STDOUT_FILENO, &old);

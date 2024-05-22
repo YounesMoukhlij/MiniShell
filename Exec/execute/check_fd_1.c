@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:02:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:09:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_open_others(t_minishell *mini)
 	fd_in = 0x0;
 	while (++i < mini->len_tab)
 	{
-		printf("files ---> [%s]\n", mini->files[i + 1]);
 		if (mini->tab[i] == 0x1)
 		{
 			fd_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0664);
