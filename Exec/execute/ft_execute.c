@@ -6,11 +6,34 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 16:27:51 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:28:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void    msg_error_fork(void)
+{
+    static int    error_printed;
+
+    if (!error_printed)
+    {
+        perror("fork");
+        error_printed++;
+    }
+    else
+        return ;
+}
+
+int    safe_fork(void)
+{
+    int    id;
+
+    id = fork();
+    if (id == -1)
+        msg_error_fork();
+    return (id);
+}
 
 int	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {

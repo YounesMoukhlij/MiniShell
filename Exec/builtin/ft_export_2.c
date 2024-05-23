@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:12:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 21:45:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	is_exist(char *s, t_env *envir, int i, int flag)
 	char	*r;
 
 	head = envir;
+	if (!s)
+		return (0x0);
 	while (s[i] && s[i] != '=')
 		i++;
 	if (s[i] == '=' && s[i - 1] == '+')
@@ -71,7 +73,8 @@ int	is_exist(char *s, t_env *envir, int i, int flag)
 		{
 			if (head->value)
 			{
-				head->value = &s[++i];
+				free (head->value);
+				head->value = ft_strdup_1(ft_substr_executor_1(s, ++i, ft_strlen(s)));
 				return (0x0);
 			}
 		}
@@ -88,12 +91,16 @@ char	*special_case(char *s, t_env *envir)
 
 	i = 0x0;
 	res = 0x0;
+	if (!s)
+		return (0x0);
 	while (s[i])
 	{
 		if (s[i] == '+' && s[i + 1] == '=')
 		{
 			str = ft_substr_executor_1(s, 0x0, i);
-			res = ft_strjoin_executor_1(grep_from_env_1(envir, str), &s[i + 2]);
+			res = ft_strjoin_executor_1(grep_from_env_1(envir, str), ft_strdup_1(&s[i + 2]));
+			// if (!res)
+			// 	return (NULL);
 			unset_node(str, envir);
 			free (str);
 			break ;

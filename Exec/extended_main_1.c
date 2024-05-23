@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:53:23 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 14:41:54 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:29:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	heredock(t_minishell *mini, t_env *env, int i)
 	int			fd;
 
 	tmp = mini;
+	fd = -0x1;
 	while (tmp)
 	{
 		i = -0x1;
@@ -43,8 +44,9 @@ int	heredock(t_minishell *mini, t_env *env, int i)
 				fd = heredoc_check(tmp, env, tmp->files[i + 0x1], 0x0);
 				if (fd == -0x1)
 					return (0x1);
-				close_fd (mini, &fd, 0x4, i);
 			}
+			if (cmd_length(mini) != 0)
+				close_fd(mini, &fd, 0x4, i);
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 16:27:44 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:33:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ERR_3 "\033[31m$>\033[0m: syntax error near unexpected token `newline'"
 # define ERR_4 "\033[31m$>\033[0m: syntax error near unexpected token `? '"
 
-int						g_sig;
+int							g_sig;
 
 typedef struct s_delete
 {
@@ -114,6 +114,7 @@ typedef struct s_tmp
 typedef struct s_minishell
 {
 	int					check_err;
+	int					*t_tab;
 	int					parsing_err;
 	int					pid_fork;
 	char				**cmd;

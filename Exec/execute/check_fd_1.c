@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 15:22:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:30:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int	expanded_content(char *s)
 
 int	ft_helper_heredoc(t_minishell *m, char *s)
 {
-	if (cmd_length(m) == 0x0)
-		return (0x0);
+	if (ft_strlen(m->cmd[0]) == 0)
+	{
+		close (m->fd_in);
+		return (0x0);	
+	}
 	close(m->fd_in);
 	m->fd_in = open(s, O_RDWR | O_APPEND, 0777);
 	if (m->fd_in == -0x1)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:54:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 15:21:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:28:18 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,4 @@ void	sig_func(void)
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	rl_catch_signals = 0;
-}
-
-t_minishell	*last_node(t_minishell *lst)
-{
-	t_minishell	*tmp;
-
-	if (!lst)
-		return (NULL);
-	tmp = lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
 }

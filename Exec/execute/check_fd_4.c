@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 14:58:37 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:51:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ int	close_fd(t_minishell *mini, int *fd, int flag, int pos)
 			if (mini->tab[pos] == flag
 				|| mini->tab[pos] == 0x1
 				|| mini->tab[pos] == 0x2)
-				return (close (*fd));
-		}
-		else if (flag == 0x4)
-		{
-			if (mini->tab[pos] == flag)
 				return (close (*fd));
 		}
 		else if (mini->tab[pos] == flag)

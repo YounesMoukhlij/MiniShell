@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/23 16:24:46 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:25:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ch_1(char *promt)
 {
-	if (!promt || !isatty(0))
+	// if (!promt || !isatty(0))
+	if (!promt)
 	{
 		ft_malloc(0x0, 0x0);
 		free(promt);
