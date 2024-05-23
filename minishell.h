@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 14:33:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:27:44 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ char					*ft_substr_executor_1(char *s, int start, int len);
 char					*ft_strjoin_executor_1(char *s1, char *s2);
 int						ft_strlen(char *str);
 char					*ft_calloc_1(int num, int size);
-// void					get_fd_back(t_fd fd);
 void					signal_handler_child(int sig);
 char					*ft_strdup_1(char *s1);
 int						is_correct(char *s);
@@ -207,7 +206,7 @@ int						ft_isalnum_1(int c);
 void					ft_put_err(char *input, char *message);
 void					print_func(t_env *env, char *s, int i, int j);
 int						get_double_arr_len(char **s);
-void					close_fd(t_minishell *mini, int *fd, int flag, int pos);
+int						close_fd(t_minishell *mini, int *fd, int flag, int pos);
 void					sig_n(int sig_v);
 char					*allocate_max_1(t_env *envir);
 void					tkdis(char *str, int *i, int *len);
@@ -388,7 +387,8 @@ char					*grep_from_env(t_env *envir, char *string);
 char					*ft_strjoin_executor(char *s1, char *s2);
 void					full_fill_path(t_minishell *mini, t_env *envir);
 char					*add_t(char *p, char *o, t_env *e);
-void					ft_execute(t_minishell **head, t_env *envir, int flag);
+void					ft_execute(t_minishell **head, t_env *envir,
+							int flag, int f);
 void					add_back_executor(t_env **head, t_env *node);
 void					add_front_executor(t_env **head, t_env *node);
 t_env					*last_node_executor(t_env *lst);

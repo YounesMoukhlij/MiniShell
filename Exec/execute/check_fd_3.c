@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:36:24 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 17:43:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:14:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,6 @@ void	r_s_q_f(t_minishell *mini, char *str, int index)
 	mini->files[index] = s;
 }
 
-char	*f_w_q(char *s, int flag, int i, int j)
-{
-	char	*res;
-
-	if (!s)
-		return (ft_strdup(""));
-	res = ft_calloc(strlen(s) + 0x1, 0x1);
-	if (!res)
-		return (NULL);
-	if (s[i] == DBL && s[ft_strlen(s) - 1] == DBL)
-		flag = 0x1;
-	while (s[i])
-	{
-		if (s[i] == DBL && s[i] && flag == 0x1)
-			i++;
-		if (s[i] == SGL && flag == 0x0)
-			i++;
-		if (!s[i])
-			break ;
-		res[j] = s[i];
-		i++;
-		j++;
-	}
-	return (res);
-}
-
 int	expand_files(t_minishell **mini, t_env *envir, int i)
 {
 	t_env	*tmp;
@@ -105,7 +79,7 @@ int	expand_files(t_minishell **mini, t_env *envir, int i)
 		}
 		else
 		{
-			(*mini)->files[i] = f_w_q((*mini)->files[i], 0x0, 0x0, 0x0);
+			(*mini)->files[i] = no_qts((*mini)->files[i], 0x0, 0x0, 0x0);
 			r_s_q_f((*mini), (*mini)->files[i + 0x1], i + 0x1);
 		}
 		i++;

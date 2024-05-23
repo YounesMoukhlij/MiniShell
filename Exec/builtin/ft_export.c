@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:03:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:00:48 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int	c_d(t_env *env, char *s)
 	tmp = env_node(&env, r);
 	if (tmp)
 	{
-		free (tmp->value);
-		tmp->value = ft_strdup_1(&s[++len]);
+		if (tmp->value)
+		{
+			free (tmp->value);
+			tmp->value = ft_strdup_1(&s[++len]);
+		}
 		return (0x0);
 	}
 	return (0x1);

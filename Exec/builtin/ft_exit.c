@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:12:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:18:21 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,10 @@ void	exit_2(char *s, char *r)
 int	ft_exit(t_minishell *mini)
 {
 	if (mini->size == 1)
-		puts("exit");
+		ft_putstr_fd_executor("exit", 0x1, 0x1);
 	if (cmd_length(mini) == 1)
 	{
-		ex_st_f(0x0, 0x1);
-		exit(0x0);
+		exit(ex_st_f(0x0, 0x0));
 	}
 	else if (cmd_length(mini) == 0x2)
 		exit_1(mini->cmd[0x1]);

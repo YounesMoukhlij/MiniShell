@@ -6,13 +6,13 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:53:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:27:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
+int	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 {
 	int	t_pipe[2];
 
@@ -20,16 +20,17 @@ void	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	if (!envir || !(mini)->cmd || !(mini)->cmd[0])
 	{
 		check_fd(mini, envir);
-		return ;
+		return (0);
 	}
 	if (!setup_pipes(t_pipe))
-		return ;
+		return (0);
 	signal(SIGQUIT, signal_handler_child);
 	mini->pid_fork = fork();
 	if (!mini->pid_fork)
 		h_cp(mini, envir, t_pipe, f);
 	else
 		h_pp(mini, t_pipe, f, old_stdin);
+	return (1);
 }
 
 void	handle_fd(t_minishell *mini)
@@ -73,7 +74,7 @@ int	return_cmd(int f)
 	return (0x0);
 }
 
-void	ft_execute(t_minishell **head, t_env *envir, int flag)
+void	ft_execute(t_minishell **head, t_env *envir, int flag, int f)
 {
 	t_minishell	*tmp;
 	int			old_stdin;
@@ -92,11 +93,12 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag)
 	}
 	while (tmp->next)
 	{
-		big_execution(tmp, envir, 0x1, old_stdin);
+		f = big_execution(tmp, envir, 0x1, old_stdin);
 		tmp = tmp->next;
 	}
 	if (tmp)
-		big_execution(tmp, envir, 0x0, old_stdin);
-	status(&return_exve);
+		f = big_execution(tmp, envir, 0x0, old_stdin);
+	if (f == 0x1)
+		status(&return_exve);
 	close(old_stdin);
 }

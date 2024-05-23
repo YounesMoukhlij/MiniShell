@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 14:38:18 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:58:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	func_err(char *s)
 	return (ft_put_err(s, ": No such file or directory"));
 }
 
-void	close_fd(t_minishell *mini, int *fd, int flag, int pos)
+int	close_fd(t_minishell *mini, int *fd, int flag, int pos)
 {
 	while (++pos < mini->len_tab)
 	{
@@ -60,24 +60,15 @@ void	close_fd(t_minishell *mini, int *fd, int flag, int pos)
 			if (mini->tab[pos] == flag
 				|| mini->tab[pos] == 0x1
 				|| mini->tab[pos] == 0x2)
-			{
-				close (*fd);
-				return ;
-			}
+				return (close (*fd));
 		}
 		else if (flag == 0x4)
 		{
 			if (mini->tab[pos] == flag)
-			{
-				close (*fd);
-				return ;
-			}
+				return (close (*fd));
 		}
 		else if (mini->tab[pos] == flag)
-		{
-			close (*fd);
-			return ;
-		}
+			return (close (*fd));
 	}
-	return ;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:54:02 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 14:33:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:21:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,6 @@ int	is_empty(char *s)
 		i++;
 	}
 	return (0x1);
-}
-
-char	*display_prompt_msg(void)
-{
-	char	*cwd;
-	char	*str;
-	char	buff[4096 + 1];
-
-	str = 0x0;
-	cwd = getcwd(buff, 4096);
-	if (cwd)
-		str = ft_strjoin_executor(cwd, " \033[32m$>\033[0m ");
-	return (str);
 }
 
 void	sig_func(void)

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/23 14:30:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:24:46 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ch_1(char *promt)
 {
-	// if (!promt || isatty(0))
-	if (!promt)
+	if (!promt || !isatty(0))
 	{
 		ft_malloc(0x0, 0x0);
 		free(promt);
@@ -41,7 +40,7 @@ int	start_execution(t_minishell *mini, t_env *envir, char *promt)
 	if (mini)
 	{
 		g_sig = 1;
-		ft_execute(&mini, envir, 0x0);
+		ft_execute(&mini, envir, 0x0, 0x0);
 		g_sig = 0x0;
 	}
 	else
@@ -56,13 +55,11 @@ void	start_mini(t_minishell *mini, t_env *envir, char *promt)
 {
 	t_fd			fd;
 	struct termios	old;
-	char			*tmp;
 
 	while (1999)
 	{
 		sig_func();
-		tmp = display_prompt_msg();
-		promt = readline(tmp);
+		promt = readline("Minishell \033[32m$>\033[0m ");
 		if (ch_1(promt))
 			break ;
 		if (ch_2(promt))
