@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:52:15 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 13:57:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:50:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_close_fd(t_minishell *m)
 	while (tmp)
 	{
 		if (tmp->fd_in != 0)
-			close(tmp->fd_in);
+		{
+			if (close(tmp->fd_in) == -1)
+				return ;
+		}
 		if (tmp->fd_out != 1)
 			close(tmp->fd_out);
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/23 14:06:12 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/23 14:53:24 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,6 @@ SRC = main.c \
 	  Parser/help_func/minishell_functions.c \
 	  Parser/help_func/ft_split_executor.c \
 	  Parser/help_func/ft_strjoin_executor.c \
-	  Exec/builtin/print_export_1.c \
 	  Parser/help_func/ft_calloc_executor.c \
 	  Parser/help_func/ft_isalnum.c \
 	  Parser/help_func/ft_strdup.c \
@@ -104,7 +103,7 @@ SRC = main.c \
 	  Exec/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror -g #-fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
