@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:44:59 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:23:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:27:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	t_herdoc	tmp;
 
 	tmp.hdd_f = hidden_name();
-	mini->fd_in = open(tmp.hdd_f, O_CREAT | O_RDWR | O_APPEND, 0777);
+	mini->fd_in = open(tmp.hdd_f, O_CREAT | O_RDWR | O_APPEND | O_TRUNC, 0777);
 	if (mini->fd_in == -0x1)
 		return (-0x1);
 	(1) && (help_1(&delim, &flag), signal(SIGINT, sig_n));
@@ -53,7 +53,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	{
 		tmp.s = readline("heredoc> ");
 		if (!ttyname(0))
-			return (open(ttyname(2), O_RDWR), -0x1);
+			return (open(ttyname(2), O_RDWR), close (mini->fd_in), -0x1);
 		if (heredoc_1(tmp.s, delim))
 			break ;
 		if (flag == 0x0 && no_dollar(tmp.s))

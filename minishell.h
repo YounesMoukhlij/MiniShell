@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 19:07:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:33:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define DBL '\"'
 # define NO 0
 # define YES 1
+# define ERR_0 "\033[31m$>\033[0m: syntax error near unexpected token `|'"
+# define ERR_1 "\033[31m$>\033[0m: syntax error near unexpected token `>'"
+# define ERR_2 "\033[31m$>\033[0m: syntax error near unexpected token `<'"
+# define ERR_3 "\033[31m$>\033[0m: syntax error near unexpected token `newline'"
+# define ERR_4 "\033[31m$>\033[0m: syntax error near unexpected token `? '"
 
 int						g_sig;
 
@@ -128,6 +133,16 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+int						heredock(t_minishell *mini, t_env *env, int i);
+int						syntax(char *promt);
+void					ft_puterror(int p);
+char					*display_prompt_msg(void);
+void					get_fd_back(t_fd fd);
+int						check_promt(char *promt);
+void					ft_close_fd(t_minishell *m);
+void					clean_1(char *s);
+void					ft_end(t_minishell *m, char *s, t_fd fd);
+void					clean_2(char *s, t_minishell *mini);
 int						ft_open_3(t_minishell *m, char *s, int *f_in, int *i);
 t_minishell				*last_cmd(t_minishell *lst);
 int						ft_open_2(t_minishell *m, char *s, int *f_out, int *i);

@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/22 18:46:50 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/23 14:06:12 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,9 @@ SRC = main.c \
 	  Exec/env/env_functions.c \
 	  Exec/env/env_functions_1.c \
 	  Exec/builtin/ft_exit_1.c \
+	  Exec/extended_main.c \
+	  Exec/extended_main_1.c \
+	  Exec/extended_main_2.c \
 	  Exec/execute/ft_execute.c \
 	  Exec/execute/ft_execute_1.c \
 	  Exec/execute/ft_execute_2.c \
@@ -101,7 +104,7 @@ SRC = main.c \
 	  Exec/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror #-g -fsanitize=address
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include
