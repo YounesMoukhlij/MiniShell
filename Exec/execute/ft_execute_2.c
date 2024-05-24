@@ -67,7 +67,7 @@ int	exve_err(char *s)
 	if (stat(s, &buf) == 0 && strcmp_f(s, "..", 0x0, 0x0))
 	{
 		if (!strcmp_f(s, ".", 0x0, 0x0))
-			return (0x2);
+			return (ft_put_err(".", "not enough arguments"), 0x2);
 		if ((buf.st_mode & S_IFDIR) && check_err(s))
 			return (ft_put_err(s, ": is a directory"), 126);
 		else if ((buf.st_mode & S_IXUSR) == 0)

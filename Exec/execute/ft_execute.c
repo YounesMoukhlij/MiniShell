@@ -12,27 +12,28 @@
 
 #include "../../minishell.h"
 
-void    msg_error_fork(void)
+void	msg_error_fork(void)
 {
-    static int    error_printed;
+	static int	error_printed;
 
-    if (!error_printed)
-    {
-        perror("fork");
-        error_printed++;
-    }
-    else
-        return ;
+	error_printed = 0;
+	if (!error_printed)
+	{
+		perror("fork");
+		error_printed = 1;
+	}
+	else
+		return ;
 }
 
-int    safe_fork(void)
+int	safe_fork(void)
 {
-    int    id;
+	int	id;
 
-    id = fork();
-    if (id == -1)
-        msg_error_fork();
-    return (id);
+	id = fork();
+	if (id == -1)
+		msg_error_fork();
+	return (id);
 }
 
 int	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
@@ -48,8 +49,10 @@ int	big_execution(t_minishell *mini, t_env *envir, int f, int old_stdin)
 	if (!setup_pipes(t_pipe))
 		return (0);
 	signal(SIGQUIT, signal_handler_child);
-	mini->pid_fork = fork();
-	if (!mini->pid_fork)
+	mini->pid_fork = safe_fork();
+	if (mini->pid_fork == -0x1)
+		return (0);
+	if (mini->pid_fork == 0x0)
 		h_cp(mini, envir, t_pipe, f);
 	else
 		h_pp(mini, t_pipe, f, old_stdin);
@@ -61,23 +64,25 @@ void	handle_fd(t_minishell *mini)
 	if ((mini)->fd_out != 0x1)
 	{
 		if (dup2((mini)->fd_out, 0x1) == -1)
-			return (ft_put_err("dup2 ", "Cant Work\n"));
+			return (perror("dup2"));
 	}
 	if ((mini)->fd_in != 0x0)
 	{
 		if (dup2((mini)->fd_in, 0x0) == -1)
-			return (ft_put_err("dup2", "Cant Work\n"));
+			return (perror("dup2"));
 	}
 }
 
-void	status(int *return_exve)
+void	status(void)
 {
-	while (wait(return_exve) > 0)
+	int	return_exve;
+
+	while (wait(&return_exve) > 0)
 		;
-	if (WIFSIGNALED(*return_exve))
-		ex_st_f(WTERMSIG(*return_exve) + 128, 0x1);
+	if (WIFSIGNALED(return_exve))
+		ex_st_f(WTERMSIG(return_exve) + 128, 0x1);
 	else
-		ex_st_f(WEXITSTATUS(*return_exve), 0x1);
+		ex_st_f(WEXITSTATUS(return_exve), 0x1);
 	if (ex_st_f(0x0, 0x0) == 141)
 		ex_st_f(0x0, 0x1);
 }
@@ -101,10 +106,8 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag, int f)
 {
 	t_minishell	*tmp;
 	int			old_stdin;
-	int			return_exve;
 
-	tmp = *head;
-	old_stdin = dup(0);
+	(1) && (tmp = *head, old_stdin = dup(0));
 	if ((*head)->size == 0x1 && is_builtin(*head))
 	{
 		flag = is_builtin_cmd(*head, envir);
@@ -117,11 +120,13 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag, int f)
 	while (tmp->next)
 	{
 		f = big_execution(tmp, envir, 0x1, old_stdin);
+		if (f == 0x1)
+			break ;
 		tmp = tmp->next;
 	}
 	if (tmp)
 		f = big_execution(tmp, envir, 0x0, old_stdin);
 	if (f == 0x1)
-		status(&return_exve);
+		status();
 	close(old_stdin);
 }

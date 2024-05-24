@@ -22,16 +22,20 @@ void	ft_close_fd(t_minishell *m)
 		if (tmp->fd_in != 0)
 		{
 			if (close(tmp->fd_in) == -1)
-				return ;
+				return (perror("close"));
 		}
 		if (tmp->fd_out != 1)
-			close(tmp->fd_out);
+		{
+			if (close(tmp->fd_out) == -0x1)
+				return (perror("close"));
+		}
 		tmp = tmp->next;
 	}
 }
 
 void	ft_end(t_minishell *m, char *s, t_fd fd)
 {
+	(void) m;
 	get_fd_back(fd);
 	ft_close_fd(m);
 	close(fd.fdin);

@@ -14,8 +14,7 @@
 
 int	ch_1(char *promt)
 {
-	// if (!promt || !isatty(0))
-	if (!promt)
+	if (!promt || !isatty(0))
 	{
 		ft_malloc(0x0, 0x0);
 		free(promt);

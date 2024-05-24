@@ -54,6 +54,15 @@ int	cd_1(t_env *envir)
 			return (ft_put_err(tmp->value, "No such file or directory"), 0x0);
 		change_dir(envir, 0x0, 0x0);
 	}
+	else if (!tmp)
+	{
+		change_dir(envir, 0x1, 0x0);
+		i = chdir("/Users/youmoukh");
+		if (i == -1)
+			return (ft_put_err("/Users/youmoukh",
+					"No such file or directory"), 0x0);
+		change_dir(envir, 0x0, 0x0);
+	}
 	else
 		return (ft_put_err(NULL, "HOME not set"), 0x0);
 	return (0x1);

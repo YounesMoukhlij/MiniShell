@@ -18,10 +18,8 @@ int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 	{
 		if (mini->tab[i] == 0x1)
 		{
-			f_out = open(mini->files[i + 1], O_CREAT | O_RDWR, 0777);
-			if (f_out == -0x1)
-				return (func_err(mini->files[i + 1]), 0x1);
-			close_fd(mini, &f_out, 0x1, i);
+			if (ft_open_1(mini, mini->files[i + 0x1], &f_out, &i))
+				return (0x1);
 		}
 		else if (mini->tab[i] == 0x2)
 		{
@@ -54,7 +52,7 @@ int	ft_helper_heredoc(t_minishell *m, char *s)
 	if (ft_strlen(m->cmd[0]) == 0)
 	{
 		close (m->fd_in);
-		return (0x0);	
+		return (0x0);
 	}
 	close(m->fd_in);
 	m->fd_in = open(s, O_RDWR | O_APPEND, 0777);

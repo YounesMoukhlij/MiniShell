@@ -134,6 +134,7 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+int						ft_open_1(t_minishell *m, char *s, int *f_out, int *i);
 int						heredock(t_minishell *mini, t_env *env, int i);
 int						syntax(char *promt);
 void					ft_puterror(int p);
@@ -337,7 +338,7 @@ char					*ft_key(char *s);
 int						is_num(char *s);
 int						check_special_case(char *s);
 char					*special_case(char *s, t_env *envir);
-int						is_exist(char *s, t_env *envir, int i, int flag);
+int						is_exist(char *s, t_env *envir);
 int						is_exportable(t_minishell *m, char *s, t_env *envir);
 int						is_exportable_1(t_minishell *m, char *s, t_env *envir);
 void					ft_put_err(char *input, char *message);
