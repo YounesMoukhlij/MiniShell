@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:51:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 13:06:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:02:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,20 @@ void	handle_child_output(t_minishell *mini, int t_pipe[2])
 	if (mini->fd_out != 1)
 	{
 		if (dup2(mini->fd_out, 1) == -1)
+		{
+			close(mini->fd_out);
 			exit(1);
+		}
 		close(mini->fd_out);
 	}
 	else
 	{
 		close(t_pipe[0]);
 		if (dup2(t_pipe[1], 1) == -1)
+		{
+			close(t_pipe[1]);
 			exit(1);
+		}
 		close(t_pipe[1]);
 	}
 }
@@ -75,9 +81,15 @@ void	h_pp(t_minishell *mini, int t_pipe[2], int f, int old_stdin)
 {
 	close(t_pipe[1]);
 	if (mini->fd_in != 0)
-		dup2(t_pipe[0], mini->fd_in);
+	{
+		if (dup2(t_pipe[0], mini->fd_in) == -1)
+			return (perror("dup2"));
+	}
 	else
-		dup2(t_pipe[0], 0);
+	{
+		if (dup2(t_pipe[0], 0) == -1)
+			return (perror("dup2"));
+	}
 	close(t_pipe[0]);
 	if (f == 0)
 	{

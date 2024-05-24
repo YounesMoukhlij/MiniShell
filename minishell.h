@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 18:33:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:39:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 # define SGL '\''
 # define DBL '\"'
-# define NO 0
-# define YES 1
 # define ERR_0 "\033[31m$>\033[0m: syntax error near unexpected token `|'"
 # define ERR_1 "\033[31m$>\033[0m: syntax error near unexpected token `>'"
 # define ERR_2 "\033[31m$>\033[0m: syntax error near unexpected token `<'"
@@ -134,6 +132,8 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+int						return_cmd(int f);
+int						safe_fork(void);
 int						ft_open_1(t_minishell *m, char *s, int *f_out, int *i);
 int						heredock(t_minishell *mini, t_env *env, int i);
 int						syntax(char *promt);
@@ -141,7 +141,7 @@ void					ft_puterror(int p);
 char					*display_prompt_msg(void);
 void					get_fd_back(t_fd fd);
 int						check_promt(char *promt);
-void					ft_close_fd(t_minishell *m);
+void					ft_close_fd(t_minishell **head);
 void					clean_1(char *s);
 void					ft_end(t_minishell *m, char *s, t_fd fd);
 void					clean_2(char *s, t_minishell *mini);
@@ -372,6 +372,7 @@ int						ft_isalnum(int c);
 void					expander(t_minishell **mini, t_env *envir);
 char					*allocate_max(t_env *envir);
 char					*ft_calloc(int num, int size);
+int						big_built_in(t_minishell *mini, t_env *envir, int flag);
 char					*ft_substr_executor(char *s, int start, int len);
 char					*ft_strjoin_space_executor(char *s1, char *s2,
 							char sep);

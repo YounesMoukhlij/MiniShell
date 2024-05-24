@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 21:56:45 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:03:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 	lst = 0x0;
 	if (check_special_case(m->cmd[i]))
 		lst = lstnew_executor(ft_key(m->cmd[i]),
-			special_case(m->cmd[i], env), 0);
+				special_case(m->cmd[i], env), 0);
 	else if (no_equal(m->cmd[i]))
 		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), NULL, 0);
 	else if (if_equal(m->cmd[i]))
@@ -102,8 +102,8 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 				if (is_exist(mini->cmd[i], env))
 				{
 					if (c_d(env, mini->cmd[i]))
-						add_back_executor(head, huge_export(mini, flag, env,
-									i));
+						add_back_executor(head,
+							huge_export(mini, flag, env, i));
 				}
 			}
 			i++;

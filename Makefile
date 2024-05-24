@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/23 15:57:21 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/24 16:02:19 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRC = main.c \
 	  Exec/execute/ft_execute_3.c \
 	  Exec/execute/ft_execute_4.c \
 	  Exec/execute/ft_execute_5.c \
+	  Exec/execute/ft_execute_6.c \
 	  Exec/builtin/print_export.c \
 	  Exec/expand/expander_utils.c \
 	  Exec/expand/expander_utils_1.c \
@@ -103,7 +104,7 @@ SRC = main.c \
 	  Exec/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAG = -Wall -Wextra -Werror
 NAME = minishell
 READLINE_L = $(shell brew --prefix readline)/lib
 READLINE_I = $(shell brew --prefix readline)/include

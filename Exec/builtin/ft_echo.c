@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 19:12:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:38:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 
 	if (!check_n(s[1]))
 	{
-		res = s;
-		return (res);
+		return (s);
 	}
 	r = ft_split_executor(s[0x1], ' ');
 	l_n = get_double_arr_len(r);

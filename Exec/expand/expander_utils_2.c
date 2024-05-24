@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:07:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 18:23:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:34:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	b_g_2(char *p, char *res, char *s, int *i)
 
 void	b_g_3(char **res, t_env *envir, char *s, char **p)
 {
-	*res = grep_from_env(envir, grep_value(s));
+	*res = grep_from_env_1(envir, grep_value(s));
 	*p = add_t(*p, *res, envir);
 }
 
