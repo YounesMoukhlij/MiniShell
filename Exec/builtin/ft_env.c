@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 16:05:28 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:34:17 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,27 @@ void	print_helper(t_env *tmp)
 	ft_putstr_fd_executor(tmp->value, 0x1, 0x1);
 }
 
+int	check_me(t_env *env)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (strcmp_f(tmp->key, "LESS", 0x0, 0x0)
+			&& strcmp_f(tmp->key, "LOGNAME", 0x0, 0x0))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0x0);
+}
+
 int	print_env(t_env *env)
 {
 	t_env	*tmp;
 
 	tmp = env;
-	if (lst_size_executor(&tmp) < 6)
+	if (lst_size_executor(&env) < 6)
 	{
 		while (tmp)
 		{

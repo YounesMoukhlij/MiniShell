@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:28:05 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 15:04:03 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:57:02 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,22 @@ char	*extra(char *s)
 {
 	char	*r;
 
+	r = 0x0;
 	if (is_eq_exist(s))
-		r = ft_substr_executor(s, 0x0, is_eq_exist(s));
-	else
+	{
+		if (s[is_eq_exist(s) - 1] == '+')
+			r = ft_substr_executor(s, 0x0, is_eq_exist(s) - 1);
+		else
+			r = ft_substr_executor(s, 0x0, is_eq_exist(s));
+	}
+	else if (!is_eq_exist(s))
 		r = ft_substr_executor(s, 0x0, ft_strlen(s));
 	return (r);
 }
 
-int	is_exist(char *s, t_env *envir)
+int	is_exist(char *s, t_env *envir, char *r)
 {
 	t_env	*head;
-	char	*r;
 
 	head = envir;
 	if (is_eq_exist(s) == 0x1 && s[is_eq_exist(s) - 1] == '+')
@@ -67,7 +72,9 @@ int	is_exist(char *s, t_env *envir)
 		{
 			if (head->value)
 			{
-				if (!is_eq_exist(s))
+				if (is_eq_exist(s) == 0
+					|| (is_eq_exist(s) == 0
+						&& s[is_eq_exist(s) + 1] == '+'))
 					return (0x0);
 				free (head->value);
 				head->value = ft_substr_executor_1(s,
@@ -96,7 +103,7 @@ char	*special_case(char *s, t_env *envir)
 		{
 			str = ft_substr_executor_1(s, 0x0, i);
 			res = ft_strjoin_executor_1(grep_from_env_1(envir, str),
-					ft_strdup_1(&s[i + 2]));
+					ft_strdup(&s[i + 2]));
 			unset_node(str, envir);
 			free (str);
 			break ;

@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/24 16:02:19 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/05/24 17:15:13 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ CC = cc
 
 all : ${NAME}
 
-$(NAME): $(OBJ) minishell.h Makefile
+$(NAME): $(OBJ) minishell.h
 	@${CC} ${CFLAG} ${OBJ} -L ${READLINE_L} -o ${NAME} -lreadline
 	@echo "\033[31mLinking ...\033[0m"
 	@echo "\033[33m<.>DONE<.>\033[0m"

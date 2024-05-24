@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/24 16:01:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 21:42:54 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	start_mini(t_minishell *mini, t_env *envir, char *promt)
 		mini = parcing(str_caller(promt));
 		tcgetattr(STDOUT_FILENO, &old);
 		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
-		tcsetattr(STDOUT_FILENO, 0x0, &old);
 		if (start_execution(mini, envir, promt))
 		{
 			(1) && (close (fd.fdout), close (fd.fdin));
 			continue ;
 		}
+		tcsetattr(STDOUT_FILENO, 0x0, &old);
 		ft_end(mini, promt, fd);
 	}
 }
@@ -81,7 +81,8 @@ int	main(int ac, char **av, char **env)
 {
 	t_minishell	*mini;
 	t_env		*envir;
-
+	
+	
 	mini = 0x0;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);

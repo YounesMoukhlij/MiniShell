@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:00:26 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 15:53:42 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:04:31 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,15 @@ void	ft_execute(t_minishell **head, t_env *envir, int flag, int f)
 	while (tmp->next)
 	{
 		f = big_execution(tmp, envir, 0x1, old_stdin);
+		ft_close_fd(&tmp);
 		tmp = tmp->next;
 	}
 	if (tmp)
+	{
 		f = big_execution(tmp, envir, 0x0, old_stdin);
+		ft_close_fd(&tmp);
+	}
 	if (f == 0x1)
 		status(&return_exve);
 	close(old_stdin);
-	ft_close_fd(head);
 }
