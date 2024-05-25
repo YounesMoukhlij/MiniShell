@@ -69,6 +69,7 @@ void	start_mini(t_minishell *mini, t_env *envir, char *promt)
 		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
 		if (start_execution(mini, envir, promt))
 		{
+			free (promt);
 			(1) && (close (fd.fdout), close (fd.fdin));
 			continue ;
 		}
