@@ -41,6 +41,34 @@ char	*full(char *s)
 	return (s);
 }
 
+void	check_final(char *s, t_env *env, t_env *tmp)
+{
+	static int i = 0;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!strcmp_f(s, tmp->key, 0, 0))
+			i++;
+		tmp = tmp->next;
+	}
+	tmp = env;
+	if (i > 1)
+	{
+		while (tmp)
+		{
+			if (!strcmp_f(s, tmp->key, 0, 0))
+			{
+				if (!tmp->value)
+				{
+					unset_node(s, env);
+					break ;
+				}
+			}
+			tmp = tmp->next;
+		}
+	}
+}
 t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 {
 	char	*p;
@@ -68,6 +96,7 @@ t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 		lst = lstnew_executor(ft_strdup_1(m->cmd[i]), ft_strdup_1(""), 0);
 	return (lst);
 }
+
 
 int	error_onapaghat(t_minishell *mini)
 {
@@ -104,12 +133,13 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 					if (c_d(env, mini->cmd[i]))
 						add_back_executor(head,
 							huge_export(mini, flag, env, i));
+					check_final(ft_key(mini->cmd[i]), env, 0x0);
 				}
 			}
 			i++;
 		}
 	}
-	// error_onapaghat(mini);
+	error_onapaghat(mini);
 	if (mini->size > 1)
 		exit(0x0);
 	return (-0x1);
