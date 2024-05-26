@@ -12,6 +12,8 @@
 
 #include "../../minishell.h"
 
+
+
 void	print_func(t_env *env, char *s, int i, int j)
 {
 	t_env	*tmp;
