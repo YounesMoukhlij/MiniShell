@@ -33,7 +33,6 @@ int	big_check(t_minishell *mini)
 	int	a;
 
 	i = 1;
-	j = 1;
 	a = ft_check(mini);
 	if (a != -1)
 		i = a;
@@ -42,7 +41,7 @@ int	big_check(t_minishell *mini)
 	while (mini->cmd[i])
 	{
 		j = 1;
-		while (mini->cmd[i][j] || ft_strlen(mini->cmd[i]) == 1)
+		while (mini->cmd[i][j] && ft_strlen(mini->cmd[i]) > 1)
 		{
 			if (!(mini->cmd[i][0] == '-' && mini->cmd[i][j] == 'n'))
 				return (i);
@@ -53,20 +52,44 @@ int	big_check(t_minishell *mini)
 	return (0x1);
 }
 
-int	check(char *s, int f, int flag_0)
+int	check_again(char *s)
 {
+	int	i;
 	int	j;
 
-	j = 0x0;
+	i = 1;
+	j = 1;
+	// printf("[%s]\n", s);
+	if (s[0] == '-')
+	{
+		while (i < ft_strlen(s) - 1)
+		{
+			if (s[i] == 'n')
+				j++;
+			i++;
+		}
+	}
+	if (j == ft_strlen(s) - 1)
+		return (0x1);
+	return (0x0);
+}
+
+int	check(char *s, int f, int flag_0)
+{
+	int	i;
+
+	i = 0x0;
 	if (f != flag_0)
 		return (0x0);
 	if (!strcmp_f(s, "-n", 0x0, 0x0))
 		return (0x1);
-	while (s[j])
+	if (check_again(s))
+		return (0x1);
+	while (s[i])
 	{
-		if (!(s[0] == '-' && s[j] == 'n'))
-			return (j);
-		j++;
+		if (s[0] == '-' && s[i] == 'n')
+			return (i);
+		i++;
 	}
 	return (0x0);
 }

@@ -12,7 +12,31 @@
 
 #include "../../minishell.h"
 
+char	*no_space(char *s, int i, int j, int flag)
+{
+	char	*r;
 
+	r = ft_calloc(ft_strlen(s) + 1, 0x1);
+	if (!r)
+		return (r);
+	while (s[i])
+	{
+		if (s[i] == ' ' && s[i + 1] == ' ')
+			i++;
+		while (s[i] && (s[i] == ' ' || s[i] == '\t'))
+		{
+			flag = 1;
+			i++;
+		}
+		if (j > 1 && s[i - 1] == ' ' && ft_isalpha(s[i]) && flag == 1)
+		{
+			i--;
+			flag = 0;
+		}
+		r[j++] = s[i++];
+	}
+	return (r);
+}
 
 void	print_func(t_env *env, char *s, int i, int j)
 {
@@ -20,6 +44,8 @@ void	print_func(t_env *env, char *s, int i, int j)
 	t_env	*tmp_1;
 	char	*t;
 
+	if (!ft_strlen(s))
+		return ;
 	t = ft_malloc(ft_strlen(s) + 3, 0x1);
 	t[0] = SGL;
 	t[ft_strlen(s) + 1] = SGL;
@@ -83,7 +109,16 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 	return (res);
 }
 
-int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
+int	check_1999(char *s)
+{
+	if (check_again(s))
+		return (0x0);
+	if (strcmp_f(s, "-n", 0x0, 0x0))
+		return (0x1);
+	return (0x1);
+}
+
+int	help_echo(t_minishell *mini)
 {
 	if (mini->cmd[0x0] && !mini->cmd[0x1])
 	{
@@ -91,7 +126,38 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 			return (ft_putstr_fd_executor("\n", 0x1, 0x0), exit(0x0), 0x1);
 		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
 	}
-	mini->cmd = get_echo_splited(mini->cmd, cmd_length(mini), 0x2, 0x0);
+	mini->cmd = get_echo_splited(cmd(mini), cmd_length(mini), 0x2, 0x0);
+	return (0x0);
+}
+
+int	check_sf(char **s, t_minishell *m)
+{
+	int	i;
+	int	j;
+
+	i = 0x0;
+	j = 0x0;
+	while (s[i])
+	{
+		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
+			j++;
+		i++;
+	}
+	if (j == cmd_length(m) - 1)
+	{
+		if (m->size > 1)
+			exit(0x0);
+		return (0x1);
+	}
+	return (0x0);
+}
+
+int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
+{
+	if (help_echo(mini))
+		return (0x1);
+	if (check_sf(mini->cmd, mini))
+		return (0x0);
 	f = big_check(mini);
 	if (f != 0x0)
 		i = f;
@@ -99,7 +165,7 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 	{
 		if (!check(mini->cmd[i], i, f))
 			print_func(env, mini->cmd[i], 0x0, 0x1);
-		if (mini->cmd[i + 0x1] != NULL)
+		if (mini->cmd[i + 0x1] != NULL && ft_strlen(mini->cmd[i]))
 			write(0x1, " ", 0x1);
 		if (!(mini->cmd[i + 0x1]) && (f <= 0x1) && !check(mini->cmd[i], i, f))
 			write(0x1, "\n", 0x1);

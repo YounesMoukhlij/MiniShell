@@ -132,6 +132,8 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+
+int						check_again(char *s);
 char					**cmd(t_minishell *m);
 int						return_cmd(int f);
 int						safe_fork(void);
@@ -251,7 +253,7 @@ int						extra_check(char *s);
 int						is_correct_1(char *s);
 int						err_export(char *s);
 int						err_export_1(char *s);
-char					*no_space(char *s);
+char					*no_space(char *s, int i, int j, int flag);
 int						ft_is_equal_1(char *s);
 int						ft_is_equal(char *s);
 int						is_eq_exist(char *s);

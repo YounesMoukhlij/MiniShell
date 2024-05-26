@@ -97,7 +97,6 @@ t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 	return (lst);
 }
 
-
 int	error_onapaghat(t_minishell *mini)
 {
 	int	i;
