@@ -31,6 +31,8 @@ int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 			if (ft_open_3(mini, mini->files[i + 1], &f_in, &i))
 				return (0x1);
 		}
+		else
+			return (0x0);
 	}
 	if (f_out != 0x1)
 		mini->fd_out = f_out;

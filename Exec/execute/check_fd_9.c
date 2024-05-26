@@ -45,7 +45,7 @@ int	heredoc_check(t_minishell *mini, t_env *env, char *delim, int flag)
 	t_herdoc	tmp;
 
 	tmp.hdd_f = hidden_name();
-	mini->fd_in = open(tmp.hdd_f, O_CREAT | O_RDWR | O_APPEND | O_TRUNC, 0777);
+	mini->fd_in = open(tmp.hdd_f, O_CREAT | O_RDWR | O_APPEND, 0777);
 	if (mini->fd_in == -0x1)
 		return (-0x1);
 	(1) && (help_1(&delim, &flag), signal(SIGINT, sig_n));
