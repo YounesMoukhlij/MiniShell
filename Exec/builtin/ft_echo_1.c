@@ -74,22 +74,4 @@ int	check_again(char *s)
 	return (0x0);
 }
 
-int	check(char *s, int f, int flag_0)
-{
-	int	i;
 
-	i = 0x0;
-	if (f != flag_0)
-		return (0x0);
-	if (!strcmp_f(s, "-n", 0x0, 0x0))
-		return (0x1);
-	if (check_again(s))
-		return (0x1);
-	while (s[i])
-	{
-		if (s[0] == '-' && s[i] == 'n')
-			return (i);
-		i++;
-	}
-	return (0x0);
-}

@@ -14,7 +14,8 @@
 
 int	ch_1(char *promt)
 {
-	if (!promt || !isatty(0))
+	// if (!promt || !isatty(0))
+	if (!promt)
 	{
 		ft_malloc(0x0, 0x0);
 		free(promt);
@@ -82,8 +83,8 @@ int	main(int ac, char **av, char **env)
 {
 	t_minishell	*mini;
 	t_env		*envir;
-	
-	
+
+
 	mini = 0x0;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);

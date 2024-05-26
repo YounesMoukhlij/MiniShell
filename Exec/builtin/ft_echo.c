@@ -89,9 +89,7 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 	int		l_n;
 
 	if (!check_n(s[1]))
-	{
 		return (s);
-	}
 	r = ft_split_executor(s[0x1], ' ');
 	l_n = get_double_arr_len(r);
 	res = ft_malloc(sizeof(char *) * (l_n + len + 1), 0x1);
@@ -126,7 +124,7 @@ int	help_echo(t_minishell *mini)
 			return (ft_putstr_fd_executor("\n", 0x1, 0x0), exit(0x0), 0x1);
 		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
 	}
-	mini->cmd = get_echo_splited(cmd(mini), cmd_length(mini), 0x2, 0x0);
+	mini->cmd = get_echo_splited(mini->cmd, cmd_length(mini), 0x2, 0x0);
 	return (0x0);
 }
 
@@ -152,12 +150,31 @@ int	check_sf(char **s, t_minishell *m)
 	return (0x0);
 }
 
+
+int	check(char *s, int f, int flag_0)
+{
+	int	j;
+
+	j = 0x0;
+	if (f != flag_0)
+		return (0x0);
+	if (!strcmp_f(s, "-n", 0x0, 0x0))
+		return (0x1);
+	while (s[j])
+	{
+		if (!(s[0] == '-' && s[j] == 'n'))
+			return (j);
+		j++;
+	}
+	return (0x0);
+}
+
 int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 {
 	if (help_echo(mini))
 		return (0x1);
-	if (check_sf(mini->cmd, mini))
-		return (0x0);
+	// if (check_sf(mini->cmd, mini))
+	// 	return (0x1);
 	f = big_check(mini);
 	if (f != 0x0)
 		i = f;
@@ -165,7 +182,7 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 	{
 		if (!check(mini->cmd[i], i, f))
 			print_func(env, mini->cmd[i], 0x0, 0x1);
-		if (mini->cmd[i + 0x1] != NULL && ft_strlen(mini->cmd[i]))
+		if (mini->cmd[i + 0x1] != NULL)
 			write(0x1, " ", 0x1);
 		if (!(mini->cmd[i + 0x1]) && (f <= 0x1) && !check(mini->cmd[i], i, f))
 			write(0x1, "\n", 0x1);
