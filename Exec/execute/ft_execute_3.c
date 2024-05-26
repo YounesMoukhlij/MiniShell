@@ -75,7 +75,9 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 	l_n = 0x0;
 	r = ft_split_executor(s[0x0], ' ');
 	while (r[l_n])
+	{
 		l_n++;
+	}
 	res = ft_malloc(sizeof(char *) * (l_n + len + 1), 0x1);
 	if (!res)
 		return (NULL);
@@ -106,7 +108,7 @@ int	is_bin_cmd(t_minishell *mini, t_env *envir, int flag, int i)
 	char	*s;
 	char	**res;
 
-	i_b_n(mini->cmd[0], envir);
+	i_b_n(mini->cmd[0], envir, mini);
 	i_b_n_2(mini, &res);
 	while (mini->path_d[i])
 	{

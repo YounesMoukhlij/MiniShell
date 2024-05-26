@@ -63,10 +63,10 @@ int	err_export_1(char *s)
 
 int	my_check(t_minishell *mini)
 {
+	if (!ft_strlen(mini->cmd[0x1]))
+		return (0x1);
 	if (!mini->cmd[1] || (mini->cmd[1][0] == '$' && !mini->cmd[1 + 1]))
 		return (0x1);
-	if (!ft_strlen(mini->cmd[0x1]))
-		return (0x0);
 	return (0x0);
 }
 

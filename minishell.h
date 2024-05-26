@@ -132,6 +132,7 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+char					**cmd(t_minishell *m);
 int						return_cmd(int f);
 int						safe_fork(void);
 int						ft_open_1(t_minishell *m, char *s, int *f_out, int *i);
@@ -289,7 +290,7 @@ void					export_error(t_minishell *m, int option, char *s,
 int						no_equal(char *s);
 int						my_check(t_minishell *mini);
 
-void					i_b_n(char *s, t_env *envir);
+int						i_b_n(char *s, t_env *envir, t_minishell *m);
 
 void					i_b_n_1(int f, char *s);
 

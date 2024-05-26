@@ -109,7 +109,7 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 			i++;
 		}
 	}
-	error_onapaghat(mini);
+	// error_onapaghat(mini);
 	if (mini->size > 1)
 		exit(0x0);
 	return (-0x1);
