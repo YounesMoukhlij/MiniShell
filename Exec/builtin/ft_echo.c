@@ -175,6 +175,7 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 		return (0x1);
 	// if (check_sf(mini->cmd, mini))
 	// 	return (0x1);
+
 	f = big_check(mini);
 	if (f != 0x0)
 		i = f;
