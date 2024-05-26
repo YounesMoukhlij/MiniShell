@@ -69,6 +69,7 @@ void	check_final(char *s, t_env *env, t_env *tmp)
 		}
 	}
 }
+
 t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 {
 	char	*p;
@@ -129,7 +130,6 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 			{
 				if (is_exist(mini->cmd[i], env, 0x0))
 				{
-					if (c_d(env, mini->cmd[i]))
 						add_back_executor(head,
 							huge_export(mini, flag, env, i));
 					check_final(ft_key(mini->cmd[i]), env, 0x0);

@@ -133,7 +133,7 @@ int	check_sf(char **s, t_minishell *m)
 	int	i;
 	int	j;
 
-	i = 0x0;
+	i = 0x1;
 	j = 0x0;
 	while (s[i])
 	{
@@ -150,7 +150,6 @@ int	check_sf(char **s, t_minishell *m)
 	return (0x0);
 }
 
-
 int	check(char *s, int f, int flag_0)
 {
 	int	j;
@@ -162,9 +161,32 @@ int	check(char *s, int f, int flag_0)
 		return (0x1);
 	while (s[j])
 	{
-		if (!(s[0] == '-' && s[j] == 'n'))
-			return (j);
+		if (!(s[0] == '-' && s[j + 1] == 'n'))
+			return (0x0);
 		j++;
+	}
+	return (0x0);
+}
+
+int	check_fs(char **s, t_minishell *m)
+{
+	int	i;
+
+	i = 1;
+	while (s[i])
+	{
+		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
+			i++;
+		else
+		{
+			if (!ft_strlen(s[i]) && cmd_length(m) - 1 ==  i)
+			{
+				if (m->size > 1)
+					exit(0x0);
+				return (0x1);
+			}
+			break ;
+		}
 	}
 	return (0x0);
 }
@@ -173,9 +195,11 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 {
 	if (help_echo(mini))
 		return (0x1);
-	// if (check_sf(mini->cmd, mini))
-	// 	return (0x1);
-
+	if (ft_strlen(mini->cmd[1]))
+	{
+		if (check_sf(mini->cmd, mini) || check_fs(mini->cmd, mini))
+			return (0x1);
+	}
 	f = big_check(mini);
 	if (f != 0x0)
 		i = f;
@@ -183,7 +207,7 @@ int	ft_echo(t_minishell *mini, t_env *env, int i, int f)
 	{
 		if (!check(mini->cmd[i], i, f))
 			print_func(env, mini->cmd[i], 0x0, 0x1);
-		if (mini->cmd[i + 0x1] != NULL)
+		if (mini->cmd[i + 0x1] && ft_strlen(mini->cmd[i]) != 0)
 			write(0x1, " ", 0x1);
 		if (!(mini->cmd[i + 0x1]) && (f <= 0x1) && !check(mini->cmd[i], i, f))
 			write(0x1, "\n", 0x1);

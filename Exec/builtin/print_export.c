@@ -45,11 +45,14 @@ void	print_export(t_env **head)
 	tmp = *head;
 	while (tmp != NULL)
 	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(tmp->key, 1);
-		if (tmp->value != NULL)
-			print_export_helper(tmp);
-		ft_putchar_fd('\n', 1);
+		if (tmp->flag != 5)
+		{
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(tmp->key, 1);
+			if (tmp->value != NULL)
+				print_export_helper(tmp);
+			ft_putchar_fd('\n', 1);
+		}
 		tmp = tmp->next;
 	}
 }

@@ -38,7 +38,7 @@ int	big_check(t_minishell *mini)
 		i = a;
 	if (!ft_strlen(mini->cmd[i]))
 		return (0x0);
-	while (mini->cmd[i])
+	while (mini->cmd[i] && ft_strlen(mini->cmd[i]))
 	{
 		j = 1;
 		while (mini->cmd[i][j] && ft_strlen(mini->cmd[i]) > 1)
@@ -59,7 +59,6 @@ int	check_again(char *s)
 
 	i = 1;
 	j = 1;
-	// printf("[%s]\n", s);
 	if (s[0] == '-')
 	{
 		while (i < ft_strlen(s) - 1)
@@ -68,9 +67,9 @@ int	check_again(char *s)
 				j++;
 			i++;
 		}
+		if (j == ft_strlen(s) - 1)
+			return (0x1);
 	}
-	if (j == ft_strlen(s) - 1)
-		return (0x1);
 	return (0x0);
 }
 

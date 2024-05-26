@@ -72,10 +72,10 @@ int	is_exist(char *s, t_env *envir, char *r)
 		{
 			if (head->value)
 			{
-				if (is_eq_exist(s) == 0
-					|| (is_eq_exist(s) == 0
-						&& s[is_eq_exist(s) + 1] == '+'))
+				if (is_eq_exist(s) == 0)
 					return (0x0);
+				if (is_eq_exist(s) && s[is_eq_exist(s) - 1] == '+')
+					return (0x1);
 				free (head->value);
 				head->value = ft_substr_executor_1(s,
 						is_eq_exist(s) + 1, ft_strlen(s));

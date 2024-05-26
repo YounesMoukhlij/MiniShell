@@ -49,7 +49,7 @@ void	back_up(t_env **ennv, int i, char *pwd, char *buff)
 	pwd = getcwd(buff, sizeof(pwd));
 	if (!pwd)
 		return ;
-	while (++i <= 0x4)
+	while (++i < 0x4)
 	{
 		if (i == 0x0)
 			lst = lstnew_executor(ft_strdup_1("PWD"), ft_strdup_1(pwd), -0x1);
@@ -60,9 +60,6 @@ void	back_up(t_env **ennv, int i, char *pwd, char *buff)
 					ft_strdup_1("/usr/bin/env"), -0x1);
 		if (i == 0x3)
 			lst = lstnew_executor(ft_strdup_1("PATH"), ft_strdup_1(str), 0);
-		if (i == 0x4)
-			lst = lstnew_executor(ft_strdup_1("TERM"),
-					ft_strdup_1("xterm-256color"), -0x1);
 		add_back_executor(ennv, lst);
 	}
 	free (pwd);
