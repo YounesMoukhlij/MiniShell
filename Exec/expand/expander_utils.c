@@ -28,6 +28,8 @@ int	case_1(char *s, int pos)
 					return (0x1);
 				i++;
 			}
+			if (i + 1 == pos)
+				return (0x1);
 		}
 		i++;
 	}
@@ -50,11 +52,33 @@ int	case_2(char *s, int pos)
 					return (0x0);
 				i++;
 			}
+
 		}
 		i++;
 	}
 	return (1);
 }
+
+int	case_3(char *s, int pos)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == DBL || s[i] == SGL)
+		{
+			while (s[i] && (s[i] != DBL || s[i] != SGL))
+			{
+				i++;
+			}
+		}
+		if (i == pos)
+			return (0x1);
+	}
+	return (0x0);
+}
+
 
 int	dollar_position(char *s, int pos)
 {
