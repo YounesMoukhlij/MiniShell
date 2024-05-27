@@ -12,8 +12,21 @@
 
 #include "../../minishell.h"
 
+void	helper(t_minishell *m, int *fin, int *fout, int *fher)
+{
+	if (m->tab[m->len_tab - 1] == 0x4)
+		m->fd_in = *fher;
+	else if (*fin != 0x0)
+		m->fd_in = *fin;
+	if (*fout != 0x1)
+		m->fd_out = *fout;
+}
+
 int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 {
+	int	*fd;
+
+	fd = &mini->fd_in;
 	while (++i < mini->len_tab)
 	{
 		if (mini->tab[i] == 0x1)
@@ -31,13 +44,8 @@ int	ft_open_others(t_minishell *mini, int i, int f_in, int f_out)
 			if (ft_open_3(mini, mini->files[i + 1], &f_in, &i))
 				return (0x1);
 		}
-		else
-			return (0x0);
 	}
-	if (f_out != 0x1)
-		mini->fd_out = f_out;
-	if (f_in != 0x0)
-		mini->fd_in = f_in;
+	helper(mini, &f_in, &f_out, fd);
 	return (0);
 }
 

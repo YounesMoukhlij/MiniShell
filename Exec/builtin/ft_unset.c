@@ -45,13 +45,32 @@ void	unset_error(t_minishell *m, int option, char *s, char *o)
 	ft_putstr_fd("export: ", 0x2);
 	if (option == 0x0)
 		ft_put_err(s, " : not an identifier");
-	if (option == 0x1)
-		ft_put_err(s, ": bad pattern");
-	if (option == 0x2)
-		ft_put_err(s, " : not valid in this context");
 	ex_st_f(0x1, 0x1);
 	if (m->size > 1)
 		exit(0x1);
+}
+
+int	check_unset(char *s, int i, char *t)
+{
+	if (s[ft_strlen(s) - 1] == '=' || (s[ft_strlen(s) - 1] == '=' && s[ft_strlen(s) - 2] == '+'))
+		return (0x1);
+	if (is_eq_exist(s) != 0)
+		t = ft_substr_executor(s, 0x0, is_eq_exist(s) + 1);
+	else
+		t = s;
+	while (t[i])
+	{
+		if (!ft_isalpha(t[0]) && t[0] != '_')
+			return (0x1);
+		if (!ft_isalnum(t[i]) && t[i] != '_' && t[i] != '=')
+		{
+			if (t[i + 1] && t[i] == '+' && t[i + 1] == '=')
+				return (0x0);
+			return (0x1);
+		}
+		i++;
+	}
+	return (0x0);
 }
 
 int	ft_unset(t_minishell *mini, t_env *envir)
@@ -63,7 +82,7 @@ int	ft_unset(t_minishell *mini, t_env *envir)
 		return (0x0);
 	while (mini->cmd[i])
 	{
-		if (check_first(mini->cmd[i]))
+		if (check_unset(mini->cmd[i], 0, 0))
 			unset_error(mini, 0, mini->cmd[i], 0x0);
 		else
 			unset_node(mini->cmd[i], envir);
