@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 13:29:23 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:48:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	helper(t_minishell *m, int *fin, int *fout, int *fher)
 		m->fd_in = *fher;
 	}
 	else if (*fin != 0x0)
+	{
+		if (m->fd_in != 0)
+			close (m->fd_in);
 		m->fd_in = *fin;
+	}
 	if (*fout != 0x1)
 		m->fd_out = *fout;
 }

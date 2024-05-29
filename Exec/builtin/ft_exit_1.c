@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:39:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:26:15 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:57:32 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_digit(char *s)
 		return (0x1);
 	while (s[i])
 	{
-		if (s[i] == '+')
+		if (s[i] == '+' || s[i] == '-')
 			i++;
 		if (!ft_isdigit(s[i]))
 			return (0x0);

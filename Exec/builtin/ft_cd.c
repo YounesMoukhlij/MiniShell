@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 12:51:09 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:29:05 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,8 @@ void	change_dir_1(t_env *e, char *path, int f)
 	free (new);
 }
 
-int	cd_1(t_env *envir)
+int	cd_1(t_env *envir, int i, t_env *tmp)
 {
-	t_env	*tmp;
-	int		i;
-
-	i = 0x0;
 	tmp = env_node(&envir, "HOME");
 	if (tmp)
 	{
@@ -68,12 +64,8 @@ int	cd_1(t_env *envir)
 	return (0x1);
 }
 
-int	cd_2(t_env *envir)
+int	cd_2(t_env *envir, int i, char *p)
 {
-	int		i;
-	char	*p;
-
-	i = 0x0;
 	p = grep_from_env(envir, "OLDPWD");
 	change_dir_1(envir, p, 0x0);
 	i = chdir(p);
@@ -113,12 +105,12 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 	}
 	else if (cmd_length(mini) == 1 || !strcmp_f(mini->cmd[1], "~", 0x0, 0x0))
 	{
-		if (!cd_1(envir))
+		if (!cd_1(envir, 0x0, 0x0))
 			return (0x0);
 	}
 	else if (!strcmp_f(mini->cmd[0x1], "-", 0x0, 0x0))
 	{
-		if (!cd_2(envir))
+		if (!cd_2(envir, 0x0, 0x0))
 			return (0x0);
 	}
 	else if (mini->cmd[1])

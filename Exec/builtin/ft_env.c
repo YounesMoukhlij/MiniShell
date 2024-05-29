@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 16:34:17 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:50:12 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	print_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
-	if (lst_size_executor(&env) < 6)
+	if (lst_size_executor(&env) <= 10)
 	{
 		while (tmp)
 		{

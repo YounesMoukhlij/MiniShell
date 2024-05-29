@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:52:51 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 15:18:21 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:44:03 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	help_ex_1(char *s)
 void	exit_1(char *s)
 {
 	help_ex_1(s);
-	if (is_digit(s) || ft_atoi(s))
+	if (is_digit(s) && ft_atoi(s))
 	{
 		if (ft_atoi(s) > 0x0 && ft_atoi(s) < 255)
 		{
@@ -87,7 +87,7 @@ int	ft_exit(t_minishell *mini)
 	}
 	else if (cmd_length(mini) == 0x2)
 		exit_1(mini->cmd[0x1]);
-	else if (cmd_length(mini) == 0x3)
+	else if (cmd_length(mini) > 0x2)
 		exit_2(mini->cmd[0x1], mini->cmd[0x2]);
 	return (-1);
 }

@@ -15,4 +15,13 @@ cat << l < main.c  √
 
 ----- .. -----
 leaks ctrl C && heredoc
+exit 5 5 3
+exit 445u
+
+export PWD=uyhttuytuytuyrtuy
+export OLDPWD=uyhttuytuytuyrtuy
+Minishell $> export OLDPWD=uyhttuytuytuyrtuy
+Minishell $> pwd
+uyhttuytuytuyrtuy
+
 ----- .. -----
