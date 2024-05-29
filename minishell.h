@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 17:14:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:14:56 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_minishell
 	struct s_minishell	*next;
 }						t_minishell;
 
+char					*ft_key_1(char *s);
 int						cm_len(t_minishell *m);
 int						check_again(char *s);
 char					**cmd(t_minishell *m);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 16:56:30 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:14:14 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,12 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 	t_env	**head;
 
 	head = &env;
+	// int p = 0;
+	// while (mini->cmd[p])
+	// {
+	// 	printf("-->[%s]\n", mini->cmd[p]);
+	// 	p++;
+	// }
 	if (my_check(mini))
 		print_export(&env);
 	else
@@ -132,7 +138,7 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 				{
 						add_back_executor(head,
 							huge_export(mini, flag, env, i));
-					check_final(ft_key(mini->cmd[i]), env, 0x0);
+					check_final(ft_key_1(mini->cmd[i]), env, 0x0);
 				}
 			}
 			i++;

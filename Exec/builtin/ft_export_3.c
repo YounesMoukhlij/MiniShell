@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 20:39:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:14:41 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,6 @@ int	check_special_case(char *s)
 	}
 	return (0x0);
 }
-
-// char	*test(char *s, int start, int len)
-// {
-// 	char	*r;
-// 	int		i;
-// 	int		l;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	if (!len || start >= ft_strlen(s))
-// 		return (ft_strdup_1(""));
-// 	l = ft_strlen(s) - start;
-// 	if (l > len)
-// 		l = len;
-// 	r = (char *)malloc(sizeof(char) * (l + 1));
-// 	if (!r)
-// 		return (NULL);
-// 	while (s[start] && l)
-// 	{
-// 		r[i] = s[start];
-// 		start++;
-// 		i++;
-// 		l--;
-// 	}
-// 	r[i] = '\0';
-// 	return (r);
-// }
 
 char	*ft_key(char *s)
 {
@@ -103,4 +75,22 @@ void	export_error(t_minishell *m, int option, char *s, char *o)
 		if (m->size > 1)
 			exit(0x1);
 	}
+}
+
+char	*ft_key_1(char *s)
+{
+	int		i;
+
+	i = 0x0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == '+' || s[i] == '=')
+		{
+			return (ft_substr_executor(s, 0x0, i));
+		}
+		i++;
+	}
+	return (NULL);
 }
