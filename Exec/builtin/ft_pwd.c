@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:50:39 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 16:25:55 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:31:59 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,33 @@ int	ft_pwd(t_minishell *mini, t_env **head)
 	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);
+}
+
+void	check_final(char *s, t_env *env, t_env *tmp)
+{
+	static int	i = 0;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!strcmp_f(s, tmp->key, 0, 0))
+			i++;
+		tmp = tmp->next;
+	}
+	tmp = env;
+	if (i > 1)
+	{
+		while (tmp)
+		{
+			if (!strcmp_f(s, tmp->key, 0, 0))
+			{
+				if (!tmp->value)
+				{
+					unset_node(s, env);
+					break ;
+				}
+			}
+			tmp = tmp->next;
+		}
+	}
 }

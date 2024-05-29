@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:47:22 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:32:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,6 @@ char	*full(char *s)
 	if (!s)
 		return (ft_strdup_1(""));
 	return (s);
-}
-
-void	check_final(char *s, t_env *env, t_env *tmp)
-{
-	static int	i = 0;
-
-	printf("--final->%s\n", s);
-	tmp = env;
-	while (tmp)
-	{
-		if (!strcmp_f(s, tmp->key, 0, 0))
-			i++;
-		tmp = tmp->next;
-	}
-	tmp = env;
-	if (i > 1)
-	{
-		while (tmp)
-		{
-			if (!strcmp_f(s, tmp->key, 0, 0))
-			{
-				if (!tmp->value)
-				{
-					unset_node(s, env);
-					break ;
-				}
-			}
-			tmp = tmp->next;
-		}
-	}
 }
 
 t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
@@ -121,12 +91,6 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 	t_env	**head;
 
 	head = &env;
-	// int p = 0;
-	// while (mini->cmd[p])
-	// {
-	// 	printf("-->[%s]\n", mini->cmd[p]);
-	// 	p++;
-	// }
 	if (my_check(mini))
 		print_export(&env);
 	else
@@ -137,8 +101,8 @@ int	ft_export(t_minishell *mini, t_env *env, int i, int flag)
 			{
 				if (is_exist(mini->cmd[i], env, 0x0))
 				{
-						add_back_executor(head,
-							huge_export(mini, flag, env, i));
+					add_back_executor(head,
+						huge_export(mini, flag, env, i));
 					check_final(ft_key_1(mini->cmd[i]), env, 0x0);
 				}
 			}

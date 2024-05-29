@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:35:22 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 15:02:36 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:29:23 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	helper(t_minishell *m, int *fin, int *fout, int *fher)
 {
 	if (m->tab[m->len_tab - 1] == 0x4)
+	{
+		close (*fin);
 		m->fd_in = *fher;
+	}
 	else if (*fin != 0x0)
 		m->fd_in = *fin;
 	if (*fout != 0x1)
