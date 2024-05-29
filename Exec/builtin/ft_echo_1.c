@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 12:43:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 12:44:58 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:23:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,47 @@ int	check_again(char *s)
 	return (0x0);
 }
 
+int	check_sf(char **s, t_minishell *m)
+{
+	int	i;
+	int	j;
 
+	i = 0x1;
+	j = 0x0;
+	while (s[i])
+	{
+		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
+			j++;
+		i++;
+	}
+	if (j == cmd_length(m) - 1)
+	{
+		if (m->size > 1)
+			exit(0x0);
+		return (0x1);
+	}
+	return (0x0);
+}
+
+int	check_fs(char **s, t_minishell *m)
+{
+	int	i;
+
+	i = 1;
+	while (s[i])
+	{
+		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
+			i++;
+		else
+		{
+			if (!ft_strlen(s[i]) && cmd_length(m) - 1 == i)
+			{
+				if (m->size > 1)
+					exit(0x0);
+				return (0x1);
+			}
+			break ;
+		}
+	}
+	return (0x0);
+}

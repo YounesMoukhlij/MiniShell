@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/22 15:28:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:18:25 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ char	**get_cmd_splited(char **s, int len, int j, int p)
 	l_n = 0x0;
 	r = ft_split_executor(s[0x0], ' ');
 	while (r[l_n])
-	{
 		l_n++;
-	}
 	res = ft_malloc(sizeof(char *) * (l_n + len + 1), 0x1);
 	if (!res)
 		return (NULL);

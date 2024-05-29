@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:20:40 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/14 14:50:11 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:18:08 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,11 @@ int	case_2(char *s, int pos)
 					return (0x0);
 				i++;
 			}
-
 		}
 		i++;
 	}
 	return (1);
 }
-
-int	case_3(char *s, int pos)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == DBL || s[i] == SGL)
-		{
-			while (s[i] && (s[i] != DBL || s[i] != SGL))
-			{
-				i++;
-			}
-		}
-		if (i == pos)
-			return (0x1);
-	}
-	return (0x0);
-}
-
 
 int	dollar_position(char *s, int pos)
 {

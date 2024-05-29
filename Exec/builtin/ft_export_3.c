@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:27:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:14:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:45:42 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,8 @@ char	*ft_key_1(char *s)
 	while (s[i])
 	{
 		if (s[i] == '+' || s[i] == '=')
-		{
 			return (ft_substr_executor(s, 0x0, i));
-		}
 		i++;
 	}
-	return (NULL);
+	return (s);
 }

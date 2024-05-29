@@ -6,37 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 15:38:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:26:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-char	*no_space(char *s, int i, int j, int flag)
-{
-	char	*r;
-
-	r = ft_calloc(ft_strlen(s) + 1, 0x1);
-	if (!r)
-		return (r);
-	while (s[i])
-	{
-		if (s[i] == ' ' && s[i + 1] == ' ')
-			i++;
-		while (s[i] && (s[i] == ' ' || s[i] == '\t'))
-		{
-			flag = 1;
-			i++;
-		}
-		if (j > 1 && s[i - 1] == ' ' && ft_isalpha(s[i]) && flag == 1)
-		{
-			i--;
-			flag = 0;
-		}
-		r[j++] = s[i++];
-	}
-	return (r);
-}
 
 void	print_func(t_env *env, char *s, int i, int j)
 {
@@ -107,49 +81,6 @@ char	**get_echo_splited(char **s, int len, int p, int j)
 	return (res);
 }
 
-int	check_1999(char *s)
-{
-	if (check_again(s))
-		return (0x0);
-	if (strcmp_f(s, "-n", 0x0, 0x0))
-		return (0x1);
-	return (0x1);
-}
-
-int	help_echo(t_minishell *mini)
-{
-	if (mini->cmd[0x0] && !mini->cmd[0x1])
-	{
-		if (mini->size > 1)
-			return (ft_putstr_fd_executor("\n", 0x1, 0x0), exit(0x0), 0x1);
-		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
-	}
-	mini->cmd = get_echo_splited(mini->cmd, cmd_length(mini), 0x2, 0x0);
-	return (0x0);
-}
-
-int	check_sf(char **s, t_minishell *m)
-{
-	int	i;
-	int	j;
-
-	i = 0x1;
-	j = 0x0;
-	while (s[i])
-	{
-		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
-			j++;
-		i++;
-	}
-	if (j == cmd_length(m) - 1)
-	{
-		if (m->size > 1)
-			exit(0x0);
-		return (0x1);
-	}
-	return (0x0);
-}
-
 int	check(char *s, int f, int flag_0)
 {
 	int	j;
@@ -164,29 +95,6 @@ int	check(char *s, int f, int flag_0)
 		if (!(s[0] == '-' && s[j + 1] == 'n'))
 			return (0x0);
 		j++;
-	}
-	return (0x0);
-}
-
-int	check_fs(char **s, t_minishell *m)
-{
-	int	i;
-
-	i = 1;
-	while (s[i])
-	{
-		if (!strcmp_f(s[i], "-n", 0, 0) || check_again(s[i]))
-			i++;
-		else
-		{
-			if (!ft_strlen(s[i]) && cmd_length(m) - 1 ==  i)
-			{
-				if (m->size > 1)
-					exit(0x0);
-				return (0x1);
-			}
-			break ;
-		}
 	}
 	return (0x0);
 }

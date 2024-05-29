@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/29 11:08:41 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:36:49 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	start_mini(t_minishell *mini, t_env *envir, char *promt)
 		if (ch_2(promt))
 			continue ;
 		mini = parcing(str_caller(promt));
+		if (!mini)
+		{
+			free (promt);
+			continue ;
+		}
 		tcgetattr(STDOUT_FILENO, &old);
 		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
 		if (start_execution(mini, envir, promt))

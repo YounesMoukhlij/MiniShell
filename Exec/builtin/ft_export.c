@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:14:14 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:47:22 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ char	*full(char *s)
 
 void	check_final(char *s, t_env *env, t_env *tmp)
 {
-	static int i = 0;
+	static int	i = 0;
 
+	printf("--final->%s\n", s);
 	tmp = env;
 	while (tmp)
 	{

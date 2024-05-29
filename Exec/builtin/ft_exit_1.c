@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:39:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/15 11:31:50 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:26:15 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,17 @@ int	is_negative(char *s)
 {
 	if (s[0x0] == '-' && is_digit(&s[0x1]))
 		return (0x1);
+	return (0x0);
+}
+
+int	help_echo(t_minishell *mini)
+{
+	if (mini->cmd[0x0] && !mini->cmd[0x1])
+	{
+		if (mini->size > 1)
+			return (ft_putstr_fd_executor("\n", 0x1, 0x0), exit(0x0), 0x1);
+		return (ft_putstr_fd_executor("\n", 0x1, 0x0), 0x1);
+	}
+	mini->cmd = get_echo_splited(mini->cmd, cmd_length(mini), 0x2, 0x0);
 	return (0x0);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 16:08:57 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:19:38 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	unset_error(t_minishell *m, int option, char *s, char *o)
 
 int	check_unset(char *s, int i, char *t)
 {
-	if (s[ft_strlen(s) - 1] == '=' || (s[ft_strlen(s) - 1] == '=' && s[ft_strlen(s) - 2] == '+'))
+	if (s[ft_strlen(s) - 1] == '='
+		|| (s[ft_strlen(s) - 1] == '='
+			&& s[ft_strlen(s) - 2] == '+'))
 		return (0x1);
 	if (is_eq_exist(s) != 0)
 		t = ft_substr_executor(s, 0x0, is_eq_exist(s) + 1);
