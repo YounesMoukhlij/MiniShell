@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:51:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/24 16:02:07 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:27:07 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ void	h_cp(t_minishell *mini, t_env *envir, int t_pipe[2], int f)
 		close(mini->fd_in);
 	}
 	if (f == 1)
-	{
 		handle_child_output(mini, t_pipe);
-	}
 	else
 	{
 		if (dup2(mini->fd_out, 1) == -1)

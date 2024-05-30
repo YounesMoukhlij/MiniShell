@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:47:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:19:38 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:32:09 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	unset_error(t_minishell *m, int option, char *s, char *o)
 
 int	check_unset(char *s, int i, char *t)
 {
+	if (!ft_strlen(s))
+		return (0x0);
 	if (s[ft_strlen(s) - 1] == '='
 		|| (s[ft_strlen(s) - 1] == '='
 			&& s[ft_strlen(s) - 2] == '+'))

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/30 13:15:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:43:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ch_1(char *promt)
 {
-	// if (!promt || !isatty(0))
-	if (!promt)
+	if (!promt || !isatty(0))
 	{
 		ft_malloc(0x0, 0x0);
 		free(promt);
@@ -54,9 +53,6 @@ int	start_execution(t_minishell *mini, t_env *envir, char *promt)
 
 void	start_mini(t_minishell *mini, t_env *env, char *promt)
 {
-	struct termios	old;
-	t_fd			fd;
-
 	while (1999)
 	{
 		sig_func();
@@ -71,16 +67,16 @@ void	start_mini(t_minishell *mini, t_env *env, char *promt)
 			free (promt);
 			continue ;
 		}
-		tcgetattr(STDOUT_FILENO, &old);
-		(1) && (fd.fdout = dup(0x1), fd.fdin = dup(0x0));
+		tcgetattr(STDOUT_FILENO, &(mini->old));
+		(1) && (mini->fd.fdout = dup(0x1), mini->fd.fdin = dup(0x0));
 		if (start_execution(mini, env, promt))
 		{
 			free (promt);
-			(1) && (close (fd.fdout), close (fd.fdin));
+			(1) && (close (mini->fd.fdout), close (mini->fd.fdin));
 			continue ;
 		}
-		tcsetattr(STDOUT_FILENO, 0x0, &old);
-		ft_end(mini, promt, fd);
+		tcsetattr(STDOUT_FILENO, 0x0, &(mini->old));
+		ft_end(mini, promt, mini->fd);
 	}
 }
 
@@ -89,13 +85,12 @@ int	main(int ac, char **av, char **env)
 	t_minishell	*mini;
 	t_env		*envir;
 
-
 	mini = 0x0;
 	if (ac > 0x1 || !strcmp_f(av[0x1], "./minishell", 0x0, 0x0))
 		return (0x1);
 	g_sig = 0x0;
 	envir = full_fill_env(env, 0x0, 0x0);
-	start_mini(mini, envir, 0x0);
+	start_mini(mini, envir, 0);
 	clear_envir(envir);
 	return (0x0);
 }

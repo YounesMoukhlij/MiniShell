@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:24:31 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/23 19:51:43 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:35:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,25 @@ int	close_fd(t_minishell *mini, int *fd, int flag, int pos)
 			return (close (*fd));
 	}
 	return (1);
+}
+
+char	**splited_cmd(char **s, int *len)
+{
+	int		i;
+	char	**res;
+	char	**r;
+
+	i = 0;
+	*len = 0;
+	while (s[i])
+	{
+		r = ft_split_executor(s[i], ' ');
+		if (r)
+			*len += get_double_arr_len(r);
+		i++;
+	}
+	res = ft_malloc(sizeof(char *) * (*len + 1), 0x1);
+	if (!res)
+		return (NULL);
+	return (res);
 }

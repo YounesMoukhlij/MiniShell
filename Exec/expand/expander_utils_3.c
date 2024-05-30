@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:14:53 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/20 17:40:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:01:43 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ char	*no_qts(char *s, int flag, int i, int j)
 {
 	char	*res;
 
-	if (check_single(s))
-		return (do_single(s, 0x0, 0x0));
 	if (!s)
 		return (ft_strdup(""));
+	if (check_single(s))
+		return (do_single(s, 0x0, 0x0));
 	res = ft_malloc(ft_strlen(s) + 0x1, 0x1);
 	if (!res)
 		return (NULL);

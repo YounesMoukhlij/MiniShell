@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:10:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/30 13:00:01 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:46:45 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,14 @@ typedef struct s_minishell
 	int					t_fd_out;
 	char				*path;
 	char				**path_d;
+	struct termios		old;
 	t_fd				fd;
 	struct s_minishell	*next;
 }						t_minishell;
 
+int						mini_check_11(char *s);
+char					*ft_rmv_sgl(char *s, int i, int j, int p);
+int						check_expand_1(t_minishell *m, char *s, t_env *env);
 int						check_again(char *s);
 void					create_pwd(t_env **env);
 void					create_old(t_env **env, char **str);
@@ -344,7 +348,7 @@ int						b_g_1(char *s, int *i, int *c);
 void					b_g_3(char **res, t_env *envir, char *s, char **p);
 
 void					b_g(char *s, int *i, int *c);
-
+char					**splited_cmd(char **s, int *len);
 void					back_up(t_env **ennv, int i, char *pwd, char *buff);
 char					*ft_key(char *s);
 int						is_num(char *s);

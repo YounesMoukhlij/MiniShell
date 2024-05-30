@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 17:50:55 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:19:02 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:26:55 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	i_b_n(char *s, t_env *envir, t_minishell *m)
 	if (check_path_before(envir))
 	{
 		if (access(s, F_OK) == 0x0)
-		{
 			execve(s, cmd(m), execv_env(envir));
-		}
 	}
 	if (env_check(&envir, s))
 		exit(ex_st_f(0x0, 0x0));
@@ -57,7 +55,7 @@ void	i_b_n_1(int f, char *s)
 void	i_b_n_2(t_minishell *m, char ***res)
 {
 	if (!check_cmd(m->cmd[0x0]))
-		*res = get_cmd_splited(cmd(m), cm_len(m), 0x0, 0x1);
+		*res = get_cmd_splited(cmd(m), 0x0, 0x0, 0x0);
 	else
 		*res = cmd(m);
 }

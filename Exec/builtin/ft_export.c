@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:50:34 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 13:32:27 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:55:27 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ t_env	*huge_export(t_minishell *m, int flag, t_env *env, int i)
 				is_eq_exist(m->cmd[i]) + 1,
 				ft_strlen(m->cmd[i]));
 		check_export(m, s);
-		if (p[0] == SGL && p[ft_strlen(p) - 1] == SGL)
+		if ((p[0] == SGL && p[ft_strlen(p) - 1] == SGL)
+			|| (p[0] == DBL && p[ft_strlen(p) - 1] == DBL))
 			flag = 1;
 		lst = lstnew_executor(s, full(p), flag);
 	}

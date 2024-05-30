@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:18:49 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 11:18:25 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:35:28 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,28 @@ int	is_builtin(t_minishell *m)
 		return (0x0);
 }
 
-char	**get_cmd_splited(char **s, int len, int j, int p)
+char	**get_cmd_splited(char **s, int i, int q, int j)
 {
 	char	**r;
 	char	**res;
-	int		l_n;
+	int		len;
 
-	l_n = 0x0;
-	r = ft_split_executor(s[0x0], ' ');
-	while (r[l_n])
-		l_n++;
-	res = ft_malloc(sizeof(char *) * (l_n + len + 1), 0x1);
+	res = splited_cmd(s, &len);
 	if (!res)
 		return (NULL);
-	while (j < l_n)
+	while (s[i])
 	{
-		res[j] = ft_strdup(r[j]);
-		j++;
+		r = ft_split_executor(s[i], ' ');
+		j = 0;
+		while (r[j])
+		{
+			res[q] = ft_strdup(r[j]);
+			j++;
+			q++;
+		}
+		i++;
 	}
-	while (j < l_n + len)
-	{
-		res[j] = ft_strdup(s[p]);
-		p++;
-		j++;
-	}
-	res[j] = 0;
+	res[q] = 0;
 	return (res);
 }
 

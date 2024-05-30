@@ -6,35 +6,52 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 23:24:21 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 16:02:39 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:33:58 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	expand_cmd(t_minishell **mini, t_env *envir)
+void	extra_1111(t_minishell **mini, int i)
 {
-	int		i;
+	i = 1;
+	rmv_sgl_quotes_cmd((*mini),
+		no_qts((*mini)->cmd[0x0], 0x0, 0x0, 0x0));
+	while ((*mini)->cmd[i])
+	{
+		if (mini_check_11((*mini)->cmd[i]))
+			(*mini)->cmd[i] = ft_rmv_sgl((*mini)->cmd[i], 0, 0, 0);
+		i++;
+	}
+}
+
+void	expand_cmd(t_minishell **mini, t_env *envir, t_env *tmp, int i)
+{
 	char	*str;
 
-	i = 0x0;
-	if (!(*mini)->cmd)
-		return ;
-	if (check_quotes((*mini)->cmd[0x0])
-		|| check_execute((*mini)->cmd[0x0])
-		|| check_dollar(envir, (*mini)->cmd[0x0]))
+	if (check_expand_1((*mini), (*mini)->cmd[0x0], envir))
 		return ;
 	while ((*mini)->cmd[i])
 	{
 		if (is_expanded(*mini, (*mini)->cmd[i]))
 		{
 			str = big_work(envir, (*mini)->cmd[i], 0x0, 0x0);
+			tmp = env_node_value(&envir, str);
+			if (tmp)
+			{
+				if (tmp->flag != 1)
+					(*mini)->cmd[i] = no_qts(str, 0x0, 0x0, 0x0);
+				if (tmp->flag == 0x1)
+				{
+					(*mini)->cmd[i] = str;
+					return ;
+				}
+			}
 			(*mini)->cmd[i] = no_qts(str, 0x0, 0x0, 0x0);
 		}
 		i++;
 	}
-	rmv_sgl_quotes_cmd((*mini),
-		no_qts((*mini)->cmd[0x0], 0x0, 0x0, 0x0));
+	extra_1111(mini, 0x1);
 }
 
 int	before_err(char *s)
@@ -87,7 +104,7 @@ void	expander(t_minishell **mini, t_env *envir)
 	if (!envir || !(*mini)->cmd || !(*mini)->cmd[0])
 		return ;
 	check_cmd_one(*mini, envir);
-	expand_cmd(mini, envir);
+	expand_cmd(mini, envir, 0x0, 0x0);
 	flag = before_err((*mini)->cmd[0x0]);
 	if (flag != 0x0)
 		ex_st_f(flag, 0x1);
