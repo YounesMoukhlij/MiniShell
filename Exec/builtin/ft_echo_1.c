@@ -6,32 +6,11 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 12:43:43 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 16:59:00 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:57:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	check_again(char *s)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 1;
-	if (s[0] == '-')
-	{
-		while (i < ft_strlen(s) - 1)
-		{
-			if (s[i] == 'n')
-				j++;
-			i++;
-		}
-		if (j == ft_strlen(s) - 1)
-			return (0x1);
-	}
-	return (0x0);
-}
 
 int	check_sf(char **s, t_minishell *m)
 {

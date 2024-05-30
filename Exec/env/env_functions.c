@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:05:36 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/19 12:52:10 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:22:16 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_env	*full_fill_env(char **env, int i, int j)
 	char	*s1;
 	char	*s2;
 
-	head = NULL;
+	head = 0x0;
 	if (!*env)
 		back_up(&head, -0x1, 0x0, 0x0);
 	else

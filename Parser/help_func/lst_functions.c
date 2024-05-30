@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:37:25 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 15:15:33 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:18:04 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void	add_back_executor(t_env **head, t_env *node)
 		add_front_executor(head, node);
 	if (last_node_executor(*head))
 		last_node_executor(*head)->next = node;
-	node->next = NULL;
+	node->next = 0x0;
 }

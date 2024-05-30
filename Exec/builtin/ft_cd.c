@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:53:32 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 15:29:05 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:56:53 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ void	change_dir_1(t_env *e, char *path, int f)
 	else
 	{
 		new = getcwd(buff, 100);
-		if (new)
-		{
-			tmp = env_node(&e, "OLDPWD");
-			if (tmp)
-				(1) && (free (tmp->value), tmp->value = ft_strdup_1(new));
-		}
+		if (!new)
+			return ;
+		tmp = env_node(&e, "OLDPWD");
+		if (tmp)
+			(1) && (free (tmp->value), tmp->value = ft_strdup_1(new));
 	}
 	free (new);
 }
@@ -67,10 +66,12 @@ int	cd_1(t_env *envir, int i, t_env *tmp)
 int	cd_2(t_env *envir, int i, char *p)
 {
 	p = grep_from_env(envir, "OLDPWD");
+	if (!p)
+		return (print_error("OLDPWD", 0x1), 0x0);
 	change_dir_1(envir, p, 0x0);
 	i = chdir(p);
 	if (i == -1)
-		return (print_error(p, 0x1), 0x0);
+		return (print_error("OLDPWD", 0x1), 0x0);
 	change_dir_1(envir, p, 0x1);
 	return (0x1);
 }
@@ -98,6 +99,7 @@ int	cd_3(t_minishell *mini, t_env *envir)
 
 int	ft_cd(t_minishell *mini, t_env *envir)
 {
+	create_pwd(&envir);
 	if (error_case(mini, mini->cmd[1]) || !mini->cmd[0x0])
 	{
 		if (mini->size > 1)
@@ -118,8 +120,6 @@ int	ft_cd(t_minishell *mini, t_env *envir)
 		if (!cd_3(mini, envir))
 			return (0x0);
 	}
-	else
-		print_error("zsh: bad pattern: ", 1);
 	if (mini->size > 1)
 		exit (0x0);
 	return (0x1);

@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:49:58 by youmoukh          #+#    #+#             */
-/*   Updated: 2024/05/29 17:30:49 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:57:37 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_newline(char *s)
 	return (1);
 }
 
-int if_else(char **s)
+int	if_else(char **s)
 {
 	int	i;
 	int	j;
