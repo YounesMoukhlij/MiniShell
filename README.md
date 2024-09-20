@@ -49,3 +49,5 @@ Have a working history (you can navigate through commands with up/down arrows)
 — ```cd```
 
 — ```pwd```
+
+Overall this project was full of enjoyment and too many sleepless nights that made me learn a lot in this period and proudly I can say that I’m proud of my minishell HAHAHA.
