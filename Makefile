@@ -6,7 +6,7 @@
 #    By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:51:20 by youmoukh          #+#    #+#              #
-#    Updated: 2024/05/30 17:44:14 by youmoukh         ###   ########.fr        #
+#    Updated: 2024/09/20 15:51:00 by youmoukh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,61 +28,61 @@ SRC = main.c \
 	  Parser/pip_checker.c \
 	  Parser/ft_after_cmd.c\
 	  Parser/ft_case.c\
-	  Exec/builtin/ft_cd.c \
-	  Exec/expand/expander.c \
-	  Exec/expand/expander_1.c \
-	  Exec/execute/check_fd.c \
-	  Exec/execute/check_fd_1.c \
-	  Exec/execute/check_fd_2.c \
-	  Exec/execute/check_fd_3.c \
-	  Exec/execute/check_fd_4.c \
-	  Exec/execute/check_fd_5.c \
-	  Exec/execute/check_fd_6.c \
-	  Exec/execute/check_fd_7.c \
-	  Exec/execute/check_fd_8.c \
-	  Exec/execute/check_fd_9.c \
-	  Exec/execute/check_fd_10.c \
-	  Exec/builtin/ft_unset.c \
-	  Exec/builtin/ft_echo.c \
-	  Exec/builtin/ft_echo_1.c \
-	  Exec/builtin/ft_cd_1.c \
-	  Exec/builtin/ft_pwd.c \
-	  Exec/builtin/ft_env.c \
-	  Exec/builtin/ft_exit.c \
-	  Exec/builtin/ft_export.c \
-	  Exec/builtin/ft_export_1.c \
-	  Exec/builtin/ft_export_2.c \
-	  Exec/builtin/ft_export_3.c \
-	  Exec/builtin/ft_export_4.c \
-	  Exec/builtin/ft_export_5.c \
-	  Exec/env/env_functions.c \
-	  Exec/env/env_functions_1.c \
-	  Exec/builtin/ft_exit_1.c \
-	  Exec/builtin/extra_func.c \
-	  Exec/extended_main.c \
-	  Exec/extended_main_1.c \
-	  Exec/extended_main_2.c \
-	  Exec/execute/ft_execute.c \
-	  Exec/execute/ft_execute_1.c \
-	  Exec/execute/ft_execute_2.c \
-	  Exec/execute/ft_execute_3.c \
-	  Exec/execute/ft_execute_4.c \
-	  Exec/execute/ft_execute_5.c \
-	  Exec/execute/ft_execute_6.c \
-	  Exec/builtin/print_export.c \
-	  Exec/expand/expander_utils.c \
-	  Exec/expand/expander_utils_1.c \
-	  Exec/expand/expander_utils_2.c \
-	  Exec/expand/expander_utils_3.c \
-	  Exec/expand/expander_utils_4.c \
-	  Exec/expand/expander_utils_5.c \
+	  Execution/builtin/ft_cd.c \
+	  Execution/expand/expander.c \
+	  Execution/expand/expander_1.c \
+	  Execution/execute/check_fd.c \
+	  Execution/execute/check_fd_1.c \
+	  Execution/execute/check_fd_2.c \
+	  Execution/execute/check_fd_3.c \
+	  Execution/execute/check_fd_4.c \
+	  Execution/execute/check_fd_5.c \
+	  Execution/execute/check_fd_6.c \
+	  Execution/execute/check_fd_7.c \
+	  Execution/execute/check_fd_8.c \
+	  Execution/execute/check_fd_9.c \
+	  Execution/execute/check_fd_10.c \
+	  Execution/builtin/ft_unset.c \
+	  Execution/builtin/ft_echo.c \
+	  Execution/builtin/ft_echo_1.c \
+	  Execution/builtin/ft_cd_1.c \
+	  Execution/builtin/ft_pwd.c \
+	  Execution/builtin/ft_env.c \
+	  Execution/builtin/ft_exit.c \
+	  Execution/builtin/ft_export.c \
+	  Execution/builtin/ft_export_1.c \
+	  Execution/builtin/ft_export_2.c \
+	  Execution/builtin/ft_export_3.c \
+	  Execution/builtin/ft_export_4.c \
+	  Execution/builtin/ft_export_5.c \
+	  Execution/env/env_functions.c \
+	  Execution/env/env_functions_1.c \
+	  Execution/builtin/ft_exit_1.c \
+	  Execution/builtin/extra_func.c \
+	  Execution/extended_main.c \
+	  Execution/extended_main_1.c \
+	  Execution/extended_main_2.c \
+	  Execution/execute/ft_execute.c \
+	  Execution/execute/ft_execute_1.c \
+	  Execution/execute/ft_execute_2.c \
+	  Execution/execute/ft_execute_3.c \
+	  Execution/execute/ft_execute_4.c \
+	  Execution/execute/ft_execute_5.c \
+	  Execution/execute/ft_execute_6.c \
+	  Execution/builtin/print_export.c \
+	  Execution/expand/expander_utils.c \
+	  Execution/expand/expander_utils_1.c \
+	  Execution/expand/expander_utils_2.c \
+	  Execution/expand/expander_utils_3.c \
+	  Execution/expand/expander_utils_4.c \
+	  Execution/expand/expander_utils_5.c \
 	  Parser/ft_build_linker.c \
 	  Parser/ft_cleantach.c \
 	  Parser/ft_cleanshell.c \
 	  Parser/getstr_fpromt.c \
 	  Parser/ft_check_q.c \
 	  Parser/help_func/lst_functions.c \
-	  Exec/signals/signal_handler.c \
+	  Execution/signals/signal_handler.c \
 	  Parser/help_func/allocate_max.c \
 	  Parser/help_func/minishell_functions.c \
 	  Parser/help_func/ft_split_executor.c \
@@ -102,8 +102,8 @@ SRC = main.c \
 	  Parser/help_func/ft_bzero.c \
 	  Parser/help_func/ft_isascii.c \
 	  Parser/help_func/ft_isprint.c \
-	  Exec/garbage_coll/garbage_coll.c \
-	  Exec/garbage_coll/garbage_coll_1.c \
+	  Execution/garbage_coll/garbage_coll.c \
+	  Execution/garbage_coll/garbage_coll_1.c \
 
 OBJ = ${SRC:.c=.o}
 CFLAG = -Wall -Wextra -Werror
