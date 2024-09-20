@@ -17,6 +17,7 @@ Implement redirections ```(<, >, >>)```
 Implement the here-doc ```(<<)```
 Handle double quotes ```("")``` and single quotes ```('')```, which should escape special characters, beside ```$``` for double quotes.
 Handle environment variables ($ followed by a sequence of characters).
+<br>
 Handle signals like in bash ```(ctrl + C, ctrl + \, ctrl + D).```
 Implement the following built-ins:
 — ```echo``` (option -n only)
