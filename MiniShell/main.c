@@ -6,7 +6,7 @@
 /*   By: youmoukh <youmoukh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:14:55 by ynassibi          #+#    #+#             */
-/*   Updated: 2024/05/30 17:43:16 by youmoukh         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:37:51 by youmoukh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	start_execution(t_minishell *mini, t_env *envir, char *promt)
 		return (0x1);
 	if (mini)
 	{
-		g_sig = 1;
+		g_sig = 0x1;
 		ft_execute(&mini, envir, 0x0, 0x0);
 		g_sig = 0x0;
 	}
